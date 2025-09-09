@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, MessageCircle } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -20,9 +21,9 @@ const Header = () => {
           <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
             Contact
           </a>
-          <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+          <Link to="/blog" className="text-sm font-medium hover:text-primary transition-colors">
             Blog
-          </a>
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-2">
