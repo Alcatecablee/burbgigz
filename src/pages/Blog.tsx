@@ -16,6 +16,7 @@ const Blog = () => {
 
   const allTags = Array.from(new Set(posts.flatMap((p) => p.tags))).sort();
   const filtered = activeTag ? posts.filter((p) => p.tags.includes(activeTag)) : posts;
+  const sorted = [...filtered].sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <div className="min-h-screen bg-background">
@@ -57,7 +58,7 @@ const Blog = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((p) => (
+          {sorted.map((p) => (
             <Card key={p.slug} className="bg-gradient-card border-0 shadow-soft hover:shadow-medium transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-xl">
