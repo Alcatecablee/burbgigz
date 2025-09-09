@@ -20,8 +20,8 @@ const Contact = () => {
             Ready to Fix Your Tech Issues?
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Contact me today for fast, professional IT services in Lombardy East and surrounding areas.
-            Quick response guaranteed!
+            Professional remote IT support available immediately via AnyDesk. On-site services 
+            available in Lombardy East area (callout fee applies). Quick response guaranteed!
           </p>
         </div>
 
@@ -32,7 +32,7 @@ const Contact = () => {
                 <MessageCircle className="h-6 w-6 text-success group-hover:text-white" />
               </div>
               <CardTitle>WhatsApp (Preferred)</CardTitle>
-              <CardDescription>Fastest way to reach me for quotes and bookings</CardDescription>
+              <CardDescription>Start remote session or book on-site visit instantly</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
               <Button 
@@ -40,7 +40,7 @@ const Contact = () => {
                 size="lg"
               >
                 <MessageCircle className="mr-2 h-4 w-4" />
-                Send WhatsApp Message
+                Start Remote Support
               </Button>
             </CardContent>
           </Card>

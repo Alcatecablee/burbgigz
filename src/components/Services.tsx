@@ -13,46 +13,46 @@ import {
 
 const services = [
   {
-    icon: <Monitor className="h-8 w-8" />,
-    title: "Windows Reload & Setup",
-    description: "Complete Windows reinstallation, driver updates, and software setup",
-    price: "From R350",
-    features: ["Full OS Installation", "Driver Setup", "Essential Software", "Data Backup"]
+    icon: <Smartphone className="h-8 w-8" />,
+    title: "Remote IT Support",
+    description: "Professional troubleshooting via AnyDesk - fix issues from anywhere",
+    price: "From R120/session",
+    features: ["Remote Diagnostics", "Software Installation", "System Updates", "Real-time Support"]
   },
   {
     icon: <Shield className="h-8 w-8" />,
     title: "Virus & Malware Removal",
-    description: "Complete system cleanup and protection against malicious software",
-    price: "From R250",
+    description: "Complete system cleanup and protection (remote + on-site)",
+    price: "Remote R150 | On-site R350",
     features: ["Deep System Scan", "Malware Removal", "Antivirus Setup", "System Optimization"]
   },
   {
-    icon: <HardDrive className="h-8 w-8" />,
-    title: "Hardware Upgrades",
-    description: "SSD upgrades, RAM installation, and component replacement",
-    price: "From R200 + Parts",
-    features: ["SSD Installation", "RAM Upgrades", "Screen Replacement", "Keyboard Repair"]
+    icon: <Monitor className="h-8 w-8" />,
+    title: "Windows Reload & Setup",
+    description: "Complete Windows reinstallation with remote guidance",
+    price: "Remote R200 | On-site R450",
+    features: ["Full OS Installation", "Driver Setup", "Essential Software", "Data Migration"]
   },
   {
     icon: <Wifi className="h-8 w-8" />,
-    title: "Network & Wi-Fi Setup",
-    description: "Internet connection setup, router configuration, and troubleshooting",
-    price: "From R300",
-    features: ["Wi-Fi Configuration", "Network Troubleshooting", "Printer Setup", "Smart Device Setup"]
+    title: "Network & Connectivity",
+    description: "Internet, Wi-Fi setup and troubleshooting via remote support",
+    price: "Remote R120 | On-site R320",
+    features: ["Wi-Fi Configuration", "Network Troubleshooting", "Printer Setup", "Connection Issues"]
   },
   {
     icon: <Wrench className="h-8 w-8" />,
-    title: "General PC Repairs",
-    description: "Diagnostics and repairs for all computer-related issues",
-    price: "From R200",
-    features: ["Hardware Diagnostics", "Software Issues", "Performance Tuning", "Data Recovery"]
+    title: "System Optimization",
+    description: "Performance tuning and maintenance via remote connection",
+    price: "Remote R150 | On-site R350",
+    features: ["Speed Optimization", "Startup Management", "Registry Cleanup", "Performance Monitoring"]
   },
   {
-    icon: <Smartphone className="h-8 w-8" />,
-    title: "Remote Support",
-    description: "Quick fixes and support via remote desktop connection",
-    price: "From R150",
-    features: ["Remote Diagnostics", "Software Installation", "System Updates", "Quick Troubleshooting"]
+    icon: <HardDrive className="h-8 w-8" />,
+    title: "On-Site Hardware Service",
+    description: "Physical repairs and upgrades (callout fee applies)",
+    price: "R400 callout + service",
+    features: ["SSD Installation", "RAM Upgrades", "Component Replacement", "Hardware Diagnostics"]
   }
 ];
 
@@ -63,11 +63,11 @@ const Services = () => {
         <div className="text-center space-y-4 mb-16">
           <Badge variant="outline" className="mb-2">Our Services</Badge>
           <h2 className="text-3xl lg:text-4xl font-bold">
-            Professional IT Solutions for Your Home & Office
+            Remote-First IT Support & On-Site Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            From quick fixes to complete system overhauls, we handle all your technology needs 
-            with expertise and care.
+            Professional helpdesk support using AnyDesk for remote troubleshooting. 
+            Most issues resolved without leaving your desk - on-site support when hardware work is needed.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ const Services = () => {
         <div className="text-center mt-12">
           <div className="inline-flex items-center space-x-2 text-muted-foreground mb-4">
             <Clock className="h-4 w-4" />
-            <span>Same-day service available • Free quotes • 30-day warranty on all repairs</span>
+            <span>Remote sessions start immediately • R400 callout for on-site • Professional helpdesk experience</span>
           </div>
         </div>
       </div>

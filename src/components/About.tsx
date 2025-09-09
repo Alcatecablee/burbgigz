@@ -22,9 +22,9 @@ const About = () => {
                 Your Local IT Expert Since 2010
               </h2>
               <p className="text-lg text-muted-foreground">
-                I've been helping Johannesburg residents solve their computer problems for over a decade. 
-                Starting with Gumtree and OLX advertising, I built a reputation for reliable, honest service 
-                in the community.
+                Professional helpdesk technician currently working at GAAP.co.za with extensive remote support experience. 
+                I specialize in telephone troubleshooting and use AnyDesk for remote assistance. Most technical issues 
+                can be resolved remotely, saving you time and money while providing immediate professional support.
               </p>
             </div>
 
@@ -32,24 +32,24 @@ const About = () => {
               <div className="flex items-start space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
-                  <h3 className="font-semibold">Local & Trustworthy</h3>
-                  <p className="text-muted-foreground">Based in Lombardy East, serving the eastern suburbs with personal, reliable service.</p>
+                  <h3 className="font-semibold">Remote Support Specialist</h3>
+                  <p className="text-muted-foreground">Professional helpdesk experience with AnyDesk remote troubleshooting capabilities.</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
-                  <h3 className="font-semibold">Experienced Professional</h3>
-                  <p className="text-muted-foreground">10+ years of experience with all major computer brands and operating systems.</p>
+                  <h3 className="font-semibold">Professional Background</h3>
+                  <p className="text-muted-foreground">Currently employed at GAAP.co.za with strong telephone troubleshooting skills.</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
-                  <h3 className="font-semibold">Fair Pricing</h3>
-                  <p className="text-muted-foreground">Transparent, competitive rates with no hidden fees. You know the cost upfront.</p>
+                  <h3 className="font-semibold">Cost-Effective Solutions</h3>
+                  <p className="text-muted-foreground">Remote fixes from R120, on-site service R400 callout + service fee.</p>
                 </div>
               </div>
             </div>
@@ -58,7 +58,7 @@ const About = () => {
               size="lg" 
               className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
             >
-              Get Your Free Quote Today
+              Start Remote Session
             </Button>
           </div>
 
@@ -70,8 +70,8 @@ const About = () => {
                     <Calendar className="h-6 w-6 text-primary" />
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-primary">10+</div>
-                <div className="text-sm text-muted-foreground">Years Experience</div>
+                <div className="text-2xl font-bold text-primary">Professional</div>
+                <div className="text-sm text-muted-foreground">Helpdesk Experience</div>
               </CardContent>
             </Card>
 
@@ -82,8 +82,8 @@ const About = () => {
                     <Users className="h-6 w-6 text-primary" />
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-primary">500+</div>
-                <div className="text-sm text-muted-foreground">Happy Customers</div>
+                <div className="text-2xl font-bold text-primary">Remote</div>
+                <div className="text-sm text-muted-foreground">Support Specialist</div>
               </CardContent>
             </Card>
 
@@ -94,8 +94,8 @@ const About = () => {
                     <Star className="h-6 w-6 text-primary" />
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-primary">4.9★</div>
-                <div className="text-sm text-muted-foreground">Customer Rating</div>
+                <div className="text-2xl font-bold text-primary">AnyDesk</div>
+                <div className="text-sm text-muted-foreground">Certified</div>
               </CardContent>
             </Card>
 
@@ -106,8 +106,8 @@ const About = () => {
                     <Award className="h-6 w-6 text-primary" />
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-primary">30 Day</div>
-                <div className="text-sm text-muted-foreground">Warranty</div>
+                <div className="text-2xl font-bold text-primary">R400</div>
+                <div className="text-sm text-muted-foreground">Callout Fee</div>
               </CardContent>
             </Card>
           </div>

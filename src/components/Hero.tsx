@@ -18,14 +18,14 @@ const Hero = () => {
             </Badge>
             
             <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-              Fast, Reliable 
-              <span className="text-primary block">IT Services</span>
-              in Johannesburg
+              Expert Remote 
+              <span className="text-primary block">IT Support</span>
+              & On-Site Services
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-lg">
-              Professional PC & laptop repairs, Windows reloads, virus removal, and hardware upgrades. 
-              Over 10 years of trusted service in your neighborhood.
+              Professional helpdesk technician with remote troubleshooting expertise using AnyDesk. 
+              Quick fixes from anywhere, with on-site support when needed.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
@@ -34,7 +34,7 @@ const Hero = () => {
                 className="bg-gradient-primary hover:shadow-glow transition-all duration-300 text-lg px-8"
               >
                 <Zap className="mr-2 h-5 w-5" />
-                Get Quick Quote
+                Start Remote Session
               </Button>
               <Button 
                 variant="outline" 
@@ -49,15 +49,15 @@ const Hero = () => {
             <div className="flex items-center space-x-6 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full"></div>
-                <span>Same Day Service</span>
+                <span>Remote Support Available</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full"></div>
-                <span>10+ Years Experience</span>
+                <span>Professional Helpdesk</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full"></div>
-                <span>Local Expert</span>
+                <span>AnyDesk Certified</span>
               </div>
             </div>
           </div>
