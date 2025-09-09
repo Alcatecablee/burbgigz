@@ -27,13 +27,17 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-2">
-          <Button variant="outline" size="sm" className="hidden sm:flex">
-            <Phone className="mr-2 h-4 w-4" />
-            <span className="hidden lg:inline">Call Now</span>
+          <Button asChild variant="outline" size="sm" className="hidden sm:flex">
+            <a href="tel:+27670494876">
+              <Phone className="mr-2 h-4 w-4" />
+              <span className="hidden lg:inline">Call Now</span>
+            </a>
           </Button>
-          <Button variant="default" size="sm" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
-            <MessageCircle className="mr-2 h-4 w-4" />
-            WhatsApp
+          <Button asChild variant="default" size="sm" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+            <a href="https://wa.me/27670494876" target="_blank" rel="noopener noreferrer">
+              <MessageCircle className="mr-2 h-4 w-4" />
+              WhatsApp
+            </a>
           </Button>
         </div>
       </div>
