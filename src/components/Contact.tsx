@@ -20,8 +20,8 @@ const Contact = () => {
             Ready to Fix Your Tech Issues?
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Professional remote IT support available immediately via AnyDesk. On-site services 
-            available in Lombardy East area (callout fee applies). Quick response guaranteed!
+            Professional remote IT support available immediately via secure Remote Support. On-site services
+            available in the Lombardy East area (callout fee applies). Quick response guaranteed!
           </p>
         </div>
 

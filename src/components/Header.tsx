@@ -20,6 +20,9 @@ const Header = () => {
           <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
             Contact
           </a>
+          <a href="/blog" className="text-sm font-medium hover:text-primary transition-colors">
+            Blog
+          </a>
         </nav>
 
         <div className="flex items-center space-x-2">
