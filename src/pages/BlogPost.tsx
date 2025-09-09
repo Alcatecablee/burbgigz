@@ -185,7 +185,7 @@ const BlogPost = () => {
           </div>
         </header>
 
-        <article className="prose prose-neutral dark:prose-invert max-w-none">
+        <article className="prose prose-lg prose-neutral dark:prose-invert prose-p:my-4 prose-ul:my-4 prose-ol:my-4 max-w-none">
           {renderContent(post.content)}
         </article>
 
