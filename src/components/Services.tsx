@@ -15,7 +15,7 @@ const services = [
   {
     icon: <Smartphone className="h-8 w-8" />,
     title: "Remote IT Support",
-    description: "Professional troubleshooting via AnyDesk - fix issues from anywhere",
+    description: "Professional troubleshooting via secure remote tools - fix issues from anywhere",
     price: "From R120/session",
     features: ["Remote Diagnostics", "Software Installation", "System Updates", "Real-time Support"]
   },
@@ -66,7 +66,7 @@ const Services = () => {
             Remote-First IT Support & On-Site Services
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Professional helpdesk support using AnyDesk for remote troubleshooting. 
+            Professional helpdesk support using secure remote tools for remote troubleshooting.
             Most issues resolved without leaving your desk - on-site support when hardware work is needed.
           </p>
         </div>
