@@ -24,7 +24,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-lg">
-              Professional helpdesk technician with remote troubleshooting expertise using AnyDesk. 
+              Professional helpdesk technician with remote troubleshooting expertise using secure remote tools.
               Quick fixes from anywhere, with on-site support when needed.
             </p>
             
@@ -57,7 +57,7 @@ const Hero = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full"></div>
-                <span>AnyDesk Certified</span>
+                <span>Secure Remote Tools</span>
               </div>
             </div>
           </div>
