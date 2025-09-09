@@ -28,20 +28,24 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg" 
+              <Button asChild
+                size="lg"
                 className="bg-gradient-primary hover:shadow-glow transition-all duration-300 text-lg px-8"
               >
-                <Zap className="mr-2 h-5 w-5" />
-                Start Remote Session
+                <a href="#contact">
+                  <Zap className="mr-2 h-5 w-5" />
+                  Start Remote Session
+                </a>
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
+              <Button asChild
+                variant="outline"
+                size="lg"
                 className="text-lg px-8 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
               >
-                <Shield className="mr-2 h-5 w-5" />
-                View Services
+                <a href="#services">
+                  <Shield className="mr-2 h-5 w-5" />
+                  View Services
+                </a>
               </Button>
             </div>
             
