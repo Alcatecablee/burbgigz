@@ -42,7 +42,117 @@ const BlogPost = () => {
 
   const rtime = readingTime(post.content);
   const related = posts.filter((p) => p.slug !== post.slug && p.tags.some((t) => post.tags.includes(t))).slice(0, 3);
-  const paragraphs = post.content.split("\n\n");
+  const renderContent = (raw: string) => {
+    const blocks = raw.split(/\n\n+/);
+    const elements: JSX.Element[] = [];
+    let k = 0;
+
+    const isBullet = (s: string) => /^([\u2022\-])\s+/.test(s.trim());
+    const isNumbered = (s: string) => /^\d+[\).]\s+/.test(s.trim());
+    const stripBullet = (s: string) => s.replace(/^([\u2022\-])\s+/, "");
+    const stripNumber = (s: string) => s.replace(/^\d+[\).]\s+/, "");
+
+    for (const block of blocks) {
+      const lines = block.split(/\n/).filter((l) => l.trim().length > 0);
+      if (lines.length === 0) continue;
+
+      const allBullets = lines.every(isBullet);
+      const allNumbers = lines.every(isNumbered);
+
+      if (allBullets) {
+        elements.push(
+          <ul key={k++} className="list-disc pl-6">
+            {lines.map((l, i) => (
+              <li key={i}>{stripBullet(l)}</li>
+            ))}
+          </ul>,
+        );
+        continue;
+      }
+
+      if (allNumbers) {
+        elements.push(
+          <ol key={k++} className="list-decimal pl-6">
+            {lines.map((l, i) => (
+              <li key={i}>{stripNumber(l)}</li>
+            ))}
+          </ol>,
+        );
+        continue;
+      }
+
+      // Mixed: leading sentence then bullets or numbers
+      const firstNonList = lines.findIndex((l) => !isBullet(l) && !isNumbered(l));
+      if (firstNonList !== -1) {
+        const head = lines[firstNonList];
+        const before = lines.slice(0, firstNonList);
+        const after = lines.slice(firstNonList + 1);
+
+        if (before.length) {
+          // If bullets/numbers before, render as list
+          if (before.every(isBullet)) {
+            elements.push(
+              <ul key={k++} className="list-disc pl-6">
+                {before.map((l, i) => (
+                  <li key={i}>{stripBullet(l)}</li>
+                ))}
+              </ul>,
+            );
+          } else if (before.every(isNumbered)) {
+            elements.push(
+              <ol key={k++} className="list-decimal pl-6">
+                {before.map((l, i) => (
+                  <li key={i}>{stripNumber(l)}</li>
+                ))}
+              </ol>,
+            );
+          }
+        }
+
+        elements.push(
+          <p key={k++} className="whitespace-pre-line">
+            {head}
+          </p>,
+        );
+
+        if (after.length) {
+          if (after.every(isBullet)) {
+            elements.push(
+              <ul key={k++} className="list-disc pl-6">
+                {after.map((l, i) => (
+                  <li key={i}>{stripBullet(l)}</li>
+                ))}
+              </ul>,
+            );
+          } else if (after.every(isNumbered)) {
+            elements.push(
+              <ol key={k++} className="list-decimal pl-6">
+                {after.map((l, i) => (
+                  <li key={i}>{stripNumber(l)}</li>
+                ))}
+              </ol>,
+            );
+          } else {
+            elements.push(
+              <p key={k++} className="whitespace-pre-line">
+                {after.join("\n")}
+              </p>,
+            );
+          }
+        }
+        continue;
+      }
+
+      // Fallback paragraph with preserved line breaks
+      elements.push(
+        <p key={k++} className="whitespace-pre-line">
+          {lines.join("\n")}
+        </p>,
+      );
+    }
+
+    return elements;
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -76,9 +186,7 @@ const BlogPost = () => {
         </header>
 
         <article className="prose prose-neutral dark:prose-invert max-w-none">
-          {paragraphs.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
+          {renderContent(post.content)}
         </article>
 
         <div className="mt-10 flex flex-wrap items-center gap-3">
