@@ -35,12 +35,14 @@ const Contact = () => {
               <CardDescription>Start remote session or book on-site visit instantly</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Button 
+              <Button asChild
                 className="w-full bg-success hover:bg-success/90 text-white"
                 size="lg"
               >
-                <MessageCircle className="mr-2 h-4 w-4" />
-                Start Remote Support
+                <a href="https://wa.me/27670494876" target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="mr-2 h-4 w-4" />
+                  Start Remote Support
+                </a>
               </Button>
             </CardContent>
           </Card>
@@ -54,13 +56,15 @@ const Contact = () => {
               <CardDescription>Speak to me directly about your IT needs</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Button 
-                variant="outline" 
+              <Button asChild
+                variant="outline"
                 className="w-full hover:bg-primary hover:text-primary-foreground"
                 size="lg"
               >
-                <Phone className="mr-2 h-4 w-4" />
-                Call Now
+                <a href="tel:+27670494876">
+                  <Phone className="mr-2 h-4 w-4" />
+                  Call Now
+                </a>
               </Button>
             </CardContent>
           </Card>
