@@ -18,14 +18,13 @@ const Hero = () => {
             </Badge>
             
             <h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-              Expert Remote 
-              <span className="text-primary block">IT Support</span>
-              & On-Site Services
+              Expert Remote Support
+              <span className="text-primary block">& On-Site IT Services</span>
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-lg">
               Professional helpdesk technician with remote troubleshooting expertise using secure remote tools.
-              Quick fixes from anywhere, with on-site support when needed.
+              Quick fixes from anywhere, with on-site support when needed. Serving Lombardy East, Johannesburg and nearby suburbs.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
