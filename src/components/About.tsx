@@ -22,8 +22,8 @@ const About = () => {
                 Your Local IT Expert Since 2010
               </h2>
               <p className="text-lg text-muted-foreground">
-                Professional helpdesk technician currently working at GAAP.co.za with extensive remote support experience. 
-                I specialize in telephone troubleshooting and use AnyDesk for remote assistance. Most technical issues 
+                Professional helpdesk technician with extensive remote support experience.
+                I specialize in telephone troubleshooting and use secure remote tools for remote assistance. Most technical issues
                 can be resolved remotely, saving you time and money while providing immediate professional support.
               </p>
             </div>
@@ -33,7 +33,7 @@ const About = () => {
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
                   <h3 className="font-semibold">Remote Support Specialist</h3>
-                  <p className="text-muted-foreground">Professional helpdesk experience with AnyDesk remote troubleshooting capabilities.</p>
+                  <p className="text-muted-foreground">Professional helpdesk experience with secure remote troubleshooting capabilities.</p>
                 </div>
               </div>
               
@@ -41,7 +41,7 @@ const About = () => {
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
                   <h3 className="font-semibold">Professional Background</h3>
-                  <p className="text-muted-foreground">Currently employed at GAAP.co.za with strong telephone troubleshooting skills.</p>
+                  <p className="text-muted-foreground">Strong telephone troubleshooting skills developed in professional helpdesk environments.</p>
                 </div>
               </div>
               
@@ -94,7 +94,7 @@ const About = () => {
                     <Star className="h-6 w-6 text-primary" />
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-primary">AnyDesk</div>
+                <div className="text-2xl font-bold text-primary">Remote</div>
                 <div className="text-sm text-muted-foreground">Certified</div>
               </CardContent>
             </Card>
