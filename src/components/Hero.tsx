@@ -6,8 +6,6 @@ import heroImage from "@/assets/hero-tech.jpg";
 const Hero = () => {
   return (
     <section className="relative py-20 lg:py-32 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-50"></div>
       
       <div className="container relative px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -30,7 +28,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild
                 size="lg"
-                className="bg-gradient-primary hover:shadow-glow transition-all duration-300 text-lg px-8"
+                className="bg-primary transition-all duration-300 text-lg px-8"
               >
                 <a href="#contact">
                   <Zap className="mr-2 h-5 w-5" />
@@ -40,7 +38,7 @@ const Hero = () => {
               <Button asChild
                 variant="outline"
                 size="lg"
-                className="text-lg px-8 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                className="text-lg px-8 transition-all duration-300"
               >
                 <a href="#services">
                   <Shield className="mr-2 h-5 w-5" />

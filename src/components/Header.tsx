@@ -7,7 +7,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between px-4">
         <div className="flex items-center space-x-2">
-          <div className="h-8 w-8 rounded-md bg-gradient-primary"></div>
+          <div className="h-8 w-8 rounded-md border border-border"></div>
           <span className="text-xl font-bold text-primary">BurbGigz</span>
         </div>
         
@@ -33,7 +33,7 @@ const Header = () => {
               <span className="hidden lg:inline">Call Now</span>
             </a>
           </Button>
-          <Button asChild variant="default" size="sm" className="bg-gradient-primary hover:shadow-glow transition-all duration-300">
+          <Button asChild variant="default" size="sm" className="transition-all duration-300">
             <a href="https://wa.me/27670494876" target="_blank" rel="noopener noreferrer">
               <MessageCircle className="mr-2 h-4 w-4" />
               WhatsApp

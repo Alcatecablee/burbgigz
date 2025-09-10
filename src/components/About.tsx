@@ -54,16 +54,16 @@ const About = () => {
               </div>
             </div>
 
-            <Button 
-              size="lg" 
-              className="bg-gradient-primary hover:shadow-glow transition-all duration-300"
+            <Button
+              size="lg"
+              className="bg-primary transition-all duration-300"
             >
               Start Remote Session
             </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border shadow-sm">
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
                   <div className="p-3 rounded-full bg-primary/10">
@@ -75,7 +75,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border shadow-sm">
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
                   <div className="p-3 rounded-full bg-primary/10">
@@ -87,7 +87,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border shadow-sm">
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
                   <div className="p-3 rounded-full bg-primary/10">
@@ -99,7 +99,7 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-card border-0 shadow-soft">
+            <Card className="bg-card border shadow-sm">
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
                   <div className="p-3 rounded-full bg-primary/10">
