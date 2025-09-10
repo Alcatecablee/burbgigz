@@ -151,7 +151,7 @@ const Remote = () => {
           <AccordionItem value="q2">
             <AccordionTrigger>What areas do you cover on‑site?</AccordionTrigger>
             <AccordionContent>
-              Lombardy East (primary), with callouts to Edenvale, Bedfordview, Greenstone, Kempton Park and nearby suburbs.
+              Lombardy East (primary), with callouts to Alexandra (~3 km NW), Lakeside (~3 km NE), Kew (adjacent), Marlboro/Gautrain (~4 km N), Greenstone Mall (~10 min E), Sandton (~6–8 km NW) and Johannesburg CBD (~14 km W).
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="q3">
