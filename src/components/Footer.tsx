@@ -18,7 +18,7 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="h-8 w-8 rounded-md bg-gradient-primary"></div>
+              <div className="h-8 w-8 rounded-md border border-border"></div>
               <span className="text-xl font-bold text-primary">BurbGigz</span>
             </div>
             <p className="text-muted-foreground">
