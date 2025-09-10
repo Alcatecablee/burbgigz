@@ -73,7 +73,7 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-medium transition-all duration-300 bg-gradient-card border-0">
+            <Card key={index} className="group transition-all duration-300 bg-card border">
               <CardHeader className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
