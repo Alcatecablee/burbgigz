@@ -1,11 +1,11 @@
 import Header from "@/components/Header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
 import { useMemo, useState } from "react";
 import { Calculator, HardDrive, MapPin } from "lucide-react";
 
@@ -92,9 +92,9 @@ const Pricing = () => {
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 opacity-100">
                   <Label>Area (for on‑site)</Label>
-                  <Select value={suburb} onValueChange={setSuburb}>
+                  <Select value={suburb} onValueChange={setSuburb} disabled={onsite !== "on-site"}>
                     <SelectTrigger><SelectValue placeholder="Select area" /></SelectTrigger>
                     <SelectContent>
                       {suburbs.map((s) => (
@@ -106,10 +106,10 @@ const Pricing = () => {
               </div>
 
               <div className="rounded-md border p-3 text-sm">
-                <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R {ssdPrice + ramPrice}</span></div>
-                <div className="flex justify-between"><span>Service ({onsite})</span><span>R {service}</span></div>
-                <div className="flex justify-between"><span>Callout</span><span>R {callout}</span></div>
-                <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R {total}</span></div>
+                <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R {(ssdPrice + ramPrice).toFixed(0)}</span></div>
+                <div className="flex justify-between"><span>Service ({onsite})</span><span>R {service.toFixed(0)}</span></div>
+                <div className="flex justify-between"><span>Callout</span><span>R {callout.toFixed(0)}</span></div>
+                <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R {total.toFixed(0)}</span></div>
               </div>
 
               <div className="flex gap-2">
