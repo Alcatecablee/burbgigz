@@ -103,12 +103,14 @@ const Contact = () => {
                 <span>Lombardy East (Main Area)</span>
                 <Badge variant="default">Primary</Badge>
               </div>
-              <div className="border-t pt-2 space-y-1 text-muted-foreground">
-                <div>• Bedfordview</div>
-                <div>• Edenvale</div>
-                <div>• Greenstone</div>
-                <div>• Kempton Park</div>
-                <div>• Benoni (Central)</div>
+              <div className="border-t pt-2 space-y-2 text-muted-foreground">
+                <div className="flex justify-between"><span>Alexandra</span><span className="text-xs">NW • ~3 km</span></div>
+                <div className="flex justify-between"><span>Lakeside</span><span className="text-xs">NE • ~3 km</span></div>
+                <div className="flex justify-between"><span>Kew</span><span className="text-xs">Adjacent</span></div>
+                <div className="flex justify-between"><span>Marlboro (Gautrain)</span><span className="text-xs">N • ~4 km</span></div>
+                <div className="flex justify-between"><span>Greenstone Mall</span><span className="text-xs">E • ~10 min</span></div>
+                <div className="flex justify-between"><span>Sandton</span><span className="text-xs">NW • ~6–8 km</span></div>
+                <div className="flex justify-between"><span>Johannesburg CBD</span><span className="text-xs">W • ~14 km</span></div>
               </div>
             </CardContent>
           </Card>
