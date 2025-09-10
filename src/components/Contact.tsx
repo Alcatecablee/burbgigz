@@ -26,7 +26,7 @@ const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-medium transition-all duration-300 group">
+          <Card className="bg-card border shadow-sm transition-all duration-300 group">
             <CardHeader className="text-center">
               <div className="mx-auto p-3 rounded-full bg-success/10 group-hover:bg-success group-hover:text-white transition-colors w-fit">
                 <MessageCircle className="h-6 w-6 text-success group-hover:text-white" />
@@ -47,7 +47,7 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-medium transition-all duration-300 group">
+          <Card className="bg-card border shadow-sm transition-all duration-300 group">
             <CardHeader className="text-center">
               <div className="mx-auto p-3 rounded-full bg-primary/10 group-hover:bg-primary group-hover:text-white transition-colors w-fit">
                 <Phone className="h-6 w-6 text-primary group-hover:text-white" />
@@ -69,7 +69,7 @@ const Contact = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-gradient-card border-0 shadow-soft hover:shadow-medium transition-all duration-300 group md:col-span-2 lg:col-span-1">
+          <Card className="bg-card border shadow-sm transition-all duration-300 group md:col-span-2 lg:col-span-1">
             <CardHeader className="text-center">
               <div className="mx-auto p-3 rounded-full bg-warning/10 group-hover:bg-warning group-hover:text-white transition-colors w-fit">
                 <Mail className="h-6 w-6 text-warning group-hover:text-white" />
