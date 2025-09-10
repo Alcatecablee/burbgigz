@@ -30,7 +30,7 @@ const Hero = () => {
                 size="lg"
                 className="bg-primary transition-all duration-300 text-lg px-8"
               >
-                <a href="#contact">
+                <a href="/remote">
                   <Zap className="mr-2 h-5 w-5" />
                   Start Remote Session
                 </a>
