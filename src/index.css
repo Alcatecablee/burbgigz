@@ -32,8 +32,8 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 31% 91%;
-    --input: 214 31% 91%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
     --ring: 214 84% 56%;
 
     /* Custom design tokens */
@@ -67,7 +67,7 @@
 
     --sidebar-accent-foreground: 240 5.9% 10%;
 
-    --sidebar-border: 220 13% 91%;
+    --sidebar-border: 0 0% 0%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
@@ -98,8 +98,8 @@
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
     --ring: 214 100% 70%;
 
     /* Dark theme gradients */
@@ -116,7 +116,7 @@
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-border: 0 0% 0%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
