@@ -12,18 +12,14 @@ const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center space-x-6">
-          <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">
-            Services
-          </a>
-          <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">
-            About
-          </a>
-          <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">
-            Contact
-          </a>
-          <Link to="/blog" className="text-sm font-medium hover:text-primary transition-colors">
-            Blog
-          </Link>
+          <a href="#services" className="text-sm font-medium hover:text-primary transition-colors">Services</a>
+          <a href="#about" className="text-sm font-medium hover:text-primary transition-colors">About</a>
+          <a href="#contact" className="text-sm font-medium hover:text-primary transition-colors">Contact</a>
+          <Link to="/remote" className="text-sm font-medium hover:text-primary transition-colors">Remote</Link>
+          <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors">Pricing</Link>
+          <Link to="/booking" className="text-sm font-medium hover:text-primary transition-colors">Booking</Link>
+          <Link to="/areas" className="text-sm font-medium hover:text-primary transition-colors">Areas</Link>
+          <Link to="/blog" className="text-sm font-medium hover:text-primary transition-colors">Blog</Link>
         </nav>
 
         <div className="flex items-center space-x-2">
