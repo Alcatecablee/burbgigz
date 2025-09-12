@@ -42,6 +42,41 @@ const BlogPost = () => {
 
   const rtime = readingTime(post.content);
   const related = posts.filter((p) => p.slug !== post.slug && p.tags.some((t) => post.tags.includes(t))).slice(0, 3);
+  const processMarkdown = (text: string): React.ReactNode[] => {
+    const parts: React.ReactNode[] = [];
+    let lastIndex = 0;
+    let keyCounter = 0;
+
+    // Process **bold** and *italic* patterns
+    const markdownRegex = /(\*\*([^*]+)\*\*|\*([^*]+)\*)/g;
+    let match;
+
+    while ((match = markdownRegex.exec(text)) !== null) {
+      // Add text before the match
+      if (match.index > lastIndex) {
+        parts.push(text.slice(lastIndex, match.index));
+      }
+
+      // Add the formatted text
+      if (match[0].startsWith('**')) {
+        // Bold text
+        parts.push(<strong key={keyCounter++}>{match[2]}</strong>);
+      } else {
+        // Italic text  
+        parts.push(<em key={keyCounter++}>{match[3]}</em>);
+      }
+
+      lastIndex = match.index + match[0].length;
+    }
+
+    // Add remaining text
+    if (lastIndex < text.length) {
+      parts.push(text.slice(lastIndex));
+    }
+
+    return parts.length > 0 ? parts : [text];
+  };
+
   const renderContent = (raw: string) => {
     const blocks = raw.split(/\n\n+/);
     const elements: JSX.Element[] = [];
@@ -63,7 +98,7 @@ const BlogPost = () => {
         elements.push(
           <ul key={k++} className="list-disc pl-6">
             {lines.map((l, i) => (
-              <li key={i}>{stripBullet(l)}</li>
+              <li key={i}>{processMarkdown(stripBullet(l))}</li>
             ))}
           </ul>,
         );
@@ -74,7 +109,7 @@ const BlogPost = () => {
         elements.push(
           <ol key={k++} className="list-decimal pl-6">
             {lines.map((l, i) => (
-              <li key={i}>{stripNumber(l)}</li>
+              <li key={i}>{processMarkdown(stripNumber(l))}</li>
             ))}
           </ol>,
         );
@@ -94,7 +129,7 @@ const BlogPost = () => {
             elements.push(
               <ul key={k++} className="list-disc pl-6">
                 {before.map((l, i) => (
-                  <li key={i}>{stripBullet(l)}</li>
+                  <li key={i}>{processMarkdown(stripBullet(l))}</li>
                 ))}
               </ul>,
             );
@@ -102,7 +137,7 @@ const BlogPost = () => {
             elements.push(
               <ol key={k++} className="list-decimal pl-6">
                 {before.map((l, i) => (
-                  <li key={i}>{stripNumber(l)}</li>
+                  <li key={i}>{processMarkdown(stripNumber(l))}</li>
                 ))}
               </ol>,
             );
@@ -111,7 +146,7 @@ const BlogPost = () => {
 
         elements.push(
           <p key={k++} className="whitespace-pre-line">
-            {head}
+            {processMarkdown(head)}
           </p>,
         );
 
@@ -120,7 +155,7 @@ const BlogPost = () => {
             elements.push(
               <ul key={k++} className="list-disc pl-6">
                 {after.map((l, i) => (
-                  <li key={i}>{stripBullet(l)}</li>
+                  <li key={i}>{processMarkdown(stripBullet(l))}</li>
                 ))}
               </ul>,
             );
@@ -128,14 +163,14 @@ const BlogPost = () => {
             elements.push(
               <ol key={k++} className="list-decimal pl-6">
                 {after.map((l, i) => (
-                  <li key={i}>{stripNumber(l)}</li>
+                  <li key={i}>{processMarkdown(stripNumber(l))}</li>
                 ))}
               </ol>,
             );
           } else {
             elements.push(
               <p key={k++} className="whitespace-pre-line">
-                {after.join("\n")}
+                {processMarkdown(after.join("\n"))}
               </p>,
             );
           }
@@ -146,7 +181,7 @@ const BlogPost = () => {
       // Fallback paragraph with preserved line breaks
       elements.push(
         <p key={k++} className="whitespace-pre-line">
-          {lines.join("\n")}
+          {processMarkdown(lines.join("\n"))}
         </p>,
       );
     }
