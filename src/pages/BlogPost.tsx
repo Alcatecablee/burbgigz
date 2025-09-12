@@ -77,10 +77,10 @@ const BlogPost = () => {
     return parts.length > 0 ? parts : [text];
   };
 
-  const isHeading = (text: string) => /^#{1,3}\s+/.test(text.trim());
+  const isHeading = (text: string) => /^\s*#{1,3}\s+/.test(text);
   
   const renderHeading = (text: string, key: number) => {
-    const match = text.match(/^(#{1,3})\s+(.+)$/);
+    const match = text.trim().match(/^(#{1,3})\s+(.+)$/);
     if (!match) return null;
     
     const level = match[1].length;
@@ -110,12 +110,49 @@ const BlogPost = () => {
       const lines = block.split(/\n/).filter((l) => l.trim().length > 0);
       if (lines.length === 0) continue;
 
-      // Check if this block is a single heading
-      if (lines.length === 1 && isHeading(lines[0])) {
+      // Check if this block starts with a heading
+      if (isHeading(lines[0])) {
         const heading = renderHeading(lines[0], k++);
         if (heading) {
           elements.push(heading);
         }
+        
+        // Process remaining lines in this block
+        const remainingLines = lines.slice(1);
+        if (remainingLines.length === 0) continue;
+        
+        // Continue with the remaining lines as a new block
+        const remainingAllBullets = remainingLines.every(isBullet);
+        const remainingAllNumbers = remainingLines.every(isNumbered);
+        
+        if (remainingAllBullets) {
+          elements.push(
+            <ul key={k++} className="list-disc pl-6">
+              {remainingLines.map((l, i) => (
+                <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
+              ))}
+            </ul>,
+          );
+          continue;
+        }
+        
+        if (remainingAllNumbers) {
+          elements.push(
+            <ol key={k++} className="list-decimal pl-6">
+              {remainingLines.map((l, i) => (
+                <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
+              ))}
+            </ol>,
+          );
+          continue;
+        }
+        
+        // Fallback paragraph for remaining lines
+        elements.push(
+          <p key={k++} className="whitespace-pre-line">
+            {processInlineMarkdown(remainingLines.join("\n"))}
+          </p>,
+        );
         continue;
       }
 
