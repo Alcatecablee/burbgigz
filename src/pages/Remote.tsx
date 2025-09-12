@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Download, Copy, Phone, MessageCircle, Shield, BookOpen } from "lucide-react";
+import { Download, Copy, Phone, MessageCircle, Shield, BookOpen, DollarSign } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 import { Link } from "react-router-dom";
 import { posts } from "@/data/blog";
@@ -15,9 +16,15 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const RUSTDESK_SITE = "https://rustdesk.com/";
 const RUSTDESK_RELEASES = "https://github.com/rustdesk/rustdesk/releases";
 
+const validateRustDeskId = (id: string) => /^[0-9]{9,10}$/.test(id.replace(/\s/g, ""));
+const validatePassword = (pwd: string) => /^[a-zA-Z0-9]{6}$/.test(pwd);
+
 const Remote = () => {
   const [id, setId] = useState("");
   const [pwd, setPwd] = useState("");
+  const [idError, setIdError] = useState("");
+  const [pwdError, setPwdError] = useState("");
+  const { toast } = useToast();
 
   useEffect(() => {
     const title = "Remote Support in Lombardy East | Start RustDesk Session";
@@ -52,6 +59,18 @@ const Remote = () => {
     link.href = window.location.origin + "/remote";
   }, []);
 
+  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setId(value);
+    setIdError(validateRustDeskId(value) ? "" : "ID must be 9–10 digits");
+  };
+
+  const handlePwdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPwd(value);
+    setPwdError(validatePassword(value) ? "" : "Password must be 6 alphanumeric characters");
+  };
+
   const whatsappHref = useMemo(() => {
     const base = "https://wa.me/27670494876";
     const text = `Remote Support Request (RustDesk)\nID: ${id || "<enter ID>"}\nPassword: ${pwd || "<enter password>"}\nLocation: Lombardy East`;
@@ -59,10 +78,28 @@ const Remote = () => {
   }, [id, pwd]);
 
   const copyDetails = async () => {
+    if (!validateRustDeskId(id) || !validatePassword(pwd)) {
+      toast({
+        title: "Error",
+        description: "Please enter a valid RustDesk ID and password.",
+        variant: "destructive"
+      });
+      return;
+    }
     const text = `RustDesk ID: ${id}\nPassword: ${pwd}`;
     try {
       await navigator.clipboard.writeText(text);
-    } catch {}
+      toast({
+        title: "Success",
+        description: "RustDesk details copied to clipboard!"
+      });
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to copy details.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -113,6 +150,17 @@ const Remote = () => {
               <p>3) No permanent access is kept after the session.</p>
             </CardContent>
           </Card>
+
+          <Card className="bg-card border">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><DollarSign className="h-5 w-5 text-primary" />Pricing</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <p><strong>Remote Support</strong>: R120 per session (up to 1 hour, most issues resolved).</p>
+              <p><strong>On-Site Support</strong>: R400 callout + R150–R300/hour service fee, quoted upfront.</p>
+              <Button asChild className="mt-3"><Link to="/pricing" data-testid="link-pricing">View Full Pricing Details</Link></Button>
+            </CardContent>
+          </Card>
         </div>
 
         <Card className="bg-card border" id="share-details">
@@ -123,17 +171,57 @@ const Remote = () => {
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="id">RustDesk ID</Label>
-                <Input id="id" value={id} onChange={(e) => setId(e.target.value)} placeholder="e.g. 123 456 789" />
+                <Input 
+                  id="id" 
+                  value={id} 
+                  onChange={handleIdChange} 
+                  placeholder="e.g. 123 456 789" 
+                  aria-describedby="id-error"
+                  aria-invalid={!!idError}
+                  data-testid="input-rustdesk-id"
+                  inputMode="numeric"
+                  pattern="[0-9]*"
+                />
+                {idError && (
+                  <p id="id-error" className="text-red-500 text-sm" role="alert">
+                    {idError}
+                  </p>
+                )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="pwd">Password</Label>
-                <Input id="pwd" value={pwd} onChange={(e) => setPwd(e.target.value)} placeholder="6‑digit password" />
+                <Input 
+                  id="pwd" 
+                  value={pwd} 
+                  onChange={handlePwdChange} 
+                  placeholder="6-character alphanumeric" 
+                  aria-describedby="pwd-error"
+                  aria-invalid={!!pwdError}
+                  data-testid="input-password"
+                />
+                {pwdError && (
+                  <p id="pwd-error" className="text-red-500 text-sm" role="alert">
+                    {pwdError}
+                  </p>
+                )}
               </div>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Button onClick={copyDetails} variant="outline"><Copy className="h-4 w-4" />Copy</Button>
-              <Button asChild className="bg-success text-white"><a href={whatsappHref} target="_blank" rel="noreferrer"><MessageCircle className="h-4 w-4" />Send via WhatsApp</a></Button>
-              <Button asChild variant="outline"><a href="tel:+27670494876"><Phone className="h-4 w-4" />Call Me</a></Button>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+              <Button onClick={copyDetails} variant="outline" data-testid="button-copy"><Copy className="h-4 w-4" />Copy</Button>
+              {validateRustDeskId(id) && validatePassword(pwd) ? (
+                <Button asChild className="bg-success text-white">
+                  <a href={whatsappHref} target="_blank" rel="noreferrer" data-testid="button-whatsapp"><MessageCircle className="h-4 w-4" />Send via WhatsApp</a>
+                </Button>
+              ) : (
+                <Button 
+                  className="bg-success text-white opacity-50 pointer-events-none" 
+                  disabled 
+                  data-testid="button-whatsapp-disabled"
+                >
+                  <MessageCircle className="h-4 w-4" />Send via WhatsApp
+                </Button>
+              )}
+              <Button asChild variant="outline"><a href="tel:+27670494876" data-testid="button-call"><Phone className="h-4 w-4" />Call Me</a></Button>
             </div>
           </CardContent>
         </Card>
@@ -204,6 +292,36 @@ const Remote = () => {
           { "@type": "ListItem", position: 1, name: "Home", item: window.location.origin + "/" },
           { "@type": "ListItem", position: 2, name: "Remote Support", item: window.location.origin + "/remote" }
         ]
+      }) }} />
+
+      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "Remote IT Support",
+        provider: {
+          "@type": "LocalBusiness",
+          name: "BurbGigz IT Services",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Lombardy East, Johannesburg",
+            addressRegion: "Gauteng",
+            addressCountry: "ZA"
+          },
+          telephone: "+27670494876"
+        },
+        areaServed: [
+          "Lombardy East",
+          "Edenvale",
+          "Bedfordview",
+          "Greenstone",
+          "Sandton"
+        ],
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "120",
+          description: "Remote IT support session using RustDesk, starting at R120."
+        }
       }) }} />
 
       <Footer />

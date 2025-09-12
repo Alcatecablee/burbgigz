@@ -9,6 +9,7 @@ import Pricing from "./pages/Pricing";
 import Booking from "./pages/Booking";
 import Areas from "./pages/Areas";
 import StickyCta from "@/components/StickyCta";
+import { Toaster } from "@/components/ui/toaster";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
         </Routes>
         <StickyCta />
+        <Toaster />
       </BrowserRouter>
   </QueryClientProvider>
 );
