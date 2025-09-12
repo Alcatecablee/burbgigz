@@ -1,0 +1,394 @@
+Your Areas.tsx component effectively showcases your IT support service areas around Lombardy East, Johannesburg, with a clean, card-based layout and clear calls-to-action (CTAs) linking to the booking page. It aligns well with your business focus on providing professional, secure, and cost-effective IT support, particularly for remote and on-site services in the listed suburbs. Below, I’ll suggest enhancements to improve functionality, user experience, accessibility, SEO, and marketing alignment, while addressing potential issues. These suggestions are tailored to your Lombardy East-based IT support business and integrate with your other components (Remote.tsx, Pricing.tsx, Booking.tsx). I’ll provide code snippets for implementation and offer next steps to maximize impact.1. Enhancements to Functionality1.1 Add Callout Fee InformationIntegrate callout fees from Pricing.tsx to provide transparency on on-site costs for each area, encouraging informed booking decisions.Implementation:typescript
+
+const areas = [
+  { name: "Lombardy East", desc: "Primary service area and base.", calloutFee: 400 },
+  { name: "Alexandra", desc: "~3 km NW. Fast access for remote prep, callouts on request.", calloutFee: 450 },
+  { name: "Lakeside", desc: "~3 km NE. Quick home/office support.", calloutFee: 450 },
+  { name: "Kew", desc: "Adjacent. Rapid onsite availability.", calloutFee: 450 },
+  { name: "Marlboro (Gautrain)", desc: "~4 km N. Convenient transport hub.", calloutFee: 470 },
+  { name: "Greenstone Mall", desc: "~10 min E. Popular retail/office zone.", calloutFee: 490 },
+  { name: "Sandton", desc: "~6–8 km NW. Business hub; after-hours remote preferred.", calloutFee: 520 },
+  { name: "Johannesburg CBD", desc: "~14 km W. Planned callouts; remote first.", calloutFee: 550 },
+];
+
+const Areas = () => {
+  return (
+    // ... in JSX
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {areas.map((a) => (
+        <Card key={a.name} className="bg-card border">
+          <CardHeader>
+            <CardTitle>{a.name}</CardTitle>
+            <CardDescription>{a.desc}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-2">
+              On-site callout: <span className="font-semibold">R{a.calloutFee}</span>
+            </p>
+            <a href="/booking" className="text-primary hover:underline">Book a visit</a>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+    // ...
+  );
+};
+
+Changes:Added calloutFee to the areas array, aligned with Pricing.tsx.
+Displayed fees in each card for transparency.
+Encourages users to book with clear cost expectations.
+
+1.2 Add Analytics TrackingTrack clicks on the “Book a visit” links to measure which areas generate the most interest, aiding marketing decisions.Implementation:Install react-ga4: npm i react-ga4
+Initialize in App.tsx:typescript
+
+import ReactGA from "react-ga4";
+ReactGA.initialize("G-YOUR-ID");
+Track booking clicks:typescript
+
+import { Button } from "@/components/ui/button";
+
+const Areas = () => {
+  const handleBookingClick = (area: string) => {
+    ReactGA.event({
+      category: "Areas",
+      action: "Book Visit Click",
+      label: area,
+    });
+  };
+
+  return (
+    // ... in JSX
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {areas.map((a) => (
+        <Card key={a.name} className="bg-card border">
+          <CardHeader>
+            <CardTitle>{a.name}</CardTitle>
+            <CardDescription>{a.desc}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-2">
+              On-site callout: <span className="font-semibold">R{a.calloutFee}</span>
+            </p>
+            <Button asChild variant="link" className="p-0 h-auto">
+              <a
+                href="/booking"
+                onClick={() => handleBookingClick(a.name)}
+                className="text-primary hover:underline"
+              >
+                Book a visit
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+    // ...
+  );
+};
+Changes:Added Google Analytics event tracking for each area’s booking link.
+Used Button with variant="link" for consistent styling.
+
+1.3 Add Remote Support CTAHighlight that remote support (R150, as per Pricing.tsx) is available for all areas, encouraging users to opt for cheaper remote sessions when possible.Implementation:typescript
+
+<CardContent>
+  <p className="text-sm text-muted-foreground mb-2">
+    On-site callout: <span className="font-semibold">R{a.calloutFee}</span>
+  </p>
+  <p className="text-sm text-muted-foreground mb-2">
+    Remote support: <span className="font-semibold">R150</span>
+  </p>
+  <div className="flex gap-2">
+    <Button asChild variant="link" className="p-0 h-auto">
+      <a
+        href="/booking"
+        onClick={() => handleBookingClick(a.name)}
+        className="text-primary hover:underline"
+      >
+        Book on-site
+      </a>
+    </Button>
+    <Button asChild variant="link" className="p-0 h-auto">
+      <a
+        href="/remote"
+        onClick={() => handleBookingClick(`${a.name} - Remote`)}
+        className="text-primary hover:underline"
+      >
+        Book remote
+      </a>
+    </Button>
+  </div>
+</CardContent>
+
+Changes:Added a remote support CTA linking to /remote.
+Included remote support pricing (R150) for clarity.
+Tracked remote clicks separately in analytics.
+
+2. Improving User Experience2.1 Add Interactive MapEmbed an interactive map (e.g., Google Maps) to visually show service areas, making it easier for users to understand coverage.Implementation:Use an iframe for simplicity or integrate react-google-maps-api for a dynamic map.
+Simple iframe approach:
+
+typescript
+
+const Areas = () => {
+  return (
+    // ... after the cards
+    <div className="mt-8">
+      <h2 className="text-xl font-semibold mb-4">Our Service Area</h2>
+      <div className="relative w-full h-96">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d14329.196528697258!2d28.116528250000003!3d-26.10301395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sLombardy%20East%2C%20Johannesburg!5e0!3m2!1sen!2sza!4v1696941234567!5m2!1sen!2sza"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Service areas map centered on Lombardy East, Johannesburg"
+        ></iframe>
+      </div>
+    </div>
+  );
+};
+
+Notes:Customize the Google Maps embed URL to include your service areas (use Google Maps to generate).
+For a dynamic map, install react-google-maps-api and add markers for each area (requires a Google Maps API key).
+
+2.2 Add Area-Specific DetailsInclude estimated travel times or availability notes (e.g., “Same-day callouts in Lombardy East”) to set expectations.Implementation:typescript
+
+const areas = [
+  { name: "Lombardy East", desc: "Primary service area and base.", calloutFee: 400, availability: "Same-day callouts available." },
+  { name: "Alexandra", desc: "~3 km NW. Fast access for remote prep, callouts on request.", calloutFee: 450, availability: "Next-day callouts." },
+  // ... update other areas
+];
+
+return (
+  <CardContent>
+    <p className="text-sm text-muted-foreground mb-2">
+      On-site callout: <span className="font-semibold">R{a.calloutFee}</span>
+    </p>
+    <p className="text-sm text-muted-foreground mb-2">
+      Remote support: <span className="font-semibold">R150</span>
+    </p>
+    <p className="text-sm text-muted-foreground mb-2">{a.availability}</p>
+    <div className="flex gap-2">
+      <Button asChild variant="link" className="p-0 h-auto">
+        <a href="/booking" onClick={() => handleBookingClick(a.name)} className="text-primary hover:underline">
+          Book on-site
+        </a>
+      </Button>
+      <Button asChild variant="link" className="p-0 h-auto">
+        <a href="/remote" onClick={() => handleBookingClick(`${a.name} - Remote`)} className="text-primary hover:underline">
+          Book remote
+        </a>
+      </Button>
+    </div>
+  </CardContent>
+);
+
+Changes:Added availability field to provide scheduling context.
+Displayed availability in each card.
+
+2.3 Add Sorting/Filter OptionsAllow users to sort areas by distance or callout fee, or filter by remote vs. on-site availability.Implementation:typescript
+
+import { useState } from "react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const Areas = () => {
+  const [sortBy, setSortBy] = useState("name");
+
+  const sortedAreas = [...areas].sort((a, b) => {
+    if (sortBy === "fee") return a.calloutFee - b.calloutFee;
+    return a.name.localeCompare(b.name);
+  });
+
+  return (
+    // ... before the grid
+    <div className="mb-4 flex justify-end">
+      <Select value={sortBy} onValueChange={setSortBy}>
+        <SelectTrigger className="w-48">
+          <SelectValue placeholder="Sort by" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="name">Sort by Name</SelectItem>
+          <SelectItem value="fee">Sort by Callout Fee</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {sortedAreas.map((a) => (
+        // ... card JSX
+      ))}
+    </div>
+  );
+};
+
+Changes:Added sorting by name or callout fee.
+Used shadcn/ui Select for a clean UI.
+
+3. Enhancing Accessibility3.1 Improve Card AccessibilityAdd ARIA attributes to cards and links for screen reader compatibility.Implementation:typescript
+
+<Card key={a.name} className="bg-card border" role="region" aria-labelledby={`area-${a.name}`}>
+  <CardHeader>
+    <CardTitle id={`area-${a.name}`}>{a.name}</CardTitle>
+    <CardDescription>{a.desc}</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-sm text-muted-foreground mb-2">
+      On-site callout: <span className="font-semibold">R{a.calloutFee}</span>
+    </p>
+    <p className="text-sm text-muted-foreground mb-2">
+      Remote support: <span className="font-semibold">R150</span>
+    </p>
+    <p className="text-sm text-muted-foreground mb-2">{a.availability}</p>
+    <div className="flex gap-2">
+      <Button asChild variant="link" className="p-0 h-auto">
+        <a
+          href="/booking"
+          onClick={() => handleBookingClick(a.name)}
+          className="text-primary hover:underline"
+          aria-label={`Book on-site visit for ${a.name}`}
+        >
+          Book on-site
+        </a>
+      </Button>
+      <Button asChild variant="link" className="p-0 h-auto">
+        <a
+          href="/remote"
+          onClick={() => handleBookingClick(`${a.name} - Remote`)}
+          className="text-primary hover:underline"
+          aria-label={`Book remote support for ${a.name}`}
+        >
+          Book remote
+        </a>
+      </Button>
+    </div>
+  </CardContent>
+</Card>
+
+Changes:Added role="region" and aria-labelledby to cards.
+Included aria-label on links for clarity.
+
+3.2 Ensure Keyboard NavigationVerify that cards and links are keyboard-navigable (Tab, Enter).Notes:shadcn/ui Button with variant="link" is keyboard-accessible.
+Test focus styles (focus:ring-2) in Tailwind.
+
+4. SEO and Local Optimization4.1 Add Meta Tags and SchemaAdd meta tags and a Service schema to improve visibility for “IT support Lombardy East” and surrounding areas.Implementation:typescript
+
+import { useEffect } from "react";
+
+const Areas = () => {
+  useEffect(() => {
+    document.title = "IT Support Service Areas | Lombardy East & Johannesburg";
+
+    const setMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    setMeta(
+      "description",
+      "IT support services in Lombardy East, Alexandra, Sandton, and more. Remote support from R150, on-site from R400. Book now!"
+    );
+    setMeta(
+      "keywords",
+      "IT support Lombardy East, Johannesburg tech support, Sandton IT services, remote support areas"
+    );
+    setMeta("og:title", "IT Support Service Areas in Lombardy East");
+    setMeta("og:description", "Remote and on-site IT support in Lombardy East, Sandton, Alexandra, and more. Starting at R150!");
+    setMeta("og:image", window.location.origin + "/images/areas-og.jpg");
+    setMeta("og:url", window.location.origin + "/areas");
+    setMeta("og:type", "website");
+
+    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = window.location.origin + "/areas";
+  }, []);
+
+  // ... rest of component
+};
+
+// Add at bottom of JSX
+<script
+  type="application/ld+json"
+  suppressHydrationWarning
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "IT Support",
+      provider: {
+        "@type": "LocalBusiness",
+        name: "Your Business Name",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lombardy East, Johannesburg",
+          addressRegion: "Gauteng",
+          addressCountry: "ZA",
+        },
+        telephone: "+27670494876",
+      },
+      areaServed: areas.map((a) => ({
+        "@type": "City",
+        name: a.name.split(" (")[0], // Clean up names for schema
+      })),
+      offers: [
+        {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "150",
+          description: "Remote IT support starting at R150",
+        },
+        {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "400",
+          description: "On-site IT support callout starting at R400",
+        },
+      ],
+    }),
+  }}
+/>
+
+Notes:Add public/images/areas-og.jpg (1200x630px, optimized).
+Test with Google’s Rich Results Test.
+
+4.2 Expand Service AreasAlign the areas list with Pricing.tsx and Booking.tsx to include Bedfordview, Edenvale, and Kempton Park for broader SEO coverage.Implementation:typescript
+
+const areas = [
+  { name: "Lombardy East", desc: "Primary service area and base.", calloutFee: 400, availability: "Same-day callouts available." },
+  { name: "Alexandra (~3 km NW)", desc: "Fast access for remote prep, callouts on request.", calloutFee: 450, availability: "Next-day callouts." },
+  { name: "Lakeside (~3 km NE)", desc: "Quick home/office support.", calloutFee: 450, availability: "Next-day callouts." },
+  { name: "Kew (adjacent)", desc: "Rapid onsite availability.", calloutFee: 450, availability: "Same-day callouts." },
+  { name: "Marlboro (Gautrain, ~4 km N)", desc: "Convenient transport hub.", calloutFee: 470, availability: "Next-day callouts." },
+  { name: "Greenstone Mall (~10 min E)", desc: "Popular retail/office zone.", calloutFee: 490, availability: "Next-day callouts." },
+  { name: "Sandton (~6–8 km NW)", desc: "Business hub; after-hours remote preferred.", calloutFee: 520, availability: "Scheduled callouts." },
+  { name: "Johannesburg CBD (~14 km W)", desc: "Planned callouts; remote first.", calloutFee: 550, availability: "Scheduled callouts." },
+  { name: "Bedfordview (~5 km SE)", desc: "Residential and business support.", calloutFee: 500, availability: "Next-day callouts." },
+  { name: "Edenvale (~5 km E)", desc: "Quick access for homes/offices.", calloutFee: 490, availability: "Next-day callouts." },
+  { name: "Kempton Park (~15 km NE)", desc: "Airport-adjacent business support.", calloutFee: 560, availability: "Scheduled callouts." },
+];
+
+5. Marketing Integration5.1 Promote on XShare the /areas page on X to attract local clients:Post: “IT support in Lombardy East, Sandton, Alexandra & more! Remote from R150, on-site from R400. See coverage: yourdomain.com/areas #JohannesburgIT”
+I can search X for local demand if needed.
+
+5.2 Add a CTA BannerAdd a sticky CTA to drive bookings:typescript
+
+<div className="fixed bottom-0 left-0 right-0 bg-primary text-white p-4 text-center">
+  <p>Need IT help? <a href="/booking" className="underline">Book now for R150 remote support!</a></p>
+</div>
+
+5.3 Flyer IntegrationCreate flyers with a QR code linking to /areas:QR Code Text: yourdomain.com/areas
+Flyer Content: “IT Support in Lombardy East & Beyond! Remote from R150, on-site from R400. Scan to see our service areas!”
+
+6. TroubleshootingBooking Links: Test /booking and /remote links to ensure they work.
+Map Embed: Verify the Google Maps iframe loads correctly and is mobile-responsive.
+SEO Testing: Run Lighthouse to check SEO and accessibility scores.
+Consistency: Ensure areas aligns across Pricing.tsx, Booking.tsx, and Areas.tsx.
+
