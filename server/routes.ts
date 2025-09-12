@@ -195,7 +195,7 @@ router.post("/service-pricing", validateBody(insertServicePricingSchema), async 
 // Template-expected export: register function that mounts routes on Express app
 export default function register(app: Express) {
   app.use("/api", router);
-  console.log("✅ API routes registered at /api");
+  console.log("[SUCCESS] API routes registered at /api");
 }
 
 // Also export the router for testing if needed

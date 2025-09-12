@@ -15,7 +15,7 @@ register(app);
 async function createServer() {
   if (process.env.NODE_ENV !== 'production') {
     // Development mode: Use Vite middleware
-    console.log('🔄 Starting development server with Vite middleware...');
+    console.log('[DEV] Starting development server with Vite middleware...');
     
     const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
@@ -47,7 +47,7 @@ async function createServer() {
     });
   } else {
     // Production mode: Serve static files
-    console.log('🚀 Starting production server...');
+    console.log('[PROD] Starting production server...');
     
     app.use(express.static(path.resolve('dist')));
     
@@ -59,13 +59,13 @@ async function createServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`✅ Server running on http://0.0.0.0:${PORT}`);
-    console.log(`📡 API endpoints available at /api`);
-    console.log(`🌐 Frontend ${process.env.NODE_ENV === 'production' ? 'served from dist' : 'served via Vite middleware'}`);
+    console.log(`[SUCCESS] Server running on http://0.0.0.0:${PORT}`);
+    console.log(`[INFO] API endpoints available at /api`);
+    console.log(`[INFO] Frontend ${process.env.NODE_ENV === 'production' ? 'served from dist' : 'served via Vite middleware'}`);
   });
 }
 
 createServer().catch(error => {
-  console.error('❌ Server startup failed:', error);
+  console.error('[ERROR] Server startup failed:', error);
   process.exit(1);
 });
