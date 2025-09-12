@@ -25,8 +25,9 @@ async function createServer() {
     
     app.use(vite.middlewares);
     
-    // Handle all non-API routes for SPA
-    app.use('*', async (req, res) => {
+    // Handle all non-API routes for SPA (fallback)
+    app.use(async (req, res, next) => {
+      if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
       const url = req.originalUrl;
       
       try {
@@ -50,8 +51,9 @@ async function createServer() {
     
     app.use(express.static(path.resolve('dist')));
     
-    // Handle all non-API routes for SPA
-    app.get('*', (req, res) => {
+    // Handle all non-API routes for SPA (fallback)
+    app.use((req, res, next) => {
+      if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
       res.sendFile(path.resolve('dist/index.html'));
     });
   }
