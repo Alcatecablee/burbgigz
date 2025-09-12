@@ -4,7 +4,7 @@ import fs from 'fs';
 import register from './routes';
 
 const app: Express = express();
-const PORT = process.env.PORT || 5000;
+const PORT = parseInt(process.env.PORT || '5000', 10);
 
 // Add JSON body parser
 app.use(express.json());
@@ -32,7 +32,7 @@ async function createServer() {
       
       try {
         // Read index.html
-        let template = fs.readFileSync(path.resolve('index.html'), 'utf-8');
+        let template = fs.readFileSync(path.resolve('../../index.html'), 'utf-8');
         
         // Transform the HTML using Vite's built-in HTML transforms
         template = await vite.transformIndexHtml(url, template);
@@ -40,21 +40,22 @@ async function createServer() {
         res.status(200).set({ 'Content-Type': 'text/html' }).end(template);
       } catch (e) {
         // If an error is caught, let Vite fix the stack trace so it maps back to your actual source code
-        vite.ssrFixStacktrace(e);
-        console.error(e);
-        res.status(500).end(e.message);
+        const error = e as Error;
+        vite.ssrFixStacktrace(error);
+        console.error(error);
+        res.status(500).end(error.message);
       }
     });
   } else {
     // Production mode: Serve static files
     console.log('[PROD] Starting production server...');
     
-    app.use(express.static(path.resolve('dist')));
+    app.use(express.static(path.resolve('../../dist')));
     
     // Handle all non-API routes for SPA (fallback)
     app.use((req, res, next) => {
       if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
-      res.sendFile(path.resolve('dist/index.html'));
+      res.sendFile(path.resolve('../../dist/index.html'));
     });
   }
 

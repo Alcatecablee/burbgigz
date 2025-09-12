@@ -7,9 +7,9 @@ integrations = ["javascript_supabase:1.0.0"]
 channel = "stable-25_05"
 
 [deployment]
-deploymentTarget = "vm"
-run = ["npm", "run", "start"]
-build = ["npm", "run", "build"]
+deploymentTarget = "autoscale"
+run = ["npm"]
+build = ["npm", "run", "build:frontend"]
 
 [workflows]
 runButton = "Project"
@@ -42,7 +42,3 @@ externalPort = 80
 [[ports]]
 localPort = 24678
 externalPort = 3000
-
-[[ports]]
-localPort = 34621
-externalPort = 3001

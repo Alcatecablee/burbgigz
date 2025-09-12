@@ -7,11 +7,11 @@ import {
   updateContactStatusSchema,
   insertServiceAreaSchema,
   insertServicePricingSchema
-} from "../shared/schema";
+} from "../../shared/schema";
 import { z } from "zod";
 
 // Validation middleware for Zod schemas
-function validateBody(schema: z.ZodSchema) {
+function validateBody(schema: z.ZodTypeAny) {
   return (req: any, res: any, next: any) => {
     try {
       req.body = schema.parse(req.body);
