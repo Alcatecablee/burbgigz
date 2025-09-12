@@ -1,0 +1,530 @@
+Booking.tsx component provides a clean and functional interface for scheduling IT support services in Lombardy East, Johannesburg, with a form for selecting service type, date, time, and area, and integration with WhatsApp and email for confirmation. Below, I’ll suggest enhancements to improve functionality, user experience, accessibility, SEO, and marketing alignment, while addressing potential issues. These improvements will align with your business goals of offering professional, secure, and cost-effective IT support, particularly for your Lombardy East audience. I’ll provide code snippets for implementation and tailor suggestions to your context.1. Enhancements to Functionality1.1 Add Form ValidationEnsure users complete all required fields (name, service, date, time, area) before submitting via WhatsApp or email to prevent incomplete bookings.Implementation:typescript
+
+import { useMemo, useState } from "react";
+import { useToast } from "@/components/ui/toast";
+
+const Booking = () => {
+  const [date, setDate] = useState<Date | undefined>();
+  const [time, setTime] = useState("");
+  const [service, setService] = useState(services[0]);
+  const [area, setArea] = useState(areas[0]);
+  const [name, setName] = useState("");
+  const [error, setError] = useState("");
+  const { toast } = useToast();
+
+  const validateForm = () => {
+    if (!name.trim()) {
+      setError("Please enter your name.");
+      return false;
+    }
+    if (!date) {
+      setError("Please select a date.");
+      return false;
+    }
+    if (!time) {
+      setError("Please select a time slot.");
+      return false;
+    }
+    if (!service || !areas.includes(area)) {
+      setError("Please select a valid service and area.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleSubmit = () => {
+    if (!validateForm()) {
+      toast({ title: "Error", description: error, variant: "destructive" });
+      return false;
+    }
+    return true;
+  };
+
+  const text = useMemo(() => {
+    return `Booking request:\nName: ${name || "(your name)"}\nService: ${service}\nDate: ${date ? date.toDateString() : "(pick date)"} ${time || "(pick time)"}\nArea: ${area}`;
+  }, [name, service, date, time, area]);
+
+  return (
+    // ... in CardContent
+    <CardContent className="space-y-4">
+      {error && <p className="text-red-500 text-sm" role="alert">{error}</p>}
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="name">Name</Label>
+          <Input
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your name"
+            aria-invalid={!!error && !name.trim()}
+            aria-describedby="name-error"
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="service">Service</Label>
+          <Select value={service} onValueChange={setService}>
+            <SelectTrigger id="service" aria-label="Select service">
+              <SelectValue placeholder="Select service" />
+            </SelectTrigger>
+            <SelectContent>
+              {services.map((s) => (
+                <SelectItem key={s} value={s}>{s}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label>Date</Label>
+          <Calendar mode="single" selected={date} onSelect={setDate} />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="time">Time</Label>
+          <Select value={time} onValueChange={setTime}>
+            <SelectTrigger id="time" aria-label="Select time">
+              <SelectValue placeholder="Select time" />
+            </SelectTrigger>
+            <SelectContent>
+              {timeSlots.map((t) => (
+                <SelectItem key={t} value={t}>{t}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          <Label htmlFor="area" className="mt-4">Area</Label>
+          <Select value={area} onValueChange={setArea}>
+            <SelectTrigger id="area" aria-label="Select area">
+              <SelectValue placeholder="Select area" />
+            </SelectTrigger>
+            <SelectContent>
+              {areas.map((a) => (
+                <SelectItem key={a} value={a}>{a}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="flex gap-2">
+        <Button asChild disabled={!!error} onClick={handleSubmit}>
+          <a
+            href={`https://wa.me/27670494876?text=${encodeURIComponent(text)}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Confirm via WhatsApp
+          </a>
+        </Button>
+        <Button asChild variant="outline" disabled={!!error} onClick={handleSubmit}>
+          <a
+            href={`mailto:clive@dealeeoo.com?subject=${encodeURIComponent("Booking request")}&body=${encodeURIComponent(text)}`}
+          >
+            Email Instead
+          </a>
+        </Button>
+      </div>
+    </CardContent>
+    // ...
+  );
+};
+
+Changes:Added validation for name, date, time, service, and area.
+Displayed error messages with role="alert".
+Disabled submit buttons if validation fails.
+Used Radix Toast for error feedback (requires <Toaster /> in App.tsx).
+
+1.2 Dynamic Time Slot AvailabilityDisable past dates and time slots that are already booked or unavailable (e.g., outside business hours). This requires a backend (e.g., Supabase) to store bookings and check availability.Implementation:Set up a bookings table in Supabase: { id, name, service, date, time, area, timestamp }.
+Fetch available time slots:
+
+typescript
+
+import { createClient } from "@supabase/supabase-js";
+import { useEffect } from "react";
+
+const supabase = createClient("your-url", "your-key");
+
+const Booking = () => {
+  // ... existing state
+  const [availableSlots, setAvailableSlots] = useState(timeSlots);
+
+  useEffect(() => {
+    const fetchAvailability = async () => {
+      const today = new Date();
+      if (date && date >= today) {
+        const { data } = await supabase
+          .from("bookings")
+          .select("time")
+          .eq("date", date.toISOString().split("T")[0]);
+        const bookedSlots = data?.map((b) => b.time) || [];
+        setAvailableSlots(timeSlots.filter((t) => !bookedSlots.includes(t)));
+      }
+    };
+    fetchAvailability();
+  }, [date]);
+
+  const isPastDate = (d: Date) => d < new Date(new Date().setHours(0, 0, 0, 0));
+
+  return (
+    // ... in CardContent
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      disabled={(d) => isPastDate(d)}
+    />
+    <Select value={time} onValueChange={setTime}>
+      <SelectTrigger id="time" aria-label="Select time">
+        <SelectValue placeholder="Select time" />
+      </SelectTrigger>
+      <SelectContent>
+        {availableSlots.length ? (
+          availableSlots.map((t) => (
+            <SelectItem key={t} value={t}>{t}</SelectItem>
+          ))
+        ) : (
+          <p className="text-sm text-muted-foreground p-2">No slots available</p>
+        )}
+      </SelectContent>
+    </Select>
+    // ...
+  );
+};
+
+Changes:Disabled past dates in the calendar.
+Fetched booked slots from Supabase and filtered available time slots.
+Showed a message if no slots are available.
+
+1.3 Save Bookings to SupabaseLog bookings to track demand and confirm availability.Implementation:typescript
+
+const handleSubmit = async () => {
+  if (!validateForm()) {
+    toast({ title: "Error", description: error, variant: "destructive" });
+    return false;
+  }
+  const { error: dbError } = await supabase.from("bookings").insert({
+    name,
+    service,
+    date: date?.toISOString().split("T")[0],
+    time,
+    area,
+    timestamp: new Date().toISOString(),
+  });
+  if (dbError) {
+    toast({ title: "Error", description: "Failed to save booking.", variant: "destructive" });
+    return false;
+  }
+  toast({ title: "Success", description: "Booking saved! Opening WhatsApp..." });
+  return true;
+};
+
+Notes:Requires Supabase setup (npm i @supabase/supabase-js).
+Saves booking details for follow-up.
+
+2. Improving User Experience2.1 Add a Confirmation ModalShow a modal to confirm booking details before sending via WhatsApp or email.Implementation:Install shadcn/ui dialog: npx shadcn-ui@latest add dialog
+Add a modal:
+
+typescript
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+
+const Booking = () => {
+  // ... existing state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!validateForm()) {
+      toast({ title: "Error", description: error, variant: "destructive" });
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  return (
+    // ... in CardContent
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <DialogTrigger asChild>
+        <Button disabled={!!error} onClick={handleSubmit}>
+          Confirm via WhatsApp
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Confirm Your Booking</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-2 text-sm">
+          <p><strong>Name</strong>: {name}</p>
+          <p><strong>Service</strong>: {service}</p>
+          <p><strong>Date & Time</strong>: {date ? date.toDateString() : "(pick date)"} {time}</p>
+          <p><strong>Area</strong>: {area}</p>
+        </div>
+        <div className="flex gap-2 mt-4">
+          <Button asChild>
+            <a
+              href={`https://wa.me/27670494876?text=${encodeURIComponent(text)}`}
+              target="_blank"
+              rel="noreferrer"
+              onClick={async () => {
+                await supabase.from("bookings").insert({
+                  name,
+                  service,
+                  date: date?.toISOString().split("T")[0],
+                  time,
+                  area,
+                  timestamp: new Date().toISOString(),
+                });
+                setIsModalOpen(false);
+              }}
+            >
+              Confirm and Send
+            </a>
+          </Button>
+          <Button variant="outline" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+    <Button asChild variant="outline" disabled={!!error} onClick={handleSubmit}>
+      <a
+        href={`mailto:clive@dealeeoo.com?subject=${encodeURIComponent("Booking request")}&body=${encodeURIComponent(text)}`}
+      >
+        Email Instead
+      </a>
+    </Button>
+  );
+};
+
+Changes:Added a modal to confirm booking details.
+Integrated Supabase save on WhatsApp confirmation.
+
+2.2 Add Pricing InformationDisplay estimated costs based on service and area (cross-referenced with Pricing.tsx) to set expectations.Implementation:typescript
+
+const servicePrices = {
+  "Remote Support": 150,
+  "On-Site Callout": 350,
+  "SSD Upgrade": 350,
+  "Wi-Fi/Printer Setup": 180,
+};
+const areaFees = {
+  "Lombardy East": 0,
+  Alexandra: 50,
+  Lakeside: 50,
+  Kew: 50,
+  Marlboro: 70,
+  Greenstone: 90,
+  Sandton: 120,
+  "Johannesburg CBD": 150,
+};
+
+const Booking = () => {
+  // ... existing state
+  const estimatedCost = useMemo(() => {
+    const base = servicePrices[service] || 150;
+    const callout = service === "On-Site Callout" || service === "SSD Upgrade" || service === "Wi-Fi/Printer Setup" ? 400 + (areaFees[area] || 0) : 0;
+    return base + callout;
+  }, [service, area]);
+
+  return (
+    // ... in CardContent
+    <div className="rounded-md border p-3 text-sm mt-4">
+      <div className="flex justify-between font-semibold">
+        <span>Estimated Cost</span>
+        <span>R {estimatedCost.toFixed(0)}</span>
+      </div>
+    </div>
+  );
+};
+
+Changes:Added estimated cost display based on service and area.
+Aligned with Pricing.tsx callout fees.
+
+3. Enhancing Accessibility3.1 Improve Form AccessibilityAdd ARIA attributes and focus management for screen reader compatibility.Implementation:typescript
+
+<CardContent className="space-y-4">
+  {error && <p id="form-error" className="text-red-500 text-sm" role="alert">{error}</p>}
+  <div className="grid md:grid-cols-2 gap-4">
+    <div className="space-y-2">
+      <Label htmlFor="name">Name</Label>
+      <Input
+        id="name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Your name"
+        aria-invalid={!!error && !name.trim()}
+        aria-describedby="form-error"
+      />
+    </div>
+    <div className="space-y-2">
+      <Label htmlFor="service">Service</Label>
+      <Select value={service} onValueChange={setService}>
+        <SelectTrigger id="service" aria-label="Select service">
+          <SelectValue placeholder="Select service" />
+        </SelectTrigger>
+        <SelectContent>
+          {services.map((s) => (
+            <SelectItem key={s} value={s}>{s}</SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  </div>
+  <div className="grid md:grid-cols-2 gap-4">
+    <div className="space-y-2">
+      <Label htmlFor="calendar">Date</Label>
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={setDate}
+        disabled={(d) => d < new Date(new Date().setHours(0, 0, 0, 0))}
+        id="calendar"
+        aria-label="Select booking date"
+      />
+    </div>
+    <div className="space-y-2">
+      <Label htmlFor="time">Time</Label>
+      <Select value={time} onValueChange={setTime}>
+        <SelectTrigger id="time" aria-label="Select time slot">
+          <SelectValue placeholder="Select time" />
+        </SelectTrigger>
+        <SelectContent>
+          {availableSlots.length ? (
+            availableSlots.map((t) => (
+              <SelectItem key={t} value={t}>{t}</SelectItem>
+            ))
+          ) : (
+            <p className="text-sm text-muted-foreground p-2">No slots available</p>
+          )}
+        </SelectContent>
+      </Select>
+      <Label htmlFor="area" className="mt-4">Area</Label>
+      <Select value={area} onValueChange={setArea}>
+        <SelectTrigger id="area" aria-label="Select service area">
+          <SelectValue placeholder="Select area" />
+        </SelectTrigger>
+        <SelectContent>
+          {areas.map((a) => (
+            <SelectItem key={a} value={a}>{a}</SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  </div>
+</CardContent>
+
+Changes:Added id and aria-label to inputs and selects.
+Linked error messages with aria-describedby.
+
+3.2 Ensure Keyboard NavigationVerify that the calendar and selects are keyboard-navigable (Tab, Arrow keys, Enter).Notes:shadcn/ui Calendar and Select components are keyboard-accessible.
+Test focus styles (focus:ring-2) in Tailwind.
+
+4. SEO and Local Optimization4.1 Add Meta Tags and SchemaAdd meta tags and a Service schema to improve visibility for “IT support booking Lombardy East.”Implementation:typescript
+
+import { useEffect } from "react";
+
+const Booking = () => {
+  useEffect(() => {
+    document.title = "Book IT Support in Lombardy East | Fast & Secure";
+
+    const setMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    setMeta("description", "Book remote or on-site IT support in Lombardy East, Johannesburg. Choose your service, date, and time, and confirm via WhatsApp.");
+    setMeta("keywords", "IT support booking Lombardy East, Johannesburg tech support, remote support scheduling");
+    setMeta("og:title", "Book IT Support in Lombardy East");
+    setMeta("og:description", "Schedule remote or on-site IT support in Lombardy East. Starting at R150!");
+    setMeta("og:image", window.location.origin + "/images/booking-og.jpg");
+    setMeta("og:url", window.location.origin + "/booking");
+    setMeta("og:type", "website");
+
+    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = window.location.origin + "/booking";
+  }, []);
+
+  // ... rest of component
+};
+
+// Add at bottom of JSX
+<script
+  type="application/ld+json"
+  suppressHydrationWarning
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "IT Support Booking",
+      provider: {
+        "@type": "LocalBusiness",
+        name: "Your Business Name",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lombardy East, Johannesburg",
+          addressRegion: "Gauteng",
+          addressCountry: "ZA",
+        },
+        telephone: "+27670494876",
+      },
+      areaServed: areas,
+      offers: [
+        {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "150",
+          description: "Remote IT support booking starting at R150",
+        },
+        {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "400",
+          description: "On-site IT support callout starting at R400",
+        },
+      ],
+    }),
+  }}
+/>
+
+Notes:Add public/images/booking-og.jpg (1200x630px, optimized).
+Test with Google’s Rich Results Test.
+
+4.2 Expand Service AreasAlign the areas list with Pricing.tsx for consistency and broader SEO coverage.Implementation:typescript
+
+const areas = [
+  "Lombardy East",
+  "Alexandra (~3 km NW)",
+  "Lakeside (~3 km NE)",
+  "Kew (adjacent)",
+  "Marlboro (Gautrain, ~4 km N)",
+  "Greenstone Mall (~10 min E)",
+  "Sandton (~6–8 km NW)",
+  "Johannesburg CBD (~14 km W)",
+  "Bedfordview (~5 km SE)",
+  "Edenvale (~5 km E)",
+  "Kempton Park (~15 km NE)",
+];
+
+5. Marketing Integration5.1 Promote on XShare the /booking page on X:Post: “Book your IT support in Lombardy East! Remote from R150, on-site from R400. Schedule now: yourdomain.com/booking #JohannesburgIT #TechSupport”
+I can search X for local booking trends if needed.
+
+5.2 Add a CTA BannerAdd a sticky CTA to encourage immediate bookings:typescript
+
+<div className="fixed bottom-0 left-0 right-0 bg-primary text-white p-4 text-center">
+  <p>Need IT help? <a href="/booking" className="underline">Book now for R150 remote support!</a></p>
+</div>
+
+5.3 Flyer IntegrationCreate flyers with a QR code linking to /booking:QR Code Text: yourdomain.com/booking
+Flyer Content: “Book IT Support in Lombardy East! Remote from R150, on-site from R400. Scan to schedule!”
+
+6. TroubleshootingWhatsApp/Email Links: Test links on mobile to ensure they open correctly.
+Calendar: Verify shadcn/ui Calendar works on all browsers (e.g., Safari).
+SEO Testing: Run Lighthouse to check SEO and accessibility scores.
+Supabase: Ensure environment variables for Supabase are set in .env (e.g., VITE_SUPABASE_URL).
+
