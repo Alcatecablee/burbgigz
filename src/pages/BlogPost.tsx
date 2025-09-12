@@ -42,7 +42,7 @@ const BlogPost = () => {
 
   const rtime = readingTime(post.content);
   const related = posts.filter((p) => p.slug !== post.slug && p.tags.some((t) => post.tags.includes(t))).slice(0, 3);
-  const processMarkdown = (text: string): React.ReactNode[] => {
+  const processInlineMarkdown = (text: string): React.ReactNode[] => {
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
     let keyCounter = 0;
@@ -77,6 +77,25 @@ const BlogPost = () => {
     return parts.length > 0 ? parts : [text];
   };
 
+  const isHeading = (text: string) => /^#{1,3}\s+/.test(text.trim());
+  
+  const renderHeading = (text: string, key: number) => {
+    const match = text.match(/^(#{1,3})\s+(.+)$/);
+    if (!match) return null;
+    
+    const level = match[1].length;
+    const content = match[2];
+    
+    if (level === 1) {
+      return <h1 key={key} className="text-2xl font-bold mt-6 mb-4">{processInlineMarkdown(content)}</h1>;
+    } else if (level === 2) {
+      return <h2 key={key} className="text-xl font-semibold mt-5 mb-3">{processInlineMarkdown(content)}</h2>;
+    } else if (level === 3) {
+      return <h3 key={key} className="text-lg font-medium mt-4 mb-2">{processInlineMarkdown(content)}</h3>;
+    }
+    return null;
+  };
+
   const renderContent = (raw: string) => {
     const blocks = raw.split(/\n\n+/);
     const elements: JSX.Element[] = [];
@@ -91,6 +110,15 @@ const BlogPost = () => {
       const lines = block.split(/\n/).filter((l) => l.trim().length > 0);
       if (lines.length === 0) continue;
 
+      // Check if this block is a single heading
+      if (lines.length === 1 && isHeading(lines[0])) {
+        const heading = renderHeading(lines[0], k++);
+        if (heading) {
+          elements.push(heading);
+        }
+        continue;
+      }
+
       const allBullets = lines.every(isBullet);
       const allNumbers = lines.every(isNumbered);
 
@@ -98,7 +126,7 @@ const BlogPost = () => {
         elements.push(
           <ul key={k++} className="list-disc pl-6">
             {lines.map((l, i) => (
-              <li key={i}>{processMarkdown(stripBullet(l))}</li>
+              <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
             ))}
           </ul>,
         );
@@ -109,7 +137,7 @@ const BlogPost = () => {
         elements.push(
           <ol key={k++} className="list-decimal pl-6">
             {lines.map((l, i) => (
-              <li key={i}>{processMarkdown(stripNumber(l))}</li>
+              <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
             ))}
           </ol>,
         );
@@ -129,7 +157,7 @@ const BlogPost = () => {
             elements.push(
               <ul key={k++} className="list-disc pl-6">
                 {before.map((l, i) => (
-                  <li key={i}>{processMarkdown(stripBullet(l))}</li>
+                  <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
                 ))}
               </ul>,
             );
@@ -137,7 +165,7 @@ const BlogPost = () => {
             elements.push(
               <ol key={k++} className="list-decimal pl-6">
                 {before.map((l, i) => (
-                  <li key={i}>{processMarkdown(stripNumber(l))}</li>
+                  <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
                 ))}
               </ol>,
             );
@@ -146,7 +174,7 @@ const BlogPost = () => {
 
         elements.push(
           <p key={k++} className="whitespace-pre-line">
-            {processMarkdown(head)}
+            {processInlineMarkdown(head)}
           </p>,
         );
 
@@ -155,7 +183,7 @@ const BlogPost = () => {
             elements.push(
               <ul key={k++} className="list-disc pl-6">
                 {after.map((l, i) => (
-                  <li key={i}>{processMarkdown(stripBullet(l))}</li>
+                  <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
                 ))}
               </ul>,
             );
@@ -163,14 +191,14 @@ const BlogPost = () => {
             elements.push(
               <ol key={k++} className="list-decimal pl-6">
                 {after.map((l, i) => (
-                  <li key={i}>{processMarkdown(stripNumber(l))}</li>
+                  <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
                 ))}
               </ol>,
             );
           } else {
             elements.push(
               <p key={k++} className="whitespace-pre-line">
-                {processMarkdown(after.join("\n"))}
+                {processInlineMarkdown(after.join("\n"))}
               </p>,
             );
           }
@@ -181,7 +209,7 @@ const BlogPost = () => {
       // Fallback paragraph with preserved line breaks
       elements.push(
         <p key={k++} className="whitespace-pre-line">
-          {processMarkdown(lines.join("\n"))}
+          {processInlineMarkdown(lines.join("\n"))}
         </p>,
       );
     }
