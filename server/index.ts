@@ -1,5 +1,4 @@
 import express, { Express } from 'express';
-import { createServer as createViteServer } from 'vite';
 import path from 'path';
 import fs from 'fs';
 import register from './routes';
@@ -18,6 +17,7 @@ async function createServer() {
     // Development mode: Use Vite middleware
     console.log('🔄 Starting development server with Vite middleware...');
     
+    const { createServer: createViteServer } = await import('vite');
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'custom'
