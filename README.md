@@ -1,73 +1,136 @@
-# Welcome to your Lovable project
+# Vite + React (TypeScript) + shadcn/ui App
 
-## Project info
+A modern, production‑ready single‑page application built with Vite, React 18, TypeScript, Tailwind CSS, and shadcn/ui (Radix UI). It implements a small business IT services site with pages for Home, Blog, Blog Post, Remote Support, Pricing, Booking, and Service Areas.
 
-**URL**: https://lovable.dev/projects/a0d0dc09-b0fb-4b03-b34e-6644945026b5
+## Tech Stack
+- Vite 5 + React 18 + TypeScript
+- Tailwind CSS 3 with custom design tokens (HSL CSS variables) and @tailwindcss/typography
+- shadcn/ui components (Radix UI primitives)
+- React Router v6 for routing
+- TanStack Query (React Query) setup
+- Lucide icons
 
-## How can I edit this code?
+## Getting Started
 
-There are several ways of editing your application.
+Prerequisites:
+- Node.js 18+ (LTS recommended)
 
-**Use Lovable**
+Install dependencies (choose one):
+- npm: `npm i`
+- pnpm: `pnpm i`
+- bun: `bun install`
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a0d0dc09-b0fb-4b03-b34e-6644945026b5) and start prompting.
+Run dev server:
+- `npm run dev` and open http://localhost:8080/
 
-Changes made via Lovable will be committed automatically to this repo.
+Type check & lint:
+- Lint: `npm run lint`
 
-**Use your preferred IDE**
+Build & preview production build:
+- Build: `npm run build`
+- Preview: `npm run preview` (serves dist/)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## Project Structure
+```
+.
+├─ src/
+│  ├─ components/
+│  │  ├─ ui/                  # shadcn/ui components (Radix wrappers)
+│  │  ├─ Header.tsx, Footer.tsx, Hero.tsx, ...
+│  │  └─ StickyCta.tsx
+│  ├─ pages/                   # Route components
+│  │  ├─ Index.tsx             # Home
+│  │  ├─ Blog.tsx              # Blog index
+│  │  ├─ BlogPost.tsx          # Blog article
+│  │  ├─ Remote.tsx            # Remote support
+│  │  ├─ Pricing.tsx           # Pricing calculators
+│  │  ├─ Booking.tsx           # Simple booking form (client‑side)
+│  │  ├─ Areas.tsx             # Service areas
+│  │  └─ NotFound.tsx
+│  ├─ data/
+│  │  └─ blog.ts               # Example blog content
+│  ├─ hooks/
+│  │  ├─ use-mobile.tsx
+│  │  └─ use-toast.ts          # Toast state; see notes below
+│  ├─ lib/
+│  │  └─ utils.ts
+│  ├─ main.tsx                 # React root
+│  ├─ App.tsx                  # Router + providers
+│  ├─ index.css                # Tailwind + design tokens
+│  └─ App.css
+├─ public/                     # Static assets
+├─ tailwind.config.ts
+├─ vite.config.ts              # Port 8080, @ alias → ./src
+├─ tsconfig*.json
+└─ package.json
 ```
 
-**Edit a file directly in GitHub**
+## Routing
+Routes are defined in src/App.tsx using React Router:
+- `/` → Home (src/pages/Index.tsx)
+- `/blog` → Blog index (tag filter, reading time)
+- `/blog/:slug` → Blog article (prev/next, share, basic renderer)
+- `/remote` → Remote Support (RustDesk instructions, meta tags)
+- `/pricing` → Upgrade + callout cost estimators
+- `/booking` → Client‑side booking helper (WhatsApp/email handoff)
+- `/areas` → Service areas
+- `*` → NotFound
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## UI, Styling, and Theming
+- Tailwind configured with HSL CSS variables for light/dark and brand tokens: see src/index.css and tailwind.config.ts (colors, gradients, shadows, sidebar tokens, animations).
+- shadcn/ui components live under src/components/ui and wrap Radix primitives with Tailwind classes.
+- Dark mode is class‑based (add/remove .dark on <html> or <body>). The project does not mount next-themes by default.
 
-**Use GitHub Codespaces**
+## Toasts and Notifications
+Two toast systems are included but not mounted at the app root by default to avoid provider/hook issues in some environments:
+- Radix Toast (src/components/ui/toast.tsx + src/components/ui/toaster.tsx)
+- Sonner (src/components/ui/sonner.tsx) which expects a theme provider from next-themes
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+To enable Radix Toast globally:
+1) Import and render <Toaster /> from src/components/ui/toaster in src/App.tsx within providers.
 
-## What technologies are used for this project?
+To enable Sonner with theme support:
+1) Install and wrap the app with ThemeProvider from next-themes at the root.
+2) Import and render <Toaster /> from src/components/ui/sonner.
 
-This project is built with:
+## Data and State
+- Example blog content in src/data/blog.ts. Replace with your CMS or API.
+- TanStack Query is initialized (src/App.tsx) for future data fetching and caching.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
+## Vite Config and Aliases
+- Vite dev server runs on port 8080 (vite.config.ts).
+- Path alias @ maps to ./src (e.g., import { Button } from "@/components/ui/button").
+
+## Accessibility and SEO
+- Semantic headings, focusable controls, label associations in forms.
+- Remote page sets document.title and key meta tags at runtime.
+- Consider adding route‑level meta, JSON‑LD, sitemap.xml, and robots.txt (public/robots.txt exists).
+
+## Deployment
+This is a static SPA build (dist/). You can deploy to any static host (Netlify, Vercel, GitHub Pages, Cloudflare Pages, etc.). Typical Netlify/Vercel settings:
+- Build command: `npm run build`
+- Publish directory: `dist`
+- SPA fallback: enable redirects to index.html ("/*    /index.html   200").
+
+## Common Tasks
+- Add a new page: create src/pages/MyPage.tsx and add a <Route> in src/App.tsx.
+- Add a new component: place under src/components or src/components/ui for shadcn‑style primitives.
+- Add styles: edit src/index.css (design tokens) or use Tailwind utility classes.
+
+## Troubleshooting
+- Dev server not visible: the app serves at http://localhost:8080/ (see vite.config.ts). Ensure your preview/proxy points to 8080.
+- Duplicate identifier/import errors: ensure each import appears once (e.g., src/pages/Pricing.tsx previously had a duplicate Header import).
+- Hook errors like "Cannot read properties of null (reading 'useState'/'useRef')": usually indicates a provider mismatch or multiple React copies. Keep only one React instance, and mount required providers (e.g., next-themes) before components that depend on them. If using Sonner, add ThemeProvider from next-themes.
+
+## Extending
+- Booking backend: add persistence (Supabase/Neon + Prisma) for slots/availability and confirmations.
+- CMS: replace src/data/blog.ts with a headless CMS.
+- PWA: add a manifest and service worker for offline support.
+- Code splitting: convert route components to lazy‑loaded imports for faster startup.
+- Image optimization: use responsive images and modern formats.
+
+## Acknowledgements
+- shadcn/ui and Radix UI
 - Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/a0d0dc09-b0fb-4b03-b34e-6644945026b5) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- Lucide Icons
+- Vite + SWC React plugin
