@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle } from "lucide-react";
+import { PhoneCall, Headset } from "lucide-react";
 
 const StickyCta = () => {
   return (
@@ -8,12 +8,12 @@ const StickyCta = () => {
         <div className="flex gap-2 p-2">
           <Button asChild variant="outline" className="flex-1">
             <a href="tel:+27670494876">
-              <Phone className="h-4 w-4 mr-2" /> Call
+              <PhoneCall className="h-4 w-4 mr-2" /> Call
             </a>
           </Button>
           <Button asChild className="flex-1">
             <a href="https://wa.me/27670494876" target="_blank" rel="noopener noreferrer">
-              <MessageCircle className="h-4 w-4 mr-2" /> WhatsApp
+              <Headset className="h-4 w-4 mr-2" /> Support
             </a>
           </Button>
         </div>

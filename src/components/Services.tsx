@@ -1,54 +1,54 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Monitor, 
-  HardDrive, 
-  Shield, 
-  Wifi, 
-  Wrench, 
-  Smartphone,
-  Clock,
-  CheckCircle 
+  MonitorSpeaker, 
+  Server, 
+  ShieldCheck, 
+  Network, 
+  Settings, 
+  Laptop,
+  Timer,
+  CheckCircle2 
 } from "lucide-react";
 
 const services = [
   {
-    icon: <Smartphone className="h-8 w-8" />,
+    icon: <Laptop className="h-8 w-8" />,
     title: "Remote IT Support",
     description: "Professional troubleshooting via secure remote tools - fix issues from anywhere",
     price: "From R120/session",
     features: ["Remote Diagnostics", "Software Installation", "System Updates", "Real-time Support"]
   },
   {
-    icon: <Shield className="h-8 w-8" />,
+    icon: <ShieldCheck className="h-8 w-8" />,
     title: "Virus & Malware Removal",
     description: "Complete system cleanup and protection (remote + on-site)",
     price: "Remote R150 | On-site R350",
     features: ["Deep System Scan", "Malware Removal", "Antivirus Setup", "System Optimization"]
   },
   {
-    icon: <Monitor className="h-8 w-8" />,
+    icon: <MonitorSpeaker className="h-8 w-8" />,
     title: "Windows Reload & Setup",
     description: "Complete Windows reinstallation with remote guidance",
     price: "Remote R200 | On-site R450",
     features: ["Full OS Installation", "Driver Setup", "Essential Software", "Data Migration"]
   },
   {
-    icon: <Wifi className="h-8 w-8" />,
+    icon: <Network className="h-8 w-8" />,
     title: "Network & Connectivity",
     description: "Internet, Wi-Fi setup and troubleshooting via remote support",
     price: "Remote R120 | On-site R320",
     features: ["Wi-Fi Configuration", "Network Troubleshooting", "Printer Setup", "Connection Issues"]
   },
   {
-    icon: <Wrench className="h-8 w-8" />,
+    icon: <Settings className="h-8 w-8" />,
     title: "System Optimization",
     description: "Performance tuning and maintenance via remote connection",
     price: "Remote R150 | On-site R350",
     features: ["Speed Optimization", "Startup Management", "Registry Cleanup", "Performance Monitoring"]
   },
   {
-    icon: <HardDrive className="h-8 w-8" />,
+    icon: <Server className="h-8 w-8" />,
     title: "On-Site Hardware Service",
     description: "Physical repairs and upgrades (callout fee applies)",
     price: "R400 callout + service",
@@ -93,7 +93,7 @@ const Services = () => {
                 <div className="space-y-2">
                   {service.features.map((feature, i) => (
                     <div key={i} className="flex items-center space-x-2 text-sm">
-                      <CheckCircle className="h-4 w-4 text-success" />
+                      <CheckCircle2 className="h-4 w-4 text-success" />
                       <span>{feature}</span>
                     </div>
                   ))}
@@ -105,7 +105,7 @@ const Services = () => {
 
         <div className="text-center mt-12">
           <div className="inline-flex items-center space-x-2 text-muted-foreground mb-4">
-            <Clock className="h-4 w-4" />
+            <Timer className="h-4 w-4" />
             <span>Remote sessions start immediately • R400 callout for on-site • Professional helpdesk experience</span>
           </div>
         </div>

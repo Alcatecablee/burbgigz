@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle } from "lucide-react";
+import { PhoneCall } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -28,7 +28,7 @@ const Header = () => {
         <div className="flex items-center space-x-3">
           <Button asChild variant="outline" size="sm" className="hidden sm:flex">
             <a href="tel:+27670494876">
-              <Phone className="mr-2 h-4 w-4" />
+              <PhoneCall className="mr-2 h-4 w-4" />
               <span className="hidden lg:inline">Call</span>
             </a>
           </Button>
