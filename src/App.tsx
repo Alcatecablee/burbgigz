@@ -9,6 +9,7 @@ import Pricing from "./pages/Pricing";
 import Booking from "./pages/Booking";
 import Areas from "./pages/Areas";
 import StickyCta from "@/components/StickyCta";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster } from "@/components/ui/toaster";
 
 const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <div className="bg-background">
       <BrowserRouter>
+        <ScrollToTop />
         <div className="max-w-7xl mx-auto bg-background shadow-lg min-h-screen">
           <Routes>
             <Route path="/" element={<Index />} />
