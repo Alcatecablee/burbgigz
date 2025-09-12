@@ -5,8 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useMemo, useState } from "react";
-import { Calculator, HardDrive, MapPin } from "lucide-react";
+import { Calculator, HardDrive, MapPin, HelpCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
 const suburbs = [
   { name: "Lombardy East", fee: 0 },
@@ -20,23 +24,79 @@ const suburbs = [
 ];
 
 const ssdBase = [
+  { size: "None", price: 0 },
   { size: "500 GB", price: 900 },
   { size: "1 TB", price: 1300 },
   { size: "2 TB", price: 2200 },
 ];
 
+const services = [
+  { name: "Software Troubleshooting", price: 120 },
+  { name: "Malware Removal", price: 200 },
+  { name: "Wi-Fi/Printer Setup", price: 180 },
+  { name: "Full System Optimization", price: 250 },
+  { name: "Hardware Upgrade Only", price: 150 },
+];
+
 const Pricing = () => {
-  const [ssd, setSsd] = useState("500 GB");
-  const [ram, setRam] = useState("8 GB");
+  const [ssd, setSsd] = useState("None");
+  const [ram, setRam] = useState("None");
+  const [serviceType, setServiceType] = useState(services[0].name);
   const [suburb, setSuburb] = useState(suburbs[0].name);
   const [onsite, setOnsite] = useState("remote");
+  const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
 
   const ssdPrice = useMemo(() => ssdBase.find((s) => s.size === ssd)?.price ?? 0, [ssd]);
   const ramPrice = useMemo(() => (ram === "8 GB" ? 450 : ram === "16 GB" ? 850 : 0), [ram]);
-  const service = useMemo(() => (onsite === "remote" ? 150 : 350), [onsite]);
+  const servicePrice = useMemo(() => services.find((s) => s.name === serviceType)?.price ?? 0, [serviceType]);
   const callout = useMemo(() => (onsite === "on-site" ? (suburbs.find((s) => s.name === suburb)?.fee ?? 0) + 400 : 0), [onsite, suburb]);
 
-  const total = ssdPrice + ramPrice + service + callout;
+  const total = ssdPrice + ramPrice + servicePrice + callout;
+
+  // Clear error when relevant fields change
+  const clearErrorOnChange = () => {
+    if (error) setError("");
+  };
+
+  const validateForm = () => {
+    // Only require SSD/RAM for hardware upgrade services
+    const requiresHardware = serviceType === "Hardware Upgrade Only";
+    if (requiresHardware && ssd === "None" && ram === "None") {
+      const message = "Please select at least an SSD or RAM upgrade for hardware services.";
+      setError(message);
+      return { ok: false, message };
+    }
+    if (onsite === "on-site" && !suburb) {
+      const message = "Please select a suburb for on-site service.";
+      setError(message);
+      return { ok: false, message };
+    }
+    setError("");
+    return { ok: true, message: "" };
+  };
+
+  const handleWhatsAppClick = () => {
+    const validation = validateForm();
+    if (!validation.ok) {
+      toast({
+        title: "Validation Error",
+        description: validation.message,
+        variant: "destructive"
+      });
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  const confirmAndSend = () => {
+    toast({
+      title: "Success",
+      description: "Quote confirmed! Opening WhatsApp..."
+    });
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -55,70 +115,161 @@ const Pricing = () => {
               <CardDescription>Choose SSD/RAM to estimate parts + service</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>SSD Size</Label>
-                  <Select value={ssd} onValueChange={setSsd}>
-                    <SelectTrigger><SelectValue placeholder="Select size" /></SelectTrigger>
-                    <SelectContent>
-                      {ssdBase.map((s) => (
-                        <SelectItem value={s.size} key={s.size}>{s.size}</SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+              <TooltipProvider>
+                {error && <p id="validation-error" className="text-red-500 text-sm" role="alert" data-testid="validation-error">{error}</p>}
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Label className="flex items-center gap-1 cursor-help">
+                            SSD Size
+                            <HelpCircle className="h-3 w-3 text-muted-foreground" />
+                          </Label>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Solid State Drive for faster storage and boot times</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                    <Select value={ssd} onValueChange={(value) => { setSsd(value); clearErrorOnChange(); }}>
+                      <SelectTrigger data-testid="select-ssd" aria-invalid={!!error} aria-describedby={error ? "validation-error" : undefined}><SelectValue placeholder="Select size" /></SelectTrigger>
+                      <SelectContent>
+                        {ssdBase.map((s) => (
+                          <SelectItem value={s.size} key={s.size}>
+                            {s.size} {s.price > 0 && `(R${s.price})`}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Label className="flex items-center gap-1 cursor-help">
+                            RAM
+                            <HelpCircle className="h-3 w-3 text-muted-foreground" />
+                          </Label>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Memory upgrade for better multitasking performance</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                    <Select value={ram} onValueChange={(value) => { setRam(value); clearErrorOnChange(); }}>
+                      <SelectTrigger data-testid="select-ram" aria-invalid={!!error} aria-describedby={error ? "validation-error" : undefined}><SelectValue placeholder="Select RAM" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="8 GB">8 GB (R450)</SelectItem>
+                        <SelectItem value="16 GB">16 GB (R850)</SelectItem>
+                        <SelectItem value="None">None</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label>RAM</Label>
-                  <Select value={ram} onValueChange={setRam}>
-                    <SelectTrigger><SelectValue placeholder="Select RAM" /></SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="8 GB">8 GB</SelectItem>
-                      <SelectItem value="16 GB">16 GB</SelectItem>
-                      <SelectItem value="None">None</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label>Service Type</Label>
-                  <Select value={onsite} onValueChange={setOnsite}>
-                    <SelectTrigger><SelectValue placeholder="Service type" /></SelectTrigger>
+                  <Select value={serviceType} onValueChange={(value) => { setServiceType(value); clearErrorOnChange(); }}>
+                    <SelectTrigger data-testid="select-service" aria-invalid={!!error} aria-describedby={error ? "validation-error" : undefined}><SelectValue placeholder="Select service" /></SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="remote">Remote</SelectItem>
-                      <SelectItem value="on-site">On‑Site</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2 opacity-100">
-                  <Label>Area (for on‑site)</Label>
-                  <Select value={suburb} onValueChange={setSuburb} disabled={onsite !== "on-site"}>
-                    <SelectTrigger><SelectValue placeholder="Select area" /></SelectTrigger>
-                    <SelectContent>
-                      {suburbs.map((s) => (
-                        <SelectItem key={s.name} value={s.name}>{s.name}</SelectItem>
+                      {services.map((s) => (
+                        <SelectItem key={s.name} value={s.name}>
+                          {s.name} (R{s.price})
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
                 </div>
-              </div>
 
-              <div className="rounded-md border p-3 text-sm">
-                <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R {(ssdPrice + ramPrice).toFixed(0)}</span></div>
-                <div className="flex justify-between"><span>Service ({onsite})</span><span>R {service.toFixed(0)}</span></div>
-                <div className="flex justify-between"><span>Callout</span><span>R {callout.toFixed(0)}</span></div>
-                <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R {total.toFixed(0)}</span></div>
-              </div>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>Visit Type</Label>
+                    <Select value={onsite} onValueChange={(value) => { setOnsite(value); clearErrorOnChange(); }}>
+                      <SelectTrigger data-testid="select-visit-type" aria-invalid={!!error} aria-describedby={error ? "validation-error" : undefined}><SelectValue placeholder="Service type" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="remote">Remote Support</SelectItem>
+                        <SelectItem value="on-site">On-Site Visit</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-1">
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Label className={`flex items-center gap-1 cursor-help ${onsite !== "on-site" ? "text-muted-foreground" : ""}`}>
+                            Area (for on-site)
+                            <HelpCircle className="h-3 w-3 text-muted-foreground" />
+                          </Label>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Callout fee varies by distance from Lombardy East</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </div>
+                    <Select value={suburb} onValueChange={(value) => { setSuburb(value); clearErrorOnChange(); }} disabled={onsite !== "on-site"}>
+                      <SelectTrigger data-testid="select-suburb" aria-invalid={!!error} aria-describedby={error ? "validation-error" : undefined}><SelectValue placeholder="Select area" /></SelectTrigger>
+                      <SelectContent>
+                        {suburbs.map((s) => (
+                          <SelectItem key={s.name} value={s.name}>
+                            {s.name} (R{400 + s.fee})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
 
-              <div className="flex gap-2">
-                <Button asChild>
-                  <a href={`https://wa.me/27670494876?text=${encodeURIComponent("Quote request: " + ssd + ", " + ram + ", " + onsite + ", " + suburb + " | Total R " + total)}`} target="_blank" rel="noreferrer"><Calculator className="h-4 w-4 mr-2" />Send Quote via WhatsApp</a>
-                </Button>
-                <Button variant="outline" asChild>
-                  <a href="/booking">Book Now</a>
-                </Button>
-              </div>
+                <div className="rounded-md border p-3 text-sm" data-testid="price-breakdown">
+                  <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R {(ssdPrice + ramPrice).toFixed(0)}</span></div>
+                  <div className="flex justify-between"><span>Service ({serviceType})</span><span>R {servicePrice.toFixed(0)}</span></div>
+                  <div className="flex justify-between"><span>Callout ({onsite})</span><span>R {callout.toFixed(0)}</span></div>
+                  <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R {total.toFixed(0)}</span></div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Button onClick={handleWhatsAppClick} data-testid="button-quote">
+                    <Calculator className="h-4 w-4 mr-2" />Send Quote via WhatsApp
+                  </Button>
+                  <Button variant="outline" asChild>
+                    <Link to="/booking" data-testid="button-booking">Book Now</Link>
+                  </Button>
+                </div>
+                
+                <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+                  <DialogContent className="max-w-md">
+                    <DialogHeader>
+                      <DialogTitle>Confirm Your Quote</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-2 text-sm">
+                      <p><strong>SSD</strong>: {ssd} {ssdPrice > 0 && `(R${ssdPrice})`}</p>
+                      <p><strong>RAM</strong>: {ram} {ramPrice > 0 && `(R${ramPrice})`}</p>
+                      <p><strong>Service</strong>: {serviceType} (R{servicePrice})</p>
+                      <p><strong>Visit</strong>: {onsite === "remote" ? "Remote Support" : `On-site at ${suburb}`} {callout > 0 && `(R${callout})`}</p>
+                      <div className="border-t pt-2 font-semibold">
+                        <p><strong>Total</strong>: R{total}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-2 mt-4">
+                      <Button asChild onClick={confirmAndSend}>
+                        <a
+                          href={`https://wa.me/27670494876?text=${encodeURIComponent(
+                            `Quote request:\nSSD: ${ssd}\nRAM: ${ram}\nService: ${serviceType}\nVisit: ${onsite === "remote" ? "Remote" : suburb}\nTotal: R${total}`
+                          )}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          data-testid="button-confirm-quote"
+                        >
+                          Confirm and Send
+                        </a>
+                      </Button>
+                      <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+                        Cancel
+                      </Button>
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              </TooltipProvider>
             </CardContent>
           </Card>
 
