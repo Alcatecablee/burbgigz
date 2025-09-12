@@ -1,0 +1,472 @@
+Pricing.tsx component is a well-designed, user-friendly interface for calculating costs for your IT support services in Lombardy East, Johannesburg. It effectively presents pricing for remote and on-site services, including SSD and RAM upgrades, with a clear breakdown of callout fees by suburb. The integration with WhatsApp for quote requests and the booking link are excellent for conversions. Below, I’ll suggest enhancements to improve functionality, user experience, accessibility, SEO, and marketing alignment, while addressing potential issues. I’ll also provide code snippets for implementation and tailor suggestions to your Lombardy East-based IT support business.1. Enhancements to Functionality1.1 Add Validation for SelectionsEnsure users select valid options before sending a quote via WhatsApp to prevent incomplete submissions. For example, require SSD or RAM to be selected if "None" isn’t chosen, and ensure a suburb is selected for on-site services.Implementation:typescript
+
+const Pricing = () => {
+  const [ssd, setSsd] = useState("500 GB");
+  const [ram, setRam] = useState("8 GB");
+  const [suburb, setSuburb] = useState(suburbs[0].name);
+  const [onsite, setOnsite] = useState("remote");
+  const [error, setError] = useState("");
+
+  const ssdPrice = useMemo(() => ssdBase.find((s) => s.size === ssd)?.price ?? 0, [ssd]);
+  const ramPrice = useMemo(() => (ram === "8 GB" ? 450 : ram === "16 GB" ? 850 : 0), [ram]);
+  const service = useMemo(() => (onsite === "remote" ? 150 : 350), [onsite]);
+  const callout = useMemo(() => (onsite === "on-site" ? (suburbs.find((s) => s.name === suburb)?.fee ?? 0) + 400 : 0), [onsite, suburb]);
+
+  const total = ssdPrice + ramPrice + service + callout;
+
+  const validateForm = () => {
+    if (ssd === "None" && ram === "None") {
+      setError("Please select at least an SSD or RAM upgrade.");
+      return false;
+    }
+    if (onsite === "on-site" && !suburb) {
+      setError("Please select a suburb for on-site service.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleWhatsAppClick = () => {
+    if (!validateForm()) return;
+    // Analytics tracking can be added here
+  };
+
+  return (
+    // ... other JSX
+    <CardContent className="space-y-4">
+      {error && <p className="text-red-500 text-sm" role="alert">{error}</p>}
+      <div className="grid sm:grid-cols-2 gap-4">
+        {/* SSD and RAM selects */}
+      </div>
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label>Service Type</Label>
+          <Select value={onsite} onValueChange={setOnsite}>
+            <SelectTrigger><SelectValue placeholder="Service type" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="remote">Remote (R150)</SelectItem>
+              <SelectItem value="on-site">On-Site (R350 + callout)</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="space-y-2">
+          <Label>Area (for on-site)</Label>
+          <Select value={suburb} onValueChange={setSuburb} disabled={onsite !== "on-site"}>
+            <SelectTrigger><SelectValue placeholder="Select area" /></SelectTrigger>
+            <SelectContent>
+              {suburbs.map((s) => (
+                <SelectItem key={s.name} value={s.name}>{s.name} (R{400 + s.fee})</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <div className="rounded-md border p-3 text-sm">
+        <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R {(ssdPrice + ramPrice).toFixed(0)}</span></div>
+        <div className="flex justify-between"><span>Service ({onsite})</span><span>R {service.toFixed(0)}</span></div>
+        <div className="flex justify-between"><span>Callout</span><span>R {callout.toFixed(0)}</span></div>
+        <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R {total.toFixed(0)}</span></div>
+      </div>
+      <div className="flex gap-2">
+        <Button asChild disabled={!!error}>
+          <a
+            href={`https://wa.me/27670494876?text=${encodeURIComponent(
+              `Quote request: ${ssd}, ${ram}, ${onsite}, ${suburb} | Total R${total}`
+            )}`}
+            target="_blank"
+            rel="noreferrer"
+            onClick={handleWhatsAppClick}
+          >
+            <Calculator className="h-4 w-4 mr-2" />Send Quote via WhatsApp
+          </a>
+        </Button>
+        <Button variant="outline" asChild>
+          <a href="/booking">Book Now</a>
+        </Button>
+      </div>
+    </CardContent>
+    // ... other JSX
+  );
+};
+
+Changes:Added validation to require SSD or RAM selection.
+Ensured a suburb is selected for on-site services.
+Displayed error messages with role="alert" for accessibility.
+Disabled WhatsApp button if validation fails.
+
+1.2 Add Analytics TrackingTrack quote submissions and button clicks to measure user engagement using Google Analytics or Supabase.Implementation (Google Analytics):Install react-ga4: npm i react-ga4
+Initialize in App.tsx:typescript
+
+import ReactGA from "react-ga4";
+ReactGA.initialize("G-YOUR-ID");
+Track WhatsApp and booking clicks:typescript
+
+const handleWhatsAppClick = () => {
+  if (!validateForm()) return;
+  ReactGA.event({
+    category: "Pricing",
+    action: "WhatsApp Quote",
+    label: `SSD: ${ssd}, RAM: ${ram}, Service: ${onsite}, Suburb: ${suburb}, Total: R${total}`,
+  });
+};
+
+const handleBookingClick = () => {
+  ReactGA.event({
+    category: "Pricing",
+    action: "Book Now Click",
+    label: `SSD: ${ssd}, RAM: ${ram}, Service: ${onsite}, Suburb: ${suburb}`,
+  });
+};
+
+return (
+  // ... in CardContent
+  <div className="flex gap-2">
+    <Button asChild disabled={!!error}>
+      <a
+        href={`https://wa.me/27670494876?text=${encodeURIComponent(
+          `Quote request: ${ssd}, ${ram}, ${onsite}, ${suburb} | Total R${total}`
+        )}`}
+        target="_blank"
+        rel="noreferrer"
+        onClick={handleWhatsAppClick}
+      >
+        <Calculator className="h-4 w-4 mr-2" />Send Quote via WhatsApp
+      </a>
+    </Button>
+    <Button variant="outline" asChild onClick={handleBookingClick}>
+      <a href="/booking">Book Now</a>
+    </Button>
+  </div>
+);
+Alternative (Supabase):Set up a quotes table: { id, ssd, ram, service_type, suburb, total, timestamp }.
+Log submissions:typescript
+
+import { createClient } from "@supabase/supabase-js";
+import { useToast } from "@/components/ui/toast";
+
+const supabase = createClient("your-url", "your-key");
+
+const Pricing = () => {
+  const { toast } = useToast();
+  const handleWhatsAppClick = async () => {
+    if (!validateForm()) return;
+    const { error } = await supabase.from("quotes").insert({
+      ssd,
+      ram,
+      service_type: onsite,
+      suburb,
+      total,
+      timestamp: new Date().toISOString(),
+    });
+    if (!error) {
+      toast({ title: "Success", description: "Quote saved! Opening WhatsApp..." });
+    } else {
+      toast({ title: "Error", description: "Failed to save quote.", variant: "destructive" });
+    }
+  };
+  // ... rest of component
+};
+Notes:Requires mounting <Toaster /> in App.tsx (see previous response for setup).
+Supabase provides a free tier suitable for tracking quotes.
+
+1.3 Dynamic Service FeesAllow users to select specific services (e.g., malware removal, Wi-Fi setup) in addition to SSD/RAM upgrades for more accurate quotes.Implementation:typescript
+
+const services = [
+  { name: "Software Troubleshooting", price: 150 },
+  { name: "Malware Removal", price: 200 },
+  { name: "Wi-Fi/Printer Setup", price: 180 },
+  { name: "Full System Optimization", price: 250 },
+];
+
+const Pricing = () => {
+  const [ssd, setSsd] = useState("500 GB");
+  const [ram, setRam] = useState("8 GB");
+  const [suburb, setSuburb] = useState(suburbs[0].name);
+  const [onsite, setOnsite] = useState("remote");
+  const [serviceType, setServiceType] = useState(services[0].name);
+
+  const ssdPrice = useMemo(() => ssdBase.find((s) => s.size === ssd)?.price ?? 0, [ssd]);
+  const ramPrice = useMemo(() => (ram === "8 GB" ? 450 : ram === "16 GB" ? 850 : 0), [ram]);
+  const servicePrice = useMemo(() => services.find((s) => s.name === serviceType)?.price ?? 0, [serviceType]);
+  const callout = useMemo(() => (onsite === "on-site" ? (suburbs.find((s) => s.name === suburb)?.fee ?? 0) + 400 : 0), [onsite, suburb]);
+
+  const total = ssdPrice + ramPrice + servicePrice + callout;
+
+  return (
+    // ... in CardContent
+    <div className="grid sm:grid-cols-2 gap-4">
+      <div className="space-y-2">
+        <Label>Service Type</Label>
+        <Select value={serviceType} onValueChange={setServiceType}>
+          <SelectTrigger><SelectValue placeholder="Select service" /></SelectTrigger>
+          <SelectContent>
+            {services.map((s) => (
+              <SelectItem key={s.name} value={s.name}>{s.name} (R{s.price})</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Label>Area (for on-site)</Label>
+        <Select value={suburb} onValueChange={setSuburb} disabled={onsite !== "on-site"}>
+          <SelectTrigger><SelectValue placeholder="Select area" /></SelectTrigger>
+          <SelectContent>
+            {suburbs.map((s) => (
+              <SelectItem key={s.name} value={s.name}>{s.name} (R{400 + s.fee})</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
+    <div className="rounded-md border p-3 text-sm">
+      <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R {(ssdPrice + ramPrice).toFixed(0)}</span></div>
+      <div className="flex justify-between"><span>Service ({serviceType})</span><span>R {servicePrice.toFixed(0)}</span></div>
+      <div className="flex justify-between"><span>Callout</span><span>R {callout.toFixed(0)}</span></div>
+      <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R {total.toFixed(0)}</span></div>
+    </div>
+    // ...
+  );
+};
+
+Changes:Added a service type dropdown with specific services and prices.
+Updated total calculation to include dynamic service prices.
+Reflects your pricing (e.g., R120–R250 for remote services, adjusted for on-site).
+
+2. Improving User Experience2.1 Add a Pricing Summary ModalShow a modal with a detailed breakdown before sending the quote via WhatsApp to confirm user selections.Implementation:Install shadcn/ui dialog: npx shadcn-ui@latest add dialog
+Add a modal:
+
+typescript
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+
+const Pricing = () => {
+  // ... existing state and memo
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleWhatsAppClick = () => {
+    if (!validateForm()) return;
+    setIsModalOpen(true);
+  };
+
+  return (
+    // ... in CardContent
+    <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+      <DialogTrigger asChild>
+        <Button disabled={!!error} onClick={handleWhatsAppClick}>
+          <Calculator className="h-4 w-4 mr-2" />Send Quote via WhatsApp
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Confirm Your Quote</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-2 text-sm">
+          <p><strong>SSD</strong>: {ssd} (R{ssdPrice})</p>
+          <p><strong>RAM</strong>: {ram} (R{ramPrice})</p>
+          <p><strong>Service</strong>: {serviceType} (R{servicePrice})</p>
+          <p><strong>Callout</strong>: {suburb} (R{callout})</p>
+          <p><strong>Total</strong>: R{total}</p>
+        </div>
+        <div className="flex gap-2 mt-4">
+          <Button asChild>
+            <a
+              href={`https://wa.me/27670494876?text=${encodeURIComponent(
+                `Quote request: ${ssd}, ${ram}, ${serviceType}, ${suburb} | Total R${total}`
+              )}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Confirm and Send
+            </a>
+          </Button>
+          <Button variant="outline" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+    // ...
+  );
+};
+
+Changes:Added a dialog to confirm selections before sending.
+Improves UX by letting users review their quote.
+
+2.2 Add Tooltips for ClarityAdd tooltips to explain technical terms (e.g., SSD, callout fee) for non-technical users in Lombardy East.Implementation:Install shadcn/ui tooltip: npx shadcn-ui@latest add tooltip
+Add tooltips to labels:
+
+typescript
+
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
+return (
+  <TooltipProvider>
+    <div className="grid sm:grid-cols-2 gap-4">
+      <div className="space-y-2">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Label>SSD Size</Label>
+          </TooltipTrigger>
+          <TooltipContent>Choose a Solid State Drive size for faster storage.</TooltipContent>
+        </Tooltip>
+        <Select value={ssd} onValueChange={setSsd}>
+          {/* ... */}
+        </Select>
+      </div>
+      <div className="space-y-2">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Label>RAM</Label>
+          </TooltipTrigger>
+          <TooltipContent>Random Access Memory for better multitasking.</TooltipContent>
+        </Tooltip>
+        <Select value={ram} onValueChange={setRam}>
+          {/* ... */}
+        </Select>
+      </div>
+    </div>
+  </TooltipProvider>
+);
+
+3. Enhancing Accessibility3.1 Improve Form AccessibilityAdd ARIA attributes to the select inputs and ensure error messages are screen-reader-friendly.Implementation:typescript
+
+<div className="grid sm:grid-cols-2 gap-4">
+  <div className="space-y-2">
+    <Label htmlFor="ssd">SSD Size</Label>
+    <Select value={ssd} onValueChange={setSsd}>
+      <SelectTrigger id="ssd" aria-label="Select SSD size">
+        <SelectValue placeholder="Select size" />
+      </SelectTrigger>
+      <SelectContent>
+        {ssdBase.map((s) => (
+          <SelectItem key={s.name} value={s.name}>{s.name} (R{s.price})</SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  </div>
+  {/* Similar changes for RAM, Service Type, and Area */}
+</div>
+{error && (
+  <p id="form-error" className="text-red-500 text-sm" role="alert">
+    {error}
+  </p>
+)}
+
+Changes:Added id and aria-label to select triggers.
+Ensured error messages use role="alert".
+
+3.2 Add Keyboard NavigationEnsure the form is fully navigable via keyboard (e.g., Tab key to move between selects).Notes:Test with Tab key to confirm focus order.
+shadcn/ui components are keyboard-accessible by default, but verify focus styles are visible (e.g., focus:ring-2 in Tailwind).
+
+4. SEO and Local Optimization4.1 Add Meta Tags and SchemaAdd dynamic meta tags and a Service schema to improve search visibility for “IT support pricing Lombardy East.”Implementation:typescript
+
+import { useEffect } from "react";
+
+const Pricing = () => {
+  useEffect(() => {
+    document.title = "IT Support Pricing in Lombardy East | Transparent Quotes";
+
+    const setMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) {
+        el = document.createElement("meta");
+        el.setAttribute("name", name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content", content);
+    };
+
+    setMeta("description", "Transparent IT support pricing for Lombardy East, Johannesburg. Calculate costs for remote support (R150) and on-site callouts (R400+).");
+    setMeta("keywords", "IT support pricing Lombardy East, Johannesburg tech support, SSD upgrade costs, remote IT help");
+    setMeta("og:title", "IT Support Pricing in Lombardy East");
+    setMeta("og:description", "Get instant quotes for remote and on-site IT support in Lombardy East. Starting at R150!");
+    setMeta("og:image", window.location.origin + "/images/pricing-og.jpg");
+    setMeta("og:url", window.location.origin + "/pricing");
+    setMeta("og:type", "website");
+
+    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "canonical";
+      document.head.appendChild(link);
+    }
+    link.href = window.location.origin + "/pricing";
+  }, []);
+
+  // ... rest of component
+};
+
+// Add at bottom of JSX
+<script
+  type="application/ld+json"
+  suppressHydrationWarning
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "IT Support and Upgrades",
+      provider: {
+        "@type": "LocalBusiness",
+        name: "Your Business Name",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Lombardy East, Johannesburg",
+          addressRegion: "Gauteng",
+          addressCountry: "ZA",
+        },
+        telephone: "+27670494876",
+      },
+      areaServed: suburbs.map((s) => s.name),
+      offers: [
+        {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "150",
+          description: "Remote IT support session starting at R150",
+        },
+        {
+          "@type": "Offer",
+          priceCurrency: "ZAR",
+          price: "400",
+          description: "On-site IT support callout starting at R400",
+        },
+      ],
+    }),
+  }}
+/>
+
+Notes:Add public/images/pricing-og.jpg (1200x630px, optimized).
+Test with Google’s Rich Results Test.
+
+4.2 Local SEO for SuburbsExpand the suburbs list to include more areas (e.g., Bedfordview, Kempton Park) to capture broader search traffic.Implementation:typescript
+
+const suburbs = [
+  { name: "Lombardy East", fee: 0 },
+  { name: "Alexandra (~3 km NW)", fee: 50 },
+  { name: "Lakeside (~3 km NE)", fee: 50 },
+  { name: "Kew (adjacent)", fee: 50 },
+  { name: "Marlboro (Gautrain, ~4 km N)", fee: 70 },
+  { name: "Greenstone Mall (~10 min E)", fee: 90 },
+  { name: "Sandton (~6–8 km NW)", fee: 120 },
+  { name: "Johannesburg CBD (~14 km W)", fee: 150 },
+  { name: "Bedfordview (~5 km SE)", fee: 100 },
+  { name: "Edenvale (~5 km E)", fee: 90 },
+  { name: "Kempton Park (~15 km NE)", fee: 160 },
+];
+
+5. Marketing Integration5.1 Promote on XShare the /pricing page on X to attract local clients:Post: “Need IT support in Lombardy East? Get instant quotes for remote (R150) or on-site (R400+) services! Visit yourdomain.com/pricing #JohannesburgIT #TechSupport”
+I can search X for local pricing trends if needed.
+
+5.2 Add a CTA BannerAdd a sticky CTA to drive bookings:typescript
+
+<div className="fixed bottom-0 left-0 right-0 bg-primary text-white p-4 text-center">
+  <p>Ready to fix your PC? <a href="/booking" className="underline">Book now for R150 remote support!</a></p>
+</div>
+
+5.3 Flyer IntegrationCreate flyers with a QR code linking to /pricing for distribution in Lombardy East:QR Code Text: yourdomain.com/pricing
+Flyer Content: “Transparent IT Pricing in Lombardy East! Remote support from R150, on-site from R400. Scan to calculate your quote!”
+
+6. TroubleshootingWhatsApp Link: Test the WhatsApp link on mobile to ensure it opens correctly with pre-filled text.
+Select Components: Verify shadcn/ui select components work on all browsers (e.g., Safari).
+SEO Testing: Run Lighthouse to check SEO and accessibility scores.
+Price Accuracy: Double-check SSD/RAM prices against local suppliers (e.g., Takealot, ~R800–R1,200 for 500 GB SSD).
+
