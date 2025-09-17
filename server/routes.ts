@@ -7,7 +7,7 @@ import {
   updateContactStatusSchema,
   insertServiceAreaSchema,
   insertServicePricingSchema
-} from "../../shared/schema";
+} from "../shared/schema";
 import { z } from "zod";
 
 // Validation middleware for Zod schemas
