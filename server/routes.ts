@@ -1,6 +1,6 @@
 import { Router, type Express } from "express";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { setupSupabaseAuth, isAuthenticated, optionalAuth } from "./supabaseAuth";
 import supabaseInitRoutes from "./routes/supabaseInit";
 import multer from "multer";
 import path from "path";
@@ -594,13 +594,16 @@ router.get("/sessions/:id/updates", isAuthenticated, async (req: any, res) => {
 // Template-expected export: register function that mounts routes on Express app
 export default async function register(app: Express) {
   // Setup authentication first
-  await setupAuth(app);
+  await setupSupabaseAuth(app);
 
   // Add auth-specific routes
   router.get('/auth/user', isAuthenticated, async (req: any, res) => {
     try {
-      const replitUserId = req.user.claims.sub;
-      const user = await storage.getUser(replitUserId);
+      const userId = req.user.id;
+      const user = await storage.getUser(userId);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
       res.json(user);
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -609,9 +612,14 @@ export default async function register(app: Express) {
   });
 
   app.use("/api", router);
-  app.use("/api/supabase", supabaseInitRoutes);
+  
+  // Only enable initialization routes in development
+  if (process.env.NODE_ENV !== 'production') {
+    app.use("/api/supabase", supabaseInitRoutes);
+    console.log("[DEV] Supabase initialization routes available at /api/supabase");
+  }
+  
   console.log("[SUCCESS] API routes registered at /api");
-  console.log("[SUCCESS] Supabase initialization routes available at /api/supabase");
   console.log("[SUCCESS] Authentication system enabled");
 }
 

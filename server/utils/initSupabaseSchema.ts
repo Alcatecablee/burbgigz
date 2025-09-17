@@ -1,6 +1,6 @@
 import { supabaseAdmin, isSupabaseAvailable } from '../lib/supabase'
 
-// SQL schema to create tables
+// SQL schema to create tables based on Drizzle schema
 const createTablesSQL = `
 -- Users table for customer profiles
 CREATE TABLE IF NOT EXISTS users (

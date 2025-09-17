@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { supabase, type User } from '../lib/supabase'
+import { supabase, isSupabaseAvailable, type User } from '../lib/supabase'
 import type { AuthError } from '@supabase/supabase-js'
 
 interface AuthState {
@@ -17,9 +17,19 @@ export function useSupabaseAuth() {
   })
 
   useEffect(() => {
+    if (!isSupabaseAvailable()) {
+      console.warn('Supabase not available - auth features disabled');
+      setAuthState({
+        user: null,
+        isLoading: false,
+        error: null
+      });
+      return;
+    }
+
     // Get initial session
     const getInitialSession = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession()
+      const { data: { session }, error } = await supabase!.auth.getSession()
       
       setAuthState({
         user: session?.user ?? null,
@@ -31,7 +41,7 @@ export function useSupabaseAuth() {
     getInitialSession()
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+    const { data: { subscription } } = supabase!.auth.onAuthStateChange(
       async (event, session) => {
         setAuthState({
           user: session?.user ?? null,
@@ -45,9 +55,13 @@ export function useSupabaseAuth() {
   }, [])
 
   const signIn = async (email: string, password: string) => {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Authentication not available - Supabase not configured');
+    }
+
     setAuthState(prev => ({ ...prev, isLoading: true, error: null }))
     
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase!.auth.signInWithPassword({
       email,
       password
     })
@@ -61,9 +75,13 @@ export function useSupabaseAuth() {
   }
 
   const signUp = async (email: string, password: string, metadata?: object) => {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Authentication not available - Supabase not configured');
+    }
+
     setAuthState(prev => ({ ...prev, isLoading: true, error: null }))
     
-    const { data, error } = await supabase.auth.signUp({
+    const { data, error } = await supabase!.auth.signUp({
       email,
       password,
       options: {
@@ -80,9 +98,13 @@ export function useSupabaseAuth() {
   }
 
   const signOut = async () => {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Authentication not available - Supabase not configured');
+    }
+
     setAuthState(prev => ({ ...prev, isLoading: true, error: null }))
     
-    const { error } = await supabase.auth.signOut()
+    const { error } = await supabase!.auth.signOut()
     
     if (error) {
       setAuthState(prev => ({ ...prev, isLoading: false, error }))

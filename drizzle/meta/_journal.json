@@ -8,6 +8,13 @@
       "when": 1758099900376,
       "tag": "0000_regular_vanisher",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1758122763769,
+      "tag": "0001_simple_sugar_man",
+      "breakpoints": true
     }
   ]
 }
