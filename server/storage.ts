@@ -9,11 +9,17 @@ import {
   type ServicePricing,
   type InsertServicePricing,
   type User,
+  type FileAttachment,
+  type InsertFileAttachment,
+  type ServiceSession,
+  type InsertServiceSession,
   bookings,
   contacts,
   serviceAreas,
   servicePricing,
-  users
+  users,
+  fileAttachments,
+  serviceSessions
 } from "../shared/schema";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
@@ -57,6 +63,18 @@ export interface IStorage {
   getActiveServicePricing(): Promise<ServicePricing[]>;
   createServicePricing(data: InsertServicePricing): Promise<ServicePricing>;
   updateServicePricing(id: number, data: Partial<InsertServicePricing>): Promise<ServicePricing | null>;
+
+  // File attachment operations
+  createFileAttachment(data: InsertFileAttachment): Promise<FileAttachment>;
+  getFileAttachments(sessionId?: number, bookingId?: number, customerId?: number): Promise<FileAttachment[]>;
+  getFileAttachmentById(id: number): Promise<FileAttachment | null>;
+  deleteFileAttachment(id: number): Promise<boolean>;
+
+  // Service session operations
+  createServiceSession(data: InsertServiceSession): Promise<ServiceSession>;
+  getServiceSessions(customerId?: number): Promise<ServiceSession[]>;
+  getServiceSessionById(id: number): Promise<ServiceSession | null>;
+  updateServiceSession(id: number, data: Partial<InsertServiceSession>): Promise<ServiceSession | null>;
 }
 
 // In-memory storage implementation (primary)
@@ -73,11 +91,15 @@ class MemStorage implements IStorage {
     { id: 1, serviceCategory: "virus-removal", serviceName: "Virus & Malware Removal", basePrice: 15000, description: "Complete system cleanup", isActive: true, createdAt: new Date(), updatedAt: new Date() },
     { id: 2, serviceCategory: "hardware-upgrade", serviceName: "SSD Installation", basePrice: 25000, description: "Professional SSD upgrade", isActive: true, createdAt: new Date(), updatedAt: new Date() },
   ];
+  private fileAttachments: FileAttachment[] = [];
+  private serviceSessions: ServiceSession[] = [];
   private nextUserId = 1;
   private nextBookingId = 1;
   private nextContactId = 1;
   private nextAreaId = 4;
   private nextPricingId = 3;
+  private nextFileAttachmentId = 1;
+  private nextServiceSessionId = 1;
 
   // User operations (required for Replit Auth)
   async getUser(replitUserId: string): Promise<User | undefined> {
@@ -259,6 +281,68 @@ class MemStorage implements IStorage {
     };
     return this.servicePricing[index];
   }
+
+  // File attachment operations
+  async createFileAttachment(data: InsertFileAttachment): Promise<FileAttachment> {
+    const fileAttachment: FileAttachment = {
+      id: this.nextFileAttachmentId++,
+      ...data,
+      createdAt: new Date(),
+    };
+    this.fileAttachments.push(fileAttachment);
+    return fileAttachment;
+  }
+
+  async getFileAttachments(sessionId?: number, bookingId?: number, customerId?: number): Promise<FileAttachment[]> {
+    return this.fileAttachments.filter(f => 
+      (!sessionId || f.sessionId === sessionId) &&
+      (!bookingId || f.bookingId === bookingId) &&
+      (!customerId || f.customerId === customerId)
+    );
+  }
+
+  async getFileAttachmentById(id: number): Promise<FileAttachment | null> {
+    return this.fileAttachments.find(f => f.id === id) || null;
+  }
+
+  async deleteFileAttachment(id: number): Promise<boolean> {
+    const index = this.fileAttachments.findIndex(f => f.id === id);
+    if (index === -1) return false;
+    this.fileAttachments.splice(index, 1);
+    return true;
+  }
+
+  // Service session operations
+  async createServiceSession(data: InsertServiceSession): Promise<ServiceSession> {
+    const serviceSession: ServiceSession = {
+      id: this.nextServiceSessionId++,
+      ...data,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.serviceSessions.push(serviceSession);
+    return serviceSession;
+  }
+
+  async getServiceSessions(customerId?: number): Promise<ServiceSession[]> {
+    return this.serviceSessions.filter(s => !customerId || s.customerId === customerId);
+  }
+
+  async getServiceSessionById(id: number): Promise<ServiceSession | null> {
+    return this.serviceSessions.find(s => s.id === id) || null;
+  }
+
+  async updateServiceSession(id: number, data: Partial<InsertServiceSession>): Promise<ServiceSession | null> {
+    const index = this.serviceSessions.findIndex(s => s.id === id);
+    if (index === -1) return null;
+    
+    this.serviceSessions[index] = {
+      ...this.serviceSessions[index],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return this.serviceSessions[index];
+  }
 }
 
 // Supabase/PostgreSQL storage implementation using Drizzle ORM
@@ -408,6 +492,59 @@ class DatabaseStorage implements IStorage {
       .where(eq(servicePricing.id, id))
       .returning();
     return pricing || null;
+  }
+
+  // File attachment operations
+  async createFileAttachment(data: InsertFileAttachment): Promise<FileAttachment> {
+    const [fileAttachment] = await this.db.insert(fileAttachments).values(data).returning();
+    return fileAttachment;
+  }
+
+  async getFileAttachments(sessionId?: number, bookingId?: number, customerId?: number): Promise<FileAttachment[]> {
+    const query = this.db.select().from(fileAttachments);
+    
+    if (sessionId) query.where(eq(fileAttachments.sessionId, sessionId));
+    if (bookingId) query.where(eq(fileAttachments.bookingId, bookingId));
+    if (customerId) query.where(eq(fileAttachments.customerId, customerId));
+    
+    return await query.orderBy(desc(fileAttachments.createdAt));
+  }
+
+  async getFileAttachmentById(id: number): Promise<FileAttachment | null> {
+    const [fileAttachment] = await this.db.select().from(fileAttachments).where(eq(fileAttachments.id, id));
+    return fileAttachment || null;
+  }
+
+  async deleteFileAttachment(id: number): Promise<boolean> {
+    const result = await this.db.delete(fileAttachments).where(eq(fileAttachments.id, id));
+    return result.rowCount > 0;
+  }
+
+  // Service session operations
+  async createServiceSession(data: InsertServiceSession): Promise<ServiceSession> {
+    const [serviceSession] = await this.db.insert(serviceSessions).values(data).returning();
+    return serviceSession;
+  }
+
+  async getServiceSessions(customerId?: number): Promise<ServiceSession[]> {
+    const query = this.db.select().from(serviceSessions);
+    if (customerId) {
+      query.where(eq(serviceSessions.customerId, customerId));
+    }
+    return await query.orderBy(desc(serviceSessions.createdAt));
+  }
+
+  async getServiceSessionById(id: number): Promise<ServiceSession | null> {
+    const [serviceSession] = await this.db.select().from(serviceSessions).where(eq(serviceSessions.id, id));
+    return serviceSession || null;
+  }
+
+  async updateServiceSession(id: number, data: Partial<InsertServiceSession>): Promise<ServiceSession | null> {
+    const [serviceSession] = await this.db.update(serviceSessions)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(serviceSessions.id, id))
+      .returning();
+    return serviceSession || null;
   }
 }
 
