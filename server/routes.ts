@@ -1,5 +1,6 @@
 import { Router, type Express } from "express";
 import { storage } from "./storage";
+import { setupAuth, isAuthenticated } from "./replitAuth";
 import { 
   insertBookingSchema, 
   updateBookingSchema,
@@ -193,9 +194,25 @@ router.post("/service-pricing", validateBody(insertServicePricingSchema), async 
 });
 
 // Template-expected export: register function that mounts routes on Express app
-export default function register(app: Express) {
+export default async function register(app: Express) {
+  // Setup authentication first
+  await setupAuth(app);
+
+  // Add auth-specific routes
+  router.get('/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const replitUserId = req.user.claims.sub;
+      const user = await storage.getUser(replitUserId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
   app.use("/api", router);
   console.log("[SUCCESS] API routes registered at /api");
+  console.log("[SUCCESS] Authentication system enabled");
 }
 
 // Also export the router for testing if needed

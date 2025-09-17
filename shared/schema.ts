@@ -1,4 +1,4 @@
-import { pgTable, serial, varchar, text, timestamp, integer, boolean } from "drizzle-orm/pg-core";
+import { pgTable, serial, varchar, text, timestamp, integer, boolean, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -71,15 +71,28 @@ export const servicePricing = pgTable("service_pricing", {
   updatedAt: timestamp("updated_at").defaultNow(),
 });
 
-// Users table for customer authentication
+// Session storage table (required for Replit Auth)
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
+
+// Users table for customer authentication (compatible with Replit Auth)
 export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
-  email: varchar("email", { length: 255 }).notNull().unique(),
-  name: varchar("name", { length: 255 }).notNull(),
+  id: serial("id").primaryKey(), // Keep serial ID as per database safety rules
+  email: varchar("email", { length: 255 }).unique(),
+  name: varchar("name", { length: 255 }), // Combined name field
+  firstName: varchar("first_name", { length: 255 }),
+  lastName: varchar("last_name", { length: 255 }),
   phone: varchar("phone", { length: 50 }),
+  profileImageUrl: varchar("profile_image_url", { length: 500 }),
   passwordHash: text("password_hash"),
-  replitUserId: varchar("replit_user_id", { length: 255 }).unique(),
-  avatar: text("avatar"),
+  replitUserId: varchar("replit_user_id", { length: 255 }).unique(), // For Replit Auth integration
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),

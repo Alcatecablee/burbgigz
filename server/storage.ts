@@ -8,16 +8,31 @@ import {
   type InsertServiceArea,
   type ServicePricing,
   type InsertServicePricing,
+  type User,
   bookings,
   contacts,
   serviceAreas,
-  servicePricing
+  servicePricing,
+  users
 } from "../shared/schema";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
 import { eq, desc } from "drizzle-orm";
 
+// User upsert type for Replit Auth
+export interface UpsertUser {
+  replitUserId: string;
+  email?: string;
+  firstName?: string;
+  lastName?: string;
+  profileImageUrl?: string;
+}
+
 export interface IStorage {
+  // User operations (required for Replit Auth)
+  getUser(replitUserId: string): Promise<User | undefined>;
+  upsertUser(userData: UpsertUser): Promise<User>;
+
   // Booking operations
   createBooking(data: InsertBooking): Promise<Booking>;
   getBookings(): Promise<Booking[]>;
@@ -46,6 +61,7 @@ export interface IStorage {
 
 // In-memory storage implementation (primary)
 class MemStorage implements IStorage {
+  private users: User[] = [];
   private bookings: Booking[] = [];
   private contacts: Contact[] = [];
   private serviceAreas: ServiceArea[] = [
@@ -57,10 +73,54 @@ class MemStorage implements IStorage {
     { id: 1, serviceCategory: "virus-removal", serviceName: "Virus & Malware Removal", basePrice: 15000, description: "Complete system cleanup", isActive: true, createdAt: new Date(), updatedAt: new Date() },
     { id: 2, serviceCategory: "hardware-upgrade", serviceName: "SSD Installation", basePrice: 25000, description: "Professional SSD upgrade", isActive: true, createdAt: new Date(), updatedAt: new Date() },
   ];
+  private nextUserId = 1;
   private nextBookingId = 1;
   private nextContactId = 1;
   private nextAreaId = 4;
   private nextPricingId = 3;
+
+  // User operations (required for Replit Auth)
+  async getUser(replitUserId: string): Promise<User | undefined> {
+    return this.users.find(u => u.replitUserId === replitUserId);
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const existingUser = await this.getUser(userData.replitUserId);
+    if (existingUser) {
+      // Update existing user
+      const updatedUser: User = {
+        ...existingUser,
+        ...userData,
+        name: userData.firstName && userData.lastName 
+          ? `${userData.firstName} ${userData.lastName}` 
+          : existingUser.name,
+        updatedAt: new Date(),
+      };
+      const index = this.users.findIndex(u => u.replitUserId === userData.replitUserId);
+      this.users[index] = updatedUser;
+      return updatedUser;
+    } else {
+      // Create new user
+      const newUser: User = {
+        id: this.nextUserId++,
+        email: userData.email || null,
+        name: userData.firstName && userData.lastName 
+          ? `${userData.firstName} ${userData.lastName}` 
+          : null,
+        firstName: userData.firstName || null,
+        lastName: userData.lastName || null,
+        phone: null,
+        profileImageUrl: userData.profileImageUrl || null,
+        passwordHash: null,
+        replitUserId: userData.replitUserId,
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      this.users.push(newUser);
+      return newUser;
+    }
+  }
 
   // Booking operations
   async createBooking(data: InsertBooking): Promise<Booking> {
@@ -208,6 +268,47 @@ class DatabaseStorage implements IStorage {
   constructor(connectionString: string) {
     const client = postgres(connectionString);
     this.db = drizzle(client);
+  }
+
+  // User operations (required for Replit Auth)
+  async getUser(replitUserId: string): Promise<User | undefined> {
+    const [user] = await this.db
+      .select()
+      .from(users)
+      .where(eq(users.replitUserId, replitUserId));
+    return user || undefined;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    // Combine first and last names for the name field
+    const fullName = userData.firstName && userData.lastName 
+      ? `${userData.firstName} ${userData.lastName}` 
+      : null;
+
+    const [user] = await this.db
+      .insert(users)
+      .values({
+        email: userData.email,
+        name: fullName,
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        profileImageUrl: userData.profileImageUrl,
+        replitUserId: userData.replitUserId,
+        isActive: true,
+      })
+      .onConflictDoUpdate({
+        target: users.replitUserId,
+        set: {
+          email: userData.email,
+          name: fullName,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          profileImageUrl: userData.profileImageUrl,
+          updatedAt: new Date(),
+        },
+      })
+      .returning();
+    return user;
   }
 
   // Booking operations
