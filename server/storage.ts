@@ -310,12 +310,16 @@ class DatabaseStorage implements IStorage {
   }
 }
 
-// Storage selection: Start with MemStorage and provide database upgrade path
+// Storage selection: Use database storage when DATABASE_URL is available
 function createStorage(): IStorage {
   if (process.env.DATABASE_URL) {
-    console.log("⚠️  DATABASE_URL detected but using in-memory storage (connection issues detected)");
-    console.log("📝 Note: Once connectivity is resolved, the app will automatically use Supabase database");
-    return new MemStorage();
+    console.log("✅ Using PostgreSQL database storage");
+    try {
+      return new DatabaseStorage(process.env.DATABASE_URL);
+    } catch (error) {
+      console.error("❌ Database connection failed, falling back to in-memory storage:", error);
+      return new MemStorage();
+    }
   } else {
     console.log("ℹ️ Using in-memory storage (no DATABASE_URL provided)");
     return new MemStorage();
