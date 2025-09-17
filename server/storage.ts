@@ -14,6 +14,9 @@ import {
   type ServiceSession,
   type InsertServiceSession,
   type SessionStatusUpdate,
+  type ServiceReport,
+  type InsertServiceReport,
+  type UpdateServiceReport,
   bookings,
   contacts,
   serviceAreas,
@@ -21,7 +24,8 @@ import {
   users,
   fileAttachments,
   serviceSessions,
-  sessionStatusUpdates
+  sessionStatusUpdates,
+  serviceReports
 } from "../shared/schema";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
@@ -80,6 +84,13 @@ export interface IStorage {
   
   // Session status update operations
   getSessionStatusUpdates(sessionId: number): Promise<SessionStatusUpdate[]>;
+  
+  // Service report operations
+  createServiceReport(data: InsertServiceReport): Promise<ServiceReport>;
+  getServiceReports(customerId?: number): Promise<ServiceReport[]>;
+  getServiceReportById(id: number): Promise<ServiceReport | null>;
+  updateServiceReport(id: number, data: Partial<UpdateServiceReport>): Promise<ServiceReport | null>;
+  deleteServiceReport(id: number): Promise<boolean>;
 }
 
 // In-memory storage implementation (primary)
@@ -99,6 +110,7 @@ class MemStorage implements IStorage {
   private fileAttachments: FileAttachment[] = [];
   private serviceSessions: ServiceSession[] = [];
   private sessionStatusUpdates: SessionStatusUpdate[] = [];
+  private serviceReports: ServiceReport[] = [];
   private nextUserId = 1;
   private nextBookingId = 1;
   private nextContactId = 1;
@@ -107,6 +119,7 @@ class MemStorage implements IStorage {
   private nextFileAttachmentId = 1;
   private nextServiceSessionId = 1;
   private nextStatusUpdateId = 1;
+  private nextServiceReportId = 1;
 
   // User operations (required for Replit Auth)
   async getUser(replitUserId: string): Promise<User | undefined> {
@@ -357,6 +370,49 @@ class MemStorage implements IStorage {
       .filter(update => update.sessionId === sessionId)
       .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime());
   }
+
+  // Service report operations
+  async createServiceReport(data: InsertServiceReport): Promise<ServiceReport> {
+    const report: ServiceReport = {
+      id: this.nextServiceReportId++,
+      ...data,
+      generatedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.serviceReports.push(report);
+    return report;
+  }
+
+  async getServiceReports(customerId?: number): Promise<ServiceReport[]> {
+    return customerId 
+      ? this.serviceReports.filter(r => r.customerId === customerId)
+      : this.serviceReports;
+  }
+
+  async getServiceReportById(id: number): Promise<ServiceReport | null> {
+    return this.serviceReports.find(r => r.id === id) || null;
+  }
+
+  async updateServiceReport(id: number, data: Partial<UpdateServiceReport>): Promise<ServiceReport | null> {
+    const index = this.serviceReports.findIndex(r => r.id === id);
+    if (index === -1) return null;
+    
+    this.serviceReports[index] = {
+      ...this.serviceReports[index],
+      ...data,
+      updatedAt: new Date(),
+    };
+    return this.serviceReports[index];
+  }
+
+  async deleteServiceReport(id: number): Promise<boolean> {
+    const index = this.serviceReports.findIndex(r => r.id === id);
+    if (index === -1) return false;
+    
+    this.serviceReports.splice(index, 1);
+    return true;
+  }
 }
 
 // Supabase/PostgreSQL storage implementation using Drizzle ORM
@@ -568,6 +624,53 @@ class DatabaseStorage implements IStorage {
       .from(sessionStatusUpdates)
       .where(eq(sessionStatusUpdates.sessionId, sessionId))
       .orderBy(desc(sessionStatusUpdates.createdAt));
+  }
+
+  // Service report operations
+  async createServiceReport(data: InsertServiceReport): Promise<ServiceReport> {
+    const [report] = await this.db.insert(serviceReports).values({
+      ...data,
+      generatedAt: new Date(),
+    }).returning();
+    return report;
+  }
+
+  async getServiceReports(customerId?: number): Promise<ServiceReport[]> {
+    if (customerId) {
+      return await this.db
+        .select()
+        .from(serviceReports)
+        .where(eq(serviceReports.customerId, customerId))
+        .orderBy(desc(serviceReports.generatedAt));
+    }
+    return await this.db
+      .select()
+      .from(serviceReports)
+      .orderBy(desc(serviceReports.generatedAt));
+  }
+
+  async getServiceReportById(id: number): Promise<ServiceReport | null> {
+    const [report] = await this.db
+      .select()
+      .from(serviceReports)
+      .where(eq(serviceReports.id, id));
+    return report || null;
+  }
+
+  async updateServiceReport(id: number, data: Partial<UpdateServiceReport>): Promise<ServiceReport | null> {
+    const [report] = await this.db
+      .update(serviceReports)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(serviceReports.id, id))
+      .returning();
+    return report || null;
+  }
+
+  async deleteServiceReport(id: number): Promise<boolean> {
+    const result = await this.db
+      .delete(serviceReports)
+      .where(eq(serviceReports.id, id));
+    return result.rowCount > 0;
   }
 }
 

@@ -163,6 +163,29 @@ export const sessionStatusUpdates = pgTable("session_status_updates", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Service reports for professional documentation
+export const serviceReports = pgTable("service_reports", {
+  id: serial("id").primaryKey(),
+  sessionId: integer("session_id").references(() => serviceSessions.id),
+  customerId: integer("customer_id").references(() => users.id),
+  reportType: varchar("report_type", { length: 50 }).notNull(), // session_summary, technical_report, completion_report
+  status: varchar("status", { length: 20 }).default("draft"), // draft, completed, approved
+  title: varchar("title", { length: 255 }).notNull(),
+  customerName: varchar("customer_name", { length: 255 }),
+  technicianName: varchar("technician_name", { length: 255 }),
+  executiveSummary: text("executive_summary"),
+  issuesFound: text("issues_found"),
+  workPerformed: text("work_performed"),
+  recommendations: text("recommendations"),
+  nextSteps: text("next_steps"),
+  filesGenerated: text("files_generated"), // JSON array of file paths
+  isCustomerVisible: boolean("is_customer_visible").default(false),
+  generatedAt: timestamp("generated_at").defaultNow(),
+  completedAt: timestamp("completed_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 // Zod schemas using createInsertSchema (template pattern)
 
 // Booking schemas
@@ -283,6 +306,28 @@ export const insertSessionStatusUpdateSchema = createInsertSchema(sessionStatusU
   progress: z.number().min(0).max(100).default(0),
 });
 
+// Service report schemas
+export const insertServiceReportSchema = createInsertSchema(serviceReports).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  generatedAt: true,
+}).extend({
+  reportType: z.enum(["session_summary", "technical_report", "completion_report"]),
+  status: z.enum(["draft", "completed", "approved"]).default("draft"),
+  title: z.string().min(1, "Title is required"),
+});
+
+export const updateServiceReportSchema = createInsertSchema(serviceReports).omit({
+  id: true,
+  createdAt: true,
+  generatedAt: true,
+}).partial().extend({
+  reportType: z.enum(["session_summary", "technical_report", "completion_report"]).optional(),
+  status: z.enum(["draft", "completed", "approved"]).optional(),
+  title: z.string().min(1).optional(),
+});
+
 // Type exports using template pattern
 export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
@@ -311,3 +356,7 @@ export type InsertFileAttachment = z.infer<typeof insertFileAttachmentSchema>;
 
 export type SessionStatusUpdate = typeof sessionStatusUpdates.$inferSelect;
 export type InsertSessionStatusUpdate = z.infer<typeof insertSessionStatusUpdateSchema>;
+
+export type ServiceReport = typeof serviceReports.$inferSelect;
+export type InsertServiceReport = z.infer<typeof insertServiceReportSchema>;
+export type UpdateServiceReport = z.infer<typeof updateServiceReportSchema>;
