@@ -1,4 +1,4 @@
-import { supabaseAdmin } from '../lib/supabase'
+import { supabaseAdmin, isSupabaseAvailable } from '../lib/supabase'
 
 // SQL schema to create tables
 const createTablesSQL = `
@@ -187,9 +187,14 @@ CREATE POLICY "Users can create interactions" ON customer_interactions
 
 export async function initializeSupabaseSchema() {
   try {
+    if (!isSupabaseAvailable()) {
+      console.log('⚠️ Supabase not available - missing environment variables')
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     console.log('Initializing Supabase database schema...')
     
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await supabaseAdmin!
       .rpc('exec_sql', { sql: createTablesSQL })
     
     if (error) {
@@ -208,10 +213,15 @@ export async function initializeSupabaseSchema() {
 // Create some sample data
 export async function createSampleData() {
   try {
+    if (!isSupabaseAvailable()) {
+      console.log('⚠️ Supabase not available - missing environment variables')
+      return { success: false, error: 'Supabase not configured' }
+    }
+
     console.log('Creating sample service areas...')
     
     // Insert sample service areas
-    const { error: areasError } = await supabaseAdmin
+    const { error: areasError } = await supabaseAdmin!
       .from('service_areas')
       .upsert([
         {
@@ -245,7 +255,7 @@ export async function createSampleData() {
     }
     
     // Insert sample service pricing
-    const { error: pricingError } = await supabaseAdmin
+    const { error: pricingError } = await supabaseAdmin!
       .from('service_pricing')
       .upsert([
         {

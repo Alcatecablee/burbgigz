@@ -1,17 +1,14 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-if (!supabaseUrl) {
-  throw new Error('Missing Supabase URL')
+// Only create client if environment variables are available
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.warn('Supabase environment variables not configured - some features may not work')
 }
 
-if (!supabaseAnonKey) {
-  throw new Error('Missing Supabase anon key')
-}
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+export const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     autoRefreshToken: true,
     persistSession: true,
@@ -22,6 +19,11 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
       eventsPerSecond: 10
     }
   }
-})
+}) : null
+
+// Helper function to check if Supabase is available
+export function isSupabaseAvailable(): boolean {
+  return supabase !== null
+}
 
 export type { User } from '@supabase/supabase-js'
