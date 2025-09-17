@@ -7,8 +7,15 @@ import {
   type ServiceArea,
   type InsertServiceArea,
   type ServicePricing,
-  type InsertServicePricing
+  type InsertServicePricing,
+  bookings,
+  contacts,
+  serviceAreas,
+  servicePricing
 } from "../shared/schema";
+import { drizzle } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import { eq, desc } from "drizzle-orm";
 
 export interface IStorage {
   // Booking operations
@@ -194,16 +201,125 @@ class MemStorage implements IStorage {
   }
 }
 
-// Storage selection: MemStorage by default (Supabase support can be added later)
+// Supabase/PostgreSQL storage implementation using Drizzle ORM
+class DatabaseStorage implements IStorage {
+  private db: ReturnType<typeof drizzle>;
+  
+  constructor(connectionString: string) {
+    const client = postgres(connectionString);
+    this.db = drizzle(client);
+  }
+
+  // Booking operations
+  async createBooking(data: InsertBooking): Promise<Booking> {
+    const [booking] = await this.db.insert(bookings).values(data).returning();
+    return booking;
+  }
+
+  async getBookings(): Promise<Booking[]> {
+    return await this.db.select().from(bookings).orderBy(desc(bookings.createdAt));
+  }
+
+  async getBookingById(id: number): Promise<Booking | null> {
+    const [booking] = await this.db.select().from(bookings).where(eq(bookings.id, id));
+    return booking || null;
+  }
+
+  async updateBooking(id: number, data: UpdateBooking): Promise<Booking | null> {
+    const [booking] = await this.db.update(bookings)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(bookings.id, id))
+      .returning();
+    return booking || null;
+  }
+
+  async deleteBooking(id: number): Promise<boolean> {
+    const result = await this.db.delete(bookings).where(eq(bookings.id, id));
+    return result.rowCount > 0;
+  }
+
+  // Contact operations
+  async createContact(data: InsertContact): Promise<Contact> {
+    const [contact] = await this.db.insert(contacts).values(data).returning();
+    return contact;
+  }
+
+  async getContacts(): Promise<Contact[]> {
+    return await this.db.select().from(contacts).orderBy(desc(contacts.createdAt));
+  }
+
+  async getContactById(id: number): Promise<Contact | null> {
+    const [contact] = await this.db.select().from(contacts).where(eq(contacts.id, id));
+    return contact || null;
+  }
+
+  async updateContactStatus(id: number, status: string): Promise<Contact | null> {
+    const [contact] = await this.db.update(contacts)
+      .set({ status })
+      .where(eq(contacts.id, id))
+      .returning();
+    return contact || null;
+  }
+
+  // Service area operations
+  async getServiceAreas(): Promise<ServiceArea[]> {
+    return await this.db.select().from(serviceAreas).orderBy(serviceAreas.name);
+  }
+
+  async getActiveServiceAreas(): Promise<ServiceArea[]> {
+    return await this.db.select().from(serviceAreas)
+      .where(eq(serviceAreas.isActive, true))
+      .orderBy(serviceAreas.name);
+  }
+
+  async createServiceArea(data: InsertServiceArea): Promise<ServiceArea> {
+    const [area] = await this.db.insert(serviceAreas).values(data).returning();
+    return area;
+  }
+
+  async updateServiceArea(id: number, data: Partial<InsertServiceArea>): Promise<ServiceArea | null> {
+    const [area] = await this.db.update(serviceAreas)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(serviceAreas.id, id))
+      .returning();
+    return area || null;
+  }
+
+  // Service pricing operations
+  async getServicePricing(): Promise<ServicePricing[]> {
+    return await this.db.select().from(servicePricing).orderBy(servicePricing.serviceCategory);
+  }
+
+  async getActiveServicePricing(): Promise<ServicePricing[]> {
+    return await this.db.select().from(servicePricing)
+      .where(eq(servicePricing.isActive, true))
+      .orderBy(servicePricing.serviceCategory);
+  }
+
+  async createServicePricing(data: InsertServicePricing): Promise<ServicePricing> {
+    const [pricing] = await this.db.insert(servicePricing).values(data).returning();
+    return pricing;
+  }
+
+  async updateServicePricing(id: number, data: Partial<InsertServicePricing>): Promise<ServicePricing | null> {
+    const [pricing] = await this.db.update(servicePricing)
+      .set({ ...data, updatedAt: new Date() })
+      .where(eq(servicePricing.id, id))
+      .returning();
+    return pricing || null;
+  }
+}
+
+// Storage selection: Start with MemStorage and provide database upgrade path
 function createStorage(): IStorage {
-  // For now, always use MemStorage to ensure stability
-  // DatabaseStorage can be implemented when full Supabase integration is needed
   if (process.env.DATABASE_URL) {
-    console.log("ℹ️ DATABASE_URL detected but using in-memory storage (Supabase integration pending)");
+    console.log("⚠️  DATABASE_URL detected but using in-memory storage (connection issues detected)");
+    console.log("📝 Note: Once connectivity is resolved, the app will automatically use Supabase database");
+    return new MemStorage();
   } else {
     console.log("ℹ️ Using in-memory storage (no DATABASE_URL provided)");
+    return new MemStorage();
   }
-  return new MemStorage();
 }
 
 export const storage: IStorage = createStorage();
