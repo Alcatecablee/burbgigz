@@ -113,7 +113,11 @@ export function useSupabaseAuth() {
   }
 
   const resetPassword = async (email: string) => {
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    if (!isSupabaseAvailable()) {
+      throw new Error('Authentication not available - Supabase not configured');
+    }
+
+    const { error } = await supabase!.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`
     })
     

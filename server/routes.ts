@@ -80,7 +80,7 @@ async function canAccessFile(req: any, res: any, next: any) {
       return res.status(404).json({ error: "File not found" });
     }
 
-    const replitUserId = req.user.claims.sub;
+    const replitUserId = req.user.id;
     const user = await storage.getUser(replitUserId);
     if (!user) {
       return res.status(403).json({ error: "User not found" });
@@ -152,7 +152,7 @@ function validateFileUpload(req: any, res: any, next: any) {
       filePath: req.file.path,
       description: req.body.description || null,
       isPublic: req.body.isPublic === 'true',
-      uploadedBy: req.user.claims.sub,
+      uploadedBy: req.user.id,
     };
 
     // Validate using the schema
@@ -396,7 +396,7 @@ router.get("/files/:id/download", isAuthenticated, canAccessFile, async (req: an
 
 router.get("/files", isAuthenticated, async (req: any, res) => {
   try {
-    const replitUserId = req.user.claims.sub;
+    const replitUserId = req.user.id;
     const user = await storage.getUser(replitUserId);
     if (!user) {
       return res.status(403).json({ error: "User not found" });
@@ -456,7 +456,7 @@ router.delete("/files/:id", isAuthenticated, canAccessFile, async (req: any, res
     const file = req.file;
     
     // Additional check: only uploader or file owner can delete
-    const replitUserId = req.user.claims.sub;
+    const replitUserId = req.user.id;
     const user = await storage.getUser(replitUserId);
     
     if (file.uploadedBy !== replitUserId && file.customerId !== user?.id) {
@@ -573,7 +573,7 @@ router.get("/sessions/:id/updates", isAuthenticated, async (req: any, res) => {
     }
     
     // Get user from auth
-    const replitUserId = req.user.claims.sub;
+    const replitUserId = req.user.id;
     const user = await storage.getUser(replitUserId);
     
     // Check if user owns this session
