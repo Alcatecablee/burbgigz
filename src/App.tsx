@@ -9,6 +9,7 @@ import Pricing from "./pages/Pricing";
 import Booking from "./pages/Booking";
 import Areas from "./pages/Areas";
 import { CustomerPortal } from "./components/CustomerPortal";
+import SupabaseSetup from "./pages/SupabaseSetup";
 import StickyCta from "@/components/StickyCta";
 import ScrollToTop from "@/components/ScrollToTop";
 import { Toaster } from "@/components/ui/toaster";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/booking" element={<Booking />} />
             <Route path="/areas" element={<Areas />} />
             <Route path="/portal" element={<CustomerPortal />} />
+            <Route path="/supabase-setup" element={<SupabaseSetup />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -1,6 +1,7 @@
 import { Router, type Express } from "express";
 import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
+import supabaseInitRoutes from "./routes/supabaseInit";
 import multer from "multer";
 import path from "path";
 import fs from "fs"; import { promisify } from "util";
@@ -608,7 +609,9 @@ export default async function register(app: Express) {
   });
 
   app.use("/api", router);
+  app.use("/api/supabase", supabaseInitRoutes);
   console.log("[SUCCESS] API routes registered at /api");
+  console.log("[SUCCESS] Supabase initialization routes available at /api/supabase");
   console.log("[SUCCESS] Authentication system enabled");
 }
 
