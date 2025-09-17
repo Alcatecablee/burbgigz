@@ -8,6 +8,9 @@ export const contactStatusEnum = z.enum(["new", "responded", "closed"]);
 export const urgencyEnum = z.enum(["urgent", "normal", "scheduled"]);
 export const serviceTypeEnum = z.enum(["remote", "onsite"]);
 export const preferredContactEnum = z.enum(["email", "phone", "whatsapp"]);
+export const sessionStatusEnum = z.enum(["scheduled", "connecting", "active", "paused", "completed", "cancelled"]);
+export const interactionTypeEnum = z.enum(["call", "email", "whatsapp", "sms", "in-person"]);
+export const fileTypeEnum = z.enum(["screenshot", "report", "invoice", "document", "image"]);
 
 // Bookings table for IT support service requests
 export const bookings = pgTable("bookings", {
@@ -66,6 +69,85 @@ export const servicePricing = pgTable("service_pricing", {
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Users table for customer authentication
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  email: varchar("email", { length: 255 }).notNull().unique(),
+  name: varchar("name", { length: 255 }).notNull(),
+  phone: varchar("phone", { length: 50 }),
+  passwordHash: text("password_hash"),
+  replitUserId: varchar("replit_user_id", { length: 255 }).unique(),
+  avatar: text("avatar"),
+  isActive: boolean("is_active").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Service sessions for real-time tracking
+export const serviceSessions = pgTable("service_sessions", {
+  id: serial("id").primaryKey(),
+  bookingId: integer("booking_id").references(() => bookings.id),
+  customerId: integer("customer_id").references(() => users.id),
+  sessionTitle: varchar("session_title", { length: 255 }).notNull(),
+  status: varchar("status", { length: 50 }).default("scheduled"),
+  startTime: timestamp("start_time"),
+  endTime: timestamp("end_time"),
+  estimatedDuration: integer("estimated_duration_minutes").default(60),
+  actualDuration: integer("actual_duration_minutes"),
+  technicianNotes: text("technician_notes"),
+  customerFeedback: text("customer_feedback"),
+  issuesResolved: text("issues_resolved"),
+  issuesPending: text("issues_pending"),
+  totalCost: integer("total_cost").default(0),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Customer interaction history
+export const customerInteractions = pgTable("customer_interactions", {
+  id: serial("id").primaryKey(),
+  customerId: integer("customer_id").references(() => users.id),
+  sessionId: integer("session_id").references(() => serviceSessions.id),
+  bookingId: integer("booking_id").references(() => bookings.id),
+  interactionType: varchar("interaction_type", { length: 50 }).notNull(),
+  subject: varchar("subject", { length: 255 }),
+  message: text("message").notNull(),
+  direction: varchar("direction", { length: 20 }).notNull(), // incoming or outgoing
+  technicianName: varchar("technician_name", { length: 255 }),
+  isRead: boolean("is_read").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// File attachments for screenshots, reports, and documents
+export const fileAttachments = pgTable("file_attachments", {
+  id: serial("id").primaryKey(),
+  sessionId: integer("session_id").references(() => serviceSessions.id),
+  bookingId: integer("booking_id").references(() => bookings.id),
+  customerId: integer("customer_id").references(() => users.id),
+  fileName: varchar("file_name", { length: 255 }).notNull(),
+  originalName: varchar("original_name", { length: 255 }).notNull(),
+  fileType: varchar("file_type", { length: 50 }).notNull(),
+  fileSize: integer("file_size").notNull(),
+  mimeType: varchar("mime_type", { length: 100 }),
+  filePath: text("file_path").notNull(),
+  description: text("description"),
+  isPublic: boolean("is_public").default(false),
+  uploadedBy: varchar("uploaded_by", { length: 255 }),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
+// Session status updates for real-time tracking
+export const sessionStatusUpdates = pgTable("session_status_updates", {
+  id: serial("id").primaryKey(),
+  sessionId: integer("session_id").references(() => serviceSessions.id),
+  status: varchar("status", { length: 50 }).notNull(),
+  message: text("message"),
+  progress: integer("progress_percentage").default(0),
+  technicianName: varchar("technician_name", { length: 255 }),
+  isCustomerVisible: boolean("is_customer_visible").default(true),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 // Zod schemas using createInsertSchema (template pattern)
@@ -137,6 +219,57 @@ export const insertServicePricingSchema = createInsertSchema(servicePricing).omi
   basePrice: z.number().min(0, "Price must be positive"),
 });
 
+// User schemas
+export const insertUserSchema = createInsertSchema(users).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  email: z.string().email("Please enter a valid email address"),
+  name: z.string().min(2, "Name must be at least 2 characters"),
+});
+
+// Service session schemas
+export const insertServiceSessionSchema = createInsertSchema(serviceSessions).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  sessionTitle: z.string().min(1, "Session title is required"),
+  status: sessionStatusEnum.default("scheduled"),
+});
+
+// Customer interaction schemas
+export const insertCustomerInteractionSchema = createInsertSchema(customerInteractions).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  interactionType: interactionTypeEnum,
+  message: z.string().min(1, "Message is required"),
+  direction: z.enum(["incoming", "outgoing"]),
+});
+
+// File attachment schemas
+export const insertFileAttachmentSchema = createInsertSchema(fileAttachments).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  fileName: z.string().min(1, "File name is required"),
+  originalName: z.string().min(1, "Original name is required"),
+  fileType: fileTypeEnum,
+  fileSize: z.number().min(1, "File size must be positive"),
+  filePath: z.string().min(1, "File path is required"),
+});
+
+// Session status update schemas
+export const insertSessionStatusUpdateSchema = createInsertSchema(sessionStatusUpdates).omit({
+  id: true,
+  createdAt: true,
+}).extend({
+  status: sessionStatusEnum,
+  progress: z.number().min(0).max(100).default(0),
+});
+
 // Type exports using template pattern
 export type Booking = typeof bookings.$inferSelect;
 export type InsertBooking = z.infer<typeof insertBookingSchema>;
@@ -150,3 +283,18 @@ export type InsertServiceArea = z.infer<typeof insertServiceAreaSchema>;
 
 export type ServicePricing = typeof servicePricing.$inferSelect;
 export type InsertServicePricing = z.infer<typeof insertServicePricingSchema>;
+
+export type User = typeof users.$inferSelect;
+export type InsertUser = z.infer<typeof insertUserSchema>;
+
+export type ServiceSession = typeof serviceSessions.$inferSelect;
+export type InsertServiceSession = z.infer<typeof insertServiceSessionSchema>;
+
+export type CustomerInteraction = typeof customerInteractions.$inferSelect;
+export type InsertCustomerInteraction = z.infer<typeof insertCustomerInteractionSchema>;
+
+export type FileAttachment = typeof fileAttachments.$inferSelect;
+export type InsertFileAttachment = z.infer<typeof insertFileAttachmentSchema>;
+
+export type SessionStatusUpdate = typeof sessionStatusUpdates.$inferSelect;
+export type InsertSessionStatusUpdate = z.infer<typeof insertSessionStatusUpdateSchema>;
