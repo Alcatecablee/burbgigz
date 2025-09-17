@@ -190,13 +190,13 @@ export const serviceReports = pgTable("service_reports", {
 
 // Booking schemas
 export const insertBookingSchema = createInsertSchema(bookings, {
-  email: (schema) => schema.email("Please enter a valid email address"),
-  phone: (schema) => schema.min(10, "Please enter a valid phone number"),
-  serviceType: serviceTypeEnum,
-  customerName: (schema) => schema.min(2, "Name must be at least 2 characters"),
-  description: (schema) => schema.min(10, "Please provide more details about your issue"),
-  urgency: urgencyEnum.default("normal"),
-  status: bookingStatusEnum.default("pending"),
+  email: (schema: any) => schema.email("Please enter a valid email address"),
+  phone: (schema: any) => schema.min(10, "Please enter a valid phone number"),
+  serviceType: (schema: any) => schema.refine((val: any) => serviceTypeEnum.safeParse(val).success, "Invalid service type"),
+  customerName: (schema: any) => schema.min(2, "Name must be at least 2 characters"),
+  description: (schema: any) => schema.min(10, "Please provide more details about your issue"),
+  urgency: (schema: any) => schema.default("normal").refine((val: any) => urgencyEnum.safeParse(val).success, "Invalid urgency"),
+  status: (schema: any) => schema.default("pending").refine((val: any) => bookingStatusEnum.safeParse(val).success, "Invalid status"),
 }).omit({
   id: true,
   createdAt: true,
@@ -204,13 +204,13 @@ export const insertBookingSchema = createInsertSchema(bookings, {
 });
 
 export const updateBookingSchema = createInsertSchema(bookings, {
-  email: (schema) => schema.email().optional(),
-  phone: (schema) => schema.min(10).optional(),
-  serviceType: serviceTypeEnum.optional(),
-  customerName: (schema) => schema.min(2).optional(),
-  description: (schema) => schema.min(10).optional(),
-  urgency: urgencyEnum.optional(),
-  status: bookingStatusEnum.optional(),
+  email: (schema: any) => schema.email().optional(),
+  phone: (schema: any) => schema.min(10).optional(),
+  serviceType: (schema: any) => schema.optional().refine((val: any) => !val || serviceTypeEnum.safeParse(val).success, "Invalid service type"),
+  customerName: (schema: any) => schema.min(2).optional(),
+  description: (schema: any) => schema.min(10).optional(),
+  urgency: (schema: any) => schema.optional().refine((val: any) => !val || urgencyEnum.safeParse(val).success, "Invalid urgency"),
+  status: (schema: any) => schema.optional().refine((val: any) => !val || bookingStatusEnum.safeParse(val).success, "Invalid status"),
 }).omit({
   id: true,
   createdAt: true,
@@ -218,11 +218,11 @@ export const updateBookingSchema = createInsertSchema(bookings, {
 
 // Contact schemas
 export const insertContactSchema = createInsertSchema(contacts, {
-  email: (schema) => schema.email("Please enter a valid email address"),
-  name: (schema) => schema.min(2, "Name must be at least 2 characters"),
-  message: (schema) => schema.min(10, "Message must be at least 10 characters"),
-  preferredContact: preferredContactEnum.default("email"),
-  status: contactStatusEnum.default("new"),
+  email: (schema: any) => schema.email("Please enter a valid email address"),
+  name: (schema: any) => schema.min(2, "Name must be at least 2 characters"),
+  message: (schema: any) => schema.min(10, "Message must be at least 10 characters"),
+  preferredContact: (schema: any) => schema.default("email").refine((val: any) => preferredContactEnum.safeParse(val).success, "Invalid contact method"),
+  status: (schema: any) => schema.default("new").refine((val: any) => contactStatusEnum.safeParse(val).success, "Invalid status"),
 }).omit({
   id: true,
   createdAt: true,
@@ -234,10 +234,10 @@ export const updateContactStatusSchema = z.object({
 
 // Service area schemas
 export const insertServiceAreaSchema = createInsertSchema(serviceAreas, {
-  name: (schema) => schema.min(1, "Area name is required"),
-  calloutFee: (schema) => schema.min(0, "Callout fee must be positive"),
-  distanceKm: (schema) => schema.min(0, "Distance must be positive"),
-  availability: (schema) => schema.min(1, "Availability information is required"),
+  name: (schema: any) => schema.min(1, "Area name is required"),
+  calloutFee: (schema: any) => schema.min(0, "Callout fee must be positive"),
+  distanceKm: (schema: any) => schema.min(0, "Distance must be positive"),
+  availability: (schema: any) => schema.min(1, "Availability information is required"),
 }).omit({
   id: true,
   createdAt: true,
@@ -246,9 +246,9 @@ export const insertServiceAreaSchema = createInsertSchema(serviceAreas, {
 
 // Service pricing schemas
 export const insertServicePricingSchema = createInsertSchema(servicePricing, {
-  serviceCategory: (schema) => schema.min(1, "Service category is required"),
-  serviceName: (schema) => schema.min(1, "Service name is required"),
-  basePrice: (schema) => schema.min(0, "Price must be positive"),
+  serviceCategory: (schema: any) => schema.min(1, "Service category is required"),
+  serviceName: (schema: any) => schema.min(1, "Service name is required"),
+  basePrice: (schema: any) => schema.min(0, "Price must be positive"),
 }).omit({
   id: true,
   createdAt: true,
@@ -257,8 +257,8 @@ export const insertServicePricingSchema = createInsertSchema(servicePricing, {
 
 // User schemas
 export const insertUserSchema = createInsertSchema(users, {
-  email: (schema) => schema.email("Please enter a valid email address"),
-  name: (schema) => schema.min(2, "Name must be at least 2 characters"),
+  email: (schema: any) => schema.email("Please enter a valid email address"),
+  name: (schema: any) => schema.min(2, "Name must be at least 2 characters"),
 }).omit({
   id: true,
   createdAt: true,
@@ -267,8 +267,8 @@ export const insertUserSchema = createInsertSchema(users, {
 
 // Service session schemas
 export const insertServiceSessionSchema = createInsertSchema(serviceSessions, {
-  sessionTitle: (schema) => schema.min(1, "Session title is required"),
-  status: sessionStatusEnum.default("scheduled"),
+  sessionTitle: (schema: any) => schema.min(1, "Session title is required"),
+  status: (schema: any) => schema.default("scheduled").refine((val: any) => sessionStatusEnum.safeParse(val).success, "Invalid status"),
 }).omit({
   id: true,
   createdAt: true,
@@ -277,9 +277,9 @@ export const insertServiceSessionSchema = createInsertSchema(serviceSessions, {
 
 // Customer interaction schemas
 export const insertCustomerInteractionSchema = createInsertSchema(customerInteractions, {
-  interactionType: interactionTypeEnum,
-  message: (schema) => schema.min(1, "Message is required"),
-  direction: z.enum(["incoming", "outgoing"]),
+  interactionType: (schema: any) => schema.refine((val: any) => interactionTypeEnum.safeParse(val).success, "Invalid interaction type"),
+  message: (schema: any) => schema.min(1, "Message is required"),
+  direction: (schema: any) => schema.refine((val: any) => z.enum(["incoming", "outgoing"]).safeParse(val).success, "Invalid direction"),
 }).omit({
   id: true,
   createdAt: true,
@@ -287,11 +287,11 @@ export const insertCustomerInteractionSchema = createInsertSchema(customerIntera
 
 // File attachment schemas
 export const insertFileAttachmentSchema = createInsertSchema(fileAttachments, {
-  fileName: (schema) => schema.min(1, "File name is required"),
-  originalName: (schema) => schema.min(1, "Original name is required"),
-  fileType: fileTypeEnum,
-  fileSize: (schema) => schema.min(1, "File size must be positive"),
-  filePath: (schema) => schema.min(1, "File path is required"),
+  fileName: (schema: any) => schema.min(1, "File name is required"),
+  originalName: (schema: any) => schema.min(1, "Original name is required"),
+  fileType: (schema: any) => schema.refine((val: any) => fileTypeEnum.safeParse(val).success, "Invalid file type"),
+  fileSize: (schema: any) => schema.min(1, "File size must be positive"),
+  filePath: (schema: any) => schema.min(1, "File path is required"),
 }).omit({
   id: true,
   createdAt: true,
@@ -299,8 +299,8 @@ export const insertFileAttachmentSchema = createInsertSchema(fileAttachments, {
 
 // Session status update schemas
 export const insertSessionStatusUpdateSchema = createInsertSchema(sessionStatusUpdates, {
-  status: sessionStatusEnum,
-  progress: (schema) => schema.min(0).max(100).default(0),
+  status: (schema: any) => schema.refine((val: any) => sessionStatusEnum.safeParse(val).success, "Invalid status"),
+  progress: (schema: any) => schema.min(0).max(100).default(0),
 }).omit({
   id: true,
   createdAt: true,
@@ -308,9 +308,9 @@ export const insertSessionStatusUpdateSchema = createInsertSchema(sessionStatusU
 
 // Service report schemas
 export const insertServiceReportSchema = createInsertSchema(serviceReports, {
-  reportType: z.enum(["session_summary", "technical_report", "completion_report"]),
-  status: z.enum(["draft", "completed", "approved"]).default("draft"),
-  title: (schema) => schema.min(1, "Title is required"),
+  reportType: (schema: any) => schema.refine((val: any) => z.enum(["session_summary", "technical_report", "completion_report"]).safeParse(val).success, "Invalid report type"),
+  status: (schema: any) => schema.default("draft").refine((val: any) => z.enum(["draft", "completed", "approved"]).safeParse(val).success, "Invalid status"),
+  title: (schema: any) => schema.min(1, "Title is required"),
 }).omit({
   id: true,
   createdAt: true,
@@ -319,9 +319,9 @@ export const insertServiceReportSchema = createInsertSchema(serviceReports, {
 });
 
 export const updateServiceReportSchema = createInsertSchema(serviceReports, {
-  reportType: z.enum(["session_summary", "technical_report", "completion_report"]).optional(),
-  status: z.enum(["draft", "completed", "approved"]).optional(),
-  title: (schema) => schema.min(1).optional(),
+  reportType: (schema: any) => schema.optional().refine((val: any) => !val || z.enum(["session_summary", "technical_report", "completion_report"]).safeParse(val).success, "Invalid report type"),
+  status: (schema: any) => schema.optional().refine((val: any) => !val || z.enum(["draft", "completed", "approved"]).safeParse(val).success, "Invalid status"),
+  title: (schema: any) => schema.min(1).optional(),
 }).omit({
   id: true,
   createdAt: true,
