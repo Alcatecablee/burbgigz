@@ -13,13 +13,15 @@ import {
   type InsertFileAttachment,
   type ServiceSession,
   type InsertServiceSession,
+  type SessionStatusUpdate,
   bookings,
   contacts,
   serviceAreas,
   servicePricing,
   users,
   fileAttachments,
-  serviceSessions
+  serviceSessions,
+  sessionStatusUpdates
 } from "../shared/schema";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
@@ -75,6 +77,9 @@ export interface IStorage {
   getServiceSessions(customerId?: number): Promise<ServiceSession[]>;
   getServiceSessionById(id: number): Promise<ServiceSession | null>;
   updateServiceSession(id: number, data: Partial<InsertServiceSession>): Promise<ServiceSession | null>;
+  
+  // Session status update operations
+  getSessionStatusUpdates(sessionId: number): Promise<SessionStatusUpdate[]>;
 }
 
 // In-memory storage implementation (primary)
@@ -93,6 +98,7 @@ class MemStorage implements IStorage {
   ];
   private fileAttachments: FileAttachment[] = [];
   private serviceSessions: ServiceSession[] = [];
+  private sessionStatusUpdates: SessionStatusUpdate[] = [];
   private nextUserId = 1;
   private nextBookingId = 1;
   private nextContactId = 1;
@@ -100,6 +106,7 @@ class MemStorage implements IStorage {
   private nextPricingId = 3;
   private nextFileAttachmentId = 1;
   private nextServiceSessionId = 1;
+  private nextStatusUpdateId = 1;
 
   // User operations (required for Replit Auth)
   async getUser(replitUserId: string): Promise<User | undefined> {
@@ -343,6 +350,13 @@ class MemStorage implements IStorage {
     };
     return this.serviceSessions[index];
   }
+
+  // Session status update operations
+  async getSessionStatusUpdates(sessionId: number): Promise<SessionStatusUpdate[]> {
+    return this.sessionStatusUpdates
+      .filter(update => update.sessionId === sessionId)
+      .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime());
+  }
 }
 
 // Supabase/PostgreSQL storage implementation using Drizzle ORM
@@ -545,6 +559,15 @@ class DatabaseStorage implements IStorage {
       .where(eq(serviceSessions.id, id))
       .returning();
     return serviceSession || null;
+  }
+
+  // Session status update operations
+  async getSessionStatusUpdates(sessionId: number): Promise<SessionStatusUpdate[]> {
+    return await this.db
+      .select()
+      .from(sessionStatusUpdates)
+      .where(eq(sessionStatusUpdates.sessionId, sessionId))
+      .orderBy(desc(sessionStatusUpdates.createdAt));
   }
 }
 

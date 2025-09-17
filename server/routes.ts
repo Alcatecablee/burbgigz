@@ -513,10 +513,80 @@ router.get("/sessions/:id", isAuthenticated, async (req: any, res) => {
     if (!session) {
       return res.status(404).json({ error: "Session not found" });
     }
-    res.json(session);
+    
+    // Transform session status to match frontend expectations
+    const transformedSession = {
+      ...session,
+      status: mapSessionStatus(session.status)
+    };
+    
+    res.json(transformedSession);
   } catch (error) {
     console.error("Error fetching session:", error);
     res.status(500).json({ error: "Failed to fetch session" });
+  }
+});
+
+// Transform backend status to frontend expected values
+function mapSessionStatus(backendStatus: string): string {
+  switch (backendStatus) {
+    case 'active':
+    case 'connecting':
+      return 'in_progress';
+    case 'scheduled':
+      return 'scheduled';
+    case 'completed':
+      return 'completed';
+    case 'cancelled':
+      return 'cancelled';
+    case 'paused':
+      return 'paused';
+    default:
+      return backendStatus;
+  }
+}
+
+// Transform backend SessionStatusUpdate to frontend expected format
+function transformStatusUpdate(update: any) {
+  return {
+    id: update.id,
+    sessionId: update.sessionId,
+    technicianId: update.technicianName ? 1 : undefined, // Mock technician ID
+    updateType: update.status ? 'status_change' : update.progress !== undefined ? 'progress' : 'note',
+    title: update.message || `Status changed to ${mapSessionStatus(update.status)}`,
+    description: update.message,
+    progress: update.progress || (update.status === 'completed' ? 100 : update.status === 'active' ? 65 : 0),
+    timestamp: update.createdAt, // Transform createdAt to timestamp
+    isVisible: update.isCustomerVisible !== false,
+  };
+}
+
+router.get("/sessions/:id/updates", isAuthenticated, async (req: any, res) => {
+  try {
+    const sessionId = parseInt(req.params.id);
+    
+    // First check if session exists and user has access
+    const session = await storage.getServiceSessionById(sessionId);
+    if (!session) {
+      return res.status(404).json({ error: "Session not found" });
+    }
+    
+    // Get user from auth
+    const replitUserId = req.user.claims.sub;
+    const user = await storage.getUser(replitUserId);
+    
+    // Check if user owns this session
+    if (session.customerId !== user?.id) {
+      return res.status(403).json({ error: "Access denied" });
+    }
+    
+    const updates = await storage.getSessionStatusUpdates(sessionId);
+    // Transform the data to match frontend expectations
+    const transformedUpdates = updates.map(transformStatusUpdate);
+    res.json(transformedUpdates);
+  } catch (error) {
+    console.error("Error fetching session updates:", error);
+    res.status(500).json({ error: "Failed to fetch session updates" });
   }
 });
 
