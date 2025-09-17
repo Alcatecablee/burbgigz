@@ -189,43 +189,43 @@ export const serviceReports = pgTable("service_reports", {
 // Zod schemas using createInsertSchema (template pattern)
 
 // Booking schemas
-export const insertBookingSchema = createInsertSchema(bookings).omit({
+export const insertBookingSchema = createInsertSchema(bookings, {
+  email: (schema) => schema.email("Please enter a valid email address"),
+  phone: (schema) => schema.min(10, "Please enter a valid phone number"),
+  serviceType: serviceTypeEnum,
+  customerName: (schema) => schema.min(2, "Name must be at least 2 characters"),
+  description: (schema) => schema.min(10, "Please provide more details about your issue"),
+  urgency: urgencyEnum.default("normal"),
+  status: bookingStatusEnum.default("pending"),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-}).extend({
-  email: z.string().email("Please enter a valid email address"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  serviceType: serviceTypeEnum,
-  customerName: z.string().min(2, "Name must be at least 2 characters"),
-  description: z.string().min(10, "Please provide more details about your issue"),
-  urgency: urgencyEnum.default("normal"),
-  status: bookingStatusEnum.default("pending"),
 });
 
-export const updateBookingSchema = createInsertSchema(bookings).omit({
-  id: true,
-  createdAt: true,
-}).partial().extend({
-  email: z.string().email().optional(),
-  phone: z.string().min(10).optional(),
+export const updateBookingSchema = createInsertSchema(bookings, {
+  email: (schema) => schema.email().optional(),
+  phone: (schema) => schema.min(10).optional(),
   serviceType: serviceTypeEnum.optional(),
-  customerName: z.string().min(2).optional(),
-  description: z.string().min(10).optional(),
+  customerName: (schema) => schema.min(2).optional(),
+  description: (schema) => schema.min(10).optional(),
   urgency: urgencyEnum.optional(),
   status: bookingStatusEnum.optional(),
-});
-
-// Contact schemas
-export const insertContactSchema = createInsertSchema(contacts).omit({
+}).omit({
   id: true,
   createdAt: true,
-}).extend({
-  email: z.string().email("Please enter a valid email address"),
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+}).partial();
+
+// Contact schemas
+export const insertContactSchema = createInsertSchema(contacts, {
+  email: (schema) => schema.email("Please enter a valid email address"),
+  name: (schema) => schema.min(2, "Name must be at least 2 characters"),
+  message: (schema) => schema.min(10, "Message must be at least 10 characters"),
   preferredContact: preferredContactEnum.default("email"),
   status: contactStatusEnum.default("new"),
+}).omit({
+  id: true,
+  createdAt: true,
 });
 
 export const updateContactStatusSchema = z.object({
@@ -233,100 +233,100 @@ export const updateContactStatusSchema = z.object({
 });
 
 // Service area schemas
-export const insertServiceAreaSchema = createInsertSchema(serviceAreas).omit({
+export const insertServiceAreaSchema = createInsertSchema(serviceAreas, {
+  name: (schema) => schema.min(1, "Area name is required"),
+  calloutFee: (schema) => schema.min(0, "Callout fee must be positive"),
+  distanceKm: (schema) => schema.min(0, "Distance must be positive"),
+  availability: (schema) => schema.min(1, "Availability information is required"),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-}).extend({
-  name: z.string().min(1, "Area name is required"),
-  calloutFee: z.number().min(0, "Callout fee must be positive"),
-  distanceKm: z.number().min(0, "Distance must be positive"),
-  availability: z.string().min(1, "Availability information is required"),
 });
 
 // Service pricing schemas
-export const insertServicePricingSchema = createInsertSchema(servicePricing).omit({
+export const insertServicePricingSchema = createInsertSchema(servicePricing, {
+  serviceCategory: (schema) => schema.min(1, "Service category is required"),
+  serviceName: (schema) => schema.min(1, "Service name is required"),
+  basePrice: (schema) => schema.min(0, "Price must be positive"),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-}).extend({
-  serviceCategory: z.string().min(1, "Service category is required"),
-  serviceName: z.string().min(1, "Service name is required"),
-  basePrice: z.number().min(0, "Price must be positive"),
 });
 
 // User schemas
-export const insertUserSchema = createInsertSchema(users).omit({
+export const insertUserSchema = createInsertSchema(users, {
+  email: (schema) => schema.email("Please enter a valid email address"),
+  name: (schema) => schema.min(2, "Name must be at least 2 characters"),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-}).extend({
-  email: z.string().email("Please enter a valid email address"),
-  name: z.string().min(2, "Name must be at least 2 characters"),
 });
 
 // Service session schemas
-export const insertServiceSessionSchema = createInsertSchema(serviceSessions).omit({
+export const insertServiceSessionSchema = createInsertSchema(serviceSessions, {
+  sessionTitle: (schema) => schema.min(1, "Session title is required"),
+  status: sessionStatusEnum.default("scheduled"),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
-}).extend({
-  sessionTitle: z.string().min(1, "Session title is required"),
-  status: sessionStatusEnum.default("scheduled"),
 });
 
 // Customer interaction schemas
-export const insertCustomerInteractionSchema = createInsertSchema(customerInteractions).omit({
+export const insertCustomerInteractionSchema = createInsertSchema(customerInteractions, {
+  interactionType: interactionTypeEnum,
+  message: (schema) => schema.min(1, "Message is required"),
+  direction: z.enum(["incoming", "outgoing"]),
+}).omit({
   id: true,
   createdAt: true,
-}).extend({
-  interactionType: interactionTypeEnum,
-  message: z.string().min(1, "Message is required"),
-  direction: z.enum(["incoming", "outgoing"]),
 });
 
 // File attachment schemas
-export const insertFileAttachmentSchema = createInsertSchema(fileAttachments).omit({
+export const insertFileAttachmentSchema = createInsertSchema(fileAttachments, {
+  fileName: (schema) => schema.min(1, "File name is required"),
+  originalName: (schema) => schema.min(1, "Original name is required"),
+  fileType: fileTypeEnum,
+  fileSize: (schema) => schema.min(1, "File size must be positive"),
+  filePath: (schema) => schema.min(1, "File path is required"),
+}).omit({
   id: true,
   createdAt: true,
-}).extend({
-  fileName: z.string().min(1, "File name is required"),
-  originalName: z.string().min(1, "Original name is required"),
-  fileType: fileTypeEnum,
-  fileSize: z.number().min(1, "File size must be positive"),
-  filePath: z.string().min(1, "File path is required"),
 });
 
 // Session status update schemas
-export const insertSessionStatusUpdateSchema = createInsertSchema(sessionStatusUpdates).omit({
+export const insertSessionStatusUpdateSchema = createInsertSchema(sessionStatusUpdates, {
+  status: sessionStatusEnum,
+  progress: (schema) => schema.min(0).max(100).default(0),
+}).omit({
   id: true,
   createdAt: true,
-}).extend({
-  status: sessionStatusEnum,
-  progress: z.number().min(0).max(100).default(0),
 });
 
 // Service report schemas
-export const insertServiceReportSchema = createInsertSchema(serviceReports).omit({
+export const insertServiceReportSchema = createInsertSchema(serviceReports, {
+  reportType: z.enum(["session_summary", "technical_report", "completion_report"]),
+  status: z.enum(["draft", "completed", "approved"]).default("draft"),
+  title: (schema) => schema.min(1, "Title is required"),
+}).omit({
   id: true,
   createdAt: true,
   updatedAt: true,
   generatedAt: true,
-}).extend({
-  reportType: z.enum(["session_summary", "technical_report", "completion_report"]),
-  status: z.enum(["draft", "completed", "approved"]).default("draft"),
-  title: z.string().min(1, "Title is required"),
 });
 
-export const updateServiceReportSchema = createInsertSchema(serviceReports).omit({
+export const updateServiceReportSchema = createInsertSchema(serviceReports, {
+  reportType: z.enum(["session_summary", "technical_report", "completion_report"]).optional(),
+  status: z.enum(["draft", "completed", "approved"]).optional(),
+  title: (schema) => schema.min(1).optional(),
+}).omit({
   id: true,
   createdAt: true,
   generatedAt: true,
-}).partial().extend({
-  reportType: z.enum(["session_summary", "technical_report", "completion_report"]).optional(),
-  status: z.enum(["draft", "completed", "approved"]).optional(),
-  title: z.string().min(1).optional(),
-});
+}).partial();
 
 // Type exports using template pattern
 export type Booking = typeof bookings.$inferSelect;
