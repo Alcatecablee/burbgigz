@@ -1,0 +1,104 @@
+21:37:20.012 Running build in Washington, D.C., USA (East) – iad1
+21:37:20.012 Build machine configuration: 2 cores, 8 GB
+21:37:20.050 Cloning github.com/Alcatecablee/fixi (Branch: main, Commit: b80b3ba)
+21:37:20.463 Cloning completed: 413.000ms
+21:37:20.922 Restored build cache from previous deployment (HExscRK2JQWCQNGqBjFnaFkPzQo3)
+21:37:21.474 Running "vercel build"
+21:37:21.860 Vercel CLI 48.0.2
+21:37:22.426 Installing dependencies...
+21:37:25.447 
+21:37:25.447 added 84 packages, and changed 1 package in 2s
+21:37:25.448 
+21:37:25.449 106 packages are looking for funding
+21:37:25.449   run `npm fund` for details
+21:37:25.486 Running "npm run build"
+21:37:25.595 
+21:37:25.595 > vite_react_shadcn_ts@0.0.0 build
+21:37:25.596 > vite build && tsc -p tsconfig.server.json
+21:37:25.596 
+21:37:25.986 [36mvite v5.4.19 [32mbuilding for production...[36m[39m
+21:37:26.040 transforming...
+21:37:32.027 [32m✓[39m 2645 modules transformed.
+21:37:32.405 rendering chunks...
+21:37:32.414 computing gzip size...
+21:37:32.432 [2mdist/[22m[32mindex.html                     [39m[1m[2m  1.77 kB[22m[1m[22m[2m │ gzip:   0.67 kB[22m
+21:37:32.433 [2mdist/[22m[2massets/[22m[32mhero-tech-DQTHa0ty.jpg  [39m[1m[2m152.77 kB[22m[1m[22m
+21:37:32.436 [2mdist/[22m[2massets/[22m[35mindex-C8k1jLlU.css      [39m[1m[2m 91.49 kB[22m[1m[22m[2m │ gzip:  14.75 kB[22m
+21:37:32.437 [2mdist/[22m[2massets/[22m[36mindex-D5NxhqCM.js       [39m[1m[33m557.63 kB[39m[22m[2m │ gzip: 167.05 kB[22m
+21:37:32.437 [32m✓ built in 6.42s[39m
+21:37:32.437 [33m
+21:37:32.438 (!) Some chunks are larger than 500 kB after minification. Consider:
+21:37:32.438 - Using dynamic import() to code-split the application
+21:37:32.439 - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+21:37:32.439 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+21:37:35.974 shared/schema.ts(197,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.975 shared/schema.ts(198,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.975 shared/schema.ts(199,3): error TS2741: Property '_zod' is missing in type 'ZodEnum<["remote", "onsite"]>' but required in type 'SomeType'.
+21:37:35.976 shared/schema.ts(200,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.976 shared/schema.ts(201,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.977 shared/schema.ts(202,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodEnum<["urgent", "normal", "scheduled"]>>' but required in type 'SomeType'.
+21:37:35.977 shared/schema.ts(203,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodEnum<["pending", "confirmed", "in-progress", "completed", "cancelled"]>>' but required in type 'SomeType'.
+21:37:35.977 shared/schema.ts(210,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodString>' but required in type 'SomeType'.
+21:37:35.978 shared/schema.ts(211,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodString>' but required in type 'SomeType'.
+21:37:35.978 shared/schema.ts(212,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodEnum<["remote", "onsite"]>>' but required in type 'SomeType'.
+21:37:35.979 shared/schema.ts(213,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodString>' but required in type 'SomeType'.
+21:37:35.979 shared/schema.ts(214,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodString>' but required in type 'SomeType'.
+21:37:35.979 shared/schema.ts(215,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodEnum<["urgent", "normal", "scheduled"]>>' but required in type 'SomeType'.
+21:37:35.979 shared/schema.ts(216,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodEnum<["pending", "confirmed", "in-progress", "completed", "cancelled"]>>' but required in type 'SomeType'.
+21:37:35.980 shared/schema.ts(224,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.980 shared/schema.ts(225,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.980 shared/schema.ts(226,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.981 shared/schema.ts(227,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodEnum<["email", "phone", "whatsapp"]>>' but required in type 'SomeType'.
+21:37:35.981 shared/schema.ts(228,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodEnum<["new", "responded", "closed"]>>' but required in type 'SomeType'.
+21:37:35.981 shared/schema.ts(241,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.984 shared/schema.ts(242,3): error TS2741: Property '_zod' is missing in type 'ZodNumber' but required in type 'SomeType'.
+21:37:35.984 shared/schema.ts(243,3): error TS2741: Property '_zod' is missing in type 'ZodNumber' but required in type 'SomeType'.
+21:37:35.984 shared/schema.ts(244,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.985 shared/schema.ts(253,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.985 shared/schema.ts(254,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.985 shared/schema.ts(255,3): error TS2741: Property '_zod' is missing in type 'ZodNumber' but required in type 'SomeType'.
+21:37:35.985 shared/schema.ts(264,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.986 shared/schema.ts(265,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.986 shared/schema.ts(274,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.986 shared/schema.ts(275,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodEnum<["scheduled", "connecting", "active", "paused", "completed", "cancelled"]>>' but required in type 'SomeType'.
+21:37:35.986 shared/schema.ts(283,3): error TS2741: Property '_zod' is missing in type 'ZodEnum<["call", "email", "whatsapp", "sms", "in-person"]>' but required in type 'SomeType'.
+21:37:35.987 shared/schema.ts(284,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.987 shared/schema.ts(285,3): error TS2741: Property '_zod' is missing in type 'ZodEnum<["incoming", "outgoing"]>' but required in type 'SomeType'.
+21:37:35.989 shared/schema.ts(293,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.989 shared/schema.ts(294,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.990 shared/schema.ts(295,3): error TS2741: Property '_zod' is missing in type 'ZodEnum<["screenshot", "report", "invoice", "document", "image"]>' but required in type 'SomeType'.
+21:37:35.990 shared/schema.ts(296,3): error TS2741: Property '_zod' is missing in type 'ZodNumber' but required in type 'SomeType'.
+21:37:35.990 shared/schema.ts(297,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.990 shared/schema.ts(305,3): error TS2741: Property '_zod' is missing in type 'ZodEnum<["scheduled", "connecting", "active", "paused", "completed", "cancelled"]>' but required in type 'SomeType'.
+21:37:35.991 shared/schema.ts(306,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodNumber>' but required in type 'SomeType'.
+21:37:35.991 shared/schema.ts(316,3): error TS2741: Property '_zod' is missing in type 'ZodEnum<["session_summary", "technical_report", "completion_report"]>' but required in type 'SomeType'.
+21:37:35.991 shared/schema.ts(317,3): error TS2741: Property '_zod' is missing in type 'ZodDefault<ZodEnum<["draft", "completed", "approved"]>>' but required in type 'SomeType'.
+21:37:35.991 shared/schema.ts(318,3): error TS2741: Property '_zod' is missing in type 'ZodString' but required in type 'SomeType'.
+21:37:35.992 shared/schema.ts(326,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodEnum<["session_summary", "technical_report", "completion_report"]>>' but required in type 'SomeType'.
+21:37:35.992 shared/schema.ts(327,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodEnum<["draft", "completed", "approved"]>>' but required in type 'SomeType'.
+21:37:35.992 shared/schema.ts(328,3): error TS2741: Property '_zod' is missing in type 'ZodOptional<ZodString>' but required in type 'SomeType'.
+21:37:35.992 shared/schema.ts(333,37): error TS2344: Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; customerName?: SomeType | undefined; serviceType?: SomeType | undefined; ... 8 more ...; status?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.993   Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; customerName?: SomeType | undefined; serviceType?: SomeType | undefined; ... 8 more ...; status?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.993 shared/schema.ts(334,37): error TS2344: Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; customerName?: SomeType | undefined; serviceType?: SomeType | undefined; ... 9 more ...; updatedAt?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.993   Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; customerName?: SomeType | undefined; serviceType?: SomeType | undefined; ... 9 more ...; updatedAt?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.993 shared/schema.ts(337,37): error TS2344: Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; name?: SomeType | undefined; status?: SomeType | undefined; subject?: SomeType | undefined; message?: SomeType | undefined; isNewCustomer?: SomeType | undefined; preferredContact?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.994   Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; name?: SomeType | undefined; status?: SomeType | undefined; subject?: SomeType | undefined; message?: SomeType | undefined; isNewCustomer?: SomeType | undefined; preferredContact?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.995 shared/schema.ts(340,41): error TS2344: Type 'ZodObject<{ [x: string]: any; name?: SomeType | undefined; description?: SomeType | undefined; calloutFee?: SomeType | undefined; distanceKm?: SomeType | undefined; availability?: SomeType | undefined; isActive?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.995   Type 'ZodObject<{ [x: string]: any; name?: SomeType | undefined; description?: SomeType | undefined; calloutFee?: SomeType | undefined; distanceKm?: SomeType | undefined; availability?: SomeType | undefined; isActive?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.995 shared/schema.ts(343,44): error TS2344: Type 'ZodObject<{ [x: string]: any; serviceCategory?: SomeType | undefined; description?: SomeType | undefined; isActive?: SomeType | undefined; serviceName?: SomeType | undefined; basePrice?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.996   Type 'ZodObject<{ [x: string]: any; serviceCategory?: SomeType | undefined; description?: SomeType | undefined; isActive?: SomeType | undefined; serviceName?: SomeType | undefined; basePrice?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.996 shared/schema.ts(346,34): error TS2344: Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; name?: SomeType | undefined; isActive?: SomeType | undefined; ... 4 more ...; replitUserId?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.996   Type 'ZodObject<{ [x: string]: any; email?: SomeType | undefined; phone?: SomeType | undefined; name?: SomeType | undefined; isActive?: SomeType | undefined; ... 4 more ...; replitUserId?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.996 shared/schema.ts(349,44): error TS2344: Type 'ZodObject<{ [x: string]: any; status?: SomeType | undefined; bookingId?: SomeType | undefined; customerId?: SomeType | undefined; sessionTitle?: SomeType | undefined; ... 8 more ...; totalCost?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.997   Type 'ZodObject<{ [x: string]: any; status?: SomeType | undefined; bookingId?: SomeType | undefined; customerId?: SomeType | undefined; sessionTitle?: SomeType | undefined; ... 8 more ...; totalCost?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.997 shared/schema.ts(352,49): error TS2344: Type 'ZodObject<{ [x: string]: any; subject?: SomeType | undefined; message?: SomeType | undefined; bookingId?: SomeType | undefined; customerId?: SomeType | undefined; ... 4 more ...; isRead?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.997   Type 'ZodObject<{ [x: string]: any; subject?: SomeType | undefined; message?: SomeType | undefined; bookingId?: SomeType | undefined; customerId?: SomeType | undefined; ... 4 more ...; isRead?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.997 shared/schema.ts(355,44): error TS2344: Type 'ZodObject<{ [x: string]: any; description?: SomeType | undefined; bookingId?: SomeType | undefined; customerId?: SomeType | undefined; sessionId?: SomeType | undefined; ... 7 more ...; uploadedBy?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.998   Type 'ZodObject<{ [x: string]: any; description?: SomeType | undefined; bookingId?: SomeType | undefined; customerId?: SomeType | undefined; sessionId?: SomeType | undefined; ... 7 more ...; uploadedBy?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.998 shared/schema.ts(358,49): error TS2344: Type 'ZodObject<{ [x: string]: any; status?: SomeType | undefined; message?: SomeType | undefined; sessionId?: SomeType | undefined; technicianName?: SomeType | undefined; progress?: SomeType | undefined; isCustomerVisible?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.998   Type 'ZodObject<{ [x: string]: any; status?: SomeType | undefined; message?: SomeType | undefined; sessionId?: SomeType | undefined; technicianName?: SomeType | undefined; progress?: SomeType | undefined; isCustomerVisible?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.999 shared/schema.ts(361,43): error TS2344: Type 'ZodObject<{ [x: string]: any; customerName?: SomeType | undefined; status?: SomeType | undefined; customerId?: SomeType | undefined; sessionId?: SomeType | undefined; ... 10 more ...; completedAt?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.999   Type 'ZodObject<{ [x: string]: any; customerName?: SomeType | undefined; status?: SomeType | undefined; customerId?: SomeType | undefined; sessionId?: SomeType | undefined; ... 10 more ...; completedAt?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:35.999 shared/schema.ts(362,43): error TS2344: Type 'ZodObject<{ [x: string]: any; customerName?: SomeType | undefined; status?: SomeType | undefined; updatedAt?: SomeType | undefined; customerId?: SomeType | undefined; ... 11 more ...; completedAt?: SomeType | undefined; }, { ...; }>' does not satisfy the constraint 'ZodType<any, any, any>'.
+21:37:35.999   Type 'ZodObject<{ [x: string]: any; customerName?: SomeType | undefined; status?: SomeType | undefined; updatedAt?: SomeType | undefined; customerId?: SomeType | undefined; ... 11 more ...; completedAt?: SomeType | undefined; }, { ...; }>' is missing the following properties from type 'ZodType<any, any, any>': _type, _parse, _getType, _getOrReturnCtx, and 7 more.
+21:37:36.010 Error: Command "npm run build" exited with 2
