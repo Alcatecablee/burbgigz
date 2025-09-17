@@ -26,6 +26,11 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-3">
+          <Button asChild variant="ghost" size="sm" className="hidden sm:flex">
+            <Link to="/portal">
+              Customer Portal
+            </Link>
+          </Button>
           <Button asChild variant="outline" size="sm" className="hidden sm:flex">
             <a href="tel:+27670494876">
               <PhoneCall className="mr-2 h-4 w-4" />
