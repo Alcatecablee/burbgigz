@@ -50,12 +50,12 @@ async function createServer() {
     // Production mode: Serve static files
     console.log('[PROD] Starting production server...');
     
-    app.use(express.static(path.resolve(__dirname, '../dist')));
+    app.use(express.static(path.resolve(process.cwd(), 'dist')));
     
     // Handle all non-API routes for SPA (fallback)
     app.use((req, res, next) => {
       if (req.method !== 'GET' || req.path.startsWith('/api')) return next();
-      res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+      res.sendFile(path.resolve(process.cwd(), 'dist/index.html'));
     });
   }
 
