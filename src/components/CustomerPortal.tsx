@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useAuth } from '../hooks/useAuth';
+import { useSupabaseAuth } from '../hooks/useSupabaseAuth';
+import { AuthForm } from './AuthForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Badge } from './ui/badge';
@@ -49,7 +50,7 @@ async function fetchServiceSessions(): Promise<ServiceSession[]> {
 }
 
 export function CustomerPortal() {
-  const { user, isLoading, isAuthenticated } = useAuth();
+  const { user, isLoading, isAuthenticated, signOut } = useSupabaseAuth();
   
   // Fetch sessions data for overview statistics
   const { data: sessions } = useQuery({
@@ -75,19 +76,7 @@ export function CustomerPortal() {
   if (!isAuthenticated) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <Card className="w-full max-w-md">
-          <CardHeader className="text-center">
-            <CardTitle>Customer Portal Access</CardTitle>
-            <CardDescription>
-              Please log in to access your BurbGigz customer portal
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="flex justify-center">
-            <Button onClick={() => window.location.href = '/api/login'}>
-              Log In to Portal
-            </Button>
-          </CardContent>
-        </Card>
+        <AuthForm onSuccess={() => window.location.reload()} />
       </div>
     );
   }
@@ -105,12 +94,12 @@ export function CustomerPortal() {
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
                 <User className="w-4 h-4" />
-                <span className="font-medium">{user?.name || user?.email}</span>
+                <span className="font-medium">{user?.user_metadata?.full_name || user?.email}</span>
               </div>
               <Button 
                 variant="ghost" 
                 size="sm"
-                onClick={() => window.location.href = '/api/logout'}
+                onClick={() => signOut()}
               >
                 <LogOut className="w-4 h-4 mr-2" />
                 Logout

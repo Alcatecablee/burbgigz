@@ -12,7 +12,7 @@ import {
   FileText,
   ExternalLink
 } from 'lucide-react';
-import { useAuth } from '../hooks/useAuth';
+import { useSupabaseAuth } from '../hooks/useSupabaseAuth';
 
 interface ServiceSession {
   id: number;
@@ -96,7 +96,7 @@ function formatDateTime(dateString: string | undefined) {
 }
 
 export function ServiceSessionDashboard() {
-  const { user } = useAuth();
+  const { user } = useSupabaseAuth();
   
   const { data: sessions, isLoading, error } = useQuery({
     queryKey: ['serviceSessions', user?.id],
