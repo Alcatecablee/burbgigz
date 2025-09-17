@@ -6,6 +6,12 @@ import register from './routes';
 const app: Express = express();
 const PORT = parseInt(process.env.PORT || '5000', 10);
 
+// Ensure uploads directory exists for file attachments
+if (!fs.existsSync('uploads')) {
+  fs.mkdirSync('uploads', { recursive: true });
+  console.log('[INIT] Created uploads directory for file attachments');
+}
+
 // Add JSON body parser
 app.use(express.json());
 
@@ -32,7 +38,7 @@ async function createServer() {
       
       try {
         // Read index.html
-        let template = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf-8');
+        let template = fs.readFileSync(path.resolve(process.cwd(), 'index.html'), 'utf-8');
         
         // Transform the HTML using Vite's built-in HTML transforms
         template = await vite.transformIndexHtml(url, template);

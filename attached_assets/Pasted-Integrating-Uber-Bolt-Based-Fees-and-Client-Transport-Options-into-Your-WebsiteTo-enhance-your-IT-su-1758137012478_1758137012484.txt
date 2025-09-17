@@ -1,0 +1,479 @@
+Integrating Uber/Bolt-Based Fees and Client Transport Options into Your WebsiteTo enhance your IT support website for Lombardy East, Johannesburg, we'll integrate two key ideas: (1) dynamic Uber/Bolt-based callout fees to reflect real-time or estimated ride costs (covering your transportation via Uber or Bolt), and (2) client transport options, allowing clients to use their own Uber/Bolt accounts (with discounts or promos) to cover the ride, potentially waiving your add-on fee. This makes your pricing flexible, transparent, and client-centric—e.g., clients with Uber One (10–20% off) or Bolt referrals (R75 off first rides) can save, while you focus on service fees (R400 base + R150/hour labor).These enhancements align with 2025 Johannesburg e-hailing trends: Uber fares average R10–R15/km (base R20–R30), Bolt is 5–10% cheaper (e.g., R108 vs. R122 for a 15 km Fourways-Sandton trip), and surges can add 50–100% during peaks. We'll use static estimates (based on current data) for simplicity; for live fares, note Uber's Price Estimate API (free tier available, requires key).I'll provide separate, self-contained updates for Pricing.tsx and Areas.tsx (as they handle quoting and area visibility), plus a brief extension for Booking.tsx to make selection seamless during booking. Each includes full code snippets, validation, UX improvements (e.g., tooltips, modals), accessibility (ARIA), and analytics (Google Analytics via react-ga4). Assume you've installed necessary components (e.g., npx shadcn-ui@latest add tooltip dialog select).Key Data Structures (Shared Across Components)Create a shared src/data/transport.ts for estimates (based on 2025 data: short trips R80–R150, longer R200–R400+). Update as needed.typescript
+
+// src/data/transport.ts
+export const suburbsTransportEstimates = {
+  "Lombardy East": { uber: "R0 (local)", bolt: "R0 (local)", distance: "0 km" },
+  "Alexandra (~3 km NW)": { uber: "R80–R120", bolt: "R70–R110", distance: "3 km" },
+  "Lakeside (~3 km NE)": { uber: "R80–R120", bolt: "R70–R110", distance: "3 km" },
+  "Kew (adjacent)": { uber: "R80–R120", bolt: "R70–R110", distance: "1 km" },
+  "Marlboro (Gautrain, ~4 km N)": { uber: "R120–R180", bolt: "R110–R160", distance: "4 km" },
+  "Greenstone Mall (~10 min E)": { uber: "R150–R250", bolt: "R140–R220", distance: "8 km" },
+  "Sandton (~6–8 km NW)": { uber: "R130–R190", bolt: "R120–R170", distance: "7 km" },
+  "Johannesburg CBD (~14 km W)": { uber: "R250–R400", bolt: "R220–R350", distance: "14 km" },
+  "Bedfordview (~5 km SE)": { uber: "R120–R180", bolt: "R110–R160", distance: "5 km" },
+  "Edenvale (~5 km E)": { uber: "R120–R180", bolt: "R110–R160", distance: "5 km" },
+  "Kempton Park (~15 km NE)": { uber: "R300–R450", bolt: "R280–R400", distance: "15 km" },
+};
+
+export const transportOptions = [
+  { value: "fixed", label: "Fixed Callout Fee (I cover transport)", description: "R400 base + distance add-on (predictable pricing)." },
+  { value: "my_account", label: "I Use My Uber/Bolt (Pass-through fare)", description: "R400 base + actual Uber/Bolt estimate (no markup; covers my travel)." },
+  { value: "client_account", label: "You Use Your Uber/Bolt Account", description: "R400 base only—apply your discounts (e.g., Uber 20% off or Bolt R75 promo); I'll meet you there." },
+];
+
+Import this in your components: import { suburbsTransportEstimates, transportOptions } from "@/data/transport";.1. Update Pricing.tsx: Dynamic Uber/Bolt Fees + Client OptionsEnhance the calculator to include a transport select (fixed, your account with dynamic estimates, or client account with waiver). For "my_account", use suburb-based estimates (static for now; tooltip explains live quoting). Add a confirmation modal for quotes, validation (e.g., require suburb for on-site), and tooltips for clarity. Integrate with WhatsApp handoff for seamless quoting.Full Enhanced Pricing.tsx:typescript
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useMemo, useState } from "react";
+import { Calculator, HardDrive, MapPin } from "lucide-react";
+import { useToast } from "@/components/ui/toast";
+import ReactGA from "react-ga4"; // For analytics
+import { suburbsTransportEstimates, transportOptions } from "@/data/transport";
+
+const ssdBase = [
+  { size: "500 GB", price: 900 },
+  { size: "1 TB", price: 1300 },
+  { size: "2 TB", price: 2200 },
+];
+
+const Pricing = () => {
+  const [ssd, setSsd] = useState("500 GB");
+  const [ram, setRam] = useState("8 GB");
+  const [suburb, setSuburb] = useState("Lombardy East");
+  const [onsite, setOnsite] = useState("remote");
+  const [transport, setTransport] = useState("fixed");
+  const [error, setError] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { toast } = useToast();
+
+  const ssdPrice = useMemo(() => ssdBase.find((s) => s.size === ssd)?.price ?? 0, [ssd]);
+  const ramPrice = useMemo(() => (ram === "8 GB" ? 450 : ram === "16 GB" ? 850 : 0), [ram]);
+  const service = useMemo(() => (onsite === "remote" ? 150 : 350), [onsite]);
+
+  const callout = useMemo(() => {
+    if (onsite !== "on-site") return 0;
+    if (transport === "client_account") {
+      // Client covers; no add-on
+      return 400;
+    }
+    if (transport === "my_account") {
+      // Dynamic estimate based on suburb (static; explain live in tooltip)
+      const est = suburbsTransportEstimates[suburb]?.uber || "R100"; // Use Uber as default; parse for calc if needed
+      // For demo, add average (e.g., parse midpoint); in prod, use API
+      const avgEst = parseFloat(est.match(/\d+/)?.[0] || "100") + 50; // Simple parse + buffer
+      return 400 + avgEst;
+    }
+    // Fixed
+    const fixedAddOn = { "Lombardy East": 0, "Alexandra (~3 km NW)": 50 /* ... */ }[suburb] || 0;
+    return 400 + fixedAddOn;
+  }, [onsite, suburb, transport]);
+
+  const total = ssdPrice + ramPrice + service + callout;
+
+  const validateForm = () => {
+    if (ssd === "None" && ram === "None") {
+      setError("Select at least SSD or RAM.");
+      return false;
+    }
+    if (onsite === "on-site" && !suburb) {
+      setError("Select a suburb for on-site.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
+  const handleWhatsAppClick = () => {
+    if (!validateForm()) {
+      toast({ title: "Error", description: error, variant: "destructive" });
+      return;
+    }
+    ReactGA.event({ category: "Pricing", action: "WhatsApp Quote", label: `${transport} - ${suburb} - Total R${total}` });
+    setIsModalOpen(true);
+  };
+
+  const handleBookingClick = () => {
+    ReactGA.event({ category: "Pricing", action: "Book Now", label: `${transport} - ${suburb}` });
+  };
+
+  const quoteText = `Quote request: SSD ${ssd} (R${ssdPrice}), RAM ${ram} (R${ramPrice}), Service ${onsite} (R${service}), Callout ${transport} to ${suburb} (R${callout}) | Total R${total}. Transport note: If client account, use your Uber/Bolt discounts!`;
+
+  return (
+    <TooltipProvider>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="container px-4 py-12">
+          <div className="text-center space-y-3 mb-8">
+            <Badge variant="outline">Pricing</Badge>
+            <h1 className="text-3xl lg:text-4xl font-bold">Transparent Pricing & Instant Quotes</h1>
+            <p className="text-muted-foreground">Calculate costs with flexible transport options—use Uber/Bolt estimates or your discounts for savings.</p>
+          </div>
+
+          <Card className="bg-card border">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><HardDrive className="h-5 w-5 text-primary" />Upgrade Calculator</CardTitle>
+              <CardDescription>Choose options; transport adapts dynamically.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {error && <p className="text-red-500 text-sm" role="alert">{error}</p>}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Label>SSD Size</Label>
+                    </TooltipTrigger>
+                    <TooltipContent>Fast storage upgrade (R900–R2200 incl. install).</TooltipContent>
+                  </Tooltip>
+                  <Select value={ssd} onValueChange={setSsd}>
+                    <SelectTrigger><SelectValue placeholder="Select size" /></SelectTrigger>
+                    <SelectContent>
+                      {ssdBase.map((s) => <SelectItem key={s.size} value={s.size}>{s.size} (R{s.price})</SelectItem>)}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Label>RAM</Label>
+                    </TooltipTrigger>
+                    <TooltipContent>Memory boost for multitasking (R450–R850).</TooltipContent>
+                  </Tooltip>
+                  <Select value={ram} onValueChange={setRam}>
+                    <SelectTrigger><SelectValue placeholder="Select RAM" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="8 GB">8 GB (R450)</SelectItem>
+                      <SelectItem value="16 GB">16 GB (R850)</SelectItem>
+                      <SelectItem value="None">None</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Service Type</Label>
+                  <Select value={onsite} onValueChange={setOnsite}>
+                    <SelectTrigger><SelectValue placeholder="Service type" /></SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="remote">Remote (R150)</SelectItem>
+                      <SelectItem value="on-site">On-Site (R350 + callout)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label>Area (for on-site)</Label>
+                  <Select value={suburb} onValueChange={setSuburb} disabled={onsite !== "on-site"}>
+                    <SelectTrigger><SelectValue placeholder="Select area" /></SelectTrigger>
+                    <SelectContent>
+                      {Object.keys(suburbsTransportEstimates).map((s) => (
+                        <SelectItem key={s} value={s}>{s} ({suburbsTransportEstimates[s].distance})</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Label>Transport Option</Label>
+                  </TooltipTrigger>
+                  <TooltipContent>Choose how to handle travel—fixed for predictability, Uber/Bolt for dynamic costs, or client account to use your discounts (waives add-on).</TooltipContent>
+                </Tooltip>
+                <Select value={transport} onValueChange={setTransport} disabled={onsite !== "on-site"}>
+                  <SelectTrigger><SelectValue placeholder="Select transport" /></SelectTrigger>
+                  <SelectContent>
+                    {transportOptions.map((opt) => (
+                      <SelectItem key={opt.value} value={opt.value}>
+                        {opt.label} {opt.description && <span className="text-xs text-muted-foreground block">{opt.description}</span>}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {transport === "my_account" && suburb && (
+                  <p className="text-sm text-muted-foreground">
+                    Est. Uber/Bolt to {suburb}: {suburbsTransportEstimates[suburb]?.uber} (Uber) / {suburbsTransportEstimates[suburb]?.bolt} (Bolt). Live quote via app before job.
+                  </p>
+                )}
+                {transport === "client_account" && (
+                  <p className="text-sm text-muted-foreground">
+                    Apply your discounts (e.g., Uber 20% off promo or Bolt R75 referral). Book ride to/from Lombardy East—share ETA via WhatsApp.
+                  </p>
+                )}
+              </div>
+
+              <div className="rounded-md border p-3 text-sm">
+                <div className="flex justify-between"><span>Parts (SSD + RAM)</span><span>R{(ssdPrice + ramPrice).toFixed(0)}</span></div>
+                <div className="flex justify-between"><span>Service ({onsite})</span><span>R{service.toFixed(0)}</span></div>
+                <div className="flex justify-between"><span>Callout ({transport})</span><span>R{callout.toFixed(0)}</span></div>
+                <div className="flex justify-between font-semibold border-t mt-2 pt-2"><span>Total</span><span>R{total.toFixed(0)}</span></div>
+              </div>
+
+              <div className="flex gap-2">
+                <Button onClick={handleWhatsAppClick} disabled={!!error}>
+                  <Calculator className="h-4 w-4 mr-2" />Send Quote via WhatsApp
+                </Button>
+                <Button variant="outline" onClick={handleBookingClick} asChild>
+                  <a href="/booking">Book Now</a>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Callout Estimator Card - Updated with Transport Options */}
+          <Card className="bg-card border mt-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2"><MapPin className="h-5 w-5 text-primary" />Callout Estimator</CardTitle>
+              <CardDescription>Fixed vs. Uber/Bolt options by area (estimates based on 2025 fares).</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-2 text-sm text-muted-foreground">
+              <ul className="list-disc pl-5 space-y-1">
+                {Object.entries(suburbsTransportEstimates).map(([sub, est]) => (
+                  <li key={sub} className="flex justify-between items-start">
+                    <span>{sub} ({est.distance})</span>
+                    <div className="text-right">
+                      <p>Fixed: R{400 + (sub === "Lombardy East" ? 0 : 50 + Math.floor(Math.random() * 150))} {/* Demo fixed; align with your data */}</p>
+                      <p>Your Uber/Bolt: {est.uber} / {est.bolt}</p>
+                      <p className="text-xs">Client acct: R400 only (use discounts)</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* Confirmation Modal */}
+          <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Confirm Quote</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-2 text-sm">
+                <p>SSD: {ssd} (R{ssdPrice})</p>
+                <p>RAM: {ram} (R{ramPrice})</p>
+                <p>Service: {onsite} (R{service})</p>
+                <p>Callout: {transport} to {suburb} (R{callout})</p>
+                <p><strong>Total: R{total}</strong></p>
+                {transport === "client_account" && <p className="text-xs">Use your Uber/Bolt discounts—est. fare {suburbsTransportEstimates[suburb]?.uber}.</p>}
+              </div>
+              <div className="flex gap-2 mt-4">
+                <Button asChild>
+                  <a href={`https://wa.me/27670494876?text=${encodeURIComponent(quoteText)}`} target="_blank" rel="noreferrer">
+                    Send via WhatsApp
+                  </a>
+                </Button>
+                <Button variant="outline" onClick={() => setIsModalOpen(false)}>Cancel</Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </div>
+        <Footer />
+      </div>
+    </TooltipProvider>
+  );
+};
+
+export default Pricing;
+
+Enhancements Explained:Dynamic Fees: For "my_account", uses suburbsTransportEstimates for Uber/Bolt ranges (e.g., R80–R120 for 3 km). Simple parsing for total calc; tooltip notes live app check.
+Client Option: "client_account" waives add-on (R400 base only); explanatory text highlights discounts.
+UX: Tooltips for terms, modal for quote review, validation/toast for errors.
+Seamless: WhatsApp text includes transport note; analytics tracks choices.
+Accessibility: ARIA on selects/labels; role="alert" for errors.
+
+2. Update Areas.tsx: Promote Options with EstimatesEnhance cards to show fixed vs. Uber/Bolt estimates, plus client option promo. Add sorting by fee/distance, a map embed, and links pre-setting transport in /booking (e.g., ?transport=client_account). Include availability notes.Full Enhanced Areas.tsx:typescript
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useMemo, useState } from "react";
+import ReactGA from "react-ga4";
+import { suburbsTransportEstimates } from "@/data/transport";
+
+const areasData = Object.entries(suburbsTransportEstimates).map(([name, est]) => ({
+  name,
+  desc: `Service in ${name.split(' (~')[0]}. Remote always available; on-site via fixed or Uber/Bolt.`,
+  calloutFee: name === "Lombardy East" ? 400 : 400 + (parseInt(est.uber.match(/(\d+)/)?.[1] || "100") + 50), // Demo fixed based on est.
+  uberEst: est.uber,
+  boltEst: est.bolt,
+  availability: name.includes("Lombardy") ? "Same-day" : "Next-day or scheduled",
+}));
+
+const Areas = () => {
+  const [sortBy, setSortBy] = useState("name");
+
+  const sortedAreas = useMemo(() => {
+    return [...areasData].sort((a, b) => {
+      if (sortBy === "fee") return a.calloutFee - b.calloutFee;
+      if (sortBy === "distance") return a.name.split(' (~')[1]?.match(/(\d+)/)?.[1] || 0 - (b.name.split(' (~')[1]?.match(/(\d+)/)?.[1] || 0);
+      return a.name.localeCompare(b.name);
+    });
+  }, [sortBy]);
+
+  const handleBookingClick = (area: string, trans: string) => {
+    ReactGA.event({ category: "Areas", action: "Book Click", label: `${area} - ${trans}` });
+  };
+
+  const handlePricingClick = (area: string) => {
+    ReactGA.event({ category: "Areas", action: "Pricing Click", label: area });
+  };
+
+  useEffect(() => {
+    document.title = "IT Support Service Areas | Lombardy East & Johannesburg";
+    // Add meta tags as in previous responses
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="container px-4 py-12">
+        <div className="text-center space-y-3 mb-8">
+          <Badge variant="outline">Service Areas</Badge>
+          <h1 className="text-3xl lg:text-4xl font-bold">Lombardy East & Surrounding Suburbs</h1>
+          <p className="text-muted-foreground">Remote first (R150). On-site from R400—choose fixed fees or Uber/Bolt (use your discounts to save!).</p>
+        </div>
+
+        <div className="mb-4 flex justify-end">
+          <Select value={sortBy} onValueChange={setSortBy}>
+            <SelectTrigger className="w-48">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="name">Name</SelectItem>
+              <SelectItem value="fee">Callout Fee</SelectItem>
+              <SelectItem value="distance">Distance</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sortedAreas.map((a) => (
+            <Card key={a.name} className="bg-card border" role="region" aria-labelledby={`area-title-${a.name}`}>
+              <CardHeader>
+                <CardTitle id={`area-title-${a.name}`}>{a.name}</CardTitle>
+                <CardDescription>{a.desc}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <p className="text-sm text-muted-foreground">
+                  Availability: <span className="font-semibold">{a.availability}</span>
+                </p>
+                <p className="text-sm text-muted-foreground">Fixed callout: <span className="font-semibold">R{a.calloutFee}</span></p>
+                <p className="text-sm text-muted-foreground">Uber/Bolt est.: <span className="font-semibold">{a.uberEst} (Uber) / {a.boltEst} (Bolt)</span></p>
+                <p className="text-xs text-muted-foreground">Client option: Use your discounts—R400 base only!</p>
+                <div className="flex flex-col gap-1 pt-2">
+                  <Button asChild variant="link" className="p-0 h-auto justify-start">
+                    <a
+                      href={`/pricing?suburb=${encodeURIComponent(a.name)}&transport=fixed`}
+                      onClick={() => handlePricingClick(a.name)}
+                      aria-label={`Get fixed fee quote for ${a.name}`}
+                    >
+                      Get Fixed Quote
+                    </a>
+                  </Button>
+                  <Button asChild variant="link" className="p-0 h-auto justify-start">
+                    <a
+                      href={`/pricing?suburb=${encodeURIComponent(a.name)}&transport=my_account`}
+                      onClick={() => handlePricingClick(a.name)}
+                      aria-label={`Get Uber/Bolt quote for ${a.name}`}
+                    >
+                      Uber/Bolt Quote
+                    </a>
+                  </Button>
+                  <Button asChild variant="link" className="p-0 h-auto justify-start">
+                    <a
+                      href={`/booking?area=${encodeURIComponent(a.name)}&transport=client_account`}
+                      onClick={() => handleBookingClick(a.name, "client")}
+                      aria-label={`Book with client transport for ${a.name}`}
+                    >
+                      Book (Your Uber/Bolt)
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Interactive Map Embed */}
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-4">Our Coverage Map</h2>
+          <div className="relative w-full h-96 rounded-lg overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14329.196528697258!2d28.116528250000003!3d-26.10301395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDA2JzEwLjgiUyAyOMKwMDcnMDAuMCJF!5e0!3m2!1sen!2sza!4v1696941234567"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Service areas map: Lombardy East to Sandton, Alexandra, CBD"
+            />
+          </div>
+          <p className="text-sm text-muted-foreground mt-2">Zoom for details—estimates based on 2025 fares (R10–R15/km Uber; 5–10% less on Bolt).</p>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+};
+
+export default Areas;
+
+Enhancements Explained:Dynamic Promotion: Cards show fixed, Uber/Bolt est., and client option (with discount note). Links pre-fill query params (e.g., ?transport=client_account) for seamless flow to Pricing/Booking.
+UX: Sorting by fee/distance, map for visuals, stacked links for options.
+Seamless Choice: Clients can jump to booking with transport pre-selected.
+Accessibility: ARIA on cards/links; semantic structure.
+
+3. Extension for Booking.tsx: Seamless Selection During BookingTo make choices seamless, add the transport select (from transportOptions) after Area. Pre-fill from URL params (e.g., if coming from Areas with ?transport=client_account). Update validation and handoff text.Key Snippet for Booking.tsx (Add to existing):typescript
+
+import { useSearchParams } from "react-router-dom";
+import { transportOptions } from "@/data/transport";
+
+// In component
+const [searchParams] = useSearchParams();
+const [transport, setTransport] = useState(searchParams.get("transport") || "fixed");
+
+// In form JSX, after Area select
+<div className="space-y-2 col-span-2">
+  <Label htmlFor="transport">Transport Option</Label>
+  <Select value={transport} onValueChange={setTransport}>
+    <SelectTrigger id="transport" aria-label="Select transport option">
+      <SelectValue placeholder="Select transport" />
+    </SelectTrigger>
+    <SelectContent>
+      {transportOptions.map((opt) => (
+        <SelectItem key={opt.value} value={opt.value}>{opt.label}</SelectItem>
+      ))}
+    </SelectContent>
+  </Select>
+  {transport === "client_account" && (
+    <p className="text-sm text-muted-foreground">Book Uber/Bolt to Lombardy East—use your discounts (e.g., Bolt 20% off promo). Share ride details!</p>
+  )}
+</div>
+
+// Update text memo
+const text = useMemo(() => {
+  return `Booking request:\nName: ${name}\nService: ${service}\nDate: ${date ? date.toDateString() : "(pick date)"} ${time}\nArea: ${area}\nTransport: ${transport} (if client acct, apply your Uber/Bolt discounts; est. fare based on app)`;
+}, [name, service, date, time, area, transport]);
+
+// In validation
+if (onsite === "on-site" && transport === "client_account" && !area) {
+  setError("Select area for client transport.");
+  return false;
+}
+
+Enhancements Explained:Seamless: URL params pre-select transport (e.g., from Areas links); integrates with handoff.
+UX: Conditional help text for client option.
+Validation: Ensures area selected for client transport.
+
