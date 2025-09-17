@@ -10,12 +10,19 @@ Preferred communication style: Simple, everyday language.
 
 ## System Architecture
 
+### Authentication System
+- **Backend Authentication**: Supabase Auth with JWT token verification middleware
+- **Frontend Authentication**: useSupabaseAuth hook with React state management
+- **Security**: Protected admin endpoints, production-safe configuration, and secure token handling
+- **Fallback Support**: Graceful handling when Supabase is not configured
+
 ### Frontend Architecture
 - **Framework**: React 18 with TypeScript for type safety and modern development
 - **Build Tool**: Vite 5 for fast development and optimized production builds
 - **Routing**: React Router v6 for client-side navigation with dedicated pages for services, pricing, booking, blog, and service areas
 - **State Management**: TanStack Query (React Query) for server state management and data fetching
 - **Component System**: shadcn/ui components built on Radix UI primitives for accessible, customizable UI components
+- **API Client**: Centralized API client with automatic JWT token injection for authenticated requests
 
 ### Styling & Design System
 - **CSS Framework**: Tailwind CSS 3 with custom design tokens using HSL CSS variables
