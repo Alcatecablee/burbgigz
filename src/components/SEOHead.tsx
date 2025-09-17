@@ -19,9 +19,9 @@ const SEOHead = ({
   keywords = "IT support Lombardy East, remote IT support Johannesburg, PC repair Bedfordview, laptop repair Edenvale, Windows reload Johannesburg, virus removal Sandton, SSD upgrade Alexandra, Wi-Fi setup Greenstone, printer setup Kempton Park, IT services Marlboro",
   ogTitle = title,
   ogDescription = description,
-  ogImage = "/hero-tech.jpg",
-  ogUrl = typeof window !== 'undefined' ? window.location.href : '',
-  canonicalUrl = typeof window !== 'undefined' ? window.location.href : '',
+  ogImage = "/og-image.jpg",
+  ogUrl,
+  canonicalUrl,
   structuredData,
   noindex = false
 }: SEOHeadProps) => {
@@ -37,8 +37,8 @@ const SEOHead = ({
       <meta property="og:title" content={ogTitle} />
       <meta property="og:description" content={ogDescription} />
       <meta property="og:type" content="website" />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content={ogUrl} />
+      <meta property="og:image" content={typeof window !== 'undefined' ? `${window.location.origin}${ogImage}` : `https://burbgigz.com${ogImage}`} />
+      <meta property="og:url" content={ogUrl || (typeof window !== 'undefined' ? window.location.origin + window.location.pathname : 'https://burbgigz.com')} />
       <meta property="og:site_name" content="BurbGigz IT Services" />
       <meta property="og:locale" content="en_ZA" />
       
@@ -46,7 +46,7 @@ const SEOHead = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={ogTitle} />
       <meta name="twitter:description" content={ogDescription} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={typeof window !== 'undefined' ? `${window.location.origin}${ogImage}` : `https://burbgigz.com${ogImage}`} />
       
       {/* Local Business */}
       <meta name="geo.region" content="ZA-GP" />
@@ -55,7 +55,7 @@ const SEOHead = ({
       <meta name="ICBM" content="-26.1579,28.1549" />
       
       {/* Canonical URL */}
-      <link rel="canonical" href={canonicalUrl} />
+      <link rel="canonical" href={canonicalUrl || (typeof window !== 'undefined' ? window.location.origin + window.location.pathname : 'https://burbgigz.com')} />
       
       {/* Structured Data */}
       {structuredData && (
