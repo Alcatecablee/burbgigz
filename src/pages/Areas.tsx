@@ -4,8 +4,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import SEOHead from "@/components/SEOHead";
+import { serviceSchema, breadcrumbSchema } from "@/data/seoStructuredData";
 
 // Service areas with pricing aligned to Pricing.tsx and Booking.tsx
 const areas = [
@@ -25,53 +27,24 @@ const areas = [
 const Areas = () => {
   const [sortBy, setSortBy] = useState("name");
 
-  // SEO optimization
-  useEffect(() => {
-    document.title = "IT Support Service Areas | Lombardy East & Johannesburg";
-    
-    const setMeta = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
+  // SEO structured data for service areas
+  const areaServiceSchema = serviceSchema({
+    name: "IT Support Service Areas",
+    description: "IT support services covering Lombardy East, Alexandra, Sandton, Bedfordview, Edenvale and surrounding Johannesburg areas",
+    price: "120",
+    currency: "ZAR",
+    provider: "BurbGigz IT Services",
+    areaServed: areas.map(area => area.name)
+  });
 
-    setMeta(
-      "description",
-      "IT support services in Lombardy East, Alexandra, Sandton, and more. Remote support from R150, on-site from R400. Book now!"
-    );
-    setMeta(
-      "keywords",
-      "IT support Lombardy East, Johannesburg tech support, Sandton IT services, remote support areas"
-    );
-    // Fix OG tags to use property instead of name
-    const setOGMeta = (property: string, content: string) => {
-      let el = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("property", property);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
+  const areasBreadcrumbs = breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Service Areas", url: "/areas" }
+  ]);
 
-    setOGMeta("og:title", "IT Support Service Areas in Lombardy East");
-    setOGMeta("og:description", "Remote and on-site IT support in Lombardy East, Sandton, Alexandra, and more. Starting at R150!");
-    setOGMeta("og:url", window.location.origin + "/areas");
-    setOGMeta("og:type", "website");
-    setOGMeta("og:image", window.location.origin + "/og-image.jpg");
-
-    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "canonical";
-      document.head.appendChild(link);
-    }
-    link.href = window.location.origin + "/areas";
-  }, []);
+  const structuredData = {
+    "@graph": [areaServiceSchema, areasBreadcrumbs]
+  };
 
   // Sorting functionality
   const sortedAreas = [...areas].sort((a, b) => {
@@ -87,6 +60,15 @@ const Areas = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="IT Support Service Areas | Lombardy East & Johannesburg - BurbGigz IT Services"
+        description="IT support services in Lombardy East, Alexandra, Sandton, Bedfordview, Edenvale and more. Remote support from R120, on-site from R400. Same-day service available."
+        keywords="IT support Lombardy East, Johannesburg tech support, Sandton IT services, Alexandra computer repair, Bedfordview laptop repair, Edenvale PC support, Kempton Park IT services, remote support areas"
+        ogTitle="IT Support Service Areas in Lombardy East & Johannesburg"
+        ogDescription="Remote and on-site IT support in Lombardy East, Sandton, Alexandra, and more Johannesburg suburbs. Starting at R120!"
+        canonicalUrl="/areas"
+        structuredData={structuredData}
+      />
       <Header />
       <div className="container px-4 py-12">
         <div className="text-center space-y-3 mb-8">

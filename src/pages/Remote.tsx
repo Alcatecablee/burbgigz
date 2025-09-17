@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Download, Copy, Phone, MessageCircle, Shield, BookOpen, DollarSign } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import SEOHead from "@/components/SEOHead";
+import { serviceSchema, faqSchema, breadcrumbSchema } from "@/data/seoStructuredData";
 
 import { Link } from "react-router-dom";
 import { posts } from "@/data/blog";
@@ -26,38 +28,43 @@ const Remote = () => {
   const [pwdError, setPwdError] = useState("");
   const { toast } = useToast();
 
-  useEffect(() => {
-    const title = "Remote Support in Lombardy East | Start RustDesk Session";
-    document.title = title;
+  // SEO structured data for remote support service
+  const remoteServiceSchema = serviceSchema({
+    name: "Remote IT Support",
+    description: "Professional remote troubleshooting via secure remote tools like RustDesk",
+    price: "120",
+    currency: "ZAR",
+    provider: "BurbGigz IT Services",
+    areaServed: ["Lombardy East", "Johannesburg", "Bedfordview", "Edenvale", "Alexandra", "Sandton"]
+  });
 
-    const setMeta = (name: string, content: string) => {
-      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute("name", name);
-        document.head.appendChild(el);
-      }
-      el.setAttribute("content", content);
-    };
-
-    setMeta(
-      "description",
-      "Remote Support in Lombardy East, Johannesburg. Start a secure RustDesk session, share your one‑time ID and password via WhatsApp for fast IT help.",
-    );
-    setMeta(
-      "keywords",
-      "Remote Support Lombardy East, RustDesk support, remote IT support Johannesburg, PC help Edenvale, laptop support Bedfordview",
-    );
-
-    let link = document.querySelector('link[rel="canonical"]#canonical-remote') as HTMLLinkElement | null;
-    if (!link) {
-      link = document.createElement("link");
-      link.rel = "canonical";
-      link.id = "canonical-remote";
-      document.head.appendChild(link);
+  const remoteFAQSchema = faqSchema([
+    {
+      question: "How does remote support work?",
+      answer: "We use secure remote tools like RustDesk to connect to your computer with your permission. You can see everything we do and end the session at any time."
+    },
+    {
+      question: "Is remote support secure?",
+      answer: "Yes, we use encrypted connections and require your explicit permission. You remain in full control of your computer throughout the session."
+    },
+    {
+      question: "What can be fixed remotely?",
+      answer: "Most software issues including slow performance, virus removal, Windows errors, Wi-Fi setup, software installation, and system optimization."
+    },
+    {
+      question: "How much does remote support cost?",
+      answer: "Remote support sessions start from R120, which is much more affordable than on-site callouts starting at R400."
     }
-    link.href = window.location.origin + "/remote";
-  }, []);
+  ]);
+
+  const remoteBreadcrumbs = breadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Remote Support", url: "/remote" }
+  ]);
+
+  const structuredData = {
+    "@graph": [remoteServiceSchema, remoteFAQSchema, remoteBreadcrumbs]
+  };
 
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -104,6 +111,15 @@ const Remote = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title="Remote Support in Lombardy East | Start RustDesk Session - BurbGigz IT Services"
+        description="Remote Support in Lombardy East, Johannesburg. Start a secure RustDesk session, share your one-time ID and password via WhatsApp for fast IT help from R120."
+        keywords="Remote Support Lombardy East, RustDesk support, remote IT support Johannesburg, PC help Edenvale, laptop support Bedfordview, IT services Alexandra, computer repair Sandton"
+        ogTitle="Remote Support in Lombardy East | Start RustDesk Session"
+        ogDescription="Get professional remote IT help in Lombardy East. Secure RustDesk sessions starting from R120. Fast troubleshooting via WhatsApp."
+        canonicalUrl="/remote"
+        structuredData={structuredData}
+      />
       <Header />
       <div className="container px-4 py-12 max-w-4xl">
         <nav className="text-sm text-muted-foreground mb-4"><Link to="/" className="hover:text-primary">Home</Link><span className="mx-2">/</span><span className="text-foreground">Remote Support</span></nav>
