@@ -9,6 +9,9 @@ export default defineConfig(({ mode }) => ({
     host: "0.0.0.0",
     port: 5000,
     allowedHosts: true,
+    hmr: {
+      port: 5001,
+    },
   },
   define: {
     'import.meta.env.VITE_SUPABASE_URL': JSON.stringify(process.env.SUPABASE_URL),
