@@ -7,9 +7,9 @@ integrations = ["javascript_supabase:1.0.0", "javascript_log_in_with_replit:1.0.
 channel = "stable-25_05"
 
 [deployment]
-deploymentTarget = "autoscale"
+deploymentTarget = "vm"
 build = ["npm", "run", "build"]
-run = ["npm", "start"]
+run = ["NODE_ENV=production", "tsx", "server/index.ts"]
 
 [workflows]
 runButton = "Project"
