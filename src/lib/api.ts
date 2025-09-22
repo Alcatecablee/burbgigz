@@ -10,7 +10,9 @@ class ApiClient {
   private defaultHeaders: Record<string, string>
 
   constructor(config: ApiClientConfig = {}) {
-    this.baseUrl = config.baseUrl || '/api'
+    // Use environment variable for API base URL, fallback to relative path for development
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || '/api'
+    this.baseUrl = config.baseUrl || apiBaseUrl
     this.defaultHeaders = {
       'Content-Type': 'application/json',
       ...config.defaultHeaders

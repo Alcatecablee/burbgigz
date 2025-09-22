@@ -1,4 +1,5 @@
 import express, { Express } from 'express';
+import cors from 'cors';
 import path from 'path';
 import fs from 'fs';
 import register from './routes';
@@ -11,6 +12,38 @@ if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads', { recursive: true });
   console.log('[INIT] Created uploads directory for file attachments');
 }
+
+// CORS configuration for production deployments
+const corsOptions = {
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Allow localhost for development
+    if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+      return callback(null, true);
+    }
+    
+    // Allow Vercel deployments (including preview deployments)
+    if (origin.includes('vercel.app') || origin.includes('.replit.dev')) {
+      return callback(null, true);
+    }
+    
+    // Allow specific production domains from environment variable
+    const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(',') || [];
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    // Reject other origins
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true, // Allow cookies and credentials
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
+};
+
+app.use(cors(corsOptions));
 
 // Add JSON body parser
 app.use(express.json());
