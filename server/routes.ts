@@ -518,7 +518,7 @@ router.get("/sessions/:id", isAuthenticated, async (req: any, res) => {
     // Transform session status to match frontend expectations
     const transformedSession = {
       ...session,
-      status: mapSessionStatus(session.status)
+      status: mapSessionStatus(session.status || "")
     };
     
     res.json(transformedSession);
