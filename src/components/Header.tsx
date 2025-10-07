@@ -20,6 +20,9 @@ const Header = () => {
           <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
             Pricing
           </Link>
+          <Link to="/scam-awareness" className="text-sm font-medium hover:text-warning transition-colors">
+            Avoid Scams
+          </Link>
           <Link to="/areas" className="text-sm font-medium hover:text-primary transition-colors">
             Service Areas
           </Link>
