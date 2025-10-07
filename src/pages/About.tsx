@@ -5,7 +5,7 @@ import { CheckCircle2, Award, Phone, Mail, Shield } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import comptiaLogo from "@/assets/comptia-partner-badge.webp";
-import microsoftLogo from "@/assets/microsoft-logo.webp";
+import microsoftLogo from "@/assets/microsoft-logo.png";
 
 const About = () => {
   return (
