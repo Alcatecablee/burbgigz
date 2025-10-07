@@ -4,6 +4,14 @@
 
 BurbGigz is a modern IT services website built as a single-page application (SPA) for a local IT support business based in Lombardy East, Johannesburg. The site specializes in remote IT support services, offering secure remote troubleshooting, Windows reloads, virus removal, hardware upgrades, and on-site support for the local area. The application serves as both a marketing platform and functional business tool, featuring service descriptions, pricing calculators, booking systems, and educational blog content.
 
+### Trust & Credibility Features (Added October 2025)
+The website implements comprehensive trust-building elements to differentiate from tech support scams:
+- **About Page** (`/about`): Showcases Clive Makazhu's CompTIA A+ and Network+ certifications (achieved with distinction), 9+ years of IT experience, and professional credentials
+- **Scam Awareness Page** (`/scam-awareness`): Educational content warning users about fake tech support scams and explaining how BurbGigz differs through consent-based service, no cold calls, and transparent operations
+- **Enhanced Security Messaging**: Remote Support page features prominent security banner emphasizing consent-based access, encrypted connections, and user control
+- **Trust Elements**: Header navigation includes "About" and "Avoid Scams" links; Footer displays certification credentials and quick access to trust resources
+- **Certification Badge Placeholders**: Ready for official CompTIA badge images (to be uploaded by owner from CompTIA certification portal)
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
@@ -41,6 +49,7 @@ Preferred communication style: Simple, everyday language.
 - **Booking System**: Client-side booking form with date picker, time slots, and WhatsApp integration
 - **Service Areas**: Geographic service coverage with pricing tiers based on distance from Lombardy East
 - **Contact System**: Multiple contact methods including WhatsApp integration, phone calls, and email
+- **Trust & Credibility System**: About page with technician credentials, Scam Awareness education page, and security messaging throughout the site to build customer confidence and differentiate from fraudulent services
 
 ### Performance Optimizations
 - **Code Splitting**: Route-based code splitting for faster initial load times
