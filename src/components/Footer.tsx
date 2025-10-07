@@ -46,6 +46,13 @@ const Footer = () => {
               <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
               <li><a href="/scam-awareness" className="hover:text-primary transition-colors text-warning">Avoid Scams</a></li>
             </ul>
+            <div className="pt-4 border-t">
+              <h4 className="font-semibold text-foreground text-sm mb-2">Related Sites</h4>
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                <li><a href="https://taxfy.co.za/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Taxfy - Tax Services</a></li>
+                <li><a href="https://neurolint.dev/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Neurolint - Development</a></li>
+              </ul>
+            </div>
           </div>
 
           {/* Contact Info */}
