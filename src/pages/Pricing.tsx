@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -83,7 +82,6 @@ const Pricing = () => {
   return (
     <TooltipProvider>
       <div className="min-h-screen bg-background">
-        <Header />
         <div className="container px-4 py-12">
           <div className="text-center space-y-3 mb-8">
             <Badge variant="outline">Pricing</Badge>

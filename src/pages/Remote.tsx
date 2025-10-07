@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -120,7 +119,6 @@ const Remote = () => {
         canonicalUrl="/remote"
         structuredData={structuredData}
       />
-      <Header />
       <div className="container px-4 py-12 max-w-4xl">
         <nav className="text-sm text-muted-foreground mb-4"><Link to="/" className="hover:text-primary">Home</Link><span className="mx-2">/</span><span className="text-foreground">Remote Support</span></nav>
         <div className="space-y-3 mb-8 text-center">

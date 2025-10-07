@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import About from "@/components/About";
@@ -23,7 +22,6 @@ const Index = () => {
         ogDescription="Get professional IT help in Lombardy East, Johannesburg. Remote support from R120, on-site repairs from R400. Fast, secure, and reliable IT services."
         structuredData={structuredData}
       />
-      <Header />
       <main>
         <Hero />
         <Services />

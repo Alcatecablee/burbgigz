@@ -1,5 +1,4 @@
 import { Link, useSearchParams } from "react-router-dom";
-import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +19,6 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <div className="container px-4 py-12">
         <nav className="text-sm text-muted-foreground mb-6">
           <Link to="/" className="hover:text-primary">Home</Link>
