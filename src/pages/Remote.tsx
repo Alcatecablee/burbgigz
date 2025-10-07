@@ -135,6 +135,41 @@ const Remote = () => {
           </p>
         </section>
 
+        {/* Security & Trust Banner */}
+        <div className="bg-gradient-to-r from-success/10 to-primary/10 border border-success/20 rounded-lg p-6 mb-8">
+          <div className="flex items-start gap-4">
+            <Shield className="h-6 w-6 text-success mt-1 flex-shrink-0" />
+            <div className="space-y-2">
+              <h2 className="text-lg font-semibold">Safe, Secure, Consent-Based Remote Access</h2>
+              <p className="text-sm text-muted-foreground">
+                <strong>Unlike tech support scams,</strong> we NEVER cold-call, send pop-ups, or demand immediate access. 
+                RustDesk is a secure, open-source tool that requires YOUR permission. You see everything we do, and you 
+                can end the session instantly at any time. No permanent access, no hidden software, no pressure tactics.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-3">
+                <Badge variant="outline" className="text-xs">
+                  ✓ Encrypted Connection
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  ✓ You Control Access
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  ✓ Open Source Tool
+                </Badge>
+                <Badge variant="outline" className="text-xs">
+                  ✓ No Permanent Access
+                </Badge>
+              </div>
+              <p className="text-xs text-muted-foreground mt-3">
+                Concerned about tech support scams?{" "}
+                <Link to="/scam-awareness" className="text-primary hover:underline font-medium">
+                  Learn how to spot fake tech support →
+                </Link>
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-card border">
             <CardHeader>
