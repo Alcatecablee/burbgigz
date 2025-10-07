@@ -51,6 +51,7 @@ const Footer = () => {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li><a href="https://taxfy.co.za/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Taxfy - Tax Services</a></li>
                 <li><a href="https://neurolint.dev/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Neurolint - Development</a></li>
+                <li><a href="https://superk53.co.za/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">SuperK53</a></li>
               </ul>
             </div>
           </div>
