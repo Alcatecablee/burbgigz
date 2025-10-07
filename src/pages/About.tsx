@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { CheckCircle2, Award, Briefcase, Phone, Mail, Shield } from "lucide-react";
+import { CheckCircle2, Award, Phone, Mail, Shield } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 
@@ -9,9 +9,9 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="About Us | Clive Makazhu - Certified IT Support Specialist in Lombardy East"
-        description="Meet Clive Makazhu, a certified IT support specialist with 9+ years of experience. CompTIA A+ and Network+ certified, providing professional IT services in Lombardy East and Johannesburg."
-        keywords="Clive Makazhu, IT support specialist, CompTIA A+ certified, Network+ certified, Lombardy East technician, professional IT services Johannesburg"
+        title="About Us | Clive - Certified IT Support Specialist in Lombardy East"
+        description="Meet Clive, a certified IT support specialist with 9+ years of experience. CompTIA A+ and Network+ certified, providing professional IT services in Lombardy East and Johannesburg."
+        keywords="Clive, IT support specialist, CompTIA A+ certified, Network+ certified, Lombardy East technician, professional IT services Johannesburg"
         ogTitle="About BurbGigz IT Services - Meet Your Certified IT Specialist"
         ogDescription="9+ years of professional IT support experience. CompTIA A+ and Network+ certified. Serving Lombardy East and surrounding areas with reliable, transparent service."
         canonicalUrl="/about"
@@ -45,7 +45,7 @@ const About = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Award className="h-5 w-5 text-primary" />
-                Clive Chenjerai Makazhu
+                Clive
               </CardTitle>
               <CardDescription>Certified IT Support Specialist</CardDescription>
             </CardHeader>
@@ -63,11 +63,11 @@ const About = () => {
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
                   <Phone className="h-4 w-4 text-primary" />
-                  <span>+27 670 494 876</span>
+                  <span>0670494876</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
                   <Mail className="h-4 w-4 text-primary" />
-                  <span>clive@dealeeoo.com</span>
+                  <span>clive@burbgigz.com</span>
                 </div>
               </div>
             </CardContent>
@@ -110,11 +110,6 @@ const About = () => {
                 </div>
               </div>
 
-              <div className="border-t pt-4">
-                <h3 className="font-semibold mb-2">Diploma in PC Engineering</h3>
-                <p className="text-sm text-muted-foreground">Birnam Business College, South Africa (2011)</p>
-              </div>
-
               {/* Placeholder for official CompTIA badges */}
               <div className="border-t pt-4">
                 <p className="text-xs text-muted-foreground italic">
@@ -124,65 +119,6 @@ const About = () => {
             </CardContent>
           </Card>
         </div>
-
-        {/* Experience Timeline */}
-        <Card className="bg-card border mb-12">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Briefcase className="h-5 w-5 text-primary" />
-              Professional Experience
-            </CardTitle>
-            <CardDescription>9+ years of IT support and customer service excellence</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {/* Current Position */}
-            <div className="border-l-2 border-primary pl-4">
-              <div className="flex items-start justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">Helpdesk Technician</h3>
-                  <p className="text-sm text-muted-foreground">Gaap Point of Sale</p>
-                </div>
-                <Badge variant="secondary">Jan 2016 - Present</Badge>
-              </div>
-              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-4">
-                <li>Provided exceptional customer service and technical support for multiple POS systems</li>
-                <li>Diagnosed and resolved hardware/software issues with minimal disruption</li>
-                <li>Managed customer interactions using Salesforce CRM</li>
-                <li>Expertise in: GAAP, POS CONTROL, KINGPOS, DOMINOS, SURESWIPE, LRS, UNITY</li>
-              </ul>
-            </div>
-
-            {/* Previous Positions */}
-            <div className="border-l-2 border-muted pl-4">
-              <div className="flex items-start justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">Bowling Pinsetter Technician</h3>
-                  <p className="text-sm text-muted-foreground">The Fun Company</p>
-                </div>
-                <Badge variant="outline">Apr 2014 - Dec 2015</Badge>
-              </div>
-              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-4">
-                <li>Delivered technical support for automatic pinsetting bowling machines</li>
-                <li>Diagnosed mechanical and electrical issues using testing equipment</li>
-              </ul>
-            </div>
-
-            <div className="border-l-2 border-muted pl-4">
-              <div className="flex items-start justify-between mb-2">
-                <div>
-                  <h3 className="font-semibold">IT Technician</h3>
-                  <p className="text-sm text-muted-foreground">Mastal Computer Solutions</p>
-                </div>
-                <Badge variant="outline">Mar 2012 - Dec 2012</Badge>
-              </div>
-              <ul className="text-sm text-muted-foreground space-y-1 list-disc pl-4">
-                <li>Provided hardware, software, and network support</li>
-                <li>Maintained and repaired CCTV systems</li>
-                <li>Installed workstations and configured networks</li>
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
 
         {/* Key Skills */}
         <Card className="bg-card border mb-12">
