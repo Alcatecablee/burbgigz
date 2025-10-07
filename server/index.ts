@@ -48,9 +48,6 @@ app.use(cors(corsOptions));
 // Add JSON body parser
 app.use(express.json());
 
-// Serve static files from attached_assets directory
-app.use('/attached_assets', express.static(path.resolve(process.cwd(), 'attached_assets')));
-
 // Register API routes
 register(app);
 

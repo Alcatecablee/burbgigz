@@ -110,25 +110,11 @@ const About = () => {
                 </div>
               </div>
 
+              {/* Placeholder for official CompTIA badges */}
               <div className="border-t pt-4">
-                <h3 className="font-semibold mb-3 text-sm">Official Certifications</h3>
-                <div className="flex flex-wrap gap-4 items-center">
-                  <img 
-                    src="/attached_assets/comptia-authorized-partner.png" 
-                    alt="CompTIA Authorized Partner" 
-                    className="h-20 w-auto object-contain"
-                  />
-                  <img 
-                    src="/attached_assets/comptia-certified.png" 
-                    alt="CompTIA Certified" 
-                    className="h-16 w-auto object-contain"
-                  />
-                  <img 
-                    src="/attached_assets/microsoft-certified.png" 
-                    alt="Microsoft Certified" 
-                    className="h-16 w-auto object-contain"
-                  />
-                </div>
+                <p className="text-xs text-muted-foreground italic">
+                  Official CompTIA digital badges available upon request
+                </p>
               </div>
             </CardContent>
           </Card>
