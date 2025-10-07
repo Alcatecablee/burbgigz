@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Download, Copy, Phone, MessageCircle, Shield, BookOpen, DollarSign } from "lucide-react";
+import { Download, Copy, Phone, MessageCircle, Shield, BookOpen, DollarSign, Zap, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/data/seoStructuredData";
@@ -129,19 +129,28 @@ const Remote = () => {
         </div>
 
         {/* Business Benefits Section */}
-        <section className="mb-10 bg-gradient-to-r from-primary/5 to-success/5 rounded-lg p-6">
+        <section className="mb-10 bg-card border rounded-lg p-6">
           <h2 className="text-2xl font-semibold mb-4">Why Choose Our Remote IT Support in Johannesburg?</h2>
           <div className="grid md:grid-cols-3 gap-6 text-sm">
             <div>
-              <h3 className="font-semibold text-primary mb-2">⚡ Fast Response Time</h3>
+              <h3 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                <Zap className="h-5 w-5" />
+                Fast Response Time
+              </h3>
               <p className="text-muted-foreground">Get help within minutes, not hours. Most remote IT support issues in Johannesburg are resolved in under 30 minutes, minimizing your downtime and keeping your business productive.</p>
             </div>
             <div>
-              <h3 className="font-semibold text-primary mb-2">💰 Cost-Effective Solution</h3>
+              <h3 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                <DollarSign className="h-5 w-5" />
+                Cost-Effective Solution
+              </h3>
               <p className="text-muted-foreground">Save money with remote IT support from just R120 per session - no travel costs, no waiting for technicians. Much more affordable than traditional on-site callouts (R400+).</p>
             </div>
             <div>
-              <h3 className="font-semibold text-primary mb-2">🛡️ Secure & Professional</h3>
+              <h3 className="font-semibold text-primary mb-2 flex items-center gap-2">
+                <Shield className="h-5 w-5" />
+                Secure & Professional
+              </h3>
               <p className="text-muted-foreground">9+ years of IT experience with CompTIA A+ and Network+ certifications. Encrypted connections, transparent service, and you stay in full control throughout the session.</p>
             </div>
           </div>
@@ -158,12 +167,30 @@ const Remote = () => {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <ul className="space-y-2">
-                  <li>✓ Slow computer performance & optimization</li>
-                  <li>✓ Windows errors, crashes & blue screens</li>
-                  <li>✓ Software installation & updates</li>
-                  <li>✓ Virus & malware removal</li>
-                  <li>✓ System tune-ups & cleanup</li>
-                  <li>✓ Data backup configuration</li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Slow computer performance & optimization</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Windows errors, crashes & blue screens</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Software installation & updates</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Virus & malware removal</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>System tune-ups & cleanup</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Data backup configuration</span>
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -173,12 +200,30 @@ const Remote = () => {
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
                 <ul className="space-y-2">
-                  <li>✓ WiFi & internet connection problems</li>
-                  <li>✓ Email configuration (Outlook, Gmail, etc.)</li>
-                  <li>✓ Printer setup & troubleshooting</li>
-                  <li>✓ VPN setup for remote work</li>
-                  <li>✓ Network troubleshooting</li>
-                  <li>✓ Cloud services configuration</li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>WiFi & internet connection problems</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Email configuration (Outlook, Gmail, etc.)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Printer setup & troubleshooting</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>VPN setup for remote work</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Network troubleshooting</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+                    <span>Cloud services configuration</span>
+                  </li>
                 </ul>
               </CardContent>
             </Card>
@@ -196,7 +241,7 @@ const Remote = () => {
         </section>
 
         {/* Security & Trust Banner */}
-        <div className="bg-gradient-to-r from-success/10 to-primary/10 border border-success/20 rounded-lg p-6 mb-8">
+        <div className="bg-card border border-success/20 rounded-lg p-6 mb-8">
           <div className="flex items-start gap-4">
             <Shield className="h-6 w-6 text-success mt-1 flex-shrink-0" />
             <div className="space-y-2">
@@ -207,17 +252,21 @@ const Remote = () => {
                 can end the session instantly at any time. No permanent access, no hidden software, no pressure tactics.
               </p>
               <div className="flex flex-wrap gap-2 mt-3">
-                <Badge variant="outline" className="text-xs">
-                  ✓ Encrypted Connection
+                <Badge variant="outline" className="text-xs flex items-center gap-1">
+                  <Check className="h-3 w-3" />
+                  Encrypted Connection
                 </Badge>
-                <Badge variant="outline" className="text-xs">
-                  ✓ You Control Access
+                <Badge variant="outline" className="text-xs flex items-center gap-1">
+                  <Check className="h-3 w-3" />
+                  You Control Access
                 </Badge>
-                <Badge variant="outline" className="text-xs">
-                  ✓ Open Source Tool
+                <Badge variant="outline" className="text-xs flex items-center gap-1">
+                  <Check className="h-3 w-3" />
+                  Open Source Tool
                 </Badge>
-                <Badge variant="outline" className="text-xs">
-                  ✓ No Permanent Access
+                <Badge variant="outline" className="text-xs flex items-center gap-1">
+                  <Check className="h-3 w-3" />
+                  No Permanent Access
                 </Badge>
               </div>
               <p className="text-xs text-muted-foreground mt-3">
