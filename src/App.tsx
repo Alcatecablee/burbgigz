@@ -10,6 +10,8 @@ import Booking from "./pages/Booking";
 import Areas from "./pages/Areas";
 import { CustomerPortal } from "./components/CustomerPortal";
 import SupabaseSetup from "./pages/SupabaseSetup";
+import About from "./pages/About";
+import ScamAwareness from "./pages/ScamAwareness";
 import Header from "@/components/Header";
 import StickyCta from "@/components/StickyCta";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/areas" element={<Areas />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/scam-awareness" element={<ScamAwareness />} />
             <Route path="/portal" element={<CustomerPortal />} />
             <Route path="/supabase-setup" element={<SupabaseSetup />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

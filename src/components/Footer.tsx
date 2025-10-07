@@ -28,18 +28,23 @@ const Footer = () => {
               <Shield className="h-4 w-4 text-success" />
               <span className="text-sm text-muted-foreground">30-Day Warranty on All Repairs</span>
             </div>
+            <div className="space-y-1 pt-2 border-t">
+              <p className="text-xs text-muted-foreground font-medium">Certified Technician</p>
+              <p className="text-xs text-muted-foreground">CompTIA A+ & Network+</p>
+              <p className="text-xs text-muted-foreground">9+ Years Experience</p>
+            </div>
           </div>
 
-          {/* Services */}
+          {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">Services</h3>
+            <h3 className="font-semibold text-foreground">Quick Links</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>Windows Reload & Setup</li>
-              <li>Virus & Malware Removal</li>
-              <li>Hardware Upgrades (SSD, RAM)</li>
-              <li>Network & Wi-Fi Setup</li>
-              <li>General PC Repairs</li>
-              <li>Remote Support</li>
+              <li><a href="/about" className="hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="/remote" className="hover:text-primary transition-colors">Remote Support</a></li>
+              <li><a href="/pricing" className="hover:text-primary transition-colors">Pricing</a></li>
+              <li><a href="/areas" className="hover:text-primary transition-colors">Service Areas</a></li>
+              <li><a href="/blog" className="hover:text-primary transition-colors">Blog</a></li>
+              <li><a href="/scam-awareness" className="hover:text-primary transition-colors text-warning">Avoid Scams</a></li>
             </ul>
           </div>
 
