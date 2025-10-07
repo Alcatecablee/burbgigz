@@ -6,11 +6,11 @@ BurbGigz is a modern IT services website built as a single-page application (SPA
 
 ### Trust & Credibility Features (Added October 2025)
 The website implements comprehensive trust-building elements to differentiate from tech support scams:
-- **About Page** (`/about`): Showcases Clive Makazhu's CompTIA A+ and Network+ certifications (achieved with distinction), 9+ years of IT experience, and professional credentials
+- **About Page** (`/about`): Showcases Clive's CompTIA A+ and Network+ certifications (achieved with distinction), 9+ years of IT experience, and professional credentials with official certification badges displayed
 - **Scam Awareness Page** (`/scam-awareness`): Educational content warning users about fake tech support scams and explaining how BurbGigz differs through consent-based service, no cold calls, and transparent operations
 - **Enhanced Security Messaging**: Remote Support page features prominent security banner emphasizing consent-based access, encrypted connections, and user control
 - **Trust Elements**: Header navigation includes "About" and "Avoid Scams" links; Footer displays certification credentials and quick access to trust resources
-- **Certification Badge Placeholders**: Ready for official CompTIA badge images (to be uploaded by owner from CompTIA certification portal)
+- **Certification Badges**: Official CompTIA Authorized Partner, CompTIA Certified, and Microsoft Certified badges displayed on About page
 
 ## User Preferences
 
