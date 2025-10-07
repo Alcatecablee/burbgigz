@@ -24,9 +24,17 @@ const App = () => (
     <div className="bg-background">
       <BrowserRouter>
         <ScrollToTop />
+        {/* Skip to main content link for accessibility */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg transition-all"
+        >
+          Skip to main content
+        </a>
         <div className="max-w-7xl mx-auto bg-background shadow-lg min-h-screen">
           <Header />
-          <Routes>
+          <main id="main-content" tabIndex={-1}>
+            <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<BlogPost />} />
@@ -41,6 +49,7 @@ const App = () => (
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </main>
           <StickyCta />
         </div>
         <Toaster />

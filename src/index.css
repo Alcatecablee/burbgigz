@@ -129,4 +129,59 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Smooth transitions for all interactive elements */
+  a, button, [role="button"] {
+    @apply transition-colors duration-200 ease-in-out;
+  }
+
+  /* Focus visible for accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background rounded-sm;
+  }
+
+  /* Improve tap targets for mobile */
+  @media (pointer: coarse) {
+    button, a, [role="button"], input, select, textarea {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+@layer utilities {
+  /* Custom smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .transition-smooth-slow {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .hover-lift {
+    @apply transition-transform duration-200 ease-out hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 ease-out hover:shadow-lg;
+  }
 }
