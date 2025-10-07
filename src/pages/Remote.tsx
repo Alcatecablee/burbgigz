@@ -29,12 +29,12 @@ const Remote = () => {
 
   // SEO structured data for remote support service
   const remoteServiceSchema = serviceSchema({
-    name: "Remote IT Support",
-    description: "Professional remote troubleshooting via secure remote tools like RustDesk",
+    name: "Remote IT Support Johannesburg",
+    description: "Professional remote IT support in Johannesburg via secure remote tools. Fast response, affordable pricing from R120. Serving businesses and homes in Johannesburg and surrounding areas.",
     price: "120",
     currency: "ZAR",
     provider: "BurbGigz IT Services",
-    areaServed: ["Lombardy East", "Johannesburg", "Bedfordview", "Edenvale", "Alexandra", "Sandton"]
+    areaServed: ["Johannesburg", "Lombardy East", "Bedfordview", "Edenvale", "Alexandra", "Sandton", "Greenstone", "Kempton Park"]
   });
 
   const remoteFAQSchema = faqSchema([
@@ -111,27 +111,87 @@ const Remote = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Remote Support in Lombardy East | Start RustDesk Session - BurbGigz IT Services"
-        description="Remote Support in Lombardy East, Johannesburg. Start a secure RustDesk session, share your one-time ID and password via WhatsApp for fast IT help from R120."
-        keywords="Remote Support Lombardy East, RustDesk support, remote IT support Johannesburg, PC help Edenvale, laptop support Bedfordview, IT services Alexandra, computer repair Sandton"
-        ogTitle="Remote Support in Lombardy East | Start RustDesk Session"
-        ogDescription="Get professional remote IT help in Lombardy East. Secure RustDesk sessions starting from R120. Fast troubleshooting via WhatsApp."
+        title="Remote IT Support Johannesburg | Fast, Secure & Affordable - BurbGigz"
+        description="Professional Remote IT Support in Johannesburg from R120. Fast response, secure connections. Fix Windows errors, slow PCs, WiFi issues & more. Serving Lombardy East, Edenvale, Bedfordview & surrounding areas."
+        keywords="remote IT support Johannesburg, remote computer support, remote tech support Johannesburg, IT support Lombardy East, remote desktop support, remote PC help Johannesburg, remote computer repair Johannesburg, IT technician Johannesburg"
+        ogTitle="Remote IT Support Johannesburg | Professional & Secure"
+        ogDescription="Expert Remote IT Support in Johannesburg. Quick response, encrypted connections, transparent pricing from R120. Boost your business productivity today."
         canonicalUrl="/remote"
         structuredData={structuredData}
       />
       <div className="container px-4 py-12 max-w-4xl">
         <nav className="text-sm text-muted-foreground mb-4"><Link to="/" className="hover:text-primary">Home</Link><span className="mx-2">/</span><span className="text-foreground">Remote Support</span></nav>
         <div className="space-y-3 mb-8 text-center">
-          <Badge variant="outline">Remote Support</Badge>
-          <h1 className="text-3xl lg:text-4xl font-bold">Remote Support in Lombardy East (RustDesk)</h1>
-          <p className="text-muted-foreground">Fast, secure Remote Support for Johannesburg homes and small businesses. Download RustDesk, read your one‑time ID & password, then share securely via WhatsApp.</p>
+          <Badge variant="outline">Remote IT Support</Badge>
+          <h1 className="text-3xl lg:text-4xl font-bold">Remote IT Support Johannesburg</h1>
+          <p className="text-muted-foreground text-lg">Professional, Fast & Secure Remote IT Support for Johannesburg Businesses & Homes</p>
+          <p className="text-sm text-muted-foreground">Serving Lombardy East, Edenvale, Bedfordview, Sandton & surrounding areas</p>
         </div>
 
+        {/* Business Benefits Section */}
+        <section className="mb-10 bg-gradient-to-r from-primary/5 to-success/5 rounded-lg p-6">
+          <h2 className="text-2xl font-semibold mb-4">Why Choose Our Remote IT Support in Johannesburg?</h2>
+          <div className="grid md:grid-cols-3 gap-6 text-sm">
+            <div>
+              <h3 className="font-semibold text-primary mb-2">⚡ Fast Response Time</h3>
+              <p className="text-muted-foreground">Get help within minutes, not hours. Most remote IT support issues in Johannesburg are resolved in under 30 minutes, minimizing your downtime and keeping your business productive.</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-primary mb-2">💰 Cost-Effective Solution</h3>
+              <p className="text-muted-foreground">Save money with remote IT support from just R120 per session - no travel costs, no waiting for technicians. Much more affordable than traditional on-site callouts (R400+).</p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-primary mb-2">🛡️ Secure & Professional</h3>
+              <p className="text-muted-foreground">9+ years of IT experience with CompTIA A+ and Network+ certifications. Encrypted connections, transparent service, and you stay in full control throughout the session.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* What We Fix Section */}
+        <section className="mb-10">
+          <h2 className="text-2xl font-semibold mb-4">Remote IT Support Services in Johannesburg</h2>
+          <p className="text-muted-foreground mb-4">Our remote IT support technicians can quickly diagnose and fix a wide range of computer and network issues:</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            <Card className="bg-card border">
+              <CardHeader>
+                <CardTitle className="text-lg">Software & System Issues</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <ul className="space-y-2">
+                  <li>✓ Slow computer performance & optimization</li>
+                  <li>✓ Windows errors, crashes & blue screens</li>
+                  <li>✓ Software installation & updates</li>
+                  <li>✓ Virus & malware removal</li>
+                  <li>✓ System tune-ups & cleanup</li>
+                  <li>✓ Data backup configuration</li>
+                </ul>
+              </CardContent>
+            </Card>
+            <Card className="bg-card border">
+              <CardHeader>
+                <CardTitle className="text-lg">Network & Connectivity</CardTitle>
+              </CardHeader>
+              <CardContent className="text-sm text-muted-foreground">
+                <ul className="space-y-2">
+                  <li>✓ WiFi & internet connection problems</li>
+                  <li>✓ Email configuration (Outlook, Gmail, etc.)</li>
+                  <li>✓ Printer setup & troubleshooting</li>
+                  <li>✓ VPN setup for remote work</li>
+                  <li>✓ Network troubleshooting</li>
+                  <li>✓ Cloud services configuration</li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         <section className="mb-10 text-sm text-muted-foreground space-y-3">
+          <h2 className="text-2xl font-semibold text-foreground mb-3">How Remote IT Support Works</h2>
           <p>
-            Remote Support lets me connect to your computer securely to diagnose and fix issues without a callout. It’s ideal for
-            Windows errors, slow PCs, Wi‑Fi/printer setup, email configuration and routine maintenance. For SSD upgrades or
-            physical repairs, I offer on‑site service in Lombardy East and nearby suburbs.
+            Remote IT support allows me to securely connect to your computer in Johannesburg and fix most software issues without a physical visit. Using secure, encrypted remote desktop tools like RustDesk, I can diagnose problems, install updates, remove viruses, configure settings, and optimize performance - all while you watch on your screen.
+          </p>
+          <p>
+            This approach is perfect for busy professionals and small businesses in Johannesburg who need fast IT support without disrupting their workflow. For hardware issues like SSD upgrades or physical repairs, I provide professional on-site IT support throughout Lombardy East, Edenvale, Bedfordview, and nearby Johannesburg suburbs.
           </p>
         </section>
 
@@ -297,6 +357,12 @@ const Remote = () => {
               Most software issues: Windows problems, setup, updates, malware cleanup, Wi‑Fi/printer configuration, and performance tuning.
             </AccordionContent>
           </AccordionItem>
+          <AccordionItem value="q4">
+            <AccordionTrigger>Do you provide remote IT support throughout Johannesburg?</AccordionTrigger>
+            <AccordionContent>
+              Yes! Our remote IT support service is available to anyone in Johannesburg and surrounding areas. Since it's remote, your physical location doesn't matter - as long as you have an internet connection, we can help. We're based in Lombardy East and also provide on-site support in nearby suburbs when hardware repairs are needed.
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
 
         <h2 className="text-xl font-semibold mb-3 mt-10 flex items-center gap-2"><BookOpen className="h-5 w-5 text-primary" />Related articles</h2>
@@ -315,12 +381,12 @@ const Remote = () => {
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "HowTo",
-        name: "Start Remote Support via RustDesk",
-        description: "How to start a secure Remote Support session in Lombardy East using RustDesk.",
+        name: "Get Remote IT Support in Johannesburg via RustDesk",
+        description: "How to start a secure remote IT support session in Johannesburg using RustDesk for fast computer and network problem resolution.",
         step: [
-          { "@type": "HowToStep", name: "Download RustDesk", text: "Open rustdesk.com and download the app for your device." },
-          { "@type": "HowToStep", name: "Open and read your ID", text: "Open RustDesk and note the ID and one‑time password shown." },
-          { "@type": "HowToStep", name: "Share via WhatsApp", text: "Paste your ID and password into WhatsApp and send." }
+          { "@type": "HowToStep", name: "Download RustDesk", text: "Open rustdesk.com and download the free remote support app for your Windows, Mac, or Linux device." },
+          { "@type": "HowToStep", name: "Open and read your ID", text: "Open RustDesk and note the ID and one-time password displayed on your screen." },
+          { "@type": "HowToStep", name: "Share via WhatsApp", text: "Share your RustDesk ID and password via WhatsApp to get instant remote IT support in Johannesburg." }
         ]
       }) }} />
 
