@@ -4,6 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { CheckCircle2, Award, Phone, Mail, Shield } from "lucide-react";
 import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
+import comptiaLogo from "@/assets/comptia-partner-badge.webp";
+import microsoftLogo from "@/assets/microsoft-logo.webp";
 
 const About = () => {
   return (
@@ -110,11 +112,21 @@ const About = () => {
                 </div>
               </div>
 
-              {/* Placeholder for official CompTIA badges */}
+              {/* Official CompTIA and Partner badges */}
               <div className="border-t pt-4">
-                <p className="text-xs text-muted-foreground italic">
-                  Official CompTIA digital badges available upon request
-                </p>
+                <h3 className="font-semibold mb-3 text-sm">Official Partner Badges</h3>
+                <div className="flex gap-4 items-center">
+                  <img 
+                    src={comptiaLogo} 
+                    alt="CompTIA Authorized Partner" 
+                    className="h-20 w-auto object-contain"
+                  />
+                  <img 
+                    src={microsoftLogo} 
+                    alt="Microsoft Partner" 
+                    className="h-12 w-auto object-contain"
+                  />
+                </div>
               </div>
             </CardContent>
           </Card>
