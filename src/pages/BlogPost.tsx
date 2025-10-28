@@ -292,15 +292,15 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section with Featured Image */}
-      <div className="relative w-full h-[400px] bg-gradient-to-br from-primary/10 via-background to-primary/5 overflow-hidden">
+      <div className="relative w-full h-[450px] bg-gradient-to-br from-primary/10 via-background to-primary/5 overflow-hidden">
         {post.featuredImage && (
           <div className="absolute inset-0">
             <img 
               src={post.featuredImage.src} 
               alt={post.featuredImage.alt}
-              className="w-full h-full object-cover opacity-60"
+              className="w-full h-full object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/70 to-background"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background"></div>
           </div>
         )}
         <div className="relative container px-4 h-full flex flex-col justify-end pb-12 max-w-4xl">
