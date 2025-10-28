@@ -651,4 +651,686 @@ I can set up a hybrid backup strategy remotely (R120), ensuring your important f
       url: "/booking",
     },
   },
+  {
+    slug: "windows-11-blue-screen-bsod-errors-fix-guide",
+    title: "Windows 11 Blue Screen (BSOD) Errors: Complete Fix Guide",
+    description: "Step-by-step solutions for common Windows 11 blue screen errors including SYSTEM_SERVICE_EXCEPTION, DRIVER_IRQL_NOT_LESS_OR_EQUAL, and MEMORY_MANAGEMENT.",
+    date: "2025-02-03",
+    tags: ["Windows 11", "BSOD", "Blue Screen", "Error Codes", "Troubleshooting"],
+    content: String.raw`Blue Screen of Death (BSOD) errors in Windows 11 can be frustrating, but most can be fixed without reinstalling the system. This guide covers the most common BSOD errors in Johannesburg and how to fix them.
+
+### Most Common Windows 11 BSOD Errors
+
+#### 1. SYSTEM_SERVICE_EXCEPTION
+**Cause**: Faulty driver or corrupted system files
+**Fixes**:
+- Boot into Safe Mode (hold Shift + Restart > Troubleshoot > Advanced options > Startup Settings)
+- Update or roll back recently installed drivers in Device Manager
+- Run \`sfc /scannow\` in Command Prompt (Admin)
+- Check Windows Update for driver updates
+
+#### 2. DRIVER_IRQL_NOT_LESS_OR_EQUAL
+**Cause**: Driver trying to access invalid memory
+**Fixes**:
+- Uninstall recently installed drivers or software
+- Update network adapter drivers from manufacturer's website
+- Run \`chkdsk /f /r\` to check disk for errors
+- Disable overclocking if applied
+
+#### 3. MEMORY_MANAGEMENT
+**Cause**: RAM issues or memory allocation errors
+**Fixes**:
+- Run Windows Memory Diagnostic (search in Start menu)
+- Reseat RAM sticks (on-site service recommended - R400 callout)
+- Update BIOS/UEFI firmware from manufacturer's website
+- Test with one RAM stick at a time
+
+#### 4. PAGE_FAULT_IN_NONPAGED_AREA
+**Cause**: Faulty RAM, hard drive, or driver issues
+**Fixes**:
+- Run \`chkdsk /f /r\` on system drive
+- Test RAM with Windows Memory Diagnostic
+- Update graphics and storage drivers
+- Check for SSD firmware updates
+
+#### 5. KERNEL_MODE_HEAP_CORRUPTION
+**Cause**: Corrupted Windows files or incompatible software
+**Fixes**:
+- Uninstall recent Windows updates (Settings > Windows Update > Update history)
+- Run \`DISM /Online /Cleanup-Image /RestoreHealth\`
+- Boot into Safe Mode and uninstall problematic software
+- Perform System Restore to before the issue started
+
+### General BSOD Troubleshooting Steps
+
+1. **Note the Error Code**: Write down the STOP code shown on the blue screen
+2. **Check Recent Changes**: Did you install new hardware, drivers, or software?
+3. **Update Everything**: Windows, drivers, BIOS should all be current
+4. **Check Event Viewer**: Look for error patterns in Windows Logs > System
+5. **Test Hardware**: Use Windows Memory Diagnostic and disk checking tools
+
+### Prevention Tips
+- Keep Windows 11 updated with latest patches
+- Only download drivers from official manufacturer websites
+- Avoid overclocking unless you know what you're doing
+- Run regular disk checks and malware scans
+- Keep good backups of important files
+
+### When to Get Professional Help
+If BSOD errors persist after trying these fixes, it could indicate:
+- Failing hardware (RAM, SSD, motherboard)
+- Complex driver conflicts requiring advanced diagnostics
+- Need for clean Windows reinstall with data backup
+
+I offer remote diagnostics (R120) to identify the root cause and walk you through fixes. For hardware issues, on-site visits (R400 callout) include testing and replacement quotes.
+
+**Stop the blue screens!** Book a remote BSOD troubleshooting session today.`,
+    author: {
+      name: "Your Name",
+      bio: "Windows troubleshooting expert serving Lombardy East and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 6,
+    featuredImage: {
+      src: "/images/windows-11-bsod.jpg",
+      alt: "Windows 11 Blue Screen error troubleshooting in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 BSOD", "blue screen errors Johannesburg", "SYSTEM_SERVICE_EXCEPTION fix", "Windows 11 crashes"],
+      ogTitle: "Windows 11 Blue Screen Errors: Complete Fix Guide",
+      ogDescription: "Fix common Windows 11 BSOD errors with step-by-step solutions. Remote help available for R120!",
+      ogImage: "/images/windows-11-bsod-og.jpg",
+    },
+    relatedPosts: ["windows-11-troubleshooting-johannesburg-complete-guide", "windows-11-driver-issues-fix-guide"],
+    cta: {
+      text: "Book a BSOD Fix Session",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "windows-11-update-error-0x80070002-fix",
+    title: "Fix Windows 11 Update Error 0x80070002: Complete Solution Guide",
+    description: "Comprehensive solutions for Windows 11 update error 0x80070002 including Windows Update troubleshooter, cache clearing, and repair install methods.",
+    date: "2025-02-05",
+    tags: ["Windows 11", "Update Errors", "Error 0x80070002", "Troubleshooting", "Windows Update"],
+    content: String.raw`Windows 11 update error 0x80070002 is one of the most common update failures, preventing security patches and feature updates from installing. This guide provides proven fixes for Johannesburg users.
+
+### What is Error 0x80070002?
+This error typically means Windows Update can't find necessary files, often due to:
+- Corrupted Windows Update cache
+- Missing or damaged system files
+- Incorrect date/time settings
+- Antivirus interference
+
+### Quick Fixes (Try These First)
+
+#### 1. Run Windows Update Troubleshooter
+- Go to Settings > System > Troubleshoot > Other troubleshooters
+- Click "Run" next to Windows Update
+- Follow the on-screen instructions and restart
+
+#### 2. Check Date and Time Settings
+- Settings > Time & language > Date & time
+- Enable "Set time automatically" and "Set time zone automatically"
+- Restart Windows Update
+
+#### 3. Clear Windows Update Cache
+Open Command Prompt as Administrator and run:
+\`\`\`
+net stop wuauserv
+net stop cryptSvc
+net stop bits
+net stop msiserver
+ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old
+ren C:\\Windows\\System32\\catroot2 catroot2.old
+net start wuauserv
+net start cryptSvc
+net start bits
+net start msiserver
+\`\`\`
+Then restart your PC and try Windows Update again.
+
+### Advanced Fixes
+
+#### 4. Run System File Checker
+Open Command Prompt as Administrator:
+\`\`\`
+sfc /scannow
+\`\`\`
+Wait for it to complete (can take 20-30 minutes), then restart.
+
+#### 5. Run DISM Tool
+If SFC doesn't fix it, run DISM:
+\`\`\`
+DISM /Online /Cleanup-Image /RestoreHealth
+\`\`\`
+This can take 30+ minutes. After completion, run \`sfc /scannow\` again.
+
+#### 6. Disable Antivirus Temporarily
+Some antivirus software blocks Windows Update files:
+- Temporarily disable your antivirus
+- Try Windows Update
+- Re-enable antivirus after update completes
+
+#### 7. Download Updates Manually
+If automated updates fail:
+- Visit Microsoft Update Catalog
+- Search for your specific update (e.g., "KB5034123")
+- Download and install manually
+- Restart your PC
+
+### In-Place Upgrade Repair
+If nothing works, perform an in-place upgrade:
+1. Download Windows 11 Media Creation Tool from Microsoft
+2. Run it and choose "Upgrade this PC now"
+3. Select "Keep personal files and apps"
+4. This repairs Windows while keeping your data
+
+### Prevention Tips
+- Don't interrupt Windows Update process
+- Keep at least 20GB free space on C: drive
+- Run Windows Update troubleshooter monthly
+- Update drivers from manufacturer websites
+
+### For Lombardy East Users
+Power outages in Johannesburg can corrupt Windows Update files. If you experience frequent update failures, I can:
+- Remotely diagnose and fix update issues (R120)
+- Perform clean Windows reinstalls with data backup
+- Optimize your system for reliable updates
+
+**Get your updates working!** Book a remote Windows Update troubleshooting session today.`,
+    author: {
+      name: "Your Name",
+      bio: "Windows Update specialist serving Lombardy East and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 5,
+    featuredImage: {
+      src: "/images/windows-update-error.jpg",
+      alt: "Fixing Windows 11 update error 0x80070002 in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 error 0x80070002", "Windows Update fix Johannesburg", "update error solution", "Windows 11 update fails"],
+      ogTitle: "Fix Windows 11 Update Error 0x80070002 - Complete Guide",
+      ogDescription: "Solve Windows Update error 0x80070002 with proven methods. Remote help from R120!",
+      ogImage: "/images/windows-update-error-og.jpg",
+    },
+    relatedPosts: ["windows-11-troubleshooting-johannesburg-complete-guide", "windows-11-installation-errors-fix-guide"],
+    cta: {
+      text: "Book an Update Fix Session",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "windows-11-start-menu-not-working-fix",
+    title: "Windows 11 Start Menu Not Working: 7 Proven Fixes",
+    description: "Complete solutions for when Windows 11 Start Menu won't open, is frozen, or crashes including PowerShell commands and system repairs.",
+    date: "2025-02-07",
+    tags: ["Windows 11", "Start Menu", "Troubleshooting", "System Errors", "PowerShell"],
+    content: String.raw`When your Windows 11 Start Menu stops responding or won't open, it can cripple your productivity. This guide provides proven fixes used successfully for Johannesburg clients.
+
+### Common Start Menu Issues
+- Start button doesn't respond to clicks
+- Start Menu opens but is blank/empty
+- Start Menu crashes immediately after opening
+- Search box doesn't work
+- Pinned apps missing or won't launch
+
+### Quick Fixes
+
+#### 1. Restart Windows Explorer
+Simplest fix that works 50% of the time:
+- Press Ctrl + Shift + Esc to open Task Manager
+- Find "Windows Explorer" in the list
+- Right-click > Restart
+- Try the Start Menu again
+
+#### 2. Sign Out and Back In
+- Press Ctrl + Alt + Del
+- Choose "Sign out"
+- Log back in with your credentials
+- This refreshes the user session
+
+#### 3. Update Windows 11
+Outdated builds often have Start Menu bugs:
+- Press Windows key + I for Settings
+- Go to Windows Update
+- Install all available updates
+- Restart your PC
+
+### Advanced PowerShell Fixes
+
+#### 4. Re-register Start Menu Apps
+Open PowerShell as Administrator and run:
+\`\`\`powershell
+Get-AppxPackage -AllUsers | Foreach {Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\\AppXManifest.xml"}
+\`\`\`
+Wait for completion (10-15 minutes), then restart.
+
+#### 5. Rebuild Start Menu Database
+PowerShell as Administrator:
+\`\`\`powershell
+Get-AppxPackage Microsoft.Windows.ShellExperienceHost | Remove-AppxPackage
+Get-AppxPackage Microsoft.Windows.ShellExperienceHost | Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\\AppXManifest.xml"
+\`\`\`
+Restart your PC after completion.
+
+### System-Level Fixes
+
+#### 6. Run System File Checker
+Corrupted system files can break Start Menu:
+\`\`\`
+sfc /scannow
+\`\`\`
+Run in Command Prompt as Administrator, then restart.
+
+#### 7. Create New User Profile
+If nothing works, the user profile may be corrupted:
+- Settings > Accounts > Family & other users
+- Add account > I don't have this person's sign-in information
+- Add a user without a Microsoft account
+- Sign in to new account and test Start Menu
+- Transfer your files from old profile
+
+### Prevention Tips
+- Keep Windows 11 updated
+- Don't use registry cleaners or "PC optimizers"
+- Avoid force-shutting down during updates
+- Run Windows Update troubleshooter monthly
+
+### Specific to Johannesburg Users
+Load shedding and power outages can corrupt Windows files:
+- Use a UPS for your desktop PC
+- Enable hibernation instead of sleep for laptops
+- Keep backups of important files
+
+### When to Get Help
+If Start Menu issues persist:
+- Could indicate deeper system corruption
+- Might need Windows reinstall with data preservation
+- Hardware issues (rare but possible)
+
+I offer remote diagnostics (R120) to quickly identify if it's a simple fix or needs full Windows repair. For complex cases, I can backup your data and perform clean installs.
+
+**Get your Start Menu working!** Book a remote troubleshooting session for R120.`,
+    author: {
+      name: "Your Name",
+      bio: "Windows 11 expert helping Lombardy East users get back to work fast.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 5,
+    featuredImage: {
+      src: "/images/windows-11-start-menu.jpg",
+      alt: "Fixing Windows 11 Start Menu issues in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 Start Menu not working", "Start button won't open", "fix Start Menu Johannesburg", "Windows 11 Start crashed"],
+      ogTitle: "Fix Windows 11 Start Menu Not Working - 7 Proven Solutions",
+      ogDescription: "Start Menu frozen or not opening? Try these fixes or get remote help for R120!",
+      ogImage: "/images/windows-11-start-menu-og.jpg",
+    },
+    relatedPosts: ["windows-11-troubleshooting-johannesburg-complete-guide", "windows-11-performance-slow-pc-fix"],
+    cta: {
+      text: "Book a Start Menu Fix",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "windows-11-no-sound-audio-fix-guide",
+    title: "Windows 11 No Sound: Complete Audio Troubleshooting Guide",
+    description: "Fix Windows 11 audio issues including no sound, crackling audio, missing audio devices, and Realtek driver problems with step-by-step solutions.",
+    date: "2025-02-09",
+    tags: ["Windows 11", "Audio", "Sound Issues", "Drivers", "Troubleshooting"],
+    content: String.raw`Audio problems in Windows 11—from complete silence to crackling sounds—are frustrating but usually fixable. This guide covers solutions that work for Johannesburg users.
+
+### Common Windows 11 Audio Issues
+- No sound from speakers or headphones
+- Audio device missing from Sound settings
+- Crackling, popping, or distorted audio
+- Microphone not working
+- Realtek audio driver conflicts
+
+### Quick Fixes (Try First)
+
+#### 1. Check Volume and Mute Status
+Simple but often overlooked:
+- Click speaker icon in system tray
+- Ensure volume isn't at 0%
+- Check that it's not muted
+- Try different apps (YouTube, Spotify) to isolate issue
+
+#### 2. Run Audio Troubleshooter
+- Settings > System > Troubleshoot > Other troubleshooters
+- Run "Playing Audio" troubleshooter
+- Follow recommended fixes
+- Restart if prompted
+
+#### 3. Set Correct Default Device
+- Right-click speaker icon > Sound settings
+- Under Output, select the correct device
+- Test with "Test" button
+- If device is missing, continue to driver fixes
+
+### Driver-Related Fixes
+
+#### 4. Update Audio Drivers
+**From Device Manager:**
+- Press Windows + X > Device Manager
+- Expand "Sound, video and game controllers"
+- Right-click your audio device > Update driver
+- Choose "Search automatically for drivers"
+- Restart PC
+
+**From Manufacturer:**
+- For Dell, HP, Lenovo: Visit support page and download latest audio drivers
+- For Realtek: Download from motherboard manufacturer's website
+- Install and restart
+
+#### 5. Uninstall and Reinstall Drivers
+If updates don't help:
+- Device Manager > Sound controllers
+- Right-click audio device > Uninstall device
+- Check "Delete the driver software for this device"
+- Restart PC (Windows will reinstall driver)
+
+#### 6. Rollback Driver
+If audio stopped after recent update:
+- Device Manager > Audio device > Properties
+- Driver tab > Roll Back Driver (if available)
+- Restart PC
+
+### Windows 11 Specific Fixes
+
+#### 7. Disable Audio Enhancements
+Enhancements can cause problems:
+- Settings > System > Sound
+- Click your output device
+- Scroll down > Additional device properties
+- Enhancements tab > Check "Disable all enhancements"
+- Apply > OK
+
+#### 8. Restart Windows Audio Services
+- Press Windows + R, type \`services.msc\`
+- Find "Windows Audio" service
+- Right-click > Restart
+- Do the same for "Windows Audio Endpoint Builder"
+- Test audio
+
+#### 9. Change Audio Format
+- Sound settings > Device properties
+- Additional device properties
+- Advanced tab
+- Try different formats (e.g., "16 bit, 44100 Hz")
+- Test after each change
+
+### Advanced Solutions
+
+#### 10. Run SFC and DISM
+Corrupted system files can affect audio:
+\`\`\`
+sfc /scannow
+DISM /Online /Cleanup-Image /RestoreHealth
+\`\`\`
+Restart after completion.
+
+#### 11. Check BIOS/UEFI Settings
+Audio might be disabled in BIOS:
+- Restart and enter BIOS (usually F2, Del, or F10)
+- Look for "Audio" or "HD Audio" settings
+- Ensure "Enabled"
+- Save and exit
+
+### Specific Issues
+
+**Bluetooth Audio Lag or Stuttering:**
+- Remove and re-pair Bluetooth device
+- Update Bluetooth drivers
+- Disable "Allow the computer to turn off this device" in Device Manager
+
+**USB Headset Not Working:**
+- Try different USB port
+- Check if it works on another PC
+- Update USB drivers in Device Manager
+
+### For Lombardy East Users
+Power surges from load shedding can corrupt audio drivers:
+- Use a UPS or surge protector
+- After outages, check Device Manager for errors
+- Keep driver backups for quick recovery
+
+### When to Get Professional Help
+If audio still doesn't work after trying these fixes:
+- Could be hardware failure (sound card, audio jack)
+- Complex driver conflicts requiring advanced diagnostics
+- Windows corruption needing repair install
+
+I offer remote audio troubleshooting (R120) to quickly diagnose and fix driver, software, or configuration issues. For hardware problems, on-site visits (R400 callout) include testing and quotes for repairs.
+
+**Get your sound back!** Book a remote audio fix session today.`,
+    author: {
+      name: "Your Name",
+      bio: "Audio troubleshooting specialist serving Lombardy East and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 6,
+    featuredImage: {
+      src: "/images/windows-11-audio-fix.jpg",
+      alt: "Fixing Windows 11 audio and sound issues in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 no sound", "audio not working Johannesburg", "Realtek driver fix", "Windows 11 sound issues"],
+      ogTitle: "Fix Windows 11 No Sound - Complete Audio Troubleshooting",
+      ogDescription: "No audio in Windows 11? Fix it with these solutions or get remote help for R120!",
+      ogImage: "/images/windows-11-audio-fix-og.jpg",
+    },
+    relatedPosts: ["windows-11-troubleshooting-johannesburg-complete-guide", "windows-11-driver-issues-fix-guide"],
+    cta: {
+      text: "Book an Audio Fix Session",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "windows-11-wifi-network-issues-fix",
+    title: "Windows 11 WiFi Not Working: Fix Network Connection Issues",
+    description: "Complete solutions for Windows 11 WiFi problems including can't connect, limited access, missing adapter, and slow internet speeds.",
+    date: "2025-02-11",
+    tags: ["Windows 11", "WiFi", "Network Issues", "Drivers", "Troubleshooting"],
+    content: String.raw`WiFi problems in Windows 11 can leave you disconnected from work, streaming, and online services. This guide provides tested fixes for network issues common in Johannesburg.
+
+### Common WiFi Issues in Windows 11
+- WiFi adapter missing or not showing
+- Can't connect to WiFi network
+- "Limited" or "No internet" connection
+- WiFi keeps disconnecting
+- Very slow internet speeds
+- Yellow triangle on WiFi icon
+
+### Quick Fixes
+
+#### 1. Basic Troubleshooting
+- Turn WiFi off and on (Settings > Network & internet > WiFi)
+- Restart your router and modem (wait 30 seconds)
+- Restart your PC
+- Forget network and reconnect (Settings > WiFi > Manage known networks)
+
+#### 2. Run Network Troubleshooter
+- Settings > System > Troubleshoot > Other troubleshooters
+- Run "Internet Connections" troubleshooter
+- Also run "Network Adapter" troubleshooter
+- Follow recommended fixes
+
+#### 3. Toggle Airplane Mode
+Sometimes resets network connections:
+- Click WiFi icon in system tray
+- Enable Airplane mode, wait 10 seconds
+- Disable Airplane mode
+- Try reconnecting to WiFi
+
+### Network Commands Fixes
+
+#### 4. Reset Network Stack
+Open Command Prompt as Administrator and run these commands one by one:
+\`\`\`
+netsh winsock reset
+netsh int ip reset
+ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+\`\`\`
+Restart your PC after running all commands.
+
+#### 5. Reset Network Settings (Nuclear Option)
+If above doesn't work:
+- Settings > Network & internet > Advanced network settings
+- Network reset
+- Reset now
+- Your PC will restart and reinstall all network adapters
+
+### Driver-Related Fixes
+
+#### 6. Update WiFi Driver
+- Press Windows + X > Device Manager
+- Expand "Network adapters"
+- Right-click your WiFi adapter > Update driver
+- Search automatically for drivers
+- Restart PC
+
+**Better: Download from Manufacturer**
+- Intel: Intel Driver Support Assistant
+- Realtek: From laptop manufacturer's website
+- Broadcom/Qualcomm: From PC manufacturer
+
+#### 7. Rollback WiFi Driver
+If WiFi stopped after update:
+- Device Manager > Network adapters
+- Right-click WiFi adapter > Properties
+- Driver tab > Roll Back Driver (if available)
+- Restart
+
+#### 8. Uninstall and Reinstall
+- Device Manager > Network adapters
+- Right-click WiFi adapter > Uninstall device
+- Check "Delete the driver software"
+- Restart (Windows reinstalls automatically)
+
+### Windows 11 Specific Fixes
+
+#### 9. Disable Fast Startup
+Can interfere with WiFi:
+- Control Panel > Power Options
+- Choose what the power buttons do
+- Change settings that are currently unavailable
+- Uncheck "Turn on fast startup"
+- Save changes and restart
+
+#### 10. Change Power Management
+- Device Manager > Network adapters
+- Right-click WiFi adapter > Properties
+- Power Management tab
+- Uncheck "Allow the computer to turn off this device to save power"
+- OK and restart
+
+#### 11. Disable IPv6 (Sometimes Helps)
+- Settings > Network & internet > WiFi
+- Click your network
+- IP settings > Edit
+- IPv6: Off
+- Save
+
+### Router-Side Fixes
+
+For Johannesburg users with ISP routers:
+
+#### 12. Router Channel Optimization
+Dense areas like Lombardy East have WiFi congestion:
+- Log into router admin (usually 192.168.1.1)
+- Change WiFi channel (try 1, 6, or 11 for 2.4GHz)
+- For 5GHz, try channels 36, 40, 44, 48
+- Save and reconnect
+
+#### 13. Update Router Firmware
+- Access router admin panel
+- Check for firmware updates
+- Apply update (don't interrupt)
+- Restart router
+
+### DNS Fixes
+
+#### 14. Change DNS Servers
+- Settings > Network & internet > WiFi
+- Click your network
+- DNS server assignment > Edit
+- Manual > IPv4 on
+- Preferred: 8.8.8.8 (Google)
+- Alternate: 8.8.4.4
+- Save
+
+### Advanced Solutions
+
+#### 15. Check for Interference
+Common in Johannesburg homes:
+- Move router away from:
+  - Microwave ovens
+  - Cordless phones
+  - Baby monitors
+  - Other electronic devices
+- Try 5GHz band if supported (less interference)
+
+#### 16. Disable VPN Temporarily
+VPNs can cause connection issues:
+- Disconnect VPN
+- Test WiFi connection
+- If it works, reconfigure VPN settings
+
+### For Lombardy East Specific Issues
+
+**Load Shedding Recovery:**
+- After power returns, wait 2-3 minutes before connecting
+- Router needs time to fully boot
+- Restart PC if WiFi doesn't auto-reconnect
+
+**Fibre vs ADSL:**
+- Fibre users: Check ONT (fiber box) lights are green
+- ADSL users: Ensure DSL light is solid (not blinking)
+
+### When to Call for Help
+If WiFi issues persist:
+- Could be router configuration problems
+- Might need professional channel optimization
+- Hardware failure (WiFi card or router)
+
+I offer remote WiFi troubleshooting (R120) to:
+- Diagnose driver and configuration issues
+- Optimize router settings for your area
+- Test connection quality and speeds
+- Configure dual-band WiFi properly
+
+For on-site issues (R400 callout):
+- Physical router placement optimization
+- Testing with different devices
+- Cable and hardware diagnostics
+
+**Get connected again!** Book a remote WiFi fix session today.`,
+    author: {
+      name: "Your Name",
+      bio: "Network specialist serving Lombardy East, Edenvale, and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 7,
+    featuredImage: {
+      src: "/images/windows-11-wifi-fix.jpg",
+      alt: "Fixing Windows 11 WiFi connection issues in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 WiFi not working", "network issues Johannesburg", "WiFi fix Lombardy East", "Windows 11 can't connect"],
+      ogTitle: "Fix Windows 11 WiFi Not Working - Complete Network Guide",
+      ogDescription: "Can't connect to WiFi in Windows 11? Get connected with these fixes or remote help for R120!",
+      ogImage: "/images/windows-11-wifi-fix-og.jpg",
+    },
+    relatedPosts: ["wifi-printer-setup-lombardy-east-home-office", "home-network-security-checklist-edenvale-bedfordview"],
+    cta: {
+      text: "Book a WiFi Fix Session",
+      url: "/booking",
+    },
+  },
 ];
