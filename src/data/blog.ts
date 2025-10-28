@@ -1333,4 +1333,695 @@ For on-site issues (R400 callout):
       url: "/booking",
     },
   },
+  {
+    slug: "windows-11-installation-errors-fix-guide",
+    title: "Windows 11 Installation Errors: Complete Fix Guide for All Common Issues",
+    description: "Fix Windows 11 installation errors including TPM 2.0 requirements, This PC can't run Windows 11, setup failures, and upgrade issues.",
+    date: "2025-02-13",
+    tags: ["Windows 11", "Installation", "TPM", "Setup Errors", "Troubleshooting"],
+    content: String.raw`Installing Windows 11 can fail with various errors, from TPM requirements to compatibility issues. This guide covers all common installation problems faced by Johannesburg users upgrading from Windows 10.
+
+### System Requirements Errors
+
+#### "This PC Can't Run Windows 11"
+**Common Causes:**
+- CPU not on supported list
+- TPM 2.0 not enabled
+- Secure Boot disabled
+- Insufficient RAM or storage
+
+**Fixes:**
+1. **Check CPU Compatibility:**
+   - Press Windows + R, type \`msinfo32\`
+   - Check your processor model
+   - Visit Microsoft's supported CPU list
+   - If not supported, consider staying on Windows 10 (supported until 2025)
+
+2. **Enable TPM 2.0:**
+   - Restart and enter BIOS (usually Del, F2, or F10)
+   - Look for "TPM", "PTT" (Intel), or "fTPM" (AMD)
+   - Enable it
+   - Save and exit BIOS
+
+3. **Enable Secure Boot:**
+   - In BIOS, find Security settings
+   - Enable Secure Boot
+   - May need to switch from Legacy/CSM to UEFI mode
+   - **Warning**: Converting MBR to GPT required for Legacy systems
+
+4. **Bypass Requirements (Advanced Users Only):**
+   - Create Windows 11 USB installer
+   - Copy files to USB
+   - Add registry bypass during setup (not recommended for daily use)
+
+### Installation Failure Errors
+
+#### Error 0xC1900101
+**Cause**: Driver or hardware incompatibility
+**Fixes:**
+- Disconnect all USB devices except keyboard/mouse
+- Remove external drives
+- Uninstall antivirus temporarily
+- Update chipset and storage drivers before installing
+- Disable BitLocker encryption
+
+#### Error 0x80070070
+**Cause**: Insufficient disk space
+**Fixes:**
+- Need at least 20GB free on C: drive
+- Run Disk Cleanup (search in Start menu)
+- Delete temporary files
+- Uninstall unused programs
+- Consider SSD upgrade if disk is nearly full
+
+#### Error 0x800F0922
+**Cause**: Can't connect to Windows Update servers
+**Fixes:**
+- Check internet connection
+- Disconnect VPN
+- Run Windows Update Troubleshooter
+- Download offline installer from Microsoft
+- Clear Windows Update cache
+
+### Setup Stuck or Frozen
+
+#### "Getting Ready" or "Preparing" Loop
+**Fixes:**
+- Wait at least 2 hours (seriously, it can take that long)
+- If stuck over 4 hours, force restart
+- Boot into Safe Mode
+- Run \`DISM /Online /Cleanup-Image /RestoreHealth\`
+- Try installation again
+
+#### Black Screen During Setup
+**Cause**: Graphics driver issues
+**Fixes:**
+- Wait 20-30 minutes
+- Try pressing Windows + P (multiple times)
+- Boot into Safe Mode
+- Uninstall graphics driver
+- Use basic display driver for installation
+
+### Upgrade from Windows 10 Errors
+
+#### "Windows 11 Installation Has Failed"
+**Fixes:**
+1. **Run PC Health Check app** from Microsoft
+2. **Free up disk space** (need 20GB minimum)
+3. **Update Windows 10** fully first
+4. **Uninstall problematic software:**
+   - Old antivirus
+   - System optimizers
+   - VPN software (temporarily)
+5. **Check Event Viewer** for specific error codes
+6. **Try Media Creation Tool** instead of Windows Update
+
+#### "Setup Couldn't Start Properly"
+**Fixes:**
+- Run Setup as Administrator
+- Disable antivirus and firewall temporarily
+- Use Windows 11 ISO from Microsoft
+- Perform clean boot before installation
+- Check for BIOS updates from PC manufacturer
+
+### In-Place Upgrade Issues
+
+#### Keeps Reverting to Windows 10
+**Cause**: Failed compatibility checks
+**Fixes:**
+- Update all drivers before upgrading
+- Run Windows Update Troubleshooter
+- Use \`/DynamicUpdate Disable\` flag when running setup
+- Temporarily disable Windows Defender
+- Free up more disk space (aim for 30GB+)
+
+### Clean Install Problems
+
+#### Can't Boot from USB
+**Fixes:**
+- Verify USB is bootable (use Rufus or Media Creation Tool)
+- Change BIOS boot order (USB first)
+- Disable Secure Boot temporarily for install
+- Try different USB port
+- Re-create installation media
+
+#### "Windows Could Not Complete Installation"
+**Cause**: Corrupted install files or hardware issues
+**Fixes:**
+- Re-download Windows 11 ISO
+- Use different USB drive
+- Test RAM with Windows Memory Diagnostic
+- Disconnect all non-essential hardware
+- Try minimal install (motherboard, CPU, RAM, one drive only)
+
+### Post-Installation Errors
+
+#### "Your Device is Missing Important Updates"
+**Fixes:**
+- Run Windows Update several times
+- Install chipset drivers from manufacturer
+- Update graphics drivers
+- Install .NET Framework if missing
+- Check manufacturer's support site for Windows 11 drivers
+
+### Prevention & Best Practices
+
+**Before Installing Windows 11:**
+1. **Backup Everything** - Use 3-2-1 strategy
+2. **Check Compatibility** - Run PC Health Check app
+3. **Update BIOS** - From manufacturer's website
+4. **Update Windows 10** - Install all updates first
+5. **Free Disk Space** - Minimum 30GB recommended
+6. **Update Drivers** - Especially chipset, storage, graphics
+7. **List Software** - Note what's installed for reinstall
+8. **Disable Security Software** - Temporarily for installation
+
+**For Lombardy East Users:**
+Load shedding during Windows installation can corrupt the process:
+- Use a UPS (highly recommended)
+- Check load shedding schedule before starting
+- Have at least 4 hours of no load shedding expected
+- Keep Windows 10 backup drive ready
+
+### When to Get Professional Help
+Installation issues can be complex:
+- BIOS updates need careful handling
+- Converting MBR to GPT risks data loss
+- Driver conflicts require advanced diagnostics
+
+I offer:
+- **Remote consultation (R120)**: Check compatibility, guide through upgrades
+- **On-site installation (R400 callout + R200 labor)**: Full backup, installation, driver setup, data migration
+- **Clean install with SSD upgrade**: Fresh Windows 11 on new SSD with data transfer
+
+**Ready to upgrade to Windows 11 safely?** Book a consultation or installation service today.`,
+    author: {
+      name: "Your Name",
+      bio: "Windows installation expert serving Lombardy East and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 8,
+    featuredImage: {
+      src: "/images/windows-11-installation.jpg",
+      alt: "Windows 11 installation and upgrade in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 installation error", "TPM 2.0 Johannesburg", "Windows 11 upgrade issues", "This PC can't run Windows 11"],
+      ogTitle: "Fix Windows 11 Installation Errors - Complete Guide",
+      ogDescription: "Solve Windows 11 installation and upgrade problems. Professional help available in Johannesburg!",
+      ogImage: "/images/windows-11-installation-og.jpg",
+    },
+    relatedPosts: ["windows-11-troubleshooting-johannesburg-complete-guide", "laptop-ssd-upgrade-johannesburg-speed-boost"],
+    cta: {
+      text: "Book an Installation Service",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "windows-11-performance-slow-pc-fix",
+    title: "Windows 11 Running Slow: Complete Performance Optimization Guide",
+    description: "Speed up slow Windows 11 PC with proven optimization techniques including startup management, disk cleanup, RAM upgrades, and system tweaks.",
+    date: "2025-02-15",
+    tags: ["Windows 11", "Performance", "Slow PC", "Optimization", "Speed"],
+    content: String.raw`A slow Windows 11 PC can kill productivity. Whether it's slow boot times, laggy applications, or constant freezing, this guide provides tested solutions for Johannesburg users.
+
+### Common Causes of Slow Performance
+- Too many startup programs
+- Insufficient RAM (less than 8GB)
+- Old mechanical hard drive (HDD)
+- Disk space critically low
+- Malware or bloatware
+- Outdated drivers
+- Windows Search indexing
+- Background Windows processes
+
+### Quick Wins (Do These First)
+
+#### 1. Disable Startup Programs
+**Biggest performance boost for most PCs:**
+- Press Ctrl + Shift + Esc (Task Manager)
+- Click "Startup apps" tab
+- Disable programs you don't need immediately:
+  - Cloud sync apps (OneDrive, Dropbox)
+  - Chat apps (Teams, Skype)
+  - Updaters (Adobe, Java)
+  - Unused antivirus
+- Keep: Windows Security, Display drivers
+- Restart to see improvements
+
+#### 2. Run Storage Sense
+**Free up disk space:**
+- Settings > System > Storage
+- Enable Storage Sense
+- Click "Temporary files"
+- Check all boxes
+- Remove files
+- Restart
+
+#### 3. Check for Malware
+- Open Windows Security
+- Virus & threat protection
+- Quick scan
+- If found, run Full scan
+- Remove detections
+
+### Disk & Storage Optimization
+
+#### 4. Check Disk Health
+**Identify dying drives:**
+- PowerShell as Administrator:
+\`\`\`powershell
+Get-PhysicalDisk | Format-Table FriendlyName, OperationalStatus, HealthStatus
+\`\`\`
+- If "Warning" or "Unhealthy": **Backup immediately**
+- Consider SSD replacement
+
+#### 5. Defragment Drive (HDD Only)
+**Don't do this on SSDs!**
+- Search "Defragment" in Start menu
+- Select C: drive
+- Analyze
+- Optimize if over 10% fragmented
+- **For SSDs**: They're optimized automatically, don't manually defrag
+
+#### 6. Upgrade to SSD
+**Single biggest performance boost:**
+- Mechanical HDD → SSD = 5-10x faster boots
+- 500GB SSD: ~R800-R1,200
+- 1TB SSD: ~R1,300-R2,000
+- Installation + Windows setup: R400 callout + R150-300 labor
+- Typical improvement: Boot time 2-3 minutes → 15-30 seconds
+
+### RAM Optimization
+
+#### 7. Check RAM Usage
+- Task Manager > Performance > Memory
+- If consistently over 80%: Need more RAM
+- Minimum for Windows 11: 8GB
+- Recommended: 16GB for multitasking
+
+#### 8. Upgrade RAM
+**If compatible:**
+- Check current RAM: \`wmic memorychip get capacity\`
+- Most laptops have 1-2 slots
+- 8GB module: ~R400-600
+- 16GB module: ~R800-1,200
+- Installation: R400 callout (on-site service)
+
+#### 9. Reduce Memory Usage
+**If can't upgrade:**
+- Close browser tabs (each uses RAM)
+- Use lightweight browsers (Edge over Chrome)
+- Disable browser extensions
+- Close unnecessary programs
+- Use ReadyBoost with USB drive (temporary fix)
+
+### Windows 11 Specific Optimizations
+
+#### 10. Disable Visual Effects
+**Significant boost on older PCs:**
+- Settings > System > About
+- Advanced system settings
+- Performance > Settings button
+- Choose "Adjust for best performance"
+- Or custom: Disable animations, thumbnails
+
+#### 11. Disable Windows Search Indexing (Advanced)
+**If you don't use Windows search much:**
+- Services.msc
+- Find "Windows Search"
+- Right-click > Properties
+- Startup type: Disabled
+- Stop the service
+- **Note**: Start menu search will be slower
+
+#### 12. Optimize Power Settings
+- Settings > System > Power & battery
+- Power mode: Best performance (plugged in)
+- Screen and sleep: Adjust for preference
+- For desktops: Set to never sleep
+
+### Background Process Optimization
+
+#### 13. Disable Unnecessary Services
+**For advanced users:**
+- Services.msc
+- Disable if you don't use:
+  - Bluetooth Support Service (if no Bluetooth)
+  - Print Spooler (if no printer)
+  - Xbox services (if not gaming)
+- **Warning**: Only disable what you understand
+
+#### 14. Turn Off Background Apps
+- Settings > Apps > Installed apps
+- Click three dots > Advanced options
+- Background apps permissions: Never
+
+#### 15. Adjust Windows Update
+- Settings > Windows Update > Advanced options
+- Pause updates for 1-2 weeks when busy
+- Schedule Active hours to avoid interruptions
+- Download but don't auto-install (Pro edition)
+
+### Driver Updates
+
+#### 16. Update All Drivers
+Outdated drivers cause slowdowns:
+- Graphics: NVIDIA, AMD, Intel
+- Chipset: From motherboard manufacturer
+- Network: WiFi and Ethernet adapters
+- Storage: NVMe and SATA controllers
+
+### Advanced Optimizations
+
+#### 17. Disable Transparency Effects
+- Settings > Personalization > Colors
+- Transparency effects: Off
+- Instant speed boost on older hardware
+
+#### 18. Use High Performance Power Plan
+**For desktops:**
+- Control Panel > Power Options
+- Show additional plans
+- High performance
+- **Note**: Uses more electricity
+
+#### 19. Clean Boot Troubleshooting
+Identify problematic software:
+- System Configuration (msconfig)
+- Services tab > Hide Microsoft services
+- Disable all
+- Startup > Open Task Manager
+- Disable all startup items
+- Restart
+- If faster, re-enable one by one to find culprit
+
+### When Hardware Upgrade is Needed
+
+**Signs you need upgrades:**
+- 100% disk usage constantly (need SSD)
+- 90%+ RAM usage always (need more RAM)
+- 100% CPU when doing basic tasks (need new PC)
+- Boot time over 3 minutes (need SSD)
+
+**Typical Johannesburg Upgrade Costs:**
+- SSD upgrade (500GB): R900 + R400 callout + R200 install = ~R1,500
+- RAM upgrade (8→16GB): R600 + R400 callout = ~R1,000
+- SSD + RAM combo: ~R2,300 total
+- Full PC replacement: R8,000+ for Windows 11 compatible
+
+### For Lombardy East Users
+Load shedding affects PC performance:
+- Use UPS to prevent sudden shutdowns
+- Enable hibernation instead of sleep
+- Regular disk checks after outages
+- Keep good backups (power issues corrupt data)
+
+### When to Get Professional Help
+If after trying these optimizations your PC is still slow:
+- Could be malware that's hidden
+- Hardware failure (dying HDD, bad RAM)
+- Need professional diagnosis
+
+I offer:
+- **Remote optimization (R120)**: Guide through all software fixes, check for issues
+- **On-site SSD/RAM upgrade (R400 callout)**: Professional installation with data migration
+- **Complete system audit**: Identify bottlenecks, recommend cost-effective upgrades
+
+**Speed up your PC today!** Book a remote optimization session or hardware upgrade.`,
+    author: {
+      name: "Your Name",
+      bio: "Performance optimization expert serving Lombardy East and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 8,
+    featuredImage: {
+      src: "/images/windows-11-performance.jpg",
+      alt: "Optimizing slow Windows 11 PC in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 slow", "speed up PC Johannesburg", "Windows 11 performance", "optimize Windows 11"],
+      ogTitle: "Fix Slow Windows 11 PC - Complete Performance Guide",
+      ogDescription: "Speed up your slow Windows 11 PC with proven optimization techniques. Remote help from R120!",
+      ogImage: "/images/windows-11-performance-og.jpg",
+    },
+    relatedPosts: ["laptop-ssd-upgrade-johannesburg-speed-boost", "windows-11-troubleshooting-johannesburg-complete-guide"],
+    cta: {
+      text: "Book a Speed Optimization",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "windows-11-error-0x80070057-fix",
+    title: "Fix Windows 11 Error 0x80070057: Parameter is Incorrect Solutions",
+    description: "Complete solutions for Windows 11 error 0x80070057 occurring during updates, backups, disk formatting, and system operations.",
+    date: "2025-02-17",
+    tags: ["Windows 11", "Error 0x80070057", "System Errors", "Troubleshooting", "Updates"],
+    content: String.raw`Error 0x80070057 "The parameter is incorrect" is a frustrating Windows 11 error that can occur during updates, backups, or disk operations. This guide provides comprehensive fixes for Johannesburg users.
+
+### Where Error 0x80070057 Appears
+- Windows Update failures
+- Backup and restore operations
+- Disk formatting/partitioning
+- Installing applications
+- Copying large files
+- System file operations
+- OneDrive sync issues
+
+### Understanding the Error
+This error means Windows encountered invalid parameters during an operation, typically caused by:
+- Corrupted system files
+- Registry issues
+- Disk errors
+- Incorrect Windows Update settings
+- File system problems
+
+### Fixes for Windows Update Error 0x80070057
+
+#### 1. Clear Windows Update Cache
+Command Prompt as Administrator:
+\`\`\`
+net stop wuauserv
+net stop cryptSvc
+net stop bits
+net stop msiserver
+ren C:\\Windows\\SoftwareDistribution SoftwareDistribution.old
+ren C:\\Windows\\System32\\catroot2 catroot2.old
+net start wuauserv
+net start cryptSvc
+net start bits
+net start msiserver
+\`\`\`
+Restart and try Windows Update again.
+
+#### 2. Run Windows Update Troubleshooter
+- Settings > System > Troubleshoot > Other troubleshooters
+- Run "Windows Update" troubleshooter
+- Follow recommendations
+- Restart PC
+
+#### 3. Modify Decimal Symbol Settings
+Strange but effective fix:
+- Control Panel > Region
+- Additional settings
+- Decimal symbol: Change to "." (period)
+- Apply > OK
+- Try update again
+- Change back to "," if preferred
+
+#### 4. Registry Fix for Windows Update
+**Warning: Backup registry first**
+- Press Windows + R, type \`regedit\`
+- Navigate to: \`HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\WindowsUpdate\\UX\\Settings\`
+- Right-click Settings > Permissions
+- Click Advanced
+- Change owner to your username
+- Check "Replace owner on subcontainers"
+- Apply > OK
+- Try Windows Update
+
+### Fixes for Backup Error 0x80070057
+
+#### 5. Enable Volume Shadow Copy
+- Press Windows + R, type \`services.msc\`
+- Find "Volume Shadow Copy"
+- Right-click > Properties
+- Startup type: Automatic
+- Start the service
+- Apply > OK
+
+#### 6. Backup Registry Fix
+**Create backup before:**
+- Regedit
+- Navigate to: \`HKEY_LOCAL_MACHINE\\SOFTWARE\\Policies\\Microsoft\\System\`
+- Delete "CopyFileBufferedSynchronousIo" if exists
+- Restart and try backup again
+
+#### 7. Use Different Backup Method
+If Windows Backup fails:
+- Try File History instead
+- Use third-party backup (Macrium Reflect Free)
+- Manual file copy to external drive
+- Cloud backup (OneDrive, Google Drive)
+
+### Fixes for Disk/Formatting Errors
+
+#### 8. Run CHKDSK
+Check for disk errors:
+- Command Prompt as Administrator:
+\`\`\`
+chkdsk C: /f /r
+\`\`\`
+- Schedule for next restart
+- Restart PC (takes 30-60 minutes)
+
+#### 9. Use Diskpart to Clean Drive
+**Warning: Erases all data on drive!**
+For external drives or secondary drives only:
+\`\`\`
+diskpart
+list disk
+select disk X (replace X with disk number)
+clean
+create partition primary
+format fs=ntfs quick
+assign
+exit
+\`\`\`
+
+#### 10. Convert Drive to NTFS
+If drive is FAT32:
+- Backup data first
+- Command Prompt as Administrator:
+\`\`\`
+convert D: /fs:ntfs (replace D: with your drive letter)
+\`\`\`
+
+### System File Repair Fixes
+
+#### 11. Run SFC Scan
+Repair corrupted system files:
+\`\`\`
+sfc /scannow
+\`\`\`
+Wait for completion (20-30 minutes), then restart.
+
+#### 12. Run DISM Tool
+If SFC finds issues:
+\`\`\`
+DISM /Online /Cleanup-Image /ScanHealth
+DISM /Online /Cleanup-Image /RestoreHealth
+\`\`\`
+After completion, run \`sfc /scannow\` again.
+
+#### 13. Check Event Viewer
+Identify specific cause:
+- Press Windows + X > Event Viewer
+- Windows Logs > System
+- Look for errors around time of 0x80070057
+- Note the source and event ID
+- Search online for specific fix
+
+### Application Installation Fixes
+
+#### 14. Run as Administrator
+- Right-click installer
+- Run as administrator
+- Try installation again
+
+#### 15. Disable Antivirus Temporarily
+- Turn off Windows Defender temporarily
+- Disable third-party antivirus
+- Try operation again
+- Re-enable after completion
+
+#### 16. Check Disk Space
+- Need at least 20GB free on C:
+- Run Disk Cleanup
+- Delete temporary files
+- Uninstall unused programs
+
+### OneDrive/Cloud Sync Fixes
+
+#### 17. Reset OneDrive
+- System tray > OneDrive icon
+- Settings > Account > Unlink this PC
+- Restart PC
+- Sign in to OneDrive again
+- Sync folders
+
+#### 18. Pause and Resume Sync
+- OneDrive settings
+- Pause syncing for 2 hours
+- Restart PC
+- Resume syncing
+
+### Advanced Registry Fixes
+
+#### 19. Windows Update Registry Modification
+**Backup registry first!**
+- Regedit
+- Navigate to: \`HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\WindowsUpdate\`
+- Create DWORD: "AllowOSUpgrade"
+- Set value: 1
+- Restart
+
+#### 20. Reset Windows Update Components
+PowerShell as Administrator:
+\`\`\`powershell
+Stop-Service wuauserv, cryptSvc, bits, msiserver
+Remove-Item C:\\Windows\\SoftwareDistribution -Recurse -Force
+Start-Service wuauserv, cryptSvc, bits, msiserver
+\`\`\`
+
+### Prevention Tips
+- Keep Windows 11 updated
+- Run disk cleanup monthly
+- Scan for malware regularly
+- Don't interrupt Windows operations
+- Maintain at least 20% free disk space
+- Use proper shutdown (not force power off)
+
+### For Johannesburg Users
+Load shedding can cause file system corruption:
+- Use UPS for important operations
+- Don't run Windows Update during load shedding
+- Keep external drive backups
+- Check disk health after power outages
+
+### When to Get Professional Help
+If error 0x80070057 persists after trying these fixes:
+- Could indicate hardware failure (HDD/SSD)
+- Complex registry corruption
+- Need for Windows repair install or fresh install
+
+I offer:
+- **Remote troubleshooting (R120)**: Diagnose exact cause, apply appropriate fixes
+- **System repair (Remote R200)**: Full system file repair, registry cleanup
+- **On-site service (R400 callout)**: Hardware diagnostics, data recovery if needed
+- **Clean Windows install**: With data backup and migration
+
+**Fix error 0x80070057 today!** Book a remote troubleshooting session now.`,
+    author: {
+      name: "Your Name",
+      bio: "Windows error specialist serving Lombardy East and Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 7,
+    featuredImage: {
+      src: "/images/windows-error-0x80070057.jpg",
+      alt: "Fixing Windows 11 error 0x80070057 in Johannesburg",
+    },
+    meta: {
+      keywords: ["Windows 11 error 0x80070057", "parameter is incorrect fix", "Windows Update error Johannesburg", "backup error 0x80070057"],
+      ogTitle: "Fix Windows 11 Error 0x80070057 - Complete Solutions",
+      ogDescription: "Solve error 0x80070057 'parameter is incorrect' with proven fixes. Remote help from R120!",
+      ogImage: "/images/windows-error-0x80070057-og.jpg",
+    },
+    relatedPosts: ["windows-11-update-error-0x80070002-fix", "windows-11-troubleshooting-johannesburg-complete-guide"],
+    cta: {
+      text: "Book an Error Fix Session",
+      url: "/booking",
+    },
+  },
 ];
