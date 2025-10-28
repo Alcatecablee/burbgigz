@@ -732,7 +732,7 @@ I offer remote diagnostics (R120) to identify the root cause and walk you throug
     },
     readingTime: 6,
     featuredImage: {
-      src: "/images/windows-11-bsod.jpg",
+      src: "/images/blog/windows_11_blue_scre_2e4b21ce.jpg",
       alt: "Windows 11 Blue Screen error troubleshooting in Johannesburg",
     },
     meta: {
@@ -846,7 +846,7 @@ Power outages in Johannesburg can corrupt Windows Update files. If you experienc
     },
     readingTime: 5,
     featuredImage: {
-      src: "/images/windows-update-error.jpg",
+      src: "/images/blog/person_fixing_comput_abc384eb.jpg",
       alt: "Fixing Windows 11 update error 0x80070002 in Johannesburg",
     },
     meta: {
@@ -960,7 +960,7 @@ I offer remote diagnostics (R120) to quickly identify if it's a simple fix or ne
     },
     readingTime: 5,
     featuredImage: {
-      src: "/images/windows-11-start-menu.jpg",
+      src: "/images/blog/windows_11_start_men_a241a2de.jpg",
       alt: "Fixing Windows 11 Start Menu issues in Johannesburg",
     },
     meta: {
@@ -1114,7 +1114,7 @@ I offer remote audio troubleshooting (R120) to quickly diagnose and fix driver, 
     },
     readingTime: 6,
     featuredImage: {
-      src: "/images/windows-11-audio-fix.jpg",
+      src: "/images/blog/headphones_audio_sou_5495b18f.jpg",
       alt: "Fixing Windows 11 audio and sound issues in Johannesburg",
     },
     meta: {
@@ -1318,7 +1318,7 @@ For on-site issues (R400 callout):
     },
     readingTime: 7,
     featuredImage: {
-      src: "/images/windows-11-wifi-fix.jpg",
+      src: "/images/blog/wifi_wireless_networ_95f0318e.jpg",
       alt: "Fixing Windows 11 WiFi connection issues in Johannesburg",
     },
     meta: {
@@ -1522,7 +1522,7 @@ I offer:
     },
     readingTime: 8,
     featuredImage: {
-      src: "/images/windows-11-installation.jpg",
+      src: "/images/blog/installing_windows_1_ca8087ad.jpg",
       alt: "Windows 11 installation and upgrade in Johannesburg",
     },
     meta: {
@@ -1756,7 +1756,7 @@ I offer:
     },
     readingTime: 8,
     featuredImage: {
-      src: "/images/windows-11-performance.jpg",
+      src: "/images/blog/slow_computer_perfor_535a3f06.jpg",
       alt: "Optimizing slow Windows 11 PC in Johannesburg",
     },
     meta: {
@@ -2009,7 +2009,7 @@ I offer:
     },
     readingTime: 7,
     featuredImage: {
-      src: "/images/windows-error-0x80070057.jpg",
+      src: "/images/blog/computer_error_messa_b414c426.jpg",
       alt: "Fixing Windows 11 error 0x80070057 in Johannesburg",
     },
     meta: {
