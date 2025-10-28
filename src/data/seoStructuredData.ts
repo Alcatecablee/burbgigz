@@ -117,17 +117,12 @@ export const localBusinessSchema = {
     ]
   },
   "openingHours": [
-    "Mo-Fr 08:00-18:00",
-    "Sa 09:00-15:00"
+    "Mo 00:00-24:00",
+    "Tu 00:00-24:00",
+    "We 00:00-24:00",
+    "Th 00:00-24:00",
+    "Fr 08:00-15:00"
   ],
-  "specialOpeningHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": "Sunday",
-    "opens": "10:00",
-    "closes": "16:00",
-    "validFrom": "2025-01-01",
-    "validThrough": "2025-12-31"
-  },
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.8",
@@ -268,42 +263,34 @@ export const googleMyBusinessData = {
     open_now: true,
     periods: [
       {
-        close: { day: 1, time: "1800" },
-        open: { day: 1, time: "0800" }
+        close: { day: 2, time: "0000" },
+        open: { day: 1, time: "0000" }
       },
       {
-        close: { day: 2, time: "1800" },
-        open: { day: 2, time: "0800" }
+        close: { day: 3, time: "0000" },
+        open: { day: 2, time: "0000" }
       },
       {
-        close: { day: 3, time: "1800" },
-        open: { day: 3, time: "0800" }
+        close: { day: 4, time: "0000" },
+        open: { day: 3, time: "0000" }
       },
       {
-        close: { day: 4, time: "1800" },
-        open: { day: 4, time: "0800" }
+        close: { day: 5, time: "0000" },
+        open: { day: 4, time: "0000" }
       },
       {
-        close: { day: 5, time: "1800" },
+        close: { day: 5, time: "1500" },
         open: { day: 5, time: "0800" }
-      },
-      {
-        close: { day: 6, time: "1500" },
-        open: { day: 6, time: "0900" }
-      },
-      {
-        close: { day: 0, time: "1600" },
-        open: { day: 0, time: "1000" }
       }
     ],
     weekday_text: [
-      "Monday: 8:00 AM – 6:00 PM",
-      "Tuesday: 8:00 AM – 6:00 PM", 
-      "Wednesday: 8:00 AM – 6:00 PM",
-      "Thursday: 8:00 AM – 6:00 PM",
-      "Friday: 8:00 AM – 6:00 PM",
-      "Saturday: 9:00 AM – 3:00 PM",
-      "Sunday: 10:00 AM – 4:00 PM"
+      "Monday: Open 24 hours",
+      "Tuesday: Open 24 hours", 
+      "Wednesday: Open 24 hours",
+      "Thursday: Open 24 hours",
+      "Friday: 8:00 AM – 3:00 PM",
+      "Saturday: Closed",
+      "Sunday: Closed"
     ]
   }
 };

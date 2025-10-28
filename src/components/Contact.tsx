@@ -125,22 +125,38 @@ const Contact = () => {
             <CardContent className="space-y-3">
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span className="font-medium">8:00 AM - 6:00 PM</span>
+                  <span>Monday</span>
+                  <span className="font-medium">Open 24 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Tuesday</span>
+                  <span className="font-medium">Open 24 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Wednesday</span>
+                  <span className="font-medium">Open 24 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Thursday</span>
+                  <span className="font-medium">Open 24 hours</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Friday</span>
+                  <span className="font-medium">8:00 AM - 3:00 PM</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Saturday</span>
-                  <span className="font-medium">9:00 AM - 4:00 PM</span>
+                  <span className="font-medium text-muted-foreground">Closed</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Sunday</span>
-                  <span className="font-medium">Emergency Only</span>
+                  <span className="font-medium text-muted-foreground">Closed</span>
                 </div>
               </div>
               <div className="border-t pt-2">
                 <div className="flex items-center space-x-2 text-success">
                   <Smartphone className="h-4 w-4" />
-                  <span className="text-sm">24/7 WhatsApp Response</span>
+                  <span className="text-sm">24/7 WhatsApp Available</span>
                 </div>
               </div>
             </CardContent>
