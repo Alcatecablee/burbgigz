@@ -30,6 +30,395 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "tech-support-scams-2025-how-to-protect-yourself",
+    title: "Tech Support Scams in 2025: How to Protect Yourself from Fake IT Support",
+    description: "Learn to identify and avoid the latest tech support scams targeting South Africans. From fake Microsoft calls to remote access trojans, here's how scammers operate and how to stay safe.",
+    date: "2025-10-28",
+    tags: ["Scam Awareness", "Cybersecurity", "Tech Support", "Safety", "Johannesburg"],
+    content: `Tech support scams cost South Africans millions each year. Scammers impersonate legitimate companies like Microsoft, your internet provider, or even local IT businesses to steal money and personal information. This guide shows you exactly how these scams work and how to protect yourself.
+
+### How Tech Support Scams Work in 2025
+
+**The Cold Call Scam:**
+You receive an unsolicited phone call from someone claiming to be from "Microsoft Technical Support" or your "internet service provider." They tell you:
+- Your computer has a virus
+- Your Windows license expired
+- Your IP address was hacked
+- Your internet is being used for illegal activity
+
+They sound professional, often with call center background noise to seem legitimate.
+
+**The Pop-Up Scam:**
+While browsing, a full-screen alert appears:
+- "VIRUS DETECTED! YOUR COMPUTER IS INFECTED!"
+- "Windows Defender Alert: Call This Number Immediately"
+- A loud alarm sound plays
+- Your browser freezes or goes fullscreen
+- A fake "Microsoft" or "Norton" number appears
+
+These are fake websites designed to scare you.
+
+**The Email/SMS Scam:**
+You receive messages about:
+- Suspicious login attempts
+- Expired subscriptions
+- Unpaid bills
+- Security breaches
+The message urges you to "call this number" or "click here to verify."
+
+### Latest Scam Tactics in South Africa (2025)
+
+**1. AI Voice Cloning:**
+Scammers now use AI to clone voices, making calls sound like they're from someone you know or a legitimate company.
+
+**2. Remote Access Trojans:**
+After gaining your trust, they ask you to install "diagnostic software" like AnyDesk, TeamViewer, or fake versions of legitimate tools. This gives them full control of your computer.
+
+**3. Fake Payment Portals:**
+They direct you to convincing fake websites that steal your banking details when you try to "pay for support."
+
+**4. WhatsApp Business Scams:**
+Scammers create fake business profiles impersonating real IT companies, complete with stolen logos and details.
+
+**5. Google Search Ad Scams:**
+Scammers buy Google ads that appear above legitimate tech support results, leading to fake support numbers.
+
+### Red Flags - How to Spot a Scam
+
+❌ **Unsolicited Contact:** Real tech companies NEVER call, email, or text you first about computer problems.
+
+❌ **Pressure and Fear:** Scammers create urgency: "Act now or lose your data!" Legitimate support never pressures you.
+
+❌ **Requests for Remote Access:** They ask you to install remote access software immediately. Real techs explain the process first.
+
+❌ **Payment Demands:** They want payment via gift cards, Bitcoin, or wire transfer. These are untraceable.
+
+❌ **Generic Greetings:** "Dear Customer" instead of your name.
+
+❌ **Poor Grammar:** Emails with spelling errors and awkward phrasing.
+
+❌ **Suspicious URLs:** hovering over links reveals strange domains (microsoftsupport-helpdesk.xyz instead of microsoft.com)
+
+### How Legitimate IT Support Works
+
+✅ **You Contact Us First:** You call, WhatsApp, or email us about a problem.
+
+✅ **Transparent Pricing:** Costs are clear upfront (R120 remote, R400+ on-site).
+
+✅ **Consent-Based Access:** We explain what we'll do before connecting remotely. You can end the session anytime.
+
+✅ **Secure Tools:** We use encrypted, reputable software like RustDesk, never sketchy downloads.
+
+✅ **Verifiable Identity:** Local business with physical location, reviews, and credentials.
+
+✅ **Normal Payment Methods:** EFT, cash, or card - never gift cards or cryptocurrency.
+
+### What to Do If You're Targeted
+
+**If You Get a Suspicious Call:**
+1. Hang up immediately - don't engage
+2. Don't call back the number they provide
+3. If claiming to be from a real company, find the official number yourself and call to verify
+4. Report to the South African Banking Risk Information Centre (SABRIC)
+
+**If You See a Pop-Up Alert:**
+1. Don't call the number shown
+2. Close your browser (Alt+F4 or Ctrl+Alt+Del > End Task)
+3. Run a real antivirus scan (Windows Defender is built-in and free)
+4. Clear your browser cache
+
+**If You Already Gave Access:**
+1. Disconnect from the internet immediately
+2. Run a full antivirus scan
+3. Change all passwords from a different device
+4. Call your bank if you provided financial info
+5. Contact a legitimate IT professional for a security audit
+
+### Protecting Yourself Going Forward
+
+**1. Enable Two-Factor Authentication:**
+Add extra security to email, banking, and social media accounts.
+
+**2. Use a Password Manager:**
+Stop reusing passwords. Tools like Bitwarden (free) generate unique passwords.
+
+**3. Keep Software Updated:**
+Enable automatic updates for Windows, browsers, and antivirus software.
+
+**4. Use Ad Blockers:**
+Extensions like uBlock Origin prevent malicious ads and pop-ups.
+
+**5. Educate Family:**
+Elderly parents and non-tech-savvy family are prime targets. Share this guide with them.
+
+**6. Verify Before Trusting:**
+If someone contacts you claiming to be from a company:
+- Hang up and call the official number yourself
+- Check the email sender's actual address (not just the display name)
+- Look up the business on Google Maps and check reviews
+
+### How BurbGigz is Different
+
+We understand the damage scams have done to trust in IT support. That's why we're completely transparent:
+
+✅ **No Cold Calls:** We never initiate contact. You reach out to us.
+
+✅ **Published Pricing:** R120 remote support, R400+ on-site - no hidden fees.
+
+✅ **Verified Credentials:** CompTIA A+ and Network+ certified, verifiable experience.
+
+✅ **Local & Accountable:** Based in Lombardy East with real reviews and references.
+
+✅ **Consent-Based Service:** You see everything we do and can stop anytime.
+
+### Reporting Scams in South Africa
+
+**SABRIC:** South African Banking Risk Information Centre - www.sabric.co.za
+
+**Consumer Goods Council:** Report fraud - www.cgcsa.co.za
+
+**CyberCrime Unit:** cybercrime@saps.gov.za
+
+**Your Bank:** Call immediately if you provided banking details
+
+**Need legitimate IT help?** Contact us via WhatsApp, phone, or email. We'll never pressure you, and you'll always know exactly what you're paying for.`,
+    author: {
+      name: "Clive",
+      bio: "CompTIA certified IT specialist helping South Africans stay safe from tech scams.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 8,
+    featuredImage: {
+      src: "/images/scam-awareness.jpg",
+      alt: "Person protecting computer from tech support scams",
+    },
+    meta: {
+      keywords: ["tech support scams", "avoid IT scams", "fake Microsoft calls", "scam awareness South Africa", "cybersecurity Johannesburg"],
+      ogTitle: "Protect Yourself from Tech Support Scams in 2025",
+      ogDescription: "Learn to identify fake tech support scams. From cold calls to pop-ups, here's how scammers operate and how to stay safe.",
+      ogImage: "/images/scam-awareness-og.jpg",
+    },
+    relatedPosts: ["microsoft-impersonation-scams-south-africa", "remote-access-scam-warnings"],
+    cta: {
+      text: "Get Legitimate IT Help",
+      url: "/booking",
+    },
+  },
+  {
+    slug: "microsoft-impersonation-scams-south-africa",
+    title: "Microsoft Impersonation Scams: Why Scammers Target South Africans",
+    description: "Understanding how scammers pose as Microsoft support and why South African users are prime targets. Real examples and how to verify legitimate Microsoft communication.",
+    date: "2025-10-25",
+    tags: ["Scam Awareness", "Microsoft", "Cybersecurity", "South Africa"],
+    content: `Microsoft impersonation is the most common tech support scam in South Africa. Scammers know that millions of South Africans use Windows, making "Microsoft Support" a trusted name they can exploit. Here's exactly how these scams work and how to protect yourself.
+
+### Why South Africans are Prime Targets
+
+**1. High Windows Usage:**
+Over 90% of South African computer users run Windows, making Microsoft a universally recognized name.
+
+**2. Limited Tech Literacy:**
+Many users aren't sure how Microsoft actually communicates with customers.
+
+**3. Loadshedding Concerns:**
+Scammers exploit fears that power outages damaged your system.
+
+**4. Currency Opportunity:**
+South African Rand payments can be hard to track and recover.
+
+### The Classic Microsoft Scam Call
+
+**How It Starts:**
+Your phone rings. The caller ID might show "Microsoft" or a local Johannesburg number. The person sounds professional:
+
+**"Good morning, this is John from Microsoft Windows Support Center. We've detected critical errors being sent from your computer to our servers. Your Windows license is about to expire, and your data is at risk."**
+
+**The Hook:**
+They create urgency and fear:
+- "Your computer is sending virus alerts"
+- "Hackers are using your IP address"
+- "Your warranty expired"
+- "We need to fix this now or you'll lose everything"
+
+**The Trap:**
+They guide you through steps that "prove" the problem:
+1. Open Event Viewer (every Windows PC shows "errors" here - it's normal!)
+2. Run a command that displays your IP (not actually hacked)
+3. Show normal system processes as "suspicious"
+
+**The Steal:**
+Once you're convinced, they ask you to:
+1. Install remote access software ("so we can help")
+2. Pay for "Microsoft Premium Support" (R2,000-R10,000)
+3. Provide credit card details for "security verification"
+
+### Real Microsoft vs. Fake Scammers
+
+**REAL Microsoft:**
+❌ Never calls you unsolicited
+❌ Never asks for payment via gift cards/Bitcoin
+❌ Never requests remote access via third-party tools
+❌ Never sends full-screen browser pop-ups
+✅ Only contacts you if YOU submitted a support request first
+✅ Uses official channels: support.microsoft.com
+✅ Never asks for your password
+
+**FAKE Scammers:**
+✅ Call you out of the blue
+✅ Demand immediate action
+✅ Ask you to install AnyDesk, TeamViewer, or "Microsoft Security Tool"
+✅ Want payment via untraceable methods
+✅ Use high-pressure sales tactics
+✅ Claim to see your computer problems remotely
+
+### The Pop-Up Variation
+
+**What You See:**
+A full-screen alert that looks like Windows:
+
+**"CRITICAL ALERT FROM MICROSOFT
+Error Code: 0x80070057
+Your computer is infected with Zeus Virus
+Call Microsoft Support: 087-XXX-XXXX
+DO NOT CLOSE THIS WINDOW"**
+
+**With:**
+- Official-looking Microsoft logo
+- Windows Defender branding
+- Scary countdown timers
+- Loud alarm sounds
+- Browser lock (can't close the window easily)
+
+**The Truth:**
+This is a fake website, NOT a real Windows alert. Real Windows security alerts:
+- Never have phone numbers
+- Don't play sounds
+- Don't take over your browser
+- Appear in the Windows Security app, not your browser
+
+### How to Close Fake Pop-Ups
+
+**Method 1: Task Manager**
+1. Press Ctrl + Alt + Delete
+2. Select Task Manager
+3. Find your browser (Chrome, Edge, Firefox)
+4. Click "End Task"
+
+**Method 2: Force Close**
+- Alt + F4 repeatedly
+- Or restart your computer
+
+**After Closing:**
+1. Clear your browser cache and cookies
+2. Run Windows Defender scan
+3. Don't visit that website again
+
+### The Remote Access Danger
+
+If scammers get you to install remote access software, they can:
+- See everything on your screen
+- Access your files and passwords
+- Install malware or ransomware
+- Steal banking details
+- Lock you out of your own computer
+- Access your saved passwords in browsers
+- Download sensitive documents
+- Use your computer for illegal activity
+
+**If This Happened:**
+1. Disconnect internet immediately (unplug ethernet/turn off Wi-Fi)
+2. Uninstall the remote access software
+3. Run a full antivirus scan
+4. Change ALL passwords from a different device
+5. Check bank accounts for unauthorized transactions
+6. Contact your bank if you shared financial information
+
+### Verifying Real Microsoft Communication
+
+**Official Support Channels:**
+- **Website:** support.microsoft.com only
+- **Phone:** You call them after looking up the number on microsoft.com
+- **Email:** Only replies to tickets YOU created
+- **Account:** check via account.microsoft.com
+
+**Microsoft Will Never:**
+- Call you about viruses or errors
+- Ask for payment for Windows updates (they're free)
+- Request admin passwords
+- Demand immediate payment
+- Use third-party remote access tools
+
+### South African-Specific Tactics
+
+Scammers targeting SA users often:
+- Use local accents or South African names
+- Reference Telkom, MTN, or Vodacom
+- Mention SARS (tax authority) to add legitimacy
+- Exploit loadshedding: "power surges corrupted your system"
+- Offer "special deals" in Rand
+- Use Johannesburg or Cape Town phone numbers (spoofed)
+
+### Protecting Yourself
+
+**1. Never Answer Unknown Calls About Tech Issues:**
+If it's real, they'll leave a voicemail and you can verify.
+
+**2. Don't Trust Caller ID:**
+Scammers can fake any number.
+
+**3. Install an Ad Blocker:**
+Prevents fake pop-up ads. Use uBlock Origin (free).
+
+**4. Keep Windows Updated:**
+Real security patches from Microsoft are free and automatic.
+
+**5. Use Windows Defender:**
+It's built-in, free, and effective. You don't need to buy "premium antivirus."
+
+**6. Educate Family:**
+Elderly parents are prime targets. Share this article.
+
+### Real Help vs. Scam Help
+
+**When You Need Real IT Support:**
+1. YOU initiate contact
+2. Research local businesses with reviews
+3. Get clear pricing upfront
+4. Use secure payment methods
+5. Verify credentials (CompTIA, physical location)
+
+**BurbGigz Approach:**
+- You contact us first (via WhatsApp/phone/website)
+- Clear pricing: R120 remote, R400+ on-site
+- CompTIA certified technician
+- Based in Lombardy East with verified reviews
+- Secure tools (RustDesk with your permission)
+- You see everything we do
+
+**Need real Windows support?** Contact us directly - we'll never pressure you or demand immediate payment.`,
+    author: {
+      name: "Clive",
+      bio: "CompTIA certified tech exposing scams and providing honest IT support in Johannesburg.",
+      avatar: "/images/author-avatar.jpg",
+    },
+    readingTime: 7,
+    featuredImage: {
+      src: "/images/microsoft-scam.jpg",
+      alt: "Fake Microsoft scam call alert",
+    },
+    meta: {
+      keywords: ["Microsoft scam", "fake Windows support", "Microsoft impersonation South Africa", "tech scam Johannesburg"],
+      ogTitle: "Microsoft Scams: How Fake Support Targets South Africans",
+      ogDescription: "Learn how scammers impersonate Microsoft and target SA users. Real examples and protection tips.",
+      ogImage: "/images/microsoft-scam-og.jpg",
+    },
+    relatedPosts: ["tech-support-scams-2025-how-to-protect-yourself", "remote-access-scam-warnings"],
+    cta: {
+      text: "Get Verified IT Support",
+      url: "/booking",
+    },
+  },
+  {
     slug: "remote-support-lombardy-east-complete-guide",
     title: "Remote Support in Lombardy East: The Complete Guide for Home and Small Business",
     description:

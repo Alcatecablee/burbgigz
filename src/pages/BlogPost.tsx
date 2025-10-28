@@ -184,7 +184,7 @@ const BlogPost = () => {
         
         // Fallback paragraph for remaining lines
         elements.push(
-          <p key={k++} className="whitespace-pre-line">
+          <p key={k++} className="whitespace-pre-line text-foreground leading-relaxed my-4">
             {processInlineMarkdown(remainingLines.join("\n"))}
           </p>,
         );
@@ -196,7 +196,7 @@ const BlogPost = () => {
 
       if (allBullets) {
         elements.push(
-          <ul key={k++} className="list-disc pl-7 space-y-2 my-6 marker:text-primary">
+          <ul key={k++} className="list-disc pl-7 space-y-2 my-6 marker:text-primary text-foreground">
             {lines.map((l, i) => (
               <li key={i} className="pl-2 leading-relaxed">{processInlineMarkdown(stripBullet(l))}</li>
             ))}
@@ -207,7 +207,7 @@ const BlogPost = () => {
 
       if (allNumbers) {
         elements.push(
-          <ol key={k++} className="list-decimal pl-7 space-y-2 my-6 marker:text-primary marker:font-semibold">
+          <ol key={k++} className="list-decimal pl-7 space-y-2 my-6 marker:text-primary marker:font-semibold text-foreground">
             {lines.map((l, i) => (
               <li key={i} className="pl-2 leading-relaxed">{processInlineMarkdown(stripNumber(l))}</li>
             ))}
@@ -245,7 +245,7 @@ const BlogPost = () => {
         }
 
         elements.push(
-          <p key={k++} className="whitespace-pre-line">
+          <p key={k++} className="whitespace-pre-line text-foreground leading-relaxed my-4">
             {processInlineMarkdown(head)}
           </p>,
         );
@@ -280,7 +280,7 @@ const BlogPost = () => {
 
       // Fallback paragraph with preserved line breaks
       elements.push(
-        <p key={k++} className="whitespace-pre-line leading-relaxed text-lg my-5">
+        <p key={k++} className="whitespace-pre-line leading-relaxed text-lg my-5 text-foreground">
           {processInlineMarkdown(lines.join("\n"))}
         </p>,
       );
