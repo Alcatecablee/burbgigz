@@ -161,6 +161,7 @@ export const localBusinessSchema = {
     }
   ],
   "sameAs": [
+    "https://justc.live",
     "https://www.facebook.com/burbgigz",
     "https://www.linkedin.com/company/burbgigz"
   ]
