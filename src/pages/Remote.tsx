@@ -44,15 +44,23 @@ const Remote = () => {
     },
     {
       question: "Is remote support secure?",
-      answer: "Yes, we use encrypted connections and require your explicit permission. You remain in full control of your computer throughout the session."
+      answer: "Yes, we use encrypted connections and require your explicit permission. You remain in full control of your computer throughout the session. You share a one-time ID and password and can disconnect at any time."
     },
     {
       question: "What can be fixed remotely?",
-      answer: "Most software issues including slow performance, virus removal, Windows errors, Wi-Fi setup, software installation, and system optimization."
+      answer: "Most software issues including slow performance, virus removal, Windows errors, Wi-Fi setup, software installation, system optimization, malware cleanup, and printer configuration."
     },
     {
       question: "How much does remote support cost?",
       answer: "Remote support sessions start from R120, which is much more affordable than on-site callouts starting at R400."
+    },
+    {
+      question: "What areas do you cover for on-site support?",
+      answer: "Lombardy East with callouts to Edenvale, Bedfordview, Greenstone, Kempton Park and nearby suburbs including Alexandra, Sandton, and Johannesburg CBD."
+    },
+    {
+      question: "Do you provide remote IT support throughout Johannesburg?",
+      answer: "Yes! Our remote IT support service is available to anyone in Johannesburg and surrounding areas. Since it's remote, your physical location doesn't matter - as long as you have an internet connection, we can help."
     }
   ]);
 
@@ -437,55 +445,6 @@ const Remote = () => {
           { "@type": "HowToStep", name: "Open and read your ID", text: "Open RustDesk and note the ID and one-time password displayed on your screen." },
           { "@type": "HowToStep", name: "Share via WhatsApp", text: "Share your RustDesk ID and password via WhatsApp to get instant remote IT support in Johannesburg." }
         ]
-      }) }} />
-
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          { "@type": "Question", name: "Is Remote Support safe?", acceptedAnswer: { "@type": "Answer", text: "Yes. You share a one‑time ID and password and can disconnect at any time." }},
-          { "@type": "Question", name: "What areas do you cover on‑site?", acceptedAnswer: { "@type": "Answer", text: "Lombardy East with callouts to Edenvale, Bedfordview, Greenstone, Kempton Park and nearby suburbs." }},
-          { "@type": "Question", name: "What can be fixed remotely?", acceptedAnswer: { "@type": "Answer", text: "Windows problems, setup, updates, malware cleanup, Wi‑Fi/printer configuration, performance tuning." }}
-        ]
-      }) }} />
-
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: window.location.origin + "/" },
-          { "@type": "ListItem", position: 2, name: "Remote Support", item: window.location.origin + "/remote" }
-        ]
-      }) }} />
-
-      <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        serviceType: "Remote IT Support",
-        provider: {
-          "@type": "LocalBusiness",
-          name: "BurbGigz IT Services",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Lombardy East, Johannesburg",
-            addressRegion: "Gauteng",
-            addressCountry: "ZA"
-          },
-          telephone: "+27670494876"
-        },
-        areaServed: [
-          "Lombardy East",
-          "Edenvale",
-          "Bedfordview",
-          "Greenstone",
-          "Sandton"
-        ],
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "ZAR",
-          price: "120",
-          description: "Remote IT support session using RustDesk, starting at R120."
-        }
       }) }} />
 
       <Footer />
