@@ -89,7 +89,7 @@ const BlogPost = () => {
       <Card key={key} className="my-6 overflow-hidden bg-muted/50 border-primary/10">
         <div className="flex items-center gap-2 px-4 py-2 bg-muted/80 border-b border-primary/10">
           <Terminal className="h-4 w-4 text-primary" />
-          <span className="text-xs font-medium text-muted-foreground uppercase">{language}</span>
+          <span className="text-xs font-medium text-gray-400 dark:text-gray-400 uppercase">{language}</span>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -100,7 +100,7 @@ const BlogPost = () => {
           </Button>
         </div>
         <pre className="p-4 overflow-x-auto">
-          <code className="text-sm font-mono text-foreground leading-relaxed">{code}</code>
+          <code className="text-sm font-mono text-gray-100 dark:text-gray-100 leading-relaxed">{code}</code>
         </pre>
       </Card>
     );
@@ -376,24 +376,24 @@ const BlogPost = () => {
               </Badge>
             ))}
           </div>
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-white dark:text-white mb-4">
             {post.title}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl">{post.description}</p>
+          <p className="text-lg text-gray-300 dark:text-gray-300 max-w-3xl">{post.description}</p>
         </div>
       </div>
 
       <div className="container px-4 py-10 max-w-4xl">
-        <nav className="text-sm text-muted-foreground mb-8">
+        <nav className="text-sm text-gray-400 dark:text-gray-400 mb-8">
           <Link to="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">/</span>
           <Link to="/blog" className="hover:text-primary">Blog</Link>
           <span className="mx-2">/</span>
-          <span className="text-foreground">{post.title}</span>
+          <span className="text-gray-200 dark:text-gray-200">{post.title}</span>
         </nav>
 
         {/* Article Meta */}
-        <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-10 pb-6 border-b border-border">
+        <div className="flex flex-wrap items-center gap-6 text-sm text-gray-300 dark:text-gray-300 mb-10 pb-6 border-b border-border">
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-5 w-5 text-primary" />
             <span className="font-medium">{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
