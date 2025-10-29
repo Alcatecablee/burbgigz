@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
+import { ThemeProvider } from "./components/theme-provider";
 import App from "./App.tsx";
 import "./index.css";
 import { initWebVitals, initPerformanceObserver } from "./utils/webVitals";
@@ -12,6 +13,8 @@ if (typeof window !== 'undefined') {
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>
-    <App />
+    <ThemeProvider defaultTheme="system" storageKey="burbgigz-theme">
+      <App />
+    </ThemeProvider>
   </HelmetProvider>
 );
