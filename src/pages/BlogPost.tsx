@@ -5,7 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { posts } from "@/data/blog";
-import { Calendar, Clock, Share2, Copy, ChevronLeft, ChevronRight, Tag as TagIcon, AlertCircle, Lightbulb, Terminal } from "lucide-react";
+import { Calendar, Clock, Share2, Copy, ChevronLeft, ChevronRight, Tag as TagIcon, AlertCircle, Lightbulb, Terminal, User } from "lucide-react";
+import SEOHead from "@/components/SEOHead";
 
 const wordsPerMinute = 200;
 const readingTime = (text: string) => Math.max(1, Math.ceil(text.split(/\s+/).length / wordsPerMinute));
@@ -42,6 +43,35 @@ const BlogPost = () => {
 
   const rtime = readingTime(post.content);
   const related = posts.filter((p) => p.slug !== post.slug && p.tags.some((t) => post.tags.includes(t))).slice(0, 3);
+  
+  // Generate Article JSON-LD structured data for SEO
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: post.featuredImage?.src ? `https://burbgigz.com${post.featuredImage.src}` : undefined,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      "@type": "Person",
+      name: post.author.name,
+      description: post.author.bio
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "BurbGigz IT Services",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://burbgigz.com/logo.png"
+      }
+    },
+    keywords: post.meta.keywords.join(", "),
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://burbgigz.com/blog/${post.slug}`
+    }
+  };
   const processInlineMarkdown = (text: string): React.ReactNode[] => {
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
@@ -86,10 +116,10 @@ const BlogPost = () => {
     const code = lines.slice(1, -1).join('\n');
     
     return (
-      <Card key={key} className="my-6 overflow-hidden bg-muted/50 border-primary/10">
-        <div className="flex items-center gap-2 px-4 py-2 bg-muted/80 border-b border-primary/10">
+      <Card key={key} className="my-6 overflow-hidden bg-muted border-border">
+        <div className="flex items-center gap-2 px-4 py-2 bg-muted border-b border-border">
           <Terminal className="h-4 w-4 text-primary" />
-          <span className="text-xs font-medium text-gray-400 dark:text-gray-400 uppercase">{language}</span>
+          <span className="text-xs font-medium text-muted-foreground uppercase">{language}</span>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -99,8 +129,8 @@ const BlogPost = () => {
             <Copy className="h-3 w-3 mr-1" /> Copy
           </Button>
         </div>
-        <pre className="p-4 overflow-x-auto">
-          <code className="text-sm font-mono text-gray-100 dark:text-gray-100 leading-relaxed">{code}</code>
+        <pre className="p-4 overflow-x-auto bg-muted">
+          <code className="text-sm font-mono text-foreground leading-relaxed">{code}</code>
         </pre>
       </Card>
     );
@@ -114,11 +144,11 @@ const BlogPost = () => {
     const content = match[2];
     
     if (level === 1) {
-      return <h1 key={key} className="text-3xl font-bold mt-12 mb-6 pb-3 border-b-2 border-primary/20 text-white dark:text-white">{processInlineMarkdown(content)}</h1>;
+      return <h1 key={key} className="text-3xl font-bold mt-12 mb-6 pb-3 border-b-2 border-primary/20 text-foreground">{processInlineMarkdown(content)}</h1>;
     } else if (level === 2) {
-      return <h2 key={key} className="text-2xl font-semibold mt-10 mb-5 text-white dark:text-white flex items-center gap-3"><span className="inline-block w-1 h-6 bg-gradient-primary rounded"></span>{processInlineMarkdown(content)}</h2>;
+      return <h2 key={key} className="text-2xl font-semibold mt-10 mb-5 text-foreground flex items-center gap-3"><span className="inline-block w-1 h-6 bg-gradient-primary rounded"></span>{processInlineMarkdown(content)}</h2>;
     } else if (level === 3) {
-      return <h3 key={key} className="text-xl font-semibold mt-8 mb-4 text-white dark:text-white">{processInlineMarkdown(content)}</h3>;
+      return <h3 key={key} className="text-xl font-semibold mt-8 mb-4 text-foreground">{processInlineMarkdown(content)}</h3>;
     } else if (level === 4) {
       return <h4 key={key} className="text-lg font-medium mt-6 mb-3 text-primary">{processInlineMarkdown(content)}</h4>;
     }
@@ -138,8 +168,8 @@ const BlogPost = () => {
     const lines = text.trim().split('\n');
     let type = 'info';
     let icon = <Lightbulb className="h-5 w-5" />;
-    let borderColor = 'border-blue-500/30';
-    let bgColor = 'bg-blue-500/5';
+    let borderColor = 'border-blue-500/50';
+    let bgColor = 'bg-blue-500/10';
     let iconColor = 'text-blue-500';
     let content = '';
     
@@ -155,19 +185,19 @@ const BlogPost = () => {
     // Set colors and icons based on type
     if (type === 'warning' || type.includes('⚠') || type.includes('Warning')) {
       icon = <AlertCircle className="h-5 w-5" />;
-      borderColor = 'border-yellow-500/30';
-      bgColor = 'bg-yellow-500/5';
-      iconColor = 'text-yellow-500';
+      borderColor = 'border-yellow-500/50';
+      bgColor = 'bg-yellow-500/10';
+      iconColor = 'text-yellow-600 dark:text-yellow-500';
     } else if (type === 'danger' || type.includes('❌') || type.includes('Danger')) {
       icon = <AlertCircle className="h-5 w-5" />;
-      borderColor = 'border-red-500/30';
-      bgColor = 'bg-red-500/5';
-      iconColor = 'text-red-500';
+      borderColor = 'border-red-500/50';
+      bgColor = 'bg-red-500/10';
+      iconColor = 'text-red-600 dark:text-red-500';
     } else if (type === 'tip' || type.includes('💡') || type.includes('Tip')) {
       icon = <Lightbulb className="h-5 w-5" />;
-      borderColor = 'border-green-500/30';
-      bgColor = 'bg-green-500/5';
-      iconColor = 'text-green-500';
+      borderColor = 'border-green-500/50';
+      bgColor = 'bg-green-500/10';
+      iconColor = 'text-green-600 dark:text-green-500';
     }
     
     return (
@@ -176,7 +206,7 @@ const BlogPost = () => {
           <div className={`flex-shrink-0 mt-0.5 ${iconColor}`}>
             {icon}
           </div>
-          <div className="flex-1 text-gray-100 dark:text-gray-100 leading-relaxed">
+          <div className="flex-1 text-foreground leading-relaxed">
             {processInlineMarkdown(content)}
           </div>
         </div>
@@ -227,7 +257,7 @@ const BlogPost = () => {
         
         if (remainingAllBullets) {
           elements.push(
-            <ul key={k++} className="list-disc pl-6 text-gray-200 dark:text-gray-200">
+            <ul key={k++} className="list-disc pl-6 text-foreground">
               {remainingLines.map((l, i) => (
                 <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
               ))}
@@ -238,7 +268,7 @@ const BlogPost = () => {
         
         if (remainingAllNumbers) {
           elements.push(
-            <ol key={k++} className="list-decimal pl-6 text-gray-200 dark:text-gray-200">
+            <ol key={k++} className="list-decimal pl-6 text-foreground">
               {remainingLines.map((l, i) => (
                 <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
               ))}
@@ -249,7 +279,7 @@ const BlogPost = () => {
         
         // Fallback paragraph for remaining lines
         elements.push(
-          <p key={k++} className="whitespace-pre-line text-gray-200 dark:text-gray-200 leading-relaxed my-4">
+          <p key={k++} className="whitespace-pre-line text-foreground leading-relaxed my-4">
             {processInlineMarkdown(remainingLines.join("\n"))}
           </p>,
         );
@@ -261,7 +291,7 @@ const BlogPost = () => {
 
       if (allBullets) {
         elements.push(
-          <ul key={k++} className="list-disc pl-7 space-y-2 my-6 marker:text-primary text-gray-200 dark:text-gray-200">
+          <ul key={k++} className="list-disc pl-7 space-y-2 my-6 marker:text-primary text-foreground">
             {lines.map((l, i) => (
               <li key={i} className="pl-2 leading-relaxed">{processInlineMarkdown(stripBullet(l))}</li>
             ))}
@@ -272,7 +302,7 @@ const BlogPost = () => {
 
       if (allNumbers) {
         elements.push(
-          <ol key={k++} className="list-decimal pl-7 space-y-2 my-6 marker:text-primary marker:font-semibold text-gray-200 dark:text-gray-200">
+          <ol key={k++} className="list-decimal pl-7 space-y-2 my-6 marker:text-primary marker:font-semibold text-foreground">
             {lines.map((l, i) => (
               <li key={i} className="pl-2 leading-relaxed">{processInlineMarkdown(stripNumber(l))}</li>
             ))}
@@ -292,7 +322,7 @@ const BlogPost = () => {
           // If bullets/numbers before, render as list
           if (before.every(isBullet)) {
             elements.push(
-              <ul key={k++} className="list-disc pl-6 text-gray-200 dark:text-gray-200">
+              <ul key={k++} className="list-disc pl-6 text-foreground">
                 {before.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
                 ))}
@@ -300,7 +330,7 @@ const BlogPost = () => {
             );
           } else if (before.every(isNumbered)) {
             elements.push(
-              <ol key={k++} className="list-decimal pl-6 text-gray-200 dark:text-gray-200">
+              <ol key={k++} className="list-decimal pl-6 text-foreground">
                 {before.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
                 ))}
@@ -310,7 +340,7 @@ const BlogPost = () => {
         }
 
         elements.push(
-          <p key={k++} className="whitespace-pre-line text-gray-200 dark:text-gray-200 leading-relaxed my-4">
+          <p key={k++} className="whitespace-pre-line text-foreground leading-relaxed my-4">
             {processInlineMarkdown(head)}
           </p>,
         );
@@ -318,7 +348,7 @@ const BlogPost = () => {
         if (after.length) {
           if (after.every(isBullet)) {
             elements.push(
-              <ul key={k++} className="list-disc pl-6 text-gray-200 dark:text-gray-200">
+              <ul key={k++} className="list-disc pl-6 text-foreground">
                 {after.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
                 ))}
@@ -326,7 +356,7 @@ const BlogPost = () => {
             );
           } else if (after.every(isNumbered)) {
             elements.push(
-              <ol key={k++} className="list-decimal pl-6 text-gray-200 dark:text-gray-200">
+              <ol key={k++} className="list-decimal pl-6 text-foreground">
                 {after.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
                 ))}
@@ -334,7 +364,7 @@ const BlogPost = () => {
             );
           } else {
             elements.push(
-              <p key={k++} className="whitespace-pre-line text-gray-200 dark:text-gray-200">
+              <p key={k++} className="whitespace-pre-line text-foreground">
                 {processInlineMarkdown(after.join("\n"))}
               </p>,
             );
@@ -345,7 +375,7 @@ const BlogPost = () => {
 
       // Fallback paragraph with preserved line breaks
       elements.push(
-        <p key={k++} className="whitespace-pre-line leading-relaxed text-lg my-5 text-gray-200 dark:text-gray-200">
+        <p key={k++} className="whitespace-pre-line leading-relaxed text-lg my-5 text-foreground">
           {processInlineMarkdown(lines.join("\n"))}
         </p>,
       );
@@ -356,6 +386,17 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead
+        title={post.meta.ogTitle || `${post.title} | BurbGigz IT Services`}
+        description={post.meta.ogDescription || post.description}
+        keywords={post.meta.keywords.join(", ")}
+        ogTitle={post.meta.ogTitle}
+        ogDescription={post.meta.ogDescription}
+        ogImage={post.meta.ogImage}
+        ogUrl={`https://burbgigz.com/blog/${post.slug}`}
+        canonicalUrl={`https://burbgigz.com/blog/${post.slug}`}
+        structuredData={articleSchema}
+      />
       {/* Hero Section with Featured Image */}
       <div className="relative w-full h-[450px] bg-gradient-to-br from-primary/10 via-background to-primary/5 overflow-hidden">
         {post.featuredImage && (
@@ -376,24 +417,24 @@ const BlogPost = () => {
               </Badge>
             ))}
           </div>
-          <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-white dark:text-white mb-4">
+          <h1 className="text-4xl lg:text-5xl font-bold leading-tight text-foreground mb-4">
             {post.title}
           </h1>
-          <p className="text-lg text-gray-300 dark:text-gray-300 max-w-3xl">{post.description}</p>
+          <p className="text-lg text-muted-foreground max-w-3xl">{post.description}</p>
         </div>
       </div>
 
       <div className="container px-4 py-10 max-w-4xl">
-        <nav className="text-sm text-gray-400 dark:text-gray-400 mb-8">
+        <nav className="text-sm text-muted-foreground mb-8">
           <Link to="/" className="hover:text-primary">Home</Link>
           <span className="mx-2">/</span>
           <Link to="/blog" className="hover:text-primary">Blog</Link>
           <span className="mx-2">/</span>
-          <span className="text-gray-200 dark:text-gray-200">{post.title}</span>
+          <span className="text-foreground">{post.title}</span>
         </nav>
 
         {/* Article Meta */}
-        <div className="flex flex-wrap items-center gap-6 text-sm text-gray-300 dark:text-gray-300 mb-10 pb-6 border-b border-border">
+        <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground mb-6 pb-6 border-b border-border">
           <span className="inline-flex items-center gap-2">
             <Calendar className="h-5 w-5 text-primary" />
             <span className="font-medium">{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
@@ -413,6 +454,21 @@ const BlogPost = () => {
             </Button>
           </div>
         </div>
+
+        {/* Author Info */}
+        <Card className="mb-10 bg-muted/50 border-border">
+          <div className="p-6 flex items-start gap-4">
+            <div className="flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gradient-primary flex items-center justify-center">
+                <User className="h-8 w-8 text-primary-foreground" />
+              </div>
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-lg text-foreground mb-1">{post.author.name}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{post.author.bio}</p>
+            </div>
+          </div>
+        </Card>
 
         <article className="prose prose-lg max-w-none">
           {renderContent(post.content)}
