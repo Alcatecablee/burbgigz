@@ -470,7 +470,7 @@ const BlogPost = () => {
           </div>
         </Card>
 
-        <article className="prose prose-lg max-w-none">
+        <article className="prose prose-lg prose-slate dark:prose-invert max-w-none prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-a:text-primary">
           {renderContent(post.content)}
         </article>
 
