@@ -114,15 +114,74 @@ const BlogPost = () => {
     const content = match[2];
     
     if (level === 1) {
-      return <h1 key={key} className="text-3xl font-bold mt-12 mb-6 pb-3 border-b-2 border-primary/20 text-foreground">{processInlineMarkdown(content)}</h1>;
+      return <h1 key={key} className="text-3xl font-bold mt-12 mb-6 pb-3 border-b-2 border-primary/20 text-white dark:text-white">{processInlineMarkdown(content)}</h1>;
     } else if (level === 2) {
-      return <h2 key={key} className="text-2xl font-semibold mt-10 mb-5 text-foreground flex items-center gap-3"><span className="inline-block w-1 h-6 bg-gradient-primary rounded"></span>{processInlineMarkdown(content)}</h2>;
+      return <h2 key={key} className="text-2xl font-semibold mt-10 mb-5 text-white dark:text-white flex items-center gap-3"><span className="inline-block w-1 h-6 bg-gradient-primary rounded"></span>{processInlineMarkdown(content)}</h2>;
     } else if (level === 3) {
-      return <h3 key={key} className="text-xl font-semibold mt-8 mb-4 text-foreground">{processInlineMarkdown(content)}</h3>;
+      return <h3 key={key} className="text-xl font-semibold mt-8 mb-4 text-white dark:text-white">{processInlineMarkdown(content)}</h3>;
     } else if (level === 4) {
       return <h4 key={key} className="text-lg font-medium mt-6 mb-3 text-primary">{processInlineMarkdown(content)}</h4>;
     }
     return null;
+  };
+
+  const isCalloutBox = (text: string) => {
+    const trimmed = text.trim();
+    return (trimmed.startsWith('> **') || 
+            trimmed.startsWith(':::tip') || 
+            trimmed.startsWith(':::warning') || 
+            trimmed.startsWith(':::info') ||
+            trimmed.startsWith(':::danger'));
+  };
+
+  const renderCalloutBox = (text: string, key: number) => {
+    const lines = text.trim().split('\n');
+    let type = 'info';
+    let icon = <Lightbulb className="h-5 w-5" />;
+    let borderColor = 'border-blue-500/30';
+    let bgColor = 'bg-blue-500/5';
+    let iconColor = 'text-blue-500';
+    let content = '';
+    
+    // Check for custom callout format (:::type)
+    if (lines[0].startsWith(':::')) {
+      type = lines[0].replace(':::', '').trim();
+      content = lines.slice(1, -1).join('\n');
+    } else {
+      // Legacy format (> **)
+      content = lines.map(l => l.replace(/^>\s*/, '')).join('\n');
+    }
+    
+    // Set colors and icons based on type
+    if (type === 'warning' || type.includes('⚠') || type.includes('Warning')) {
+      icon = <AlertCircle className="h-5 w-5" />;
+      borderColor = 'border-yellow-500/30';
+      bgColor = 'bg-yellow-500/5';
+      iconColor = 'text-yellow-500';
+    } else if (type === 'danger' || type.includes('❌') || type.includes('Danger')) {
+      icon = <AlertCircle className="h-5 w-5" />;
+      borderColor = 'border-red-500/30';
+      bgColor = 'bg-red-500/5';
+      iconColor = 'text-red-500';
+    } else if (type === 'tip' || type.includes('💡') || type.includes('Tip')) {
+      icon = <Lightbulb className="h-5 w-5" />;
+      borderColor = 'border-green-500/30';
+      bgColor = 'bg-green-500/5';
+      iconColor = 'text-green-500';
+    }
+    
+    return (
+      <Card key={key} className={`my-6 border-l-4 ${borderColor} ${bgColor}`}>
+        <div className="p-5 flex gap-4">
+          <div className={`flex-shrink-0 mt-0.5 ${iconColor}`}>
+            {icon}
+          </div>
+          <div className="flex-1 text-gray-100 dark:text-gray-100 leading-relaxed">
+            {processInlineMarkdown(content)}
+          </div>
+        </div>
+      </Card>
+    );
   };
 
   const renderContent = (raw: string) => {
@@ -136,7 +195,13 @@ const BlogPost = () => {
     const stripNumber = (s: string) => s.replace(/^\d+[\).]\s+/, "");
 
     for (const block of blocks) {
-      // Check for code blocks first
+      // Check for callout boxes
+      if (isCalloutBox(block)) {
+        elements.push(renderCalloutBox(block, k++));
+        continue;
+      }
+      
+      // Check for code blocks
       if (isCodeBlock(block)) {
         elements.push(renderCodeBlock(block, k++));
         continue;
@@ -162,7 +227,7 @@ const BlogPost = () => {
         
         if (remainingAllBullets) {
           elements.push(
-            <ul key={k++} className="list-disc pl-6">
+            <ul key={k++} className="list-disc pl-6 text-gray-200 dark:text-gray-200">
               {remainingLines.map((l, i) => (
                 <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
               ))}
@@ -173,7 +238,7 @@ const BlogPost = () => {
         
         if (remainingAllNumbers) {
           elements.push(
-            <ol key={k++} className="list-decimal pl-6">
+            <ol key={k++} className="list-decimal pl-6 text-gray-200 dark:text-gray-200">
               {remainingLines.map((l, i) => (
                 <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
               ))}
@@ -184,7 +249,7 @@ const BlogPost = () => {
         
         // Fallback paragraph for remaining lines
         elements.push(
-          <p key={k++} className="whitespace-pre-line text-foreground leading-relaxed my-4">
+          <p key={k++} className="whitespace-pre-line text-gray-200 dark:text-gray-200 leading-relaxed my-4">
             {processInlineMarkdown(remainingLines.join("\n"))}
           </p>,
         );
@@ -196,7 +261,7 @@ const BlogPost = () => {
 
       if (allBullets) {
         elements.push(
-          <ul key={k++} className="list-disc pl-7 space-y-2 my-6 marker:text-primary text-foreground">
+          <ul key={k++} className="list-disc pl-7 space-y-2 my-6 marker:text-primary text-gray-200 dark:text-gray-200">
             {lines.map((l, i) => (
               <li key={i} className="pl-2 leading-relaxed">{processInlineMarkdown(stripBullet(l))}</li>
             ))}
@@ -207,7 +272,7 @@ const BlogPost = () => {
 
       if (allNumbers) {
         elements.push(
-          <ol key={k++} className="list-decimal pl-7 space-y-2 my-6 marker:text-primary marker:font-semibold text-foreground">
+          <ol key={k++} className="list-decimal pl-7 space-y-2 my-6 marker:text-primary marker:font-semibold text-gray-200 dark:text-gray-200">
             {lines.map((l, i) => (
               <li key={i} className="pl-2 leading-relaxed">{processInlineMarkdown(stripNumber(l))}</li>
             ))}
@@ -227,7 +292,7 @@ const BlogPost = () => {
           // If bullets/numbers before, render as list
           if (before.every(isBullet)) {
             elements.push(
-              <ul key={k++} className="list-disc pl-6">
+              <ul key={k++} className="list-disc pl-6 text-gray-200 dark:text-gray-200">
                 {before.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
                 ))}
@@ -235,7 +300,7 @@ const BlogPost = () => {
             );
           } else if (before.every(isNumbered)) {
             elements.push(
-              <ol key={k++} className="list-decimal pl-6">
+              <ol key={k++} className="list-decimal pl-6 text-gray-200 dark:text-gray-200">
                 {before.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
                 ))}
@@ -245,7 +310,7 @@ const BlogPost = () => {
         }
 
         elements.push(
-          <p key={k++} className="whitespace-pre-line text-foreground leading-relaxed my-4">
+          <p key={k++} className="whitespace-pre-line text-gray-200 dark:text-gray-200 leading-relaxed my-4">
             {processInlineMarkdown(head)}
           </p>,
         );
@@ -253,7 +318,7 @@ const BlogPost = () => {
         if (after.length) {
           if (after.every(isBullet)) {
             elements.push(
-              <ul key={k++} className="list-disc pl-6">
+              <ul key={k++} className="list-disc pl-6 text-gray-200 dark:text-gray-200">
                 {after.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripBullet(l))}</li>
                 ))}
@@ -261,7 +326,7 @@ const BlogPost = () => {
             );
           } else if (after.every(isNumbered)) {
             elements.push(
-              <ol key={k++} className="list-decimal pl-6">
+              <ol key={k++} className="list-decimal pl-6 text-gray-200 dark:text-gray-200">
                 {after.map((l, i) => (
                   <li key={i}>{processInlineMarkdown(stripNumber(l))}</li>
                 ))}
@@ -269,7 +334,7 @@ const BlogPost = () => {
             );
           } else {
             elements.push(
-              <p key={k++} className="whitespace-pre-line">
+              <p key={k++} className="whitespace-pre-line text-gray-200 dark:text-gray-200">
                 {processInlineMarkdown(after.join("\n"))}
               </p>,
             );
@@ -280,7 +345,7 @@ const BlogPost = () => {
 
       // Fallback paragraph with preserved line breaks
       elements.push(
-        <p key={k++} className="whitespace-pre-line leading-relaxed text-lg my-5 text-foreground">
+        <p key={k++} className="whitespace-pre-line leading-relaxed text-lg my-5 text-gray-200 dark:text-gray-200">
           {processInlineMarkdown(lines.join("\n"))}
         </p>,
       );
