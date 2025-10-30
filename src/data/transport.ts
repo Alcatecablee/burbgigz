@@ -14,7 +14,28 @@ export const suburbsTransportEstimates = {
 };
 
 export const transportOptions = [
-  { value: "fixed", label: "Fixed Callout Fee (I cover transport)", description: "R400 base + distance add-on (predictable pricing)." },
-  { value: "my_account", label: "I Use My Uber/Bolt (Pass-through fare)", description: "R400 base + actual Uber/Bolt estimate (no markup; covers my travel)." },
-  { value: "client_account", label: "You Use Your Uber/Bolt Account", description: "R400 base only—apply your discounts (e.g., Uber 20% off or Bolt R75 promo); I'll meet you there." },
+  { 
+    value: "fixed", 
+    label: "Fixed Price", 
+    icon: "check",
+    tagline: "Predictable, no surprises",
+    description: "R400 base + distance add-on. You know the exact cost upfront—perfect for budgeting.",
+    benefit: "Best for predictability"
+  },
+  { 
+    value: "my_account", 
+    label: "Uber/Bolt Quote", 
+    icon: "car",
+    tagline: "Pay exact fare, no markup",
+    description: "R400 base + actual Uber/Bolt estimate. I book the ride and you pay exactly what it costs—transparent pricing.",
+    benefit: "Best for transparency"
+  },
+  { 
+    value: "client_account", 
+    label: "Use Your Discounts", 
+    icon: "gift",
+    tagline: "Apply your promos, save money",
+    description: "R400 base only. You book the Uber/Bolt using your account and discounts (e.g., Uber 20% off or Bolt R75 promo).",
+    benefit: "Best for savings"
+  },
 ];
