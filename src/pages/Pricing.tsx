@@ -6,10 +6,12 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useMemo, useState } from "react";
-import { Calculator, HardDrive, MapPin } from "lucide-react";
+import { Calculator, HardDrive, MapPin, Check, Car, Gift, Info } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { suburbsTransportEstimates, transportOptions } from "@/data/transport";
+import { cn } from "@/lib/utils";
 
 const ssdBase = [
   { size: "None", price: 0 },
@@ -17,6 +19,15 @@ const ssdBase = [
   { size: "1 TB", price: 1300 },
   { size: "2 TB", price: 2200 },
 ];
+
+const getTransportIcon = (iconName: string) => {
+  const icons = {
+    check: Check,
+    car: Car,
+    gift: Gift,
+  };
+  return icons[iconName as keyof typeof icons] || Check;
+};
 
 const Pricing = () => {
   const [ssd, setSsd] = useState("None");
@@ -51,6 +62,29 @@ const Pricing = () => {
   }, [onsite, suburb, transport]);
 
   const total = ssdPrice + ramPrice + service + callout;
+
+  const getTransportCost = (transportType: string) => {
+    if (onsite !== "on-site") return 0;
+    if (transportType === "client_account") {
+      return 400;
+    }
+    if (transportType === "my_account") {
+      const est = suburbsTransportEstimates[suburb]?.uber || "R100";
+      const avgEst = parseFloat(est.match(/\d+/)?.[0] || "100") + 50;
+      return 400 + avgEst;
+    }
+    const fixedAddOn = { 
+      "Lombardy East": 0, 
+      "Alexandra (~3 km NW)": 50, 
+      "Lakeside (~3 km NE)": 50, 
+      "Kew (adjacent)": 50, 
+      "Marlboro (Gautrain, ~4 km N)": 70, 
+      "Greenstone Mall (~10 min E)": 90, 
+      "Sandton (~6–8 km NW)": 120, 
+      "Johannesburg CBD (~14 km W)": 150 
+    }[suburb] || 0;
+    return 400 + fixedAddOn;
+  };
 
   const validateForm = () => {
     if (ssd === "None" && ram === "None") {
@@ -89,9 +123,37 @@ const Pricing = () => {
             <p className="text-muted-foreground">Calculate costs with flexible transport options—use Uber/Bolt estimates or your discounts for savings.</p>
           </div>
 
+          <Card className="bg-card border mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Info className="h-5 w-5 text-primary" />
+                Choose Your Transport Option
+              </CardTitle>
+              <CardDescription>Each option offers different benefits. Pick what works best for you.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid md:grid-cols-3 gap-4">
+                {transportOptions.map((opt) => {
+                  const IconComponent = getTransportIcon(opt.icon);
+                  return (
+                    <div key={opt.value} className="rounded-lg border p-4 space-y-2">
+                      <div className="flex items-center gap-2">
+                        <IconComponent className="h-5 w-5 text-primary" />
+                        <h3 className="font-semibold">{opt.label}</h3>
+                      </div>
+                      <p className="text-sm text-muted-foreground">{opt.tagline}</p>
+                      <Badge variant="secondary" className="text-xs">{opt.benefit}</Badge>
+                      <p className="text-xs text-muted-foreground pt-2">{opt.description}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
+
           <Card className="bg-card border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><HardDrive className="h-5 w-5 text-primary" />Upgrade Calculator</CardTitle>
+              <CardTitle className="flex items-center gap-2"><Calculator className="h-5 w-5 text-primary" />Upgrade Calculator</CardTitle>
               <CardDescription>Choose options; transport adapts dynamically.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -153,35 +215,104 @@ const Pricing = () => {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Label>Transport Option</Label>
-                  </TooltipTrigger>
-                  <TooltipContent>Choose how to handle travel—fixed for predictability, Uber/Bolt for dynamic costs, or client account to use your discounts (waives add-on).</TooltipContent>
-                </Tooltip>
-                <Select value={transport} onValueChange={setTransport} disabled={onsite !== "on-site"}>
-                  <SelectTrigger><SelectValue placeholder="Select transport" /></SelectTrigger>
-                  <SelectContent>
-                    {transportOptions.map((opt) => (
-                      <SelectItem key={opt.value} value={opt.value}>
-                        <div>
-                          <div>{opt.label}</div>
-                          {opt.description && <div className="text-xs text-muted-foreground">{opt.description}</div>}
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <Label className="text-base font-semibold">Transport Option</Label>
+                  {onsite !== "on-site" && (
+                    <Badge variant="secondary" className="text-xs">On-site service only</Badge>
+                  )}
+                </div>
+                
+                <RadioGroup 
+                  value={transport} 
+                  onValueChange={setTransport} 
+                  disabled={onsite !== "on-site"}
+                  className="grid gap-3"
+                >
+                  {transportOptions.map((opt) => {
+                    const IconComponent = getTransportIcon(opt.icon);
+                    const cost = getTransportCost(opt.value);
+                    const isSelected = transport === opt.value;
+                    const isDisabled = onsite !== "on-site";
+                    
+                    return (
+                      <label 
+                        key={opt.value}
+                        className={cn(
+                          "relative flex items-start gap-3 rounded-lg border-2 p-4 cursor-pointer transition-all",
+                          isSelected && !isDisabled && "border-primary bg-primary/5 shadow-sm",
+                          !isSelected && !isDisabled && "border-border hover:border-primary/50 hover:bg-accent/50",
+                          isDisabled && "opacity-50 cursor-not-allowed"
+                        )}
+                      >
+                        <RadioGroupItem 
+                          value={opt.value} 
+                          id={opt.value}
+                          className="mt-0.5"
+                          disabled={isDisabled}
+                        />
+                        <div className="flex-1 space-y-1">
+                          <div className="flex items-center gap-2">
+                            <IconComponent className={cn(
+                              "h-5 w-5",
+                              isSelected && !isDisabled ? "text-primary" : "text-muted-foreground"
+                            )} />
+                            <div className="font-semibold">{opt.label}</div>
+                            <Badge variant="outline" className="ml-auto text-xs">
+                              {opt.benefit}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{opt.tagline}</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{opt.description}</p>
+                          
+                          {!isDisabled && (
+                            <div className="flex items-center gap-2 pt-2 text-sm font-medium">
+                              {opt.value === "fixed" && (
+                                <span className="text-primary">R{cost} total</span>
+                              )}
+                              {opt.value === "my_account" && suburb && (
+                                <div className="space-y-1">
+                                  <span className="text-primary">~R{cost} estimated</span>
+                                  <p className="text-xs text-muted-foreground">
+                                    Uber: {suburbsTransportEstimates[suburb]?.uber} | Bolt: {suburbsTransportEstimates[suburb]?.bolt}
+                                  </p>
+                                </div>
+                              )}
+                              {opt.value === "client_account" && (
+                                <span className="text-primary">R{cost} (ride not included)</span>
+                              )}
+                            </div>
+                          )}
                         </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {transport === "my_account" && suburb && (
-                  <p className="text-sm text-muted-foreground">
-                    Est. Uber/Bolt to {suburb}: {suburbsTransportEstimates[suburb]?.uber} (Uber) / {suburbsTransportEstimates[suburb]?.bolt} (Bolt). Live quote via app before job.
-                  </p>
-                )}
-                {transport === "client_account" && (
-                  <p className="text-sm text-muted-foreground">
-                    Apply your discounts (e.g., Uber 20% off promo or Bolt R75 referral). Book ride to/from Lombardy East—share ETA via WhatsApp.
-                  </p>
+                      </label>
+                    );
+                  })}
+                </RadioGroup>
+                
+                {onsite === "on-site" && (
+                  <div className="rounded-md bg-muted/50 p-3 text-sm">
+                    <div className="flex gap-2">
+                      <Info className="h-4 w-4 text-muted-foreground mt-0.5 flex-shrink-0" />
+                      <div className="space-y-1">
+                        <p className="font-medium">Current selection: {transportOptions.find(opt => opt.value === transport)?.label}</p>
+                        {transport === "fixed" && (
+                          <p className="text-muted-foreground">
+                            You'll pay a fixed R{callout} callout fee. No surprises—perfect for budgeting.
+                          </p>
+                        )}
+                        {transport === "my_account" && (
+                          <p className="text-muted-foreground">
+                            I'll book the Uber/Bolt and you pay the actual fare (no markup). Estimate shown above; final cost confirmed before booking.
+                          </p>
+                        )}
+                        {transport === "client_account" && (
+                          <p className="text-muted-foreground">
+                            Book your Uber/Bolt to Lombardy East and apply your discounts! Share your ETA via WhatsApp. You only pay the R400 base fee.
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
 
