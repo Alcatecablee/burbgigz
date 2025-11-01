@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Zap, MapPin } from "lucide-react";
-import heroImage from "@/assets/hero-tech.jpg";
+import heroImage from "@/assets/hero-tech.png";
 
 const Hero = () => {
   return (
@@ -68,7 +68,7 @@ const Hero = () => {
             <div className="relative rounded-xl overflow-hidden shadow-medium hover:shadow-lg transition-shadow duration-300">
               <img 
                 src={heroImage} 
-                alt="Professional IT technician repairing laptop" 
+                alt="Professional IT support technician providing remote helpdesk services" 
                 className="w-full h-auto object-cover"
                 loading="eager"
               />
