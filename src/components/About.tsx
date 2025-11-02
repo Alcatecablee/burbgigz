@@ -56,18 +56,21 @@ const About = () => {
 
             <Button
               size="lg"
-              className="bg-primary transition-all duration-300"
+              className="bg-primary transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-lg focus-ring-enhanced"
+              asChild
             >
-              Start Remote Session
+              <a href="/remote" aria-label="Start a remote support session">
+                Start Remote Session
+              </a>
             </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <Card className="bg-card border shadow-sm">
+            <Card className="bg-card border shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
-                  <div className="p-3 rounded-full bg-primary/10">
-                    <Calendar className="h-6 w-6 text-primary" />
+                  <div className="p-3 rounded-full bg-primary/10 transition-all duration-300 hover:bg-primary hover:text-white group">
+                    <Calendar className="h-6 w-6 text-primary group-hover:text-white" aria-hidden="true" />
                   </div>
                 </div>
                 <div className="text-2xl font-bold text-primary">Professional</div>
@@ -75,11 +78,11 @@ const About = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card border shadow-sm">
+            <Card className="bg-card border shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1">
               <CardContent className="p-6 text-center">
                 <div className="flex items-center justify-center mb-3">
-                  <div className="p-3 rounded-full bg-primary/10">
-                    <Users className="h-6 w-6 text-primary" />
+                  <div className="p-3 rounded-full bg-primary/10 transition-all duration-300 hover:bg-primary hover:text-white group">
+                    <Users className="h-6 w-6 text-primary group-hover:text-white" aria-hidden="true" />
                   </div>
                 </div>
                 <div className="text-2xl font-bold text-primary">Remote</div>

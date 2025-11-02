@@ -35,9 +35,9 @@ const Header = () => {
             <Link
               key={link.to}
               to={link.to}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-all duration-200 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-current after:transition-all after:duration-200 hover:after:w-full ${
                 link.warning ? 'hover:text-warning' : 'hover:text-primary'
-              } ${location.pathname === link.to ? 'text-primary' : ''}`}
+              } ${location.pathname === link.to ? 'text-primary after:w-full' : ''}`}
               aria-current={location.pathname === link.to ? 'page' : undefined}
             >
               {link.label}
@@ -47,18 +47,18 @@ const Header = () => {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center space-x-3">
-          <Button asChild variant="ghost" size="sm">
+          <Button asChild variant="ghost" size="sm" className="transition-all duration-200 hover:scale-105 focus-ring-enhanced">
             <Link to="/portal">
               Customer Portal
             </Link>
           </Button>
-          <Button asChild variant="outline" size="sm">
+          <Button asChild variant="outline" size="sm" className="transition-all duration-200 hover:scale-105 focus-ring-enhanced">
             <a href="tel:+27670494876" aria-label="Call us at 067 049 4876">
-              <PhoneCall className="mr-2 h-4 w-4" />
+              <PhoneCall className="mr-2 h-4 w-4" aria-hidden="true" />
               <span className="hidden lg:inline">Call</span>
             </a>
           </Button>
-          <Button asChild size="sm" className="bg-success hover:bg-success/90 text-white transition-colors">
+          <Button asChild size="sm" className="bg-success hover:bg-success/90 text-white transition-all duration-200 hover:scale-105 active:scale-95 focus-ring-enhanced">
             <Link to="/booking">
               Book Now
             </Link>
@@ -67,7 +67,7 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <div className="flex md:hidden items-center space-x-2">
-          <Button asChild size="sm" className="bg-success hover:bg-success/90 text-white">
+          <Button asChild size="sm" className="bg-success hover:bg-success/90 text-white transition-all duration-200 active:scale-95 focus-ring-enhanced">
             <Link to="/booking">
               Book
             </Link>
@@ -78,7 +78,8 @@ const Header = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
-            className="transition-transform"
+            aria-controls="mobile-navigation"
+            className={`transition-all duration-200 active:scale-95 focus-ring-enhanced ${mobileMenuOpen ? 'rotate-90' : 'rotate-0'}`}
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
@@ -88,19 +89,22 @@ const Header = () => {
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <nav
-          className="md:hidden border-t bg-background transition-all duration-300 ease-out"
+          id="mobile-navigation"
+          className="md:hidden border-t bg-background animate-in slide-in-from-top-5 duration-300"
           aria-label="Mobile navigation"
+          role="navigation"
         >
           <div className="container px-4 py-4 space-y-3">
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <Link
                 key={link.to}
                 to={link.to}
                 onClick={closeMobileMenu}
-                className={`block py-2 text-sm font-medium transition-colors ${
+                className={`block py-3 px-2 text-sm font-medium transition-all duration-200 rounded-md hover:bg-muted ${
                   link.warning ? 'hover:text-warning' : 'hover:text-primary'
-                } ${location.pathname === link.to ? 'text-primary' : ''}`}
+                } ${location.pathname === link.to ? 'text-primary bg-primary/5' : ''}`}
                 aria-current={location.pathname === link.to ? 'page' : undefined}
+                style={{ animationDelay: `${index * 50}ms` }}
               >
                 {link.label}
               </Link>
@@ -109,13 +113,13 @@ const Header = () => {
               <Link
                 to="/portal"
                 onClick={closeMobileMenu}
-                className="block py-2 text-sm font-medium hover:text-primary transition-colors"
+                className="block py-3 px-2 text-sm font-medium hover:text-primary hover:bg-muted transition-all duration-200 rounded-md"
               >
                 Customer Portal
               </Link>
               <a
                 href="tel:+27670494876"
-                className="flex items-center py-2 text-sm font-medium hover:text-primary transition-colors"
+                className="flex items-center py-3 px-2 text-sm font-medium hover:text-primary hover:bg-muted transition-all duration-200 rounded-md"
                 aria-label="Call us at 067 049 4876"
               >
                 <PhoneCall className="mr-2 h-4 w-4" />

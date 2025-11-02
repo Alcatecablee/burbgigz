@@ -73,31 +73,37 @@ const Services = () => {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <Card key={index} className="group transition-all duration-300 bg-card border">
+            <Card 
+              key={index} 
+              className="group transition-all duration-300 bg-card border hover:shadow-lg hover:border-primary/20 hover:-translate-y-1 cursor-pointer"
+              tabIndex={0}
+              role="article"
+              aria-label={`${service.title} - ${service.price}`}
+            >
               <CardHeader className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                  <div className="p-2 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 group-hover:scale-110">
                     {service.icon}
                   </div>
-                  <Badge variant="secondary" className="text-sm font-semibold">
+                  <Badge variant="secondary" className="text-sm font-semibold group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
                     {service.price}
                   </Badge>
                 </div>
                 <div>
-                  <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                  <CardTitle className="text-xl mb-2 group-hover:text-primary transition-colors">{service.title}</CardTitle>
                   <CardDescription className="text-base">{service.description}</CardDescription>
                 </div>
               </CardHeader>
               
               <CardContent>
-                <div className="space-y-2">
+                <ul className="space-y-2" role="list">
                   {service.features.map((feature, i) => (
-                    <div key={i} className="flex items-center space-x-2 text-sm">
-                      <CheckCircle2 className="h-4 w-4 text-success" />
+                    <li key={i} className="flex items-center space-x-2 text-sm">
+                      <CheckCircle2 className="h-4 w-4 text-success flex-shrink-0" aria-hidden="true" />
                       <span>{feature}</span>
-                    </div>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </CardContent>
             </Card>
           ))}

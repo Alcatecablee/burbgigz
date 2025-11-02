@@ -28,20 +28,20 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
               <Button asChild
                 size="lg"
-                className="bg-primary hover:bg-primary/90 transition-all duration-300 text-base md:text-lg px-6 md:px-8 hover-lift"
+                className="bg-primary hover:bg-primary/90 transition-all duration-300 text-base md:text-lg px-6 md:px-8 hover:scale-105 active:scale-95 hover:shadow-lg focus-ring-enhanced"
               >
                 <a href="/remote" aria-label="Start a remote support session">
-                  <Zap className="mr-2 h-5 w-5" />
+                  <Zap className="mr-2 h-5 w-5" aria-hidden="true" />
                   Start Remote Session
                 </a>
               </Button>
               <Button asChild
                 variant="outline"
                 size="lg"
-                className="text-base md:text-lg px-6 md:px-8 transition-all duration-300 hover-lift"
+                className="text-base md:text-lg px-6 md:px-8 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-md focus-ring-enhanced"
               >
                 <a href="#services" aria-label="View our IT services">
-                  <Shield className="mr-2 h-5 w-5" />
+                  <Shield className="mr-2 h-5 w-5" aria-hidden="true" />
                   View Services
                 </a>
               </Button>
