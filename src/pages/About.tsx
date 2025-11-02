@@ -6,6 +6,7 @@ import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import comptiaLogo from "@/assets/comptia-partner-badge.webp";
 import microsoftLogo from "@/assets/microsoft-logo.png";
+import techWorkspaceImage from "@/assets/it-workspace.jpg";
 
 const About = () => {
   return (
@@ -39,6 +40,15 @@ const About = () => {
             transparent pricing, and a commitment to consent-based service. No cold calls, no pressure tactics, 
             just honest help when you need it.
           </p>
+        </div>
+
+        {/* Professional Image */}
+        <div className="mb-12">
+          <img 
+            src={techWorkspaceImage} 
+            alt="Professional IT support specialist at work" 
+            className="w-full max-w-3xl mx-auto h-auto rounded-lg shadow-lg"
+          />
         </div>
 
         {/* Profile Section */}

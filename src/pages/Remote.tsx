@@ -9,6 +9,8 @@ import { Download, Copy, Phone, MessageCircle, Shield, BookOpen, DollarSign, Zap
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "@/components/SEOHead";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/data/seoStructuredData";
+import anydeskLogo from "@/assets/anydesk-logo.png";
+import remoteSupportImage from "@/assets/remote-support-tech.jpg";
 
 import { Link } from "react-router-dom";
 import { posts } from "@/data/blog";
@@ -327,14 +329,25 @@ const Remote = () => {
           </div>
         </section>
 
-        <section className="mb-10 text-sm text-muted-foreground space-y-3">
-          <h2 className="text-2xl font-semibold text-foreground mb-3">How Remote IT Support Works</h2>
-          <p>
-            Remote IT support allows me to securely connect to your computer in Johannesburg and fix most software issues without a physical visit. Using secure, encrypted remote desktop tools like AnyDesk, I can diagnose problems, install updates, remove viruses, configure settings, and optimize performance - all while you watch on your screen.
-          </p>
-          <p>
-            This approach is perfect for busy professionals and small businesses in Johannesburg who need fast IT support without disrupting their workflow. For hardware issues like SSD upgrades or physical repairs, I provide professional on-site IT support throughout Lombardy East, Edenvale, Bedfordview, and nearby Johannesburg suburbs.
-          </p>
+        <section className="mb-10">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="text-sm text-muted-foreground space-y-3">
+              <h2 className="text-2xl font-semibold text-foreground mb-3">How Remote IT Support Works</h2>
+              <p>
+                Remote IT support allows me to securely connect to your computer in Johannesburg and fix most software issues without a physical visit. Using secure, encrypted remote desktop tools like AnyDesk, I can diagnose problems, install updates, remove viruses, configure settings, and optimize performance - all while you watch on your screen.
+              </p>
+              <p>
+                This approach is perfect for busy professionals and small businesses in Johannesburg who need fast IT support without disrupting their workflow. For hardware issues like SSD upgrades or physical repairs, I provide professional on-site IT support throughout Lombardy East, Edenvale, Bedfordview, and nearby Johannesburg suburbs.
+              </p>
+            </div>
+            <div className="relative rounded-lg overflow-hidden">
+              <img 
+                src={remoteSupportImage} 
+                alt="Professional IT technician providing remote support" 
+                className="w-full h-auto rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
         </section>
 
         {/* Security & Trust Banner */}
@@ -359,7 +372,7 @@ const Remote = () => {
                 </Badge>
                 <Badge variant="outline" className="text-xs flex items-center gap-1">
                   <Check className="h-3 w-3" />
-                  Open Source Tool
+                  Trusted Software
                 </Badge>
                 <Badge variant="outline" className="text-xs flex items-center gap-1">
                   <Check className="h-3 w-3" />
@@ -379,9 +392,15 @@ const Remote = () => {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-card border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Download className="h-5 w-5 text-primary" />Get AnyDesk</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Download className="h-5 w-5 text-primary" />
+                Get AnyDesk
+              </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
+              <div className="flex justify-center mb-4">
+                <img src={anydeskLogo} alt="AnyDesk" className="h-8" />
+              </div>
               <div className="bg-primary/5 border border-primary/10 rounded-lg p-3 mb-3">
                 <p className="font-semibold text-primary mb-1">Don't worry - it's quick & easy!</p>
                 <p className="text-xs text-muted-foreground">Small download (~3MB) • Takes 2 minutes • Free & trusted</p>
