@@ -14,10 +14,10 @@ import { Link } from "react-router-dom";
 import { posts } from "@/data/blog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const RUSTDESK_SITE = "https://rustdesk.com/";
-const RUSTDESK_RELEASES = "https://github.com/rustdesk/rustdesk/releases";
+const ANYDESK_SITE = "https://anydesk.com/";
+const ANYDESK_DOWNLOAD = "https://anydesk.com/en/downloads";
 
-const validateRustDeskId = (id: string) => /^[0-9]{9,10}$/.test(id.replace(/\s/g, ""));
+const validateAnyDeskId = (id: string) => /^[0-9]{9}$/.test(id.replace(/\s/g, ""));
 const validatePassword = (pwd: string) => /^[a-zA-Z0-9]{6}$/.test(pwd);
 
 const Remote = () => {
@@ -40,7 +40,7 @@ const Remote = () => {
   const remoteFAQSchema = faqSchema([
     {
       question: "How does remote support work?",
-      answer: "We use secure remote tools like RustDesk to connect to your computer with your permission. You can see everything we do and end the session at any time."
+      answer: "We use secure remote tools like AnyDesk to connect to your computer with your permission. You can see everything we do and end the session at any time."
     },
     {
       question: "Is remote support secure?",
@@ -76,7 +76,7 @@ const Remote = () => {
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setId(value);
-    setIdError(validateRustDeskId(value) ? "" : "ID must be 9–10 digits");
+    setIdError(validateAnyDeskId(value) ? "" : "ID must be 9 digits");
   };
 
   const handlePwdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,25 +87,25 @@ const Remote = () => {
 
   const whatsappHref = useMemo(() => {
     const base = "https://wa.me/27670494876";
-    const text = `Remote Support Request (RustDesk)\nID: ${id || "<enter ID>"}\nPassword: ${pwd || "<enter password>"}\nLocation: Lombardy East`;
+    const text = `Remote Support Request (AnyDesk)\nID: ${id || "<enter ID>"}\nPassword: ${pwd || "<enter password>"}\nLocation: Lombardy East`;
     return `${base}?text=${encodeURIComponent(text)}`;
   }, [id, pwd]);
 
   const copyDetails = async () => {
-    if (!validateRustDeskId(id) || !validatePassword(pwd)) {
+    if (!validateAnyDeskId(id) || !validatePassword(pwd)) {
       toast({
         title: "Error",
-        description: "Please enter a valid RustDesk ID and password.",
+        description: "Please enter a valid AnyDesk ID and password.",
         variant: "destructive"
       });
       return;
     }
-    const text = `RustDesk ID: ${id}\nPassword: ${pwd}`;
+    const text = `AnyDesk ID: ${id}\nPassword: ${pwd}`;
     try {
       await navigator.clipboard.writeText(text);
       toast({
         title: "Success",
-        description: "RustDesk details copied to clipboard!"
+        description: "AnyDesk details copied to clipboard!"
       });
     } catch {
       toast({
@@ -139,11 +139,11 @@ const Remote = () => {
           <div className="flex items-center justify-center gap-2 mt-4 text-sm">
             <Badge variant="outline" className="bg-green-500/10 text-green-700 dark:text-green-400 border-green-500/20">
               <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-              Available Today
+              Available 24/7
             </Badge>
             <span className="text-muted-foreground">• Avg response: 15 mins</span>
           </div>
-          <p className="text-xs text-muted-foreground">Mon-Fri 8am-8pm, Sat 9am-5pm</p>
+          <p className="text-xs text-muted-foreground">After-hours support available (additional fee applies)</p>
         </div>
 
         {/* Process Timeline */}
@@ -152,22 +152,22 @@ const Remote = () => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2 text-sm">
             <div className="flex items-center gap-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold">1</div>
-              <span className="font-medium">📞 Contact</span>
+              <span className="font-medium">Contact</span>
             </div>
             <div className="hidden md:block text-muted-foreground">→</div>
             <div className="flex items-center gap-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold">2</div>
-              <span className="font-medium">⏱️ 15 min response</span>
+              <span className="font-medium">15 min response</span>
             </div>
             <div className="hidden md:block text-muted-foreground">→</div>
             <div className="flex items-center gap-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold">3</div>
-              <span className="font-medium">💻 Session starts</span>
+              <span className="font-medium">Session starts</span>
             </div>
             <div className="hidden md:block text-muted-foreground">→</div>
             <div className="flex items-center gap-2">
               <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary text-primary-foreground font-bold">4</div>
-              <span className="font-medium">✅ Fixed (~30 mins)</span>
+              <span className="font-medium">Fixed (~30 mins)</span>
             </div>
           </div>
         </section>
@@ -177,17 +177,17 @@ const Remote = () => {
           <h2 className="text-2xl font-semibold mb-4">Real Examples of What We Fix</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div className="p-4 bg-background rounded-lg border">
-              <p className="font-semibold text-primary mb-2">💻 Slow Windows 11 Laptop</p>
+              <p className="font-semibold text-primary mb-2">Slow Windows 11 Laptop</p>
               <p className="text-muted-foreground text-xs mb-2">Fixed in 15 mins • R120</p>
               <p className="text-muted-foreground">Startup programs cleaned, temp files removed, system optimized</p>
             </div>
             <div className="p-4 bg-background rounded-lg border">
-              <p className="font-semibold text-primary mb-2">🦠 Malware Infection</p>
+              <p className="font-semibold text-primary mb-2">Malware Infection</p>
               <p className="text-muted-foreground text-xs mb-2">Cleaned in 35 mins • R120</p>
               <p className="text-muted-foreground">Malware removed, security patches applied, browser cleaned</p>
             </div>
             <div className="p-4 bg-background rounded-lg border">
-              <p className="font-semibold text-primary mb-2">📡 WiFi Keeps Dropping</p>
+              <p className="font-semibold text-primary mb-2">WiFi Keeps Dropping</p>
               <p className="text-muted-foreground text-xs mb-2">Diagnosed in 20 mins • R120</p>
               <p className="text-muted-foreground">Network drivers updated, DNS configured, connection stable</p>
             </div>
@@ -330,7 +330,7 @@ const Remote = () => {
         <section className="mb-10 text-sm text-muted-foreground space-y-3">
           <h2 className="text-2xl font-semibold text-foreground mb-3">How Remote IT Support Works</h2>
           <p>
-            Remote IT support allows me to securely connect to your computer in Johannesburg and fix most software issues without a physical visit. Using secure, encrypted remote desktop tools like RustDesk, I can diagnose problems, install updates, remove viruses, configure settings, and optimize performance - all while you watch on your screen.
+            Remote IT support allows me to securely connect to your computer in Johannesburg and fix most software issues without a physical visit. Using secure, encrypted remote desktop tools like AnyDesk, I can diagnose problems, install updates, remove viruses, configure settings, and optimize performance - all while you watch on your screen.
           </p>
           <p>
             This approach is perfect for busy professionals and small businesses in Johannesburg who need fast IT support without disrupting their workflow. For hardware issues like SSD upgrades or physical repairs, I provide professional on-site IT support throughout Lombardy East, Edenvale, Bedfordview, and nearby Johannesburg suburbs.
@@ -345,7 +345,7 @@ const Remote = () => {
               <h2 className="text-lg font-semibold">Safe, Secure, Consent-Based Remote Access</h2>
               <p className="text-sm text-muted-foreground">
                 <strong>Unlike tech support scams,</strong> we NEVER cold-call, send pop-ups, or demand immediate access. 
-                RustDesk is a secure, open-source tool that requires YOUR permission. You see everything we do, and you 
+                AnyDesk is a secure, trusted tool that requires YOUR permission. You see everything we do, and you 
                 can end the session instantly at any time. No permanent access, no hidden software, no pressure tactics.
               </p>
               <div className="flex flex-wrap gap-2 mt-3">
@@ -379,22 +379,22 @@ const Remote = () => {
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="bg-card border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Download className="h-5 w-5 text-primary" />Get RustDesk</CardTitle>
+              <CardTitle className="flex items-center gap-2"><Download className="h-5 w-5 text-primary" />Get AnyDesk</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3 text-sm">
               <div className="bg-primary/5 border border-primary/10 rounded-lg p-3 mb-3">
                 <p className="font-semibold text-primary mb-1">Don't worry - it's quick & easy!</p>
-                <p className="text-xs text-muted-foreground">Small download (~15MB) • Takes 2 minutes • Free & safe</p>
+                <p className="text-xs text-muted-foreground">Small download (~3MB) • Takes 2 minutes • Free & trusted</p>
               </div>
-              <p>Official downloads:</p>
+              <p>Official download:</p>
               <div className="flex flex-wrap gap-2">
-                <Button asChild variant="outline" size="sm"><a href={RUSTDESK_SITE} target="_blank" rel="noreferrer">Website</a></Button>
-                <Button asChild variant="outline" size="sm"><a href={RUSTDESK_RELEASES} target="_blank" rel="noreferrer">All Releases</a></Button>
+                <Button asChild variant="outline" size="sm"><a href={ANYDESK_SITE} target="_blank" rel="noreferrer">Website</a></Button>
+                <Button asChild variant="outline" size="sm"><a href={ANYDESK_DOWNLOAD} target="_blank" rel="noreferrer">Download Page</a></Button>
               </div>
               <ul className="list-disc pl-5 space-y-1 text-muted-foreground">
-                <li>Windows: download .exe, run and allow</li>
-                <li>macOS: download .dmg, open, allow permissions</li>
-                <li>Linux/Android: use Releases page</li>
+                <li>Windows: download .exe and run</li>
+                <li>macOS: download .dmg and install</li>
+                <li>Linux/Android: available on Downloads page</li>
               </ul>
               <div className="mt-3 p-3 bg-background border rounded-lg">
                 <p className="text-xs font-semibold mb-1">Stuck installing?</p>
@@ -410,7 +410,7 @@ const Remote = () => {
               <CardTitle className="flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />How it works</CardTitle>
             </CardHeader>
             <CardContent className="text-sm space-y-2 text-muted-foreground">
-              <p>1) Open RustDesk — it shows your ID and a one‑time password.</p>
+              <p>1) Open AnyDesk — it shows your 9-digit ID and password.</p>
               <p>2) Share those with me below via WhatsApp. You can disconnect anytime.</p>
               <p>3) No permanent access is kept after the session.</p>
             </CardContent>
@@ -422,6 +422,7 @@ const Remote = () => {
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
               <p><strong>Remote Support</strong>: R120 per session (up to 1 hour, most issues resolved).</p>
+              <p><strong>After-Hours Support</strong>: R180 per session (10pm-7am weekdays, weekends).</p>
               <p><strong>On-Site Support</strong>: R400 callout + R150–R300/hour service fee, quoted upfront.</p>
               <Button asChild className="mt-3"><Link to="/pricing" data-testid="link-pricing">View Full Pricing Details</Link></Button>
             </CardContent>
@@ -429,12 +430,12 @@ const Remote = () => {
 
           <Card className="bg-card border">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Can't Use RustDesk?</CardTitle>
+              <CardTitle className="flex items-center gap-2"><Shield className="h-5 w-5 text-primary" />Can't Use AnyDesk?</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2 text-sm text-muted-foreground">
               <p className="font-medium text-foreground">No problem! We also support:</p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>AnyDesk</li>
+                <li>RustDesk</li>
                 <li>TeamViewer</li>
                 <li>Phone-guided troubleshooting</li>
               </ul>
@@ -450,15 +451,15 @@ const Remote = () => {
           <CardContent className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="id">RustDesk ID</Label>
+                <Label htmlFor="id">AnyDesk ID</Label>
                 <Input 
                   id="id" 
                   value={id} 
                   onChange={handleIdChange} 
-                  placeholder="e.g. 123 456 789" 
+                  placeholder="e.g. 123456789" 
                   aria-describedby="id-error"
                   aria-invalid={!!idError}
-                  data-testid="input-rustdesk-id"
+                  data-testid="input-anydesk-id"
                   inputMode="numeric"
                   pattern="[0-9]*"
                 />
@@ -488,7 +489,7 @@ const Remote = () => {
             </div>
             <div className="flex flex-col sm:flex-row flex-wrap gap-3">
               <Button onClick={copyDetails} variant="outline" data-testid="button-copy"><Copy className="h-4 w-4" />Copy</Button>
-              {validateRustDeskId(id) && validatePassword(pwd) ? (
+              {validateAnyDeskId(id) && validatePassword(pwd) ? (
                 <Button asChild className="bg-success text-white">
                   <a href={whatsappHref} target="_blank" rel="noreferrer" data-testid="button-whatsapp"><MessageCircle className="h-4 w-4" />Send via WhatsApp</a>
                 </Button>
@@ -552,12 +553,12 @@ const Remote = () => {
       <script type="application/ld+json" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "HowTo",
-        name: "Get Remote IT Support in Johannesburg via RustDesk",
-        description: "How to start a secure remote IT support session in Johannesburg using RustDesk for fast computer and network problem resolution.",
+        name: "Get Remote IT Support in Johannesburg via AnyDesk",
+        description: "How to start a secure remote IT support session in Johannesburg using AnyDesk for fast computer and network problem resolution.",
         step: [
-          { "@type": "HowToStep", name: "Download RustDesk", text: "Open rustdesk.com and download the free remote support app for your Windows, Mac, or Linux device." },
-          { "@type": "HowToStep", name: "Open and read your ID", text: "Open RustDesk and note the ID and one-time password displayed on your screen." },
-          { "@type": "HowToStep", name: "Share via WhatsApp", text: "Share your RustDesk ID and password via WhatsApp to get instant remote IT support in Johannesburg." }
+          { "@type": "HowToStep", name: "Download AnyDesk", text: "Open anydesk.com and download the free remote support app for your Windows, Mac, or Linux device." },
+          { "@type": "HowToStep", name: "Open and read your ID", text: "Open AnyDesk and note the 9-digit ID and password displayed on your screen." },
+          { "@type": "HowToStep", name: "Share via WhatsApp", text: "Share your AnyDesk ID and password via WhatsApp to get instant remote IT support in Johannesburg." }
         ]
       }) }} />
 
