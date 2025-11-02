@@ -6,7 +6,7 @@ import SEOHead from "@/components/SEOHead";
 import { Link } from "react-router-dom";
 import comptiaLogo from "@/assets/comptia-partner-badge.webp";
 import microsoftLogo from "@/assets/microsoft-logo.png";
-import techWorkspaceImage from "@/assets/it-workspace.jpg";
+import techWorkspaceImage from "@/assets/clive-it-support.png";
 
 const About = () => {
   return (
@@ -46,7 +46,7 @@ const About = () => {
         <div className="mb-12">
           <img 
             src={techWorkspaceImage} 
-            alt="Professional IT support specialist at work" 
+            alt="Clive - Professional IT support specialist" 
             className="w-full max-w-3xl mx-auto h-auto rounded-lg shadow-lg"
           />
         </div>
