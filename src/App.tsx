@@ -8,6 +8,11 @@ import Remote from "./pages/Remote";
 import Pricing from "./pages/Pricing";
 import Booking from "./pages/Booking";
 import Areas from "./pages/Areas";
+import Sandton from "./pages/areas/Sandton";
+import Bedfordview from "./pages/areas/Bedfordview";
+import Edenvale from "./pages/areas/Edenvale";
+import Rosebank from "./pages/areas/Rosebank";
+import Midrand from "./pages/areas/Midrand";
 import { CustomerPortal } from "./components/CustomerPortal";
 import SupabaseSetup from "./pages/SupabaseSetup";
 import About from "./pages/About";
@@ -42,6 +47,11 @@ const App = () => (
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/booking" element={<Booking />} />
             <Route path="/areas" element={<Areas />} />
+            <Route path="/areas/sandton" element={<Sandton />} />
+            <Route path="/areas/bedfordview" element={<Bedfordview />} />
+            <Route path="/areas/edenvale" element={<Edenvale />} />
+            <Route path="/areas/rosebank" element={<Rosebank />} />
+            <Route path="/areas/midrand" element={<Midrand />} />
             <Route path="/about" element={<About />} />
             <Route path="/scam-awareness" element={<ScamAwareness />} />
             <Route path="/portal" element={<CustomerPortal />} />

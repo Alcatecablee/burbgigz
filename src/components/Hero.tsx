@@ -11,18 +11,17 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="space-y-4 md:space-y-6 animate-in fade-in slide-in-from-left duration-700">
             <Badge variant="secondary" className="inline-flex items-center space-x-1 transition-colors">
-              <MapPin className="h-3 w-3" />
-              <span>Serving Lombardy East & Surrounds</span>
+              <Zap className="h-3 w-3" />
+              <span>Same-Day Service Available</span>
             </Badge>
             
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight">
-              Expert Remote Support
-              <span className="text-primary block mt-2">& On-Site IT Services</span>
+              Laptop Slow? Printer Won't Print?
+              <span className="text-primary block mt-2">We Fix It Remotely – Today.</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg">
-              Professional helpdesk technician with remote troubleshooting expertise using secure remote tools.
-              Quick fixes from anywhere, with on-site support when needed. Serving Lombardy East, Johannesburg and nearby suburbs.
+              Fast, affordable IT support for Johannesburg homes & offices. Remote fixes from <span className="font-semibold text-foreground">R120</span>. No callout needed. Same-day service, weekend & after-hours available.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
@@ -50,16 +49,16 @@ const Hero = () => {
             <div className="flex flex-wrap items-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground pt-2">
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full animate-pulse"></div>
-                <span>Remote Support Available</span>
+                <span>9+ Years Experience</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full animate-pulse"></div>
-                <span className="hidden sm:inline">Professional Helpdesk</span>
-                <span className="sm:hidden">Pro Helpdesk</span>
+                <span className="hidden sm:inline">CompTIA Certified</span>
+                <span className="sm:hidden">Certified</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full animate-pulse"></div>
-                <span>Secure Remote Tools</span>
+                <span>No Fix, No Fee</span>
               </div>
             </div>
           </div>

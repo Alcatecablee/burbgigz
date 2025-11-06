@@ -15,11 +15,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="BurbGigz IT Services | Remote Support & PC Repairs in Lombardy East, Johannesburg"
-        description="Professional IT support in Lombardy East, Johannesburg. Remote troubleshooting from R120, on-site repairs from R400. Windows reloads, virus removal, SSD upgrades, Wi-Fi setup. Same-day service available."
-        keywords="IT support Lombardy East, remote IT support Johannesburg, PC repair Bedfordview, laptop repair Edenvale, Windows reload Johannesburg, virus removal Sandton, SSD upgrade Alexandra, Wi-Fi setup Greenstone, printer setup Kempton Park, IT services Marlboro"
-        ogTitle="BurbGigz IT Services | Remote Support & PC Repairs in Lombardy East"
-        ogDescription="Get professional IT help in Lombardy East, Johannesburg. Remote support from R120, on-site repairs from R400. Fast, secure, and reliable IT services."
+        title="Fast, Affordable Remote IT Support Johannesburg | Same-Day Service from R120"
+        description="Laptop slow? Printer won't print? We fix it remotely today. Professional IT support in Johannesburg from R120. Same-day service, urgent help available. No callout needed. Serving Lombardy East, Sandton, Bedfordview & all Johannesburg suburbs."
+        keywords="fast IT support Johannesburg, affordable remote IT support, urgent IT help Johannesburg, cheap computer repair Johannesburg, same day IT support, weekend IT support, fix laptop remotely South Africa, remote PC repair Johannesburg, affordable computer repair Johannesburg, emergency IT support, after hours IT support Johannesburg, IT support Lombardy East, remote IT support Johannesburg, PC repair Bedfordview, laptop repair Edenvale, virus removal Sandton, SSD upgrade Johannesburg, Wi-Fi setup, printer setup"
+        ogTitle="Fast, Affordable Remote IT Support Johannesburg | Same-Day from R120"
+        ogDescription="Need urgent IT help? We fix laptops, printers, Wi-Fi remotely – today. Professional remote support from R120, on-site from R400. Fast, secure & affordable."
         structuredData={structuredData}
       />
       <main>

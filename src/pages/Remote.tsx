@@ -121,21 +121,24 @@ const Remote = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="Remote IT Support Johannesburg | Fast, Secure & Affordable - BurbGigz"
-        description="Professional Remote IT Support in Johannesburg from R120. Fast response, secure connections. Fix Windows errors, slow PCs, WiFi issues & more. Serving Lombardy East, Edenvale, Bedfordview & surrounding areas."
-        keywords="remote IT support Johannesburg, remote computer support, remote tech support Johannesburg, IT support Lombardy East, remote desktop support, remote PC help Johannesburg, remote computer repair Johannesburg, IT technician Johannesburg"
-        ogTitle="Remote IT Support Johannesburg | Professional & Secure"
-        ogDescription="Expert Remote IT Support in Johannesburg. Quick response, encrypted connections, transparent pricing from R120. Boost your business productivity today."
+        title="Fix Laptop Remotely South Africa | Urgent Remote IT Help Johannesburg from R120"
+        description="Need urgent IT help? We fix laptops remotely today. Affordable remote IT support in Johannesburg from R120. Same-day service for slow PCs, virus removal, Wi-Fi issues & Windows errors. No callout needed. Secure, fast & professional."
+        keywords="fix laptop remotely South Africa, urgent remote IT help Johannesburg, affordable remote IT support, remote PC repair Johannesburg, same day remote IT support, cheap remote computer repair, remote virus removal Johannesburg, fix computer remotely Johannesburg, emergency remote IT support, remote IT help South Africa, remote desktop support Johannesburg, remote troubleshooting, remote IT support Lombardy East, remote tech support Johannesburg"
+        ogTitle="Fix Laptop Remotely South Africa | Urgent Remote IT Help from R120"
+        ogDescription="Urgent IT issue? We fix laptops remotely today. Professional remote IT support from R120. Same-day service, secure connections, no callout needed."
         canonicalUrl="/remote"
         structuredData={structuredData}
       />
       <div className="container px-4 py-12 max-w-4xl">
         <nav className="text-sm text-muted-foreground mb-4"><Link to="/" className="hover:text-primary">Home</Link><span className="mx-2">/</span><span className="text-foreground">Remote Support</span></nav>
         <div className="space-y-3 mb-8 text-center">
-          <Badge variant="outline">Remote IT Support</Badge>
-          <h1 className="text-3xl lg:text-4xl font-bold">Remote IT Support Johannesburg</h1>
-          <p className="text-muted-foreground text-lg">Professional, Fast & Secure Remote IT Support for Johannesburg Businesses & Homes</p>
-          <p className="text-sm text-muted-foreground">Serving Lombardy East, Edenvale, Bedfordview, Sandton & surrounding areas</p>
+          <Badge variant="outline">
+            <Zap className="h-3 w-3 mr-1" />
+            Urgent Remote IT Help
+          </Badge>
+          <h1 className="text-3xl lg:text-4xl font-bold">Fix Your Laptop Remotely - Today</h1>
+          <p className="text-muted-foreground text-lg">Fast, affordable remote IT support in Johannesburg from <span className="font-semibold text-foreground">R120</span>. No callout needed - we fix it while you watch.</p>
+          <p className="text-sm text-muted-foreground">Same-day service • Secure connections • Serving all Johannesburg areas remotely</p>
           
           {/* Availability Indicator */}
           <div className="flex items-center justify-center gap-2 mt-4 text-sm">
