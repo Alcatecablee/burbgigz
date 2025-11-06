@@ -104,26 +104,17 @@ const About = () => {
               <div>
                 <h3 className="font-semibold mb-3">CompTIA Certifications (Distinction)</h3>
                 <div className="space-y-2">
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-success mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium">CompTIA A+ Hardware/Architecture</p>
-                      <p className="text-xs text-muted-foreground">Achieved with Distinction</p>
-                    </div>
+                  <div>
+                    <p className="text-sm font-medium">CompTIA A+ Hardware/Architecture</p>
+                    <p className="text-xs text-muted-foreground">Achieved with Distinction</p>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-success mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium">CompTIA A+ Software/Architecture</p>
-                      <p className="text-xs text-muted-foreground">Achieved with Distinction</p>
-                    </div>
+                  <div>
+                    <p className="text-sm font-medium">CompTIA A+ Software/Architecture</p>
+                    <p className="text-xs text-muted-foreground">Achieved with Distinction</p>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-success mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium">CompTIA Network+ (N+)</p>
-                      <p className="text-xs text-muted-foreground">Achieved with Distinction</p>
-                    </div>
+                  <div>
+                    <p className="text-sm font-medium">CompTIA Network+ (N+)</p>
+                    <p className="text-xs text-muted-foreground">Achieved with Distinction</p>
                   </div>
                 </div>
               </div>
@@ -198,47 +189,29 @@ const About = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-success mt-0.5" />
-                <div>
-                  <p className="font-medium text-sm">No Cold Calls or Pop-ups</p>
-                  <p className="text-xs text-muted-foreground">We never initiate unsolicited contact or use fake virus alerts</p>
-                </div>
+              <div>
+                <p className="font-medium text-sm mb-1">No Cold Calls or Pop-ups</p>
+                <p className="text-xs text-muted-foreground">We never initiate unsolicited contact or use fake virus alerts</p>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-success mt-0.5" />
-                <div>
-                  <p className="font-medium text-sm">Consent-Based Access</p>
-                  <p className="text-xs text-muted-foreground">Remote access only with your explicit permission - you control everything</p>
-                </div>
+              <div>
+                <p className="font-medium text-sm mb-1">Consent-Based Access</p>
+                <p className="text-xs text-muted-foreground">Remote access only with your explicit permission - you control everything</p>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-success mt-0.5" />
-                <div>
-                  <p className="font-medium text-sm">Transparent Pricing</p>
-                  <p className="text-xs text-muted-foreground">Fixed rates published upfront (R120 remote, from R400 on-site)</p>
-                </div>
+              <div>
+                <p className="font-medium text-sm mb-1">Transparent Pricing</p>
+                <p className="text-xs text-muted-foreground">Fixed rates published upfront (R120 remote, from R400 on-site)</p>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-success mt-0.5" />
-                <div>
-                  <p className="font-medium text-sm">Verified Credentials</p>
-                  <p className="text-xs text-muted-foreground">Real certifications, verifiable experience, physical location</p>
-                </div>
+              <div>
+                <p className="font-medium text-sm mb-1">Verified Credentials</p>
+                <p className="text-xs text-muted-foreground">Real certifications, verifiable experience, physical location</p>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-success mt-0.5" />
-                <div>
-                  <p className="font-medium text-sm">Secure Tools Only</p>
-                  <p className="text-xs text-muted-foreground">We use encrypted, open-source tools like RustDesk - no sketchy software</p>
-                </div>
+              <div>
+                <p className="font-medium text-sm mb-1">Secure Tools Only</p>
+                <p className="text-xs text-muted-foreground">We use encrypted, open-source tools like RustDesk - no sketchy software</p>
               </div>
-              <div className="flex items-start gap-3">
-                <CheckCircle2 className="h-5 w-5 text-success mt-0.5" />
-                <div>
-                  <p className="font-medium text-sm">Local & Accountable</p>
-                  <p className="text-xs text-muted-foreground">Based in Lombardy East with verifiable references and contact details</p>
-                </div>
+              <div>
+                <p className="font-medium text-sm mb-1">Local & Accountable</p>
+                <p className="text-xs text-muted-foreground">Based in Lombardy East with verifiable references and contact details</p>
               </div>
             </div>
             <div className="border-t pt-4 mt-4">
