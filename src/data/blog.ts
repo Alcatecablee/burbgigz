@@ -89,33 +89,33 @@ Scammers buy Google ads that appear above legitimate tech support results, leadi
 
 ### Red Flags - How to Spot a Scam
 
-❌ **Unsolicited Contact:** Real tech companies NEVER call, email, or text you first about computer problems.
+**Unsolicited Contact:** Real tech companies NEVER call, email, or text you first about computer problems. If someone contacts you claiming your computer has a virus or needs urgent attention - and you didn't reach out to them first - it's a scam.
 
-❌ **Pressure and Fear:** Scammers create urgency: "Act now or lose your data!" Legitimate support never pressures you.
+**Pressure and Fear:** Scammers create urgency. "Act now or lose your data!" "Your computer will crash in 24 hours!" Legitimate support never pressures you. I tell clients to take their time, think about it, get a second opinion if they want.
 
-❌ **Requests for Remote Access:** They ask you to install remote access software immediately. Real techs explain the process first.
+**Requests for Remote Access:** They ask you to install remote access software immediately, before explaining anything. Real techs explain the process first, tell you what they'll do, and get your informed consent.
 
-❌ **Payment Demands:** They want payment via gift cards, Bitcoin, or wire transfer. These are untraceable.
+**Payment Demands:** They want payment via gift cards, Bitcoin, or wire transfer. These are untraceable. I've never met a legitimate IT tech who accepts gift cards as payment - that's a massive red flag.
 
-❌ **Generic Greetings:** "Dear Customer" instead of your name.
+**Generic Greetings:** Emails that say "Dear Customer" instead of your name, or "Dear Sir/Madam". Real companies know who you are if you're actually their customer.
 
-❌ **Poor Grammar:** Emails with spelling errors and awkward phrasing.
+**Poor Grammar:** Emails with spelling errors and awkward phrasing like "Your account have been compromised" or "Click here for to verify your details."
 
-❌ **Suspicious URLs:** hovering over links reveals strange domains (microsoftsupport-helpdesk.xyz instead of microsoft.com)
+**Suspicious URLs:** When you hover over links, they reveal strange domains like "microsoftsupport-helpdesk.xyz" instead of actual microsoft.com addresses.
 
-### How Legitimate IT Support Works
+### How Legitimate IT Support Actually Works
 
-✅ **You Contact Us First:** You call, WhatsApp, or email us about a problem.
+**You Contact Us First:** You call, WhatsApp, or email us about a problem you're experiencing. We don't call you out of the blue claiming we've detected issues.
 
-✅ **Transparent Pricing:** Costs are clear upfront (R120 remote, R400+ on-site).
+**Transparent Pricing:** Costs are clear upfront. R120 for remote support, R400+ for on-site. No hidden fees, no surprise charges, no pressure to pay immediately.
 
-✅ **Consent-Based Access:** We explain what we'll do before connecting remotely. You can end the session anytime.
+**Consent-Based Access:** We explain what we'll do before connecting remotely. You can end the session anytime by closing the window. You watch everything on your screen.
 
-✅ **Secure Tools:** We use encrypted, reputable software like RustDesk, never sketchy downloads.
+**Secure Tools:** We use encrypted, reputable software like RustDesk. Not sketchy programs with names like "Microsoft_Support_Tool_v3.exe" downloaded from random websites.
 
-✅ **Verifiable Identity:** Local business with physical location, reviews, and credentials.
+**Verifiable Identity:** Local business with physical location in Lombardy East, real Google reviews, verified credentials. You can look us up, visit the office, check references.
 
-✅ **Normal Payment Methods:** EFT, cash, or card - never gift cards or cryptocurrency.
+**Normal Payment Methods:** EFT, cash, or card. Never gift cards, never Bitcoin, never wire transfers to overseas accounts.
 
 ### What to Do If You're Targeted
 
@@ -178,17 +178,17 @@ If someone contacts you claiming to be from a company:
 
 ### How BurbGigz is Different
 
-We understand the damage scams have done to trust in IT support. That's why we're completely transparent:
+I understand the damage scams have done to trust in IT support. That's why I'm completely transparent about everything:
 
-✅ **No Cold Calls:** We never initiate contact. You reach out to us.
+**No Cold Calls:** I never initiate contact. You reach out to me when you have a problem. I don't call people claiming their computer is infected - because that's what scammers do.
 
-✅ **Published Pricing:** R120 remote support, R400+ on-site - no hidden fees.
+**Published Pricing:** R120 for remote support, R400+ for on-site. No hidden fees. What I quote is what you pay. If the job turns out bigger than expected, I tell you before proceeding and get your approval.
 
-✅ **Verified Credentials:** CompTIA A+ and Network+ certified, verifiable experience.
+**Verified Credentials:** CompTIA A+ and Network+ certified, verifiable experience. You can check my credentials, look up my business, read my reviews. Real business, real person, real credentials.
 
-✅ **Local & Accountable:** Based in Lombardy East with real reviews and references.
+**Local & Accountable:** Based in Lombardy East with real Google reviews and references. You can visit if you want. I live and work in this community - my reputation matters to me.
 
-✅ **Consent-Based Service:** You see everything we do and can stop anytime.
+**Consent-Based Service:** You see everything I do on your screen during remote sessions, and you can stop me anytime. I explain what I'm doing as I work. No mystery, no secrecy.
 
 ### Reporting Scams in South Africa
 
@@ -277,22 +277,15 @@ Once you're convinced, they ask you to:
 
 ### Real Microsoft vs. Fake Scammers
 
-**REAL Microsoft:**
-❌ Never calls you unsolicited
-❌ Never asks for payment via gift cards/Bitcoin
-❌ Never requests remote access via third-party tools
-❌ Never sends full-screen browser pop-ups
-✅ Only contacts you if YOU submitted a support request first
-✅ Uses official channels: support.microsoft.com
-✅ Never asks for your password
+**How Real Microsoft Actually Operates:**
 
-**FAKE Scammers:**
-✅ Call you out of the blue
-✅ Demand immediate action
-✅ Ask you to install AnyDesk, TeamViewer, or "Microsoft Security Tool"
-✅ Want payment via untraceable methods
-✅ Use high-pressure sales tactics
-✅ Claim to see your computer problems remotely
+Microsoft never calls you unsolicited about computer problems. They never ask for payment via gift cards or Bitcoin. They never request remote access via third-party tools like AnyDesk or TeamViewer. They never send full-screen browser pop-ups with phone numbers.
+
+Real Microsoft only contacts you if YOU submitted a support request first through their official channels at support.microsoft.com. And they never, ever ask for your password - Microsoft already has access to their own systems and doesn't need your password.
+
+**How Scammers Operate:**
+
+Scammers call you out of the blue, claiming to be from Microsoft. They demand immediate action - "Your computer will crash!" "Act now!" They ask you to install remote access tools like AnyDesk, TeamViewer, or fake "Microsoft Security Tool" software. They want payment via untraceable methods like gift cards, Bitcoin, or wire transfers. They use high-pressure sales tactics and claim they can see your computer problems remotely (which is impossible unless you give them access first).
 
 ### The Pop-Up Variation
 
@@ -497,7 +490,7 @@ My services cover Lombardy East, Edenvale, Bedfordview, Greenstone, Kempton Park
 
 **Ready to fix your tech issues?** Book a remote session today for just R120!`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Certified IT technician with 10+ years of helpdesk experience, serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -557,7 +550,7 @@ Small businesses in Lombardy East benefit from SSD upgrades paired with email cl
 
 **Ready to speed up your device?** Book an on-site SSD upgrade or remote consultation today!`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Experienced IT technician specializing in hardware upgrades in Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -611,7 +604,7 @@ If Zoom calls drop or your printer fails after a reboot, a remote session can di
 
 **Get your home office connected!** Book a remote Wi-Fi or printer setup session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "IT specialist helping Lombardy East homes and businesses stay connected.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -670,7 +663,7 @@ If your PC boots inconsistently, storage fails, or you rely on it for work, a re
 
 **Don't let Windows 11 slow you down!** Book a remote troubleshooting session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Windows expert serving Lombardy East and Johannesburg with fast, affordable fixes.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -731,7 +724,7 @@ Most malware can be removed remotely in under an hour for R120. I use secure too
 
 **Protect your PC today!** Book a remote malware removal session now.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Cybersecurity-focused IT technician serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -788,7 +781,7 @@ Power outages in Johannesburg can corrupt drives. Use a UPS or surge protector f
 
 **Safeguard your data!** Book a remote backup consultation today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Data protection expert helping Lombardy East families and businesses.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -846,7 +839,7 @@ Power surges in Johannesburg can disrupt servers. I can remotely set up Microsof
 
 **Get your email sorted!** Book a remote Microsoft 365 setup session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Microsoft 365 specialist serving small businesses in Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -896,7 +889,7 @@ I offer on-site diagnostics (R400 callout) and can coordinate with data recovery
 
 **Don't risk your data!** Book a remote or on-site data recovery consultation today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Data recovery specialist serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -947,7 +940,7 @@ A remote session (R120) can optimize your router settings, update firmware, and 
 
 **Secure your Wi-Fi today!** Book a remote network security session now.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Network security expert serving Edenvale, Bedfordview, and Lombardy East.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -998,7 +991,7 @@ If your printer works inconsistently or you rely on it for business, a remote se
 
 **Get your printer working!** Book a remote printer troubleshooting session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Hardware troubleshooting specialist serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1059,7 +1052,7 @@ I can set up a hybrid backup strategy remotely (R120), ensuring your important f
 
 **Protect your data the smart way!** Book a remote backup strategy consultation today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Data protection expert helping South African home offices stay secure.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1161,7 +1154,7 @@ I offer remote diagnostics (R120) to identify the root cause and walk you throug
 
 **Stop the blue screens!** Book a remote BSOD troubleshooting session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Windows troubleshooting expert serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1286,7 +1279,7 @@ Power outages in Johannesburg can corrupt Windows Update files. If you experienc
 
 **Get your updates working!** Book a remote Windows Update troubleshooting session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Windows Update specialist serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1404,7 +1397,7 @@ I offer remote diagnostics (R120) to quickly identify if it's a simple fix or ne
 
 **Get your Start Menu working!** Book a remote troubleshooting session for R120.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Windows 11 expert helping Lombardy East users get back to work fast.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1558,7 +1551,7 @@ I offer remote audio troubleshooting (R120) to quickly diagnose and fix driver, 
 
 **Get your sound back!** Book a remote audio fix session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Audio troubleshooting specialist serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1762,7 +1755,7 @@ For on-site issues (R400 callout):
 
 **Get connected again!** Book a remote WiFi fix session today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Network specialist serving Lombardy East, Edenvale, and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -1966,7 +1959,7 @@ I offer:
 
 **Ready to upgrade to Windows 11 safely?** Book a consultation or installation service today.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Windows installation expert serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -2200,7 +2193,7 @@ I offer:
 
 **Speed up your PC today!** Book a remote optimization session or hardware upgrade.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Performance optimization expert serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -2453,7 +2446,7 @@ I offer:
 
 **Fix error 0x80070057 today!** Book a remote troubleshooting session now.`,
     author: {
-      name: "Your Name",
+      name: "Clive",
       bio: "Windows error specialist serving Lombardy East and Johannesburg.",
       avatar: "/images/author-avatar.jpg",
     },
@@ -2819,73 +2812,41 @@ If you're WFH in Joburg and your laptop is slow:
     description: "Why remote IT support is faster, cheaper, and often more effective than traditional on-site visits. Learn how remote support works, what it can fix, when you actually need on-site, and why it's the smart choice for Johannesburg homes and small businesses.",
     date: "2025-11-06",
     tags: ["Remote Support", "Johannesburg", "IT Support", "Cost Savings", "Work from Home"],
-    content: `"I need an IT person to come to my house" - I hear this at least once a day. But here's the truth: for 80% of computer problems, you don't need someone to drive to you. Remote IT support solves the issue faster, cheaper, and just as effectively.
+    content: `Last Tuesday, a client in Bedfordview WhatsApped me at 3pm: "My printer won't print and I have documents due in an hour." Twenty minutes later, I'd fixed the driver issue remotely for R120. She didn't have to wait for me to drive through traffic, didn't have to pay a R500 callout fee, and her documents got printed on time.
 
-Let me explain why remote support isn't just a cheaper alternative - it's often the *better* choice for most tech problems.
+This happens almost every day. People assume they need an on-site visit, but most computer problems - I'd say about 80% of what I deal with - can be fixed remotely. Faster, cheaper, and honestly, just as effectively as if I were sitting in front of your laptop.
+
+Here's why remote support isn't just a budget option. For most tech issues, it's actually the better choice.
 
 :::tip
-**Bottom Line:** Remote support costs R120-R150 vs. R400-R560 for on-site callouts in Johannesburg. It's faster (30-minute response vs. next-day scheduling), and works for 80% of common issues like slow computers, Wi-Fi problems, software errors, and malware removal.
+**The Real Numbers:** Remote support runs R120-R150 for most jobs. On-site callouts start at R400-R560 before I even touch your computer. Remote also means I can connect in 30 minutes instead of scheduling for tomorrow or next week. Works for slow computers, Wi-Fi problems, software errors, malware removal - pretty much everything except physical hardware repairs.
 :::
 
-### What is Remote IT Support?
+### How Remote Support Actually Works
 
-Remote support means I connect to your computer over the internet with your permission. Using secure tools like RustDesk, I can:
-- See your screen (exactly what you see)
-- Control your mouse and keyboard
-- Run diagnostic tools
-- Install/uninstall software
-- Fix settings and configurations
-- Remove malware
-- Optimize performance
+When you call me saying your laptop is acting up, I connect to your computer over the internet - but only with your permission. I use secure tools like RustDesk. Once you click "Allow," I can see your screen exactly as you see it, control your mouse and keyboard, run diagnostics, install or uninstall software, fix settings, remove malware, optimize performance - basically everything I'd do if I were sitting at your desk.
 
-**What You Experience:**
-- You send me a message: "My laptop is slow"
-- I send you a secure connection link
-- You click it and give permission
-- I connect to your computer
-- You watch everything I do on your screen
-- Issue gets fixed (usually 30-60 minutes)
-- Session ends, no lingering access
+Here's what the actual process looks like: You send me a message explaining the problem. I send you a secure connection link. You click it and grant permission. I connect and you watch everything I do on your screen as I work. Issue gets fixed, usually takes 30-60 minutes. Session ends, and I no longer have any access - you'd have to give me permission again next time.
 
 ### Why Remote Support Is Better (The Real Reasons)
 
-**1. Massive Cost Savings**
+**1. You Save Serious Money**
 
-The math is simple:
+A client in Sandton called me last month about his slow laptop. He'd already gotten quotes from two computer shops - both wanted R750 for an on-site visit to "diagnose and clean up" the system. I connected remotely for R150, found malware from a dodgy download, removed it, optimized his startup programs, and had him back to full speed in an hour. He saved R600.
 
-**Remote Support:**
-- R120-R150 session fee
-- No transport costs
-- No waiting time costs
-- Total: R120-R150
+The math breaks down like this: Remote support is R120-R150 for the session. No transport costs, no waiting time costs. That's it. On-site callouts start at R400 just to show up, then R50-R150 for transport depending on which suburb you're in, then R150-R350 for labor depending on what needs doing. So you're looking at R600-R900 minimum for on-site vs R120-R150 remote.
 
-**On-Site Support (My Pricing in Johannesburg):**
-- R400 base callout fee
-- R50-R150 transport (depending on suburb)
-- R150-R350 labor (depending on task)
-- Total: R600-R900
+For small businesses, the savings are even bigger. If your employee earns R300 an hour and spends 2 hours waiting for a tech to arrive and fix the problem, that's R600 in lost productivity plus R600 for the service call - R1200 total. Remote support? R120 for me, plus maybe 30 minutes of their time that's only partially lost because they can keep working while I'm fixing things - call it R270 total cost.
 
-**For businesses:** If your employee earns R300/hour and waits 2 hours for a tech to arrive, that's R600 in lost productivity + R600 service = R1200 total cost. Remote support? R120 + 30 min lost time = R270 total cost.
+**2. You Get Help Right Now, Not Tomorrow**
 
-**2. Instant Help vs. Next-Day Scheduling**
+Yesterday afternoon a client in Edenvale messaged me: "Zoom won't work and I have a client meeting in 45 minutes." I connected remotely within 15 minutes, found the webcam was disabled in Windows settings (happens after updates sometimes), re-enabled it, tested Zoom, and had her ready for the meeting with 20 minutes to spare. Total cost: R120.
 
-**Remote Support:**
-- Message me now
-- Connected in 15-30 minutes (during business hours)
-- Problem solved same session
-- Total time: 1 hour max
+If she'd called for an on-site visit, I would've had to schedule her for the next available slot - probably the following day given my calendar. She would've missed the meeting. Even if I could've rushed over, I'm at least an hour away from Edenvale with Johannesburg traffic.
 
-**On-Site Support:**
-- Call to book appointment
-- Schedule for tomorrow (or later if I'm booked)
-- Wait at home/office for arrival
-- Tech works on site
-- Total time: 24+ hours to resolution
+That's the real difference: Remote support happens now. You message me, I connect in 15-30 minutes during business hours, we solve the problem in the same session. Total time from problem to solution: under an hour in most cases.
 
-**Real Example:**
-- Client in Sandton: "Printer won't print, I have a meeting in 1 hour"
-- Remote session: Fixed printer configuration in 20 minutes, R120
-- On-site would've been: Tomorrow's appointment, R550 callout, meeting missed
+On-site means calling to book an appointment, scheduling for tomorrow or later depending on how full my calendar is, waiting at home or the office for me to arrive (and hoping I don't hit bad traffic), then me working on-site. You're looking at 24+ hours minimum from problem to resolution, sometimes longer if I'm booked solid.
 
 **3. You See Everything That's Happening**
 
@@ -2923,54 +2884,27 @@ Remote support = problem solved in 1 hour, minimal disruption.
 
 **5. Better for Simple Issues (Which Are Most Issues)**
 
-**Problems Remote Support Fixes Easily:**
-✅ Computer running slow
-✅ Wi-Fi won't connect
-✅ Printer not printing
-✅ Email not working
-✅ Software won't install
-✅ Windows updates failing
-✅ Malware/virus removal
-✅ Can't access files or folders
-✅ Zoom/Teams not working
-✅ Microsoft Office issues
-✅ Password reset problems
-✅ Browser issues
-✅ Startup errors
+Last week alone, I fixed remotely: three slow laptops in Bedfordview, two Wi-Fi problems in Sandton, a printer that wouldn't print in Edenvale, and five malware removals across Johannesburg. Not a single one needed an on-site visit.
 
-**These are 80% of IT support requests.** All solvable remotely in 30-60 minutes for R120-R150.
+Here's what I fix remotely most days - computer running slow, Wi-Fi won't connect, printer not printing, email not working, software won't install, Windows updates failing, malware and virus removal, can't access files or folders, Zoom or Teams not working, Microsoft Office issues, password resets, browser problems, and startup errors.
+
+These are 80% of IT support requests. All solvable remotely in 30-60 minutes for R120-R150, without me needing to drive through Johannesburg traffic to your place.
 
 ### What Remote Support Can and Cannot Fix
 
-**Can Fix Remotely:**
-- ✅ Software issues (95% of problems)
-- ✅ Settings and configurations
-- ✅ Performance optimization
-- ✅ Virus/malware removal
-- ✅ Network troubleshooting
-- ✅ Operating system errors
-- ✅ Program installation/removal
-- ✅ Driver updates
-- ✅ Email setup
-- ✅ Cloud storage issues
-- ✅ Backup configuration
+**I Can Fix Remotely:**
 
-**Cannot Fix Remotely (Need On-Site):**
-- ❌ Broken laptop screen
-- ❌ Keyboard/trackpad not working (can't control PC remotely)
-- ❌ SSD/RAM hardware installation
-- ❌ Physical component replacement
-- ❌ No power/won't turn on
-- ❌ Severe water/physical damage
-- ❌ Internal hardware diagnostics
-- ❌ Network cable installation
+Software issues make up 95% of the problems I see. Settings and configurations, performance optimization, virus and malware removal, network troubleshooting, operating system errors, program installation or removal, driver updates, email setup, cloud storage issues, backup configuration - all of these I handle remotely every day.
 
-**Grey Area (Sometimes Remote, Sometimes On-Site):**
-- 🔶 Blue screen errors (sometimes software, sometimes hardware)
-- 🔶 Very slow performance (might need SSD upgrade, might just need cleanup)
-- 🔶 Overheating (could be software settings, could be dust buildup)
+**What Actually Needs On-Site:**
 
-**My Approach:** Start with remote diagnostic (R120). I'll tell you honestly: "This is fixable remotely for R150" or "You need on-site for SSD upgrade, R400 callout + R900 SSD + R350 labor."
+Broken laptop screens, keyboards or trackpads not working (because I can't control your PC remotely if you can't click "Allow"), SSD or RAM hardware installation, physical component replacement, computers that won't turn on at all, severe water or physical damage, internal hardware diagnostics, and network cable installation.
+
+**The Grey Area:**
+
+Some problems could go either way. Blue screen errors are sometimes software (fixable remotely), sometimes hardware (need on-site). Very slow performance might need an SSD upgrade (on-site) or might just need cleanup (remote). Overheating could be software settings I can fix remotely, or dust buildup that needs physical cleaning.
+
+My approach is simple: start with a remote diagnostic for R120. I'll check everything I can see remotely, then tell you honestly whether it's fixable remotely for R150 or whether you need on-site for something like an SSD upgrade (R400 callout + R900 SSD + R350 labor). I don't upsell on-site visits if remote will work - I'd rather you save money and come back for future problems.
 
 ### Security: Is Remote Support Safe?
 
@@ -3254,22 +3188,15 @@ I'm not saying remote is ALWAYS better. Here's when on-site makes sense:
 
 ### Summary: Your Decision Guide
 
-**Choose Remote Support If:**
-✅ Software/settings/configuration issue
-✅ Want fast resolution (same-day)
-✅ Want to save money (R120-R200 vs R600-R900)
-✅ Work from home and can't spare laptop for days
-✅ Comfortable watching the tech work
-✅ Have stable internet connection
+**When Remote Support Makes Sense:**
 
-**Choose On-Site Support If:**
-❌ Physical hardware installation needed
-❌ Computer won't turn on at all
-❌ Screen/keyboard broken (can't control remotely)
-❌ Prefer in-person explanation and help
-❌ No internet connection available
+If you've got a software, settings, or configuration issue - remote is the way to go. It's also ideal when you want fast resolution (same-day instead of waiting for an appointment), want to save money (R120-R200 instead of R600-R900), work from home and can't spare your laptop for days, are comfortable watching the tech work on your screen, and have a stable internet connection.
 
-**Still Unsure?** Start with a remote diagnostic for R120. Worst case: I determine it needs on-site and you only spent R120 to find out. Best case: Fixed remotely and you save R400+.
+**When You Actually Need On-Site:**
+
+Physical hardware installation, computer won't turn on at all, screen or keyboard broken (because I can't control your PC remotely), you prefer in-person explanation and help, or you don't have an internet connection available.
+
+**Still unsure?** Start with a remote diagnostic for R120. Worst case: I determine it needs on-site and you only spent R120 to find out. Best case: Fixed remotely and you save R400+.
 
 :::tip
 **For Johannesburg Residents:** I serve Lombardy East, Sandton, Bedfordview, Edenvale, Rosebank, Midrand and surroundingsuburbs. Remote support works anywhere in South Africa with internet. All pricing is transparent - no hidden fees. EFT payments accepted. WhatsApp me: +27 67 049 4876
