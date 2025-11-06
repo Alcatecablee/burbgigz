@@ -10,18 +10,26 @@ import { serviceSchema, breadcrumbSchema } from "@/data/seoStructuredData";
 
 // Service areas with pricing aligned to Pricing.tsx and Booking.tsx
 const areas = [
-  { name: "Lombardy East", desc: "Primary service area and base.", calloutFee: 400, distanceKm: 0, availability: "Same-day callouts available." },
-  { name: "Alexandra", desc: "~3 km NW. Fast access for remote prep, callouts on request.", calloutFee: 450, distanceKm: 3, availability: "Next-day callouts." },
-  { name: "Lakeside", desc: "~3 km NE. Quick home/office support.", calloutFee: 450, distanceKm: 3, availability: "Next-day callouts." },
-  { name: "Kew", desc: "Adjacent. Rapid onsite availability.", calloutFee: 450, distanceKm: 1, availability: "Same-day callouts." },
-  { name: "Marlboro (Gautrain)", desc: "~4 km N. Convenient transport hub.", calloutFee: 470, distanceKm: 4, availability: "Next-day callouts." },
-  { name: "Greenstone Mall", desc: "~10 min E. Popular retail/office zone.", calloutFee: 490, distanceKm: 6, availability: "Next-day callouts." },
-  { name: "Sandton", desc: "~6–8 km NW. Business hub; after‑hours remote preferred.", calloutFee: 520, distanceKm: 7, availability: "Scheduled callouts." },
-  { name: "Johannesburg CBD", desc: "~14 km W. Planned callouts; remote first.", calloutFee: 550, distanceKm: 14, availability: "Scheduled callouts." },
-  { name: "Bedfordview", desc: "~5 km SE. Residential and business support.", calloutFee: 500, distanceKm: 5, availability: "Next-day callouts." },
-  { name: "Edenvale", desc: "~5 km E. Quick access for homes/offices.", calloutFee: 490, distanceKm: 5, availability: "Next-day callouts." },
-  { name: "Kempton Park", desc: "~15 km NE. Airport-adjacent business support.", calloutFee: 560, distanceKm: 15, availability: "Scheduled callouts." },
+  { name: "Lombardy East", desc: "Primary service area and base.", calloutFee: 400, distanceKm: 0, availability: "Same-day callouts available.", detailsPage: null },
+  { name: "Alexandra", desc: "~3 km NW. Fast access for remote prep, callouts on request.", calloutFee: 450, distanceKm: 3, availability: "Next-day callouts.", detailsPage: null },
+  { name: "Lakeside", desc: "~3 km NE. Quick home/office support.", calloutFee: 450, distanceKm: 3, availability: "Next-day callouts.", detailsPage: null },
+  { name: "Kew", desc: "Adjacent. Rapid onsite availability.", calloutFee: 450, distanceKm: 1, availability: "Same-day callouts.", detailsPage: null },
+  { name: "Marlboro (Gautrain)", desc: "~4 km N. Convenient transport hub.", calloutFee: 470, distanceKm: 4, availability: "Next-day callouts.", detailsPage: null },
+  { name: "Greenstone Mall", desc: "~10 min E. Popular retail/office zone.", calloutFee: 490, distanceKm: 6, availability: "Next-day callouts.", detailsPage: null },
+  { name: "Sandton", desc: "~6–8 km NW. Business hub; after‑hours remote preferred.", calloutFee: 520, distanceKm: 7, availability: "Scheduled callouts.", detailsPage: "/areas/sandton" },
+  { name: "Johannesburg CBD", desc: "~14 km W. Planned callouts; remote first.", calloutFee: 550, distanceKm: 14, availability: "Scheduled callouts.", detailsPage: null },
+  { name: "Bedfordview", desc: "~5 km SE. Residential and business support.", calloutFee: 500, distanceKm: 5, availability: "Next-day callouts.", detailsPage: "/areas/bedfordview" },
+  { name: "Edenvale", desc: "~5 km E. Quick access for homes/offices.", calloutFee: 490, distanceKm: 5, availability: "Next-day callouts.", detailsPage: "/areas/edenvale" },
+  { name: "Kempton Park", desc: "~15 km NE. Airport-adjacent business support.", calloutFee: 560, distanceKm: 15, availability: "Scheduled callouts.", detailsPage: null },
 ];
+
+// Add Rosebank and Midrand to the list (they have dedicated pages but were missing)
+const additionalAreas = [
+  { name: "Rosebank", desc: "Commercial hub with Gautrain access. Business IT support.", calloutFee: 520, distanceKm: 7, availability: "Scheduled callouts.", detailsPage: "/areas/rosebank" },
+  { name: "Midrand", desc: "Growing business area. Remote and on-site support.", calloutFee: 550, distanceKm: 12, availability: "Scheduled callouts.", detailsPage: "/areas/midrand" },
+];
+
+const allAreas = [...areas, ...additionalAreas];
 
 const Areas = () => {
   const [sortBy, setSortBy] = useState("name");
@@ -33,7 +41,7 @@ const Areas = () => {
     price: "120",
     currency: "ZAR",
     provider: "BurbGigz IT Services",
-    areaServed: areas.map(area => area.name)
+    areaServed: allAreas.map(area => area.name)
   });
 
   const areasBreadcrumbs = breadcrumbSchema([
@@ -46,7 +54,7 @@ const Areas = () => {
   };
 
   // Sorting functionality
-  const sortedAreas = [...areas].sort((a, b) => {
+  const sortedAreas = [...allAreas].sort((a, b) => {
     if (sortBy === "fee") return a.calloutFee - b.calloutFee;
     if (sortBy === "distance") return a.distanceKm - b.distanceKm;
     return a.name.localeCompare(b.name);
@@ -124,38 +132,89 @@ const Areas = () => {
                 </p>
                 
                 {/* Action Buttons */}
-                <div className="flex gap-2 pt-2">
-                  <Button 
-                    asChild 
-                    variant="default" 
-                    size="sm" 
-                    className="flex-1"
-                    data-testid={`button-book-onsite-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
-                  >
-                    <Link
-                      to="/booking"
-                      onClick={() => handleBookingClick(a.name, 'onsite')}
-                      aria-label={`Book on-site visit for ${a.name}`}
+                {a.detailsPage ? (
+                  <div className="space-y-2">
+                    <Button 
+                      asChild 
+                      variant="default" 
+                      size="sm" 
+                      className="w-full"
+                      data-testid={`button-view-details-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
                     >
-                      Book On-site
-                    </Link>
-                  </Button>
-                  <Button 
-                    asChild 
-                    variant="outline" 
-                    size="sm" 
-                    className="flex-1"
-                    data-testid={`button-book-remote-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
-                  >
-                    <Link
-                      to="/remote"
-                      onClick={() => handleBookingClick(a.name, 'remote')}
-                      aria-label={`Book remote support for ${a.name}`}
+                      <Link
+                        to={a.detailsPage}
+                        aria-label={`View detailed IT support information for ${a.name}`}
+                      >
+                        View {a.name} IT Support Details
+                      </Link>
+                    </Button>
+                    <div className="flex gap-2">
+                      <Button 
+                        asChild 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1"
+                        data-testid={`button-book-onsite-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
+                      >
+                        <Link
+                          to="/booking"
+                          onClick={() => handleBookingClick(a.name, 'onsite')}
+                          aria-label={`Book on-site visit for ${a.name}`}
+                        >
+                          Book On-site
+                        </Link>
+                      </Button>
+                      <Button 
+                        asChild 
+                        variant="outline" 
+                        size="sm" 
+                        className="flex-1"
+                        data-testid={`button-book-remote-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
+                      >
+                        <Link
+                          to="/remote"
+                          onClick={() => handleBookingClick(a.name, 'remote')}
+                          aria-label={`Book remote support for ${a.name}`}
+                        >
+                          Book Remote
+                        </Link>
+                      </Button>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex gap-2 pt-2">
+                    <Button 
+                      asChild 
+                      variant="default" 
+                      size="sm" 
+                      className="flex-1"
+                      data-testid={`button-book-onsite-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
                     >
-                      Book Remote
-                    </Link>
-                  </Button>
-                </div>
+                      <Link
+                        to="/booking"
+                        onClick={() => handleBookingClick(a.name, 'onsite')}
+                        aria-label={`Book on-site visit for ${a.name}`}
+                      >
+                        Book On-site
+                      </Link>
+                    </Button>
+                    <Button 
+                      asChild 
+                      variant="outline" 
+                      size="sm" 
+                      className="flex-1"
+                      data-testid={`button-book-remote-${a.name.replace(/\s+/g, '-').toLowerCase()}`}
+                    >
+                      <Link
+                        to="/remote"
+                        onClick={() => handleBookingClick(a.name, 'remote')}
+                        aria-label={`Book remote support for ${a.name}`}
+                      >
+                        Book Remote
+                      </Link>
+                    </Button>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -203,7 +262,7 @@ const Areas = () => {
               },
               telephone: "+27670494876",
             },
-            areaServed: areas.map((a) => ({
+            areaServed: allAreas.map((a) => ({
               "@type": "City",
               name: a.name.split(" (")[0], // Clean up names for schema
             })),
