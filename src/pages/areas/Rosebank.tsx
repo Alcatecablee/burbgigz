@@ -270,14 +270,14 @@ const Rosebank = () => {
             <AccordionItem value="q1">
               <AccordionTrigger>Do you provide IT support in Rosebank?</AccordionTrigger>
               <AccordionContent>
-                Yes! We provide both remote and on-site IT support throughout Rosebank, including the Gautrain station area, Rosebank Mall, and surrounding business districts. Remote support starts at R120, and on-site callouts are R520.
+                Yes! I provide both remote and on-site IT support throughout Rosebank, including the Gautrain station area, Rosebank Mall, and surrounding business districts. Remote support starts at R120, and on-site callouts are R520.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q2">
               <AccordionTrigger>Can you help with business IT in Rosebank?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! We support small businesses and home offices throughout Rosebank. From network setup to employee laptop troubleshooting to printer configuration, we provide professional IT support tailored to your business needs.
+                Absolutely! I support small businesses and home offices throughout Rosebank. From network setup to employee laptop troubleshooting to printer configuration, I provide professional IT support tailored to your business needs.
               </AccordionContent>
             </AccordionItem>
 
@@ -291,21 +291,21 @@ const Rosebank = () => {
             <AccordionItem value="q4">
               <AccordionTrigger>Why does Rosebank have a R520 callout fee?</AccordionTrigger>
               <AccordionContent>
-                The R520 includes R400 base service plus R120 transport from our Lombardy East base. However, most issues can be fixed remotely for just R120 - perfect for software problems and troubleshooting.
+                The R520 includes R400 base service plus R120 transport from my Lombardy East base. However, most issues can be fixed remotely for just R120 - perfect for software problems and troubleshooting.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q5">
               <AccordionTrigger>Do you work with offices near Rosebank Gautrain?</AccordionTrigger>
               <AccordionContent>
-                Yes! We frequently work with offices around the Gautrain station area. Whether you're in a high-rise office building or a small business suite, we provide the same professional IT support. Remote access is often most convenient for busy office environments.
+                Yes! I frequently work with offices around the Gautrain station area. Whether you're in a high-rise office building or a small business suite, I provide the same professional IT support. Remote access is often most convenient for busy office environments.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q6">
               <AccordionTrigger>Can you help with networking multiple computers in an office?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! We can set up small office networks, configure shared printers, set up file sharing, and troubleshoot connectivity issues. This often starts with a remote consultation to assess your needs, followed by an on-site visit if physical network setup is required.
+                Absolutely! I can set up small office networks, configure shared printers, set up file sharing, and troubleshoot connectivity issues. This often starts with a remote consultation to assess your needs, followed by an on-site visit if physical network setup is required.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -347,18 +347,18 @@ const Rosebank = () => {
               Rosebank is one of Johannesburg's most dynamic business and lifestyle hubs, home to corporate offices, creative agencies, retail spaces, and residential apartments. The area's concentration of professionals and businesses creates a constant demand for reliable IT support.
             </p>
             <p>
-              From our nearby Lombardy East base, we provide comprehensive IT support to Rosebank's business community and residents. Whether you're in an office near the Gautrain station, working from a home office in one of Rosebank's residential buildings, or managing a small business near Rosebank Mall, we're equipped to help.
+              From my nearby Lombardy East base, I provide comprehensive IT support to Rosebank's business community and residents. Whether you're in an office near the Gautrain station, working from a home office in one of Rosebank's residential buildings, or managing a small business near Rosebank Mall, I'm equipped to help.
             </p>
             <h3 className="text-lg font-semibold mt-4">Business-Grade Service at Affordable Rates</h3>
             <p>
-              Rosebank businesses need IT support that's professional, reliable, and doesn't break the bank. Our remote-first approach means we can troubleshoot employee laptops, fix server connectivity issues, and resolve software problems without the cost and delay of an on-site visit. For R120, most issues are resolved within the hour.
+              Rosebank businesses need IT support that's professional, reliable, and doesn't break the bank. My remote-first approach means I can troubleshoot employee laptops, fix server connectivity issues, and resolve software problems without the cost and delay of an on-site visit. For R120, most issues are resolved within the hour.
             </p>
             <p>
-              When on-site work is needed - network installations, hardware upgrades, or physical troubleshooting - we schedule visits that minimize disruption to your business operations. Our R520 on-site fee is transparent and includes initial diagnostics.
+              When on-site work is needed - network installations, hardware upgrades, or physical troubleshooting - I schedule visits that minimize disruption to your business operations. My R520 on-site fee is transparent and includes initial diagnostics.
             </p>
             <h3 className="text-lg font-semibold mt-4">Supporting Rosebank's Work-From-Home Community</h3>
             <p>
-              Many Rosebank residents now work remotely, and a reliable home office setup is essential. We specialize in home office IT: optimizing Wi-Fi coverage for video calls, setting up dual monitors, configuring VPN access, troubleshooting printer connectivity - all the small issues that can derail a workday.
+              Many Rosebank residents now work remotely, and a reliable home office setup is essential. I specialize in home office IT: optimizing Wi-Fi coverage for video calls, setting up dual monitors, configuring VPN access, troubleshooting printer connectivity - all the small issues that can derail a workday.
             </p>
             <p className="text-sm text-muted-foreground mt-4">
               <strong>Service Areas:</strong> Rosebank Mall area, Gautrain Station precinct, The Zone @ Rosebank, Cradock Avenue, Jan Smuts Avenue, Oxford Road, and all surrounding business and residential areas.

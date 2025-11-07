@@ -282,35 +282,35 @@ const Sandton = () => {
             <AccordionItem value="q1">
               <AccordionTrigger>Do you provide IT support in Sandton?</AccordionTrigger>
               <AccordionContent>
-                Yes! We provide both remote and on-site IT support throughout Sandton, including Sandton City, Nelson Mandela Square, and surrounding business areas. Remote support starts at R120, and on-site callouts are R520 (R400 base + R120 transport).
+                Yes! I provide both remote and on-site IT support throughout Sandton, including Sandton City, Nelson Mandela Square, and surrounding business areas. Remote support starts at R120, and on-site callouts are R520 (R400 base + R120 transport).
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q2">
               <AccordionTrigger>How quickly can you respond to IT emergencies in Sandton?</AccordionTrigger>
               <AccordionContent>
-                For remote support, we can typically connect within 30 minutes during business hours. On-site callouts in Sandton are scheduled within 24 hours, with same-day service available for urgent issues.
+                For remote support, I can typically connect within 30 minutes during business hours. On-site callouts in Sandton are scheduled within 24 hours, with same-day service available for urgent issues.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q3">
               <AccordionTrigger>What IT services do you offer in Sandton?</AccordionTrigger>
               <AccordionContent>
-                We offer complete IT support including remote troubleshooting, virus removal, SSD upgrades, network setup, printer configuration, Windows installations, and emergency support for both home offices and small businesses in Sandton.
+                I offer complete IT support including remote troubleshooting, virus removal, SSD upgrades, network setup, printer configuration, Windows installations, and emergency support for both home offices and small businesses in Sandton.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q4">
               <AccordionTrigger>Why does Sandton have a higher callout fee?</AccordionTrigger>
               <AccordionContent>
-                The R520 callout fee includes R400 base service plus R120 for transport from our Lombardy East base (7km distance). Remote support is always R120 regardless of location - perfect for most software issues.
+                The R520 callout fee includes R400 base service plus R120 for transport from my Lombardy East base (7km distance). Remote support is always R120 regardless of location - perfect for most software issues.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q5">
               <AccordionTrigger>Can you help with business IT in Sandton?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! We support small businesses throughout Sandton with network setup, employee PC troubleshooting, printer/scanner configuration, and ongoing IT maintenance. Our remote-first approach minimizes disruption to your workday.
+                Absolutely! I support small businesses throughout Sandton with network setup, employee PC troubleshooting, printer/scanner configuration, and ongoing IT maintenance. My remote-first approach minimizes disruption to your workday.
               </AccordionContent>
             </AccordionItem>
 
@@ -359,18 +359,18 @@ const Sandton = () => {
               Sandton is Johannesburg's premier business district, home to thousands of companies and professionals who rely on technology daily. Whether you're working from a high-rise office in Sandton City or managing a home office in one of Sandton's residential areas, computer problems can bring your day to a halt.
             </p>
             <p>
-              Based in nearby Lombardy East (just 7km away), we provide fast, professional IT support to Sandton businesses and residents. Our remote-first approach means most issues are resolved without you leaving your desk - perfect for busy professionals in Sandton's fast-paced business environment.
+              Based in nearby Lombardy East (just 7km away), I provide fast, professional IT support to Sandton businesses and residents. My remote-first approach means most issues are resolved without you leaving your desk - perfect for busy professionals in Sandton's fast-paced business environment.
             </p>
             <h3 className="text-lg font-semibold mt-4">Why Remote Support Makes Sense for Sandton</h3>
             <p>
-              Sandton traffic can be unpredictable, and your time is valuable. For most software issues - slow computers, virus removal, Windows updates, printer problems - remote support is faster and more cost-effective. We securely connect to your computer, you watch everything we do, and the issue is resolved while you stay productive.
+              Sandton traffic can be unpredictable, and your time is valuable. For most software issues - slow computers, virus removal, Windows updates, printer problems - remote support is faster and more cost-effective. I securely connect to your computer, you watch everything I do, and the issue is resolved while you stay productive.
             </p>
             <p>
-              Only when hardware repairs or physical upgrades are needed (like SSD installations or RAM upgrades) do we schedule an on-site visit. This hybrid approach saves you time and money while ensuring you get the right solution for your specific problem.
+              Only when hardware repairs or physical upgrades are needed (like SSD installations or RAM upgrades) do I schedule an on-site visit. This hybrid approach saves you time and money while ensuring you get the right solution for your specific problem.
             </p>
             <h3 className="text-lg font-semibold mt-4">Serving Sandton's Business Community</h3>
             <p>
-              We understand that for Sandton businesses, downtime means lost revenue. That's why we prioritize fast response times and efficient solutions. Whether you're near Sandton Gautrain station, Sandton City mall, or anywhere in the greater Sandton area, we're ready to help.
+              I understand that for Sandton businesses, downtime means lost revenue. That's why I prioritize fast response times and efficient solutions. Whether you're near Sandton Gautrain station, Sandton City mall, or anywhere in the greater Sandton area, I'm ready to help.
             </p>
             <p className="text-sm text-muted-foreground mt-4">
               <strong>Service Areas:</strong> Sandton Central, Morningside, Sandown, Hyde Park, Atholl, Grayston, Rivonia Road area, and all surrounding suburbs within Sandton.

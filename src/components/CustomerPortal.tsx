@@ -141,7 +141,7 @@ function SettingsTab({ user }: { user: any }) {
         <CardHeader>
           <CardTitle>Support & Contact</CardTitle>
           <CardDescription>
-            Get help and contact our support team
+            Get help and contact my support team
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

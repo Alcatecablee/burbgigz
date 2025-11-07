@@ -137,7 +137,7 @@ const Bedfordview = () => {
                 <div>
                   <p className="font-semibold">Close to You - Fast Response</p>
                   <p className="text-sm text-muted-foreground">
-                    Just 5km from our Lombardy East base means quick on-site visits when hardware repairs are needed.
+                    Just 5km from my Lombardy East base means quick on-site visits when hardware repairs are needed.
                   </p>
                 </div>
               </div>
@@ -146,7 +146,7 @@ const Bedfordview = () => {
                 <div>
                   <p className="font-semibold">Home Office Specialists</p>
                   <p className="text-sm text-muted-foreground">
-                    We understand work-from-home setups. Wi-Fi coverage, printer sharing, video call issues - we've seen it all.
+                    I understand work-from-home setups. Wi-Fi coverage, printer sharing, video call issues - I've seen it all.
                   </p>
                 </div>
               </div>
@@ -164,7 +164,7 @@ const Bedfordview = () => {
                 <div>
                   <p className="font-semibold">Same-Day Service Available</p>
                   <p className="text-sm text-muted-foreground">
-                    Urgent issue? We prioritize same-day remote support and can often schedule on-site visits same-day too.
+                    Urgent issue? I prioritize same-day remote support and can often schedule on-site visits same-day too.
                   </p>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Bedfordview = () => {
                 <div>
                   <p className="font-semibold">Certified & Experienced</p>
                   <p className="text-sm text-muted-foreground">
-                    CompTIA A+ and Network+ certified with 9+ years helping Johannesburg residents.
+                    CompTIA A+ and Network+ certified with 15+ years helping Johannesburg residents.
                   </p>
                 </div>
               </div>
@@ -270,35 +270,35 @@ const Bedfordview = () => {
             <AccordionItem value="q1">
               <AccordionTrigger>Do you provide IT support in Bedfordview?</AccordionTrigger>
               <AccordionContent>
-                Yes! We provide both remote and on-site IT support throughout Bedfordview and Kensington. Remote support starts at R120, and on-site callouts are R500 (R400 base + R100 transport from Lombardy East).
+                Yes! I provide both remote and on-site IT support throughout Bedfordview and Kensington. Remote support starts at R120, and on-site callouts are R500 (R400 base + R100 transport from Lombardy East).
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q2">
               <AccordionTrigger>How quickly can you get to Bedfordview for on-site support?</AccordionTrigger>
               <AccordionContent>
-                Bedfordview is just 5km from our Lombardy East base. We typically schedule on-site visits within 24 hours, with same-day service available for urgent cases.
+                Bedfordview is just 5km from my Lombardy East base. I typically schedule on-site visits within 24 hours, with same-day service available for urgent cases.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q3">
               <AccordionTrigger>Do you support home offices in Bedfordview?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! Many Bedfordview residents work from home, and we specialize in home office IT support - from Wi-Fi troubleshooting to printer setup to laptop upgrades. Remote support is perfect for most issues.
+                Absolutely! Many Bedfordview residents work from home, and I specialize in home office IT support - from Wi-Fi troubleshooting to printer setup to laptop upgrades. Remote support is perfect for most issues.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q4">
               <AccordionTrigger>What's included in the R500 on-site fee for Bedfordview?</AccordionTrigger>
               <AccordionContent>
-                The R500 covers the callout (R400 base + R100 transport) plus initial diagnostics. Additional repairs like SSD installation or virus removal may have extra fees, but we'll quote everything upfront.
+                The R500 covers the callout (R400 base + R100 transport) plus initial diagnostics. Additional repairs like SSD installation or virus removal may have extra fees, but I'll quote everything upfront.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q5">
               <AccordionTrigger>Can I book weekend IT support in Bedfordview?</AccordionTrigger>
               <AccordionContent>
-                Yes! Weekend support is available for urgent issues. Remote support is typically available Saturday and Sunday, and we can schedule on-site visits for hardware repairs that can't wait until Monday.
+                Yes! Weekend support is available for urgent issues. Remote support is typically available Saturday and Sunday, and I can schedule on-site visits for hardware repairs that can't wait until Monday.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -340,18 +340,18 @@ const Bedfordview = () => {
               Bedfordview is a vibrant residential and commercial suburb in the East Rand, known for its tree-lined streets and strong community feel. With many professionals working from home and small businesses operating in the area, reliable IT support is essential.
             </p>
             <p>
-              Based just 5km away in Lombardy East, we're your local IT support provider for Bedfordview. Our proximity means fast response times for on-site visits, while our remote support capabilities mean most issues are resolved without you waiting for a technician to arrive.
+              Based just 5km away in Lombardy East, I'm your local IT support provider for Bedfordview. My proximity means fast response times for on-site visits, while my remote support capabilities mean most issues are resolved without you waiting for a technician to arrive.
             </p>
             <h3 className="text-lg font-semibold mt-4">Home Office IT Support</h3>
             <p>
-              Working from home in Bedfordview? We specialize in home office setups. Whether you need help with Wi-Fi coverage across your house, printer sharing between family members, or optimizing your laptop for video calls, we've got you covered. Our remote support means we can help you troubleshoot without disrupting your work day.
+              Working from home in Bedfordview? I specialize in home office setups. Whether you need help with Wi-Fi coverage across your house, printer sharing between family members, or optimizing your laptop for video calls, I've got you covered. My remote support means I can help you troubleshoot without disrupting your work day.
             </p>
             <h3 className="text-lg font-semibold mt-4">Why Remote Support Works</h3>
             <p>
-              For most IT issues - slow computers, virus removal, Windows problems, software installation - remote support is faster and more affordable than waiting for an on-site visit. We connect securely to your computer, you watch everything we do in real-time, and the problem is fixed while you stay comfortable at home.
+              For most IT issues - slow computers, virus removal, Windows problems, software installation - remote support is faster and more affordable than waiting for an on-site visit. I connect securely to your computer, you watch everything I do in real-time, and the problem is fixed while you stay comfortable at home.
             </p>
             <p>
-              Only when physical repairs are needed (like hardware upgrades or component replacements) do we schedule an on-site visit. This hybrid approach saves you time and money while ensuring the best solution for your specific problem.
+              Only when physical repairs are needed (like hardware upgrades or component replacements) do I schedule an on-site visit. This hybrid approach saves you time and money while ensuring the best solution for your specific problem.
             </p>
             <p className="text-sm text-muted-foreground mt-4">
               <strong>Service Areas:</strong> Bedfordview Central, Kensington, Bedfordview Gardens, Bedford Centre area, Van Riebeeck Park, Dowerglen, and all surrounding neighborhoods.

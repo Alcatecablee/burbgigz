@@ -222,9 +222,9 @@ const Areas = () => {
 
         {/* Interactive Map Section */}
         <div className="mt-12">
-          <h2 className="text-2xl font-semibold mb-4 text-center">Our Service Coverage</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-center">My Service Coverage</h2>
           <p className="text-center text-muted-foreground mb-6">
-            Visual map showing our primary service areas around Lombardy East, Johannesburg
+            Visual map showing my primary service areas around Lombardy East, Johannesburg
           </p>
           <div className="relative w-full h-96 rounded-lg overflow-hidden border">
             <iframe

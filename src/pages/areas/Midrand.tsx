@@ -146,7 +146,7 @@ const Midrand = () => {
                 <div>
                   <p className="font-semibold">Business Park Experience</p>
                   <p className="text-sm text-muted-foreground">
-                    We support businesses in Midrand's office parks and commercial areas. Professional, reliable IT support.
+                    I support businesses in Midrand's office parks and commercial areas. Professional, reliable IT support.
                   </p>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Midrand = () => {
                 <div>
                   <p className="font-semibold">Certified Technician</p>
                   <p className="text-sm text-muted-foreground">
-                    CompTIA A+ and Network+ certified with 9+ years experience. Professional, expert service.
+                    CompTIA A+ and Network+ certified with 15+ years experience. Professional, expert service.
                   </p>
                 </div>
               </div>
@@ -270,42 +270,42 @@ const Midrand = () => {
             <AccordionItem value="q1">
               <AccordionTrigger>Do you provide IT support in Midrand?</AccordionTrigger>
               <AccordionContent>
-                Yes! We provide both remote and on-site IT support throughout Midrand and Waterfall areas. Remote support starts at R120, and on-site callouts are R550 (R400 base + R150 transport).
+                Yes! I provide both remote and on-site IT support throughout Midrand and Waterfall areas. Remote support starts at R120, and on-site callouts are R550 (R400 base + R150 transport).
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q2">
               <AccordionTrigger>How far is Midrand from your base?</AccordionTrigger>
               <AccordionContent>
-                Midrand is approximately 12km from our Lombardy East base. While this is slightly further, our remote support capabilities mean most issues are resolved without needing an on-site visit.
+                Midrand is approximately 12km from my Lombardy East base. While this is slightly further, my remote support capabilities mean most issues are resolved without needing an on-site visit.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q3">
               <AccordionTrigger>Can you help with business IT in Midrand business parks?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! We support small businesses throughout Midrand's business parks and office complexes. From network setup to employee laptop support to server troubleshooting, we provide professional IT services.
+                Absolutely! I support small businesses throughout Midrand's business parks and office complexes. From network setup to employee laptop support to server troubleshooting, I provide professional IT services.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q4">
               <AccordionTrigger>Is remote support really effective for Midrand businesses?</AccordionTrigger>
               <AccordionContent>
-                Yes! Remote support is often faster and more cost-effective than on-site visits. We can fix software issues, resolve network problems, remove viruses, and provide tech support all remotely for R120. On-site visits are only needed for hardware repairs.
+                Yes! Remote support is often faster and more cost-effective than on-site visits. I can fix software issues, resolve network problems, remove viruses, and provide tech support all remotely for R120. On-site visits are only needed for hardware repairs.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q5">
               <AccordionTrigger>Do you support the Waterfall area?</AccordionTrigger>
               <AccordionContent>
-                Yes! Waterfall is part of our Midrand service area. Whether you're in a residential estate or office building in Waterfall, we provide the same professional remote and on-site IT support.
+                Yes! Waterfall is part of my Midrand service area. Whether you're in a residential estate or office building in Waterfall, I provide the same professional remote and on-site IT support.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q6">
               <AccordionTrigger>Can you schedule on-site visits in Midrand on weekends?</AccordionTrigger>
               <AccordionContent>
-                Yes, weekend on-site visits can be arranged for urgent issues. Remote support is available most weekends. Contact us to schedule based on your specific needs.
+                Yes, weekend on-site visits can be arranged for urgent issues. Remote support is available most weekends. Contact me to schedule based on your specific needs.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -347,19 +347,19 @@ const Midrand = () => {
               Midrand sits strategically between Johannesburg and Pretoria, making it a hub for businesses, logistics, and growing residential estates like Waterfall. The area's mix of corporate offices, SMEs, and tech-savvy residents creates diverse IT support needs.
             </p>
             <p>
-              While Midrand is 12km from our Lombardy East base, our remote-first approach means distance isn't a barrier to fast, effective IT support. For R120, we can remotely fix most software issues, troubleshoot network problems, remove viruses, and provide tech support - all without you waiting for a technician to arrive through Midrand traffic.
+              While Midrand is 12km from my Lombardy East base, my remote-first approach means distance isn't a barrier to fast, effective IT support. For R120, I can remotely fix most software issues, troubleshoot network problems, remove viruses, and provide tech support - all without you waiting for a technician to arrive through Midrand traffic.
             </p>
             <h3 className="text-lg font-semibold mt-4">Supporting Midrand's Business Community</h3>
             <p>
-              Midrand's business parks house countless SMEs and startups that need reliable, affordable IT support. Our service model is perfect for small businesses: remote support for day-to-day issues (R120), scheduled on-site visits for hardware needs (R550). No expensive monthly retainers, no long-term contracts - just pay-as-you-go professional IT support.
+              Midrand's business parks house countless SMEs and startups that need reliable, affordable IT support. My service model is perfect for small businesses: remote support for day-to-day issues (R120), scheduled on-site visits for hardware needs (R550). No expensive monthly retainers, no long-term contracts - just pay-as-you-go professional IT support.
             </p>
             <h3 className="text-lg font-semibold mt-4">Waterfall Residential IT Support</h3>
             <p>
-              Waterfall's modern residential estates have created a community of professionals working from home who need reliable home office IT support. We specialize in home office setups: optimizing Wi-Fi for large homes, configuring dual monitors, troubleshooting VPN connections, setting up networked printers. Remote support means we can help immediately, without scheduling conflicts or waiting.
+              Waterfall's modern residential estates have created a community of professionals working from home who need reliable home office IT support. I specialize in home office setups: optimizing Wi-Fi for large homes, configuring dual monitors, troubleshooting VPN connections, setting up networked printers. Remote support means I can help immediately, without scheduling conflicts or waiting.
             </p>
             <h3 className="text-lg font-semibold mt-4">When On-Site Visits Make Sense</h3>
             <p>
-              For hardware installations (SSD upgrades, RAM additions), physical network setups, or issues that require hands-on diagnosis, we schedule on-site visits. The R550 fee includes travel and initial diagnostics, with all additional work quoted upfront. For Midrand businesses and residents, this hybrid remote/on-site approach provides the best value and fastest resolution.
+              For hardware installations (SSD upgrades, RAM additions), physical network setups, or issues that require hands-on diagnosis, I schedule on-site visits. The R550 fee includes travel and initial diagnostics, with all additional work quoted upfront. For Midrand businesses and residents, this hybrid remote/on-site approach provides the best value and fastest resolution.
             </p>
             <p className="text-sm text-muted-foreground mt-4">
               <strong>Service Areas:</strong> Midrand Central, Waterfall (residential and commercial), Grand Central, Carlswald, Vorna Valley, and surrounding business parks and industrial areas.

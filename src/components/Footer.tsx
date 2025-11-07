@@ -21,7 +21,7 @@ const Footer = () => {
               <img src="/logo.png" alt="BurbGigz IT Services" className="h-8" />
             </div>
             <p className="text-muted-foreground">
-              Professional IT services in Lombardy East and surrounding areas. 
+              I provide professional IT services in Lombardy East and surrounding areas. 
               Fast, reliable, and affordable computer repairs since 2010.
             </p>
             <div className="flex items-center space-x-2">
@@ -31,7 +31,7 @@ const Footer = () => {
             <div className="space-y-1 pt-2 border-t">
               <p className="text-xs text-muted-foreground font-medium">Certified Technician</p>
               <p className="text-xs text-muted-foreground">CompTIA A+ & Network+</p>
-              <p className="text-xs text-muted-foreground">9+ Years Experience</p>
+              <p className="text-xs text-muted-foreground">15+ Years Experience</p>
             </div>
           </div>
 
@@ -39,7 +39,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-semibold text-foreground">Quick Links</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="/about" className="hover:text-primary transition-colors">About Us</a></li>
+              <li><a href="/about" className="hover:text-primary transition-colors">About Me</a></li>
               <li><a href="/remote" className="hover:text-primary transition-colors">Remote Support</a></li>
               <li><a href="/pricing" className="hover:text-primary transition-colors">Pricing</a></li>
               <li><a href="/areas" className="hover:text-primary transition-colors">Service Areas</a></li>

@@ -115,7 +115,7 @@ const DiagnosticTool = () => {
     // Default fallback
     return {
       issue: "General IT Support Needed",
-      recommendation: "No worries, I deal with all sorts of IT issues daily. The best first step is to WhatsApp or call me, and we can chat about what's happening. I'll let you know if it's something I can fix remotely (usually R120-R150) or if I need to come out (R400 callout). Either way, I'll give you an honest assessment – if it's not worth fixing, I'll tell you straight up.",
+      recommendation: "No worries, I deal with all sorts of IT issues daily. The best first step is to WhatsApp or call me, and I can chat with you about what's happening. I'll let you know if it's something I can fix remotely (usually R120-R150) or if I need to come out (R400 callout). Either way, I'll give you an honest assessment – if it's not worth fixing, I'll tell you straight up.",
       estimatedCost: "R120-R400 depending on issue",
       timeToFix: "Varies – let's chat first",
       serviceType: "Consultation",

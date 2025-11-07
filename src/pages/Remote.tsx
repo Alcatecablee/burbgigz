@@ -137,7 +137,7 @@ const Remote = () => {
             Urgent Remote IT Help
           </Badge>
           <h1 className="text-3xl lg:text-4xl font-bold">Fix Your Laptop Remotely - Today</h1>
-          <p className="text-muted-foreground text-lg">Fast, affordable remote IT support in Johannesburg from <span className="font-semibold text-foreground">R120</span>. No callout needed - we fix it while you watch.</p>
+          <p className="text-muted-foreground text-lg">Fast, affordable remote IT support in Johannesburg from <span className="font-semibold text-foreground">R120</span>. No callout needed - I fix it while you watch.</p>
           <p className="text-sm text-muted-foreground">Same-day service • Secure connections • Serving all Johannesburg areas remotely</p>
           
           {/* Availability Indicator */}
@@ -179,7 +179,7 @@ const Remote = () => {
 
         {/* Real Examples Section */}
         <section className="mb-10 bg-card border rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4">Real Examples of What We Fix</h2>
+          <h2 className="text-2xl font-semibold mb-4">Real Examples of What I Fix</h2>
           <div className="grid md:grid-cols-3 gap-4 text-sm">
             <div className="p-4 bg-background rounded-lg border">
               <p className="font-semibold text-primary mb-2">Slow Windows 11 Laptop</p>
@@ -201,7 +201,7 @@ const Remote = () => {
 
         {/* Business Benefits Section */}
         <section className="mb-10 bg-card border rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-4">Why Choose Our Remote IT Support in Johannesburg?</h2>
+          <h2 className="text-2xl font-semibold mb-4">Why Choose My Remote IT Support in Johannesburg?</h2>
           <div className="grid md:grid-cols-3 gap-6 text-sm">
             <div>
               <h3 className="font-semibold text-primary mb-2 flex items-center gap-2">
@@ -360,8 +360,8 @@ const Remote = () => {
             <div className="space-y-2">
               <h2 className="text-lg font-semibold">Safe, Secure, Consent-Based Remote Access</h2>
               <p className="text-sm text-muted-foreground">
-                <strong>Unlike tech support scams,</strong> we NEVER cold-call, send pop-ups, or demand immediate access. 
-                AnyDesk is a secure, trusted tool that requires YOUR permission. You see everything we do, and you 
+                <strong>Unlike tech support scams,</strong> I NEVER cold-call, send pop-ups, or demand immediate access. 
+                AnyDesk is a secure, trusted tool that requires YOUR permission. You see everything I do, and you 
                 can end the session instantly at any time. No permanent access, no hidden software, no pressure tactics.
               </p>
               <div className="flex flex-wrap gap-2 mt-3">
@@ -554,7 +554,7 @@ const Remote = () => {
           <AccordionItem value="q4">
             <AccordionTrigger>Do you provide remote IT support throughout Johannesburg?</AccordionTrigger>
             <AccordionContent>
-              Yes! Our remote IT support service is available to anyone in Johannesburg and surrounding areas. Since it's remote, your physical location doesn't matter - as long as you have an internet connection, we can help. We're based in Lombardy East and also provide on-site support in nearby suburbs when hardware repairs are needed.
+              Yes! My remote IT support service is available to anyone in Johannesburg and surrounding areas. Since it's remote, your physical location doesn't matter - as long as you have an internet connection, I can help. I'm based in Lombardy East and also provide on-site support in nearby suburbs when hardware repairs are needed.
             </AccordionContent>
           </AccordionItem>
         </Accordion>

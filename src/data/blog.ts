@@ -105,15 +105,15 @@ Scammers buy Google ads that appear above legitimate tech support results, leadi
 
 ### How Legitimate IT Support Actually Works
 
-**You Contact Us First:** You call, WhatsApp, or email us about a problem you're experiencing. We don't call you out of the blue claiming we've detected issues.
+**You Contact Me First:** You call, WhatsApp, or email me about a problem you're experiencing. I don't call you out of the blue claiming I've detected issues.
 
 **Transparent Pricing:** Costs are clear upfront. R120 for remote support, R400+ for on-site. No hidden fees, no surprise charges, no pressure to pay immediately.
 
-**Consent-Based Access:** We explain what we'll do before connecting remotely. You can end the session anytime by closing the window. You watch everything on your screen.
+**Consent-Based Access:** I explain what I'll do before connecting remotely. You can end the session anytime by closing the window. You watch everything on your screen.
 
-**Secure Tools:** We use encrypted, reputable software like RustDesk. Not sketchy programs with names like "Microsoft_Support_Tool_v3.exe" downloaded from random websites.
+**Secure Tools:** I use encrypted, reputable software like RustDesk. Not sketchy programs with names like "Microsoft_Support_Tool_v3.exe" downloaded from random websites.
 
-**Verifiable Identity:** Local business with physical location in Lombardy East, real Google reviews, verified credentials. You can look us up, visit the office, check references.
+**Verifiable Identity:** Local business with physical location in Lombardy East, real Google reviews, verified credentials. You can look me up, visit the office, check references.
 
 **Normal Payment Methods:** EFT, cash, or card. Never gift cards, never Bitcoin, never wire transfers to overseas accounts.
 
@@ -200,7 +200,7 @@ I understand the damage scams have done to trust in IT support. That's why I'm c
 
 **Your Bank:** Call immediately if you provided banking details
 
-**Need legitimate IT help?** Contact us via WhatsApp, phone, or email. We'll never pressure you, and you'll always know exactly what you're paying for.`,
+**Need legitimate IT help?** Contact me via WhatsApp, phone, or email. I'll never pressure you, and you'll always know exactly what you're paying for.`,
     author: {
       name: "Clive",
       bio: "CompTIA certified IT specialist helping South Africans stay safe from tech scams.",
@@ -413,14 +413,14 @@ Elderly parents are prime targets. Share this article.
 5. Verify credentials (CompTIA, physical location)
 
 **BurbGigz Approach:**
-- You contact us first (via WhatsApp/phone/website)
+- You contact me first (via WhatsApp/phone/website)
 - Clear pricing: R120 remote, R400+ on-site
 - CompTIA certified technician
 - Based in Lombardy East with verified reviews
 - Secure tools (RustDesk with your permission)
-- You see everything we do
+- You see everything I do
 
-**Need real Windows support?** Contact us directly - we'll never pressure you or demand immediate payment.`,
+**Need real Windows support?** Contact me directly - I'll never pressure you or demand immediate payment.`,
     author: {
       name: "Clive",
       bio: "CompTIA certified tech exposing scams and providing honest IT support in Johannesburg.",
@@ -2844,7 +2844,7 @@ Yesterday afternoon a client in Edenvale messaged me: "Zoom won't work and I hav
 
 If she'd called for an on-site visit, I would've had to schedule her for the next available slot - probably the following day given my calendar. She would've missed the meeting. Even if I could've rushed over, I'm at least an hour away from Edenvale with Johannesburg traffic.
 
-That's the real difference: Remote support happens now. You message me, I connect in 15-30 minutes during business hours, we solve the problem in the same session. Total time from problem to solution: under an hour in most cases.
+That's the real difference: Remote support happens now. You message me, I connect in 15-30 minutes during business hours, and I solve the problem in the same session. Total time from problem to solution: under an hour in most cases.
 
 On-site means calling to book an appointment, scheduling for tomorrow or later depending on how full my calendar is, waiting at home or the office for me to arrive (and hoping I don't hit bad traffic), then me working on-site. You're looking at 24+ hours minimum from problem to resolution, sometimes longer if I'm booked solid.
 
@@ -2943,7 +2943,7 @@ My approach is simple: start with a remote diagnostic for R120. I'll check every
 **Which feels safer? Remote (where you watch) or on-site (where you don't)?**
 
 :::warning
-**Scam Warning:** Never let someone who CALLED YOU connect remotely. Real IT support: YOU contact US first. If someone calls claiming to be from "Microsoft" or "your ISP" and wants remote access - HANG UP. That's a scam. See my guide on tech support scams.
+**Scam Warning:** Never let someone who CALLED YOU connect remotely. Real IT support: YOU contact ME first. If someone calls claiming to be from "Microsoft" or "your ISP" and wants remote access - HANG UP. That's a scam. See my guide on tech support scams.
 :::
 
 ### Cost Comparison: Real Johannesburg Scenarios
@@ -3030,7 +3030,7 @@ Can't do this remotely - need physical hardware installation:
 - You want someone to "just do it" without watching (convenience preference, not necessity)
 - You think it's "too complicated" for remote (usually isn't - give it a try first)
 
-**My Suggestion:** Try remote first. If I can't fix it remotely, I'll tell you honestly and we'll schedule on-site. You only pay R120 for the attempt. If it's clearly a hardware issue from your description, I'll tell you upfront: "This needs on-site."
+**My Suggestion:** Try remote first. If I can't fix it remotely, I'll tell you honestly and I'll schedule on-site for you. You only pay R120 for the attempt. If it's clearly a hardware issue from your description, I'll tell you upfront: "This needs on-site."
 
 ### How to Get Started with Remote Support
 
@@ -3061,7 +3061,7 @@ I'll ask a few questions to determine if it's remote-fixable:
 - You click/enter it
 - Remote tool opens
 - You grant permission
-- I connect and we're live
+- I connect and you're all set
 
 **Step 5: Fix & Explain**
 - I diagnose the issue
@@ -3114,7 +3114,7 @@ I'll ask a few questions to determine if it's remote-fixable:
 **Reality:** Same technician, same skills:
 - I do both remote and on-site
 - CompTIA certified
-- 9+ years experience
+- 15+ years experience (founded BurbGigz in 2010)
 - Remote actually lets me use more tools (online resources, remote diagnostic software)
 
 ### Why Johannesburg Residents Love Remote Support

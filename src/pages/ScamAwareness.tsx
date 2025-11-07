@@ -397,9 +397,9 @@ const ScamAwareness = () => {
                 </ul>
               </div>
               <div className="space-y-2">
-                <h3 className="font-semibold text-sm">What We Always Do:</h3>
+                <h3 className="font-semibold text-sm">What I Always Do:</h3>
                 <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>✅ Wait for you to contact us first</li>
+                  <li>✅ Wait for you to contact me first</li>
                   <li>✅ Provide transparent, upfront pricing</li>
                   <li>✅ Explain tools like RustDesk clearly</li>
                   <li>✅ Require your explicit consent for remote access</li>
@@ -410,12 +410,12 @@ const ScamAwareness = () => {
 
             <div className="border-t pt-4">
               <p className="text-sm mb-4">
-                <strong>Our credentials are verifiable:</strong> 9+ years experience, CompTIA A+ & Network+ certified 
+                <strong>My credentials are verifiable:</strong> 15+ years experience, CompTIA A+ & Network+ certified 
                 (Distinction), based in Lombardy East with real contact details and references.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Button asChild>
-                  <Link to="/about">View Our Credentials</Link>
+                  <Link to="/about">View My Credentials</Link>
                 </Button>
                 <Button asChild variant="outline">
                   <Link to="/remote">

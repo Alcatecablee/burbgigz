@@ -137,7 +137,7 @@ const Edenvale = () => {
                 <div>
                   <p className="font-semibold">Local & Close By</p>
                   <p className="text-sm text-muted-foreground">
-                    Just 5km from our Lombardy East base means we're truly local to Edenvale. Fast on-site response when needed.
+                    Just 5km from my Lombardy East base means I'm truly local to Edenvale. Fast on-site response when needed.
                   </p>
                 </div>
               </div>
@@ -155,7 +155,7 @@ const Edenvale = () => {
                 <div>
                   <p className="font-semibold">Home & Business Support</p>
                   <p className="text-sm text-muted-foreground">
-                    Whether you're working from home or running a small shop, we understand your IT needs.
+                    Whether you're working from home or running a small shop, I understand your IT needs.
                   </p>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const Edenvale = () => {
                 <div>
                   <p className="font-semibold">Certified Professional</p>
                   <p className="text-sm text-muted-foreground">
-                    CompTIA A+ and Network+ certified with 9+ years serving Johannesburg's East Rand.
+                    CompTIA A+ and Network+ certified with 15+ years serving Johannesburg's East Rand.
                   </p>
                 </div>
               </div>
@@ -270,35 +270,35 @@ const Edenvale = () => {
             <AccordionItem value="q1">
               <AccordionTrigger>Do you provide IT support in Edenvale?</AccordionTrigger>
               <AccordionContent>
-                Yes! We provide both remote and on-site IT support throughout Edenvale and the surrounding areas. Remote support starts at R120, and on-site callouts are R490 (R400 base + R90 transport from Lombardy East).
+                Yes! I provide both remote and on-site IT support throughout Edenvale and the surrounding areas. Remote support starts at R120, and on-site callouts are R490 (R400 base + R90 transport from Lombardy East).
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q2">
               <AccordionTrigger>How far are you from Edenvale?</AccordionTrigger>
               <AccordionContent>
-                We're based in Lombardy East, approximately 5km from Edenvale. This means quick response times for on-site visits and excellent coverage of the entire Edenvale area.
+                I'm based in Lombardy East, approximately 5km from Edenvale. This means quick response times for on-site visits and excellent coverage of the entire Edenvale area.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q3">
               <AccordionTrigger>Can you help with home and business IT in Edenvale?</AccordionTrigger>
               <AccordionContent>
-                Absolutely! We support both residential and small business IT needs in Edenvale - from home office setups to small retail shops. Our services include remote troubleshooting, virus removal, network setup, and hardware upgrades.
+                Absolutely! I support both residential and small business IT needs in Edenvale - from home office setups to small retail shops. My services include remote troubleshooting, virus removal, network setup, and hardware upgrades.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q4">
               <AccordionTrigger>Do you service the Greenstone area?</AccordionTrigger>
               <AccordionContent>
-                Yes! We cover Greenstone Shopping Centre and surrounding areas. The callout fee is the same as Edenvale (R490) since they're in the same general area from our base.
+                Yes! I cover Greenstone Shopping Centre and surrounding areas. The callout fee is the same as Edenvale (R490) since they're in the same general area from my base.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="q5">
               <AccordionTrigger>What if I'm not sure whether I need remote or on-site support?</AccordionTrigger>
               <AccordionContent>
-                No problem! Contact us and describe your issue. We'll advise whether remote support can fix it (most software issues) or if an on-site visit is needed (hardware repairs). We always recommend remote first as it's faster and more affordable.
+                No problem! Contact me and describe your issue. I'll advise whether remote support can fix it (most software issues) or if an on-site visit is needed (hardware repairs). I always recommend remote first as it's faster and more affordable.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -340,18 +340,18 @@ const Edenvale = () => {
               Edenvale is a thriving suburb in Johannesburg's East Rand, home to families, professionals, and small businesses. From the bustling Greenstone Shopping Centre to quiet residential streets, Edenvale residents rely on technology for work, school, and entertainment.
             </p>
             <p>
-              Based in neighboring Lombardy East (just 5km away), we're your local IT support provider for all of Edenvale. Our proximity means quick response times for on-site visits, while our remote support capabilities ensure most issues are resolved without waiting for a technician to arrive.
+              Based in neighboring Lombardy East (just 5km away), I'm your local IT support provider for all of Edenvale. My proximity means quick response times for on-site visits, while my remote support capabilities ensure most issues are resolved without waiting for a technician to arrive.
             </p>
             <h3 className="text-lg font-semibold mt-4">Serving Edenvale's Diverse IT Needs</h3>
             <p>
-              Whether you're a parent helping kids with online schooling, a professional working from home, or a small business owner managing a shop near Greenstone, we understand your IT challenges. Slow computers, printer problems, Wi-Fi coverage issues - we've seen it all and know how to fix it efficiently.
+              Whether you're a parent helping kids with online schooling, a professional working from home, or a small business owner managing a shop near Greenstone, I understand your IT challenges. Slow computers, printer problems, Wi-Fi coverage issues - I've seen it all and know how to fix it efficiently.
             </p>
             <h3 className="text-lg font-semibold mt-4">Remote-First, On-Site When Needed</h3>
             <p>
-              Our approach is simple: fix it remotely when possible (faster and cheaper), schedule an on-site visit when necessary (hardware repairs, upgrades). For most software issues - virus removal, slow performance, Windows problems - remote support gets you back up and running within the hour.
+              My approach is simple: fix it remotely when possible (faster and cheaper), schedule an on-site visit when necessary (hardware repairs, upgrades). For most software issues - virus removal, slow performance, Windows problems - remote support gets you back up and running within the hour.
             </p>
             <p>
-              When physical repairs are needed, we're close enough to schedule same-day visits for urgent cases. Our R490 on-site fee includes diagnostics and initial troubleshooting, with all additional work quoted upfront before we proceed.
+              When physical repairs are needed, I'm close enough to schedule same-day visits for urgent cases. My R490 on-site fee includes diagnostics and initial troubleshooting, with all additional work quoted upfront before I proceed.
             </p>
             <p className="text-sm text-muted-foreground mt-4">
               <strong>Service Areas:</strong> Edenvale Central, Greenstone Shopping Centre area, Dowerglen, Northmead, Eastleigh, Dunvegan, and all surrounding neighborhoods.
