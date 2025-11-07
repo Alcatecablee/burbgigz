@@ -15,13 +15,12 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-muted/30">
       <div className="container px-4">
         <div className="text-center space-y-4 mb-16">
-          <Badge variant="outline" className="mb-2">Get In Touch</Badge>
+          <Badge variant="outline" className="mb-2">Let's Get Started</Badge>
           <h2 className="text-3xl lg:text-4xl font-bold">
-            Ready to Fix Your Tech Issues?
+            Need Help? WhatsApp Me - I Usually Respond Within Minutes
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Professional remote IT support available immediately via secure Remote Support. On-site services
-            available in the Lombardy East area (callout fee applies). Quick response guaranteed!
+            WhatsApp is quickest (I'm on it all day), but you can also call or email. Remote fixes done same-day. For on-site work in Johannesburg, I'll come to you (R400 callout + service).
           </p>
         </div>
 
@@ -31,8 +30,8 @@ const Contact = () => {
               <div className="mx-auto p-3 rounded-full bg-success/10 group-hover:bg-success transition-all duration-300 group-hover:scale-110 w-fit">
                 <MessageCircle className="h-6 w-6 text-success group-hover:text-white transition-colors" aria-hidden="true" />
               </div>
-              <CardTitle>WhatsApp (Preferred)</CardTitle>
-              <CardDescription>Start remote session or book on-site visit instantly</CardDescription>
+              <CardTitle>WhatsApp (Fastest)</CardTitle>
+              <CardDescription>I'm on WhatsApp all day - usually respond in 5-15 minutes</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
               <Button asChild
@@ -57,8 +56,8 @@ const Contact = () => {
               <div className="mx-auto p-3 rounded-full bg-primary/10 group-hover:bg-primary transition-all duration-300 group-hover:scale-110 w-fit">
                 <Phone className="h-6 w-6 text-primary group-hover:text-white transition-colors" aria-hidden="true" />
               </div>
-              <CardTitle>Call Direct</CardTitle>
-              <CardDescription>Speak to me directly about your IT needs</CardDescription>
+              <CardTitle>Phone Call</CardTitle>
+              <CardDescription>Call if it's urgent or you prefer talking things through</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
               <Button asChild
@@ -83,7 +82,7 @@ const Contact = () => {
                 <Mail className="h-6 w-6 text-warning group-hover:text-white transition-colors" aria-hidden="true" />
               </div>
               <CardTitle>Email</CardTitle>
-              <CardDescription>Send detailed information about your issue</CardDescription>
+              <CardDescription>For detailed info or quotes - I'll reply same day</CardDescription>
             </CardHeader>
             <CardContent className="text-center">
               <Button 

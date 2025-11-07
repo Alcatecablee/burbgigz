@@ -1,8 +1,8 @@
 # Remote Page Improvements - What I Did & What You Need to Provide
 
-## ✅ What I've Implemented (Ready Now)
+## COMPLETED: What I've Implemented (Ready Now)
 
-### 1. **Availability Indicator** 🟢
+### 1. **Availability Indicator**
 - Added a green pulsing badge showing "Available Today"
 - Added "Avg response: 15 mins"
 - Added business hours: "Mon-Fri 8am-8pm, Sat 9am-5pm"
@@ -11,25 +11,25 @@
 
 ---
 
-### 2. **Process Timeline** 📊
+### 2. **Process Timeline**
 Added a visual 4-step process showing:
-- 📞 Contact → ⏱️ 15 min response → 💻 Session starts → ✅ Fixed (~30 mins)
+- Contact → 15 min response → Session starts → Fixed (~30 mins)
 
 **NO ACTION NEEDED** - This is done and looks great!
 
 ---
 
-### 3. **Real Service Examples** 💡
+### 3. **Real Service Examples**
 Replaced generic benefits with specific examples:
-- "💻 Slow Windows 11 Laptop - Fixed in 15 mins • R120"
-- "🦠 Malware Infection - Cleaned in 35 mins • R120"
-- "📡 WiFi Keeps Dropping - Diagnosed in 20 mins • R120"
+- "Slow Windows 11 Laptop - Fixed in 15 mins • R120"
+- "Malware Infection - Cleaned in 35 mins • R120"
+- "WiFi Keeps Dropping - Diagnosed in 20 mins • R120"
 
 **ACTION NEEDED (Optional):** Replace with your actual success stories if you have better ones.
 
 ---
 
-### 4. **RustDesk Reassurance** 🛡️
+### 4. **RustDesk Reassurance**
 Added friendly messaging:
 - "Don't worry - it's quick & easy!"
 - "Small download (~15MB) • Takes 2 minutes • Free & safe"
@@ -39,7 +39,7 @@ Added friendly messaging:
 
 ---
 
-### 5. **Backup Options Section** 🔄
+### 5. **Backup Options Section**
 Added a "Can't Use RustDesk?" card showing:
 - AnyDesk
 - TeamViewer
@@ -49,7 +49,7 @@ Added a "Can't Use RustDesk?" card showing:
 
 ---
 
-### 6. **Testimonials Section** ⭐ **IMPORTANT - PLACEHOLDER**
+### 6. **Testimonials Section - IMPORTANT - PLACEHOLDER**
 Added a testimonials section with 2 example reviews (Sarah M. from Bedfordview, John D. from Edenvale)
 
 **ACTION NEEDED - CRITICAL:**
@@ -62,14 +62,14 @@ These are **placeholder testimonials**. You need to replace them with real custo
 4. Replace the placeholder testimonials in the code
 
 **What makes a good testimonial:**
-- ✅ Specific problem mentioned: "My laptop was running slow..."
-- ✅ Specific result: "Fixed in 20 minutes"
-- ✅ Emotion: "Brilliant!", "Professional", "Saved me money"
-- ✅ Name + Suburb: "Sarah M., Bedfordview" (first name only is fine)
+- GOOD: Specific problem mentioned: "My laptop was running slow..."
+- GOOD: Specific result: "Fixed in 20 minutes"
+- GOOD: Emotion: "Brilliant!", "Professional", "Saved me money"
+- GOOD: Name + Suburb: "Sarah M., Bedfordview" (first name only is fine)
 
 ---
 
-## 📋 Summary of Actions You Need to Take
+## ACTION ITEMS: Summary of Actions You Need to Take
 
 ### Priority 1 - Critical (Do These First)
 1. **Get Real Testimonials**
@@ -98,7 +98,7 @@ These are **placeholder testimonials**. You need to replace them with real custo
 
 ---
 
-## 🎯 Quick Reference - Where to Edit
+## REFERENCE: Quick Reference - Where to Edit
 
 **File:** `/src/pages/Remote.tsx`
 
@@ -110,7 +110,7 @@ These are **placeholder testimonials**. You need to replace them with real custo
 
 ---
 
-## ✨ What Changed Visually
+## SUMMARY: What Changed Visually
 
 Your `/remote` page now has:
 1. Green availability badge at the top (builds trust)
@@ -122,7 +122,7 @@ Your `/remote` page now has:
 
 ---
 
-## 🚀 Next Steps
+## NEXT STEPS
 
 1. **Test the page** - Open `/remote` in your browser and see the changes
 2. **Get testimonials** - This is the biggest missing piece
@@ -131,7 +131,7 @@ Your `/remote` page now has:
 
 ---
 
-## 💬 Need Help?
+## NEED HELP?
 
 If you want me to:
 - Adjust any of the copy/messaging

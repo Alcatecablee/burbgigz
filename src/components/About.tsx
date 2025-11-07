@@ -17,14 +17,12 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div>
-              <Badge variant="outline" className="mb-4">About BurbGigz</Badge>
+              <Badge variant="outline" className="mb-4">About Me</Badge>
               <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                Your Local IT Expert Since 2010
+                Hi, I'm Clive - Fixing Computers in Johannesburg Since 2015
               </h2>
               <p className="text-lg text-muted-foreground">
-                Professional helpdesk technician with extensive remote support experience.
-                I specialize in telephone troubleshooting and use secure remote tools for remote assistance. Most technical issues
-                can be resolved remotely, saving you time and money while providing immediate professional support.
+                I started BurbGigz because I saw too many people getting ripped off by big IT companies charging R800 callouts for simple remote fixes. After 9+ years in corporate helpdesks, I know that most computer problems don't need someone to drive to your house - I can fix them remotely while you watch, usually for R120-R150. For hardware work, I'll come to you with the parts in my car.
               </p>
             </div>
 
@@ -32,24 +30,24 @@ const About = () => {
               <div className="flex items-start space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
-                  <h3 className="font-semibold">Remote Support Specialist</h3>
-                  <p className="text-muted-foreground">Professional helpdesk experience with secure remote troubleshooting capabilities.</p>
+                  <h3 className="font-semibold">CompTIA Certified (A+ & Network+)</h3>
+                  <p className="text-muted-foreground">Got both certifications with distinction. Real qualifications, not just "I'm good with computers."</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
-                  <h3 className="font-semibold">Professional Background</h3>
-                  <p className="text-muted-foreground">Strong telephone troubleshooting skills developed in professional helpdesk environments.</p>
+                  <h3 className="font-semibold">9+ Years Corporate Helpdesk Experience</h3>
+                  <p className="text-muted-foreground">Worked in professional IT support for big companies - I've seen it all, from printer jams to server crashes.</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
                 <CheckCircle2 className="h-5 w-5 text-success mt-1" />
                 <div>
-                  <h3 className="font-semibold">Cost-Effective Solutions</h3>
-                  <p className="text-muted-foreground">Remote fixes from R120, on-site service R400 callout + service fee.</p>
+                  <h3 className="font-semibold">Honest Pricing, No Surprises</h3>
+                  <p className="text-muted-foreground">Remote from R120, on-site R400 callout. I'll tell you upfront if your laptop's not worth fixing.</p>
                 </div>
               </div>
             </div>

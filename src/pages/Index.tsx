@@ -4,8 +4,10 @@ import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
+import DiagnosticTool from "@/components/DiagnosticTool";
 import SEOHead from "@/components/SEOHead";
 import { localBusinessSchema, websiteSchema } from "@/data/seoStructuredData";
+import { Badge } from "@/components/ui/badge";
 
 const Index = () => {
   const structuredData = {
@@ -24,6 +26,20 @@ const Index = () => {
       />
       <main>
         <Hero />
+        
+        <section className="py-16 md:py-20 bg-muted/30">
+          <div className="container px-4">
+            <div className="text-center space-y-3 mb-12">
+              <Badge variant="outline">Interactive Tool</Badge>
+              <h2 className="text-3xl lg:text-4xl font-bold">Not Sure What's Wrong? Let's Find Out</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Answer a few quick questions and I'll tell you exactly what's wrong with your computer, how much it'll cost to fix, and how long it'll take.
+              </p>
+            </div>
+            <DiagnosticTool />
+          </div>
+        </section>
+
         <Services />
         <Testimonials />
         <About />

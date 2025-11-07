@@ -17,11 +17,11 @@ const Hero = () => {
             
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight">
               Laptop Slow? Printer Won't Print?
-              <span className="text-primary block mt-2">We Fix It Remotely – Today.</span>
+              <span className="text-primary block mt-2">I Fix It Remotely – Today.</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground max-w-lg">
-              Fast, affordable IT support for Johannesburg homes & offices. Remote fixes from <span className="font-semibold text-foreground">R120</span>. No callout needed. Same-day service, weekend & after-hours available.
+              I fix computers across Johannesburg - mostly remotely from <span className="font-semibold text-foreground">R120</span>. You save the callout fee, and I can usually have you sorted within the hour. Same-day service, weekends, and after-hours available.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-2">
@@ -39,7 +39,7 @@ const Hero = () => {
                 size="lg"
                 className="text-base md:text-lg px-6 md:px-8 transition-all duration-300 hover:scale-105 active:scale-95 hover:shadow-md focus-ring-enhanced"
               >
-                <a href="#services" aria-label="View our IT services">
+                <a href="#services" aria-label="View IT services I offer">
                   <Shield className="mr-2 h-5 w-5" aria-hidden="true" />
                   View Services
                 </a>
