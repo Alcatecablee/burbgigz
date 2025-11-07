@@ -21,19 +21,19 @@ const Sandton = () => {
   const sandtonFAQSchema = faqSchema([
     {
       question: "Do you provide IT support in Sandton?",
-      answer: "Yes! We provide both remote and on-site IT support throughout Sandton, including Sandton City, Nelson Mandela Square, and surrounding business areas. Remote support starts at R120, and on-site callouts are R520 (R400 base + R120 transport)."
+      answer: "Yes! I provide both remote and on-site IT support throughout Sandton, including Sandton City, Nelson Mandela Square, and surrounding business areas. Remote support starts at R120, and on-site callouts are R520 (R400 base + R120 transport)."
     },
     {
       question: "How quickly can you respond to IT emergencies in Sandton?",
-      answer: "For remote support, we can typically connect within 30 minutes during business hours. On-site callouts in Sandton are scheduled within 24 hours, with same-day service available for urgent issues."
+      answer: "For remote support, I can typically connect within 30 minutes during business hours. On-site callouts in Sandton are scheduled within 24 hours, with same-day service available for urgent issues."
     },
     {
       question: "What IT services do you offer in Sandton?",
-      answer: "We offer complete IT support including remote troubleshooting, virus removal, SSD upgrades, network setup, printer configuration, Windows installations, and emergency support for both home offices and small businesses in Sandton."
+      answer: "I offer complete IT support including remote troubleshooting, virus removal, SSD upgrades, network setup, printer configuration, Windows installations, and emergency support for both home offices and small businesses in Sandton."
     },
     {
       question: "Why does Sandton have a higher callout fee?",
-      answer: "The R520 callout fee includes R400 base service plus R120 for transport from our Lombardy East base (7km distance). Remote support is always R120 regardless of location - perfect for most software issues."
+      answer: "The R520 callout fee includes R400 base service plus R120 for transport from my Lombardy East base (7km distance). Remote support is always R120 regardless of location - perfect for most software issues."
     }
   ]);
 

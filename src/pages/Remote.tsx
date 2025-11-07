@@ -42,11 +42,11 @@ const Remote = () => {
   const remoteFAQSchema = faqSchema([
     {
       question: "How does remote support work?",
-      answer: "We use secure remote tools like AnyDesk to connect to your computer with your permission. You can see everything we do and end the session at any time."
+      answer: "I use secure remote tools like AnyDesk to connect to your computer with your permission. You can see everything I do and end the session at any time."
     },
     {
       question: "Is remote support secure?",
-      answer: "Yes, we use encrypted connections and require your explicit permission. You remain in full control of your computer throughout the session. You share a one-time ID and password and can disconnect at any time."
+      answer: "Yes, I use encrypted connections and require your explicit permission. You remain in full control of your computer throughout the session. You share a one-time ID and password and can disconnect at any time."
     },
     {
       question: "What can be fixed remotely?",
@@ -58,11 +58,11 @@ const Remote = () => {
     },
     {
       question: "What areas do you cover for on-site support?",
-      answer: "Lombardy East with callouts to Edenvale, Bedfordview, Greenstone, Kempton Park and nearby suburbs including Alexandra, Sandton, and Johannesburg CBD."
+      answer: "I'm based in Lombardy East with callouts to Edenvale, Bedfordview, Greenstone, Kempton Park and nearby suburbs including Alexandra, Sandton, and Johannesburg CBD."
     },
     {
       question: "Do you provide remote IT support throughout Johannesburg?",
-      answer: "Yes! Our remote IT support service is available to anyone in Johannesburg and surrounding areas. Since it's remote, your physical location doesn't matter - as long as you have an internet connection, we can help."
+      answer: "Yes! My remote IT support service is available to anyone in Johannesburg and surrounding areas. Since it's remote, your physical location doesn't matter - as long as you have an internet connection, I can help."
     }
   ]);
 
@@ -122,10 +122,10 @@ const Remote = () => {
     <div className="min-h-screen bg-background">
       <SEOHead
         title="Fix Laptop Remotely South Africa | Urgent Remote IT Help Johannesburg from R120"
-        description="Need urgent IT help? We fix laptops remotely today. Affordable remote IT support in Johannesburg from R120. Same-day service for slow PCs, virus removal, Wi-Fi issues & Windows errors. No callout needed. Secure, fast & professional."
+        description="Need urgent IT help? I fix laptops remotely today. Affordable remote IT support in Johannesburg from R120. Same-day service for slow PCs, virus removal, Wi-Fi issues & Windows errors. No callout needed. Secure, fast & professional."
         keywords="fix laptop remotely South Africa, urgent remote IT help Johannesburg, affordable remote IT support, remote PC repair Johannesburg, same day remote IT support, cheap remote computer repair, remote virus removal Johannesburg, fix computer remotely Johannesburg, emergency remote IT support, remote IT help South Africa, remote desktop support Johannesburg, remote troubleshooting, remote IT support Lombardy East, remote tech support Johannesburg"
         ogTitle="Fix Laptop Remotely South Africa | Urgent Remote IT Help from R120"
-        ogDescription="Urgent IT issue? We fix laptops remotely today. Professional remote IT support from R120. Same-day service, secure connections, no callout needed."
+        ogDescription="Urgent IT issue? I fix laptops remotely today. Professional remote IT support from R120. Same-day service, secure connections, no callout needed."
         canonicalUrl="/remote"
         structuredData={structuredData}
       />
@@ -222,7 +222,7 @@ const Remote = () => {
                 <Shield className="h-5 w-5" />
                 Secure & Professional
               </h3>
-              <p className="text-muted-foreground">9+ years of IT experience with CompTIA A+ and Network+ certifications. Encrypted connections, transparent service, and you stay in full control throughout the session.</p>
+              <p className="text-muted-foreground">15+ years of IT experience with CompTIA A+ and Network+ certifications. Encrypted connections, transparent service, and you stay in full control throughout the session.</p>
             </div>
           </div>
         </section>
@@ -231,7 +231,7 @@ const Remote = () => {
         <section className="mb-10 bg-card border rounded-lg p-6">
           <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2">
             <Star className="h-6 w-6 text-yellow-500" />
-            What Our Customers Say
+            What My Customers Say
           </h2>
           <div className="grid md:grid-cols-2 gap-4 text-sm">
             <div className="p-4 bg-background rounded-lg border">
@@ -254,14 +254,14 @@ const Remote = () => {
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-4 text-center">
-            500+ remote sessions completed since 2015
+            Thousands of remote sessions completed since 2010 across Johannesburg
           </p>
         </section>
 
-        {/* What We Fix Section */}
+        {/* What I Fix Section */}
         <section className="mb-10">
           <h2 className="text-2xl font-semibold mb-4">Remote IT Support Services in Johannesburg</h2>
-          <p className="text-muted-foreground mb-4">Our remote IT support technicians can quickly diagnose and fix a wide range of computer and network issues:</p>
+          <p className="text-muted-foreground mb-4">I can quickly diagnose and fix a wide range of computer and network issues remotely:</p>
           <div className="grid md:grid-cols-2 gap-4">
             <Card className="bg-card border">
               <CardHeader>

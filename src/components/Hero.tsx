@@ -49,7 +49,7 @@ const Hero = () => {
             <div className="flex flex-wrap items-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground pt-2">
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full animate-pulse"></div>
-                <span>9+ Years Experience</span>
+                <span>15+ Years Experience</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="h-2 w-2 bg-success rounded-full animate-pulse"></div>

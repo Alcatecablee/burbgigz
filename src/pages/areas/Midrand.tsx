@@ -21,19 +21,19 @@ const Midrand = () => {
   const midrandFAQSchema = faqSchema([
     {
       question: "Do you provide IT support in Midrand?",
-      answer: "Yes! We provide both remote and on-site IT support throughout Midrand and Waterfall areas. Remote support starts at R120, and on-site callouts are R550 (R400 base + R150 transport)."
+      answer: "Yes! I provide both remote and on-site IT support throughout Midrand and Waterfall areas. Remote support starts at R120, and on-site callouts are R550 (R400 base + R150 transport)."
     },
     {
       question: "How far is Midrand from your base?",
-      answer: "Midrand is approximately 12km from our Lombardy East base. While this is slightly further, our remote support capabilities mean most issues are resolved without needing an on-site visit."
+      answer: "Midrand is approximately 12km from my Lombardy East base. While this is slightly further, my remote support capabilities mean most issues are resolved without needing an on-site visit."
     },
     {
       question: "Can you help with business IT in Midrand business parks?",
-      answer: "Absolutely! We support small businesses throughout Midrand's business parks and office complexes. From network setup to employee laptop support to server troubleshooting, we provide professional IT services."
+      answer: "Absolutely! I support small businesses throughout Midrand's business parks and office complexes. From network setup to employee laptop support to server troubleshooting, I provide professional IT services."
     },
     {
       question: "Is remote support really effective for Midrand businesses?",
-      answer: "Yes! Remote support is often faster and more cost-effective than on-site visits. We can fix software issues, resolve network problems, remove viruses, and provide tech support all remotely for R120. On-site visits are only needed for hardware repairs."
+      answer: "Yes! Remote support is often faster and more cost-effective than on-site visits. I can fix software issues, resolve network problems, remove viruses, and provide tech support all remotely for R120. On-site visits are only needed for hardware repairs."
     }
   ]);
 

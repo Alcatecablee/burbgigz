@@ -21,11 +21,11 @@ const Rosebank = () => {
   const rosebankFAQSchema = faqSchema([
     {
       question: "Do you provide IT support in Rosebank?",
-      answer: "Yes! We provide both remote and on-site IT support throughout Rosebank, including the Gautrain station area, Rosebank Mall, and surrounding business districts. Remote support starts at R120, and on-site callouts are R520."
+      answer: "Yes! I provide both remote and on-site IT support throughout Rosebank, including the Gautrain station area, Rosebank Mall, and surrounding business districts. Remote support starts at R120, and on-site callouts are R520."
     },
     {
       question: "Can you help with business IT in Rosebank?",
-      answer: "Absolutely! We support small businesses and home offices throughout Rosebank. From network setup to employee laptop troubleshooting to printer configuration, we provide professional IT support tailored to your business needs."
+      answer: "Absolutely! I support small businesses and home offices throughout Rosebank. From network setup to employee laptop troubleshooting to printer configuration, I provide professional IT support tailored to your business needs."
     },
     {
       question: "How quickly can you respond in Rosebank?",
@@ -33,7 +33,7 @@ const Rosebank = () => {
     },
     {
       question: "Why does Rosebank have a R520 callout fee?",
-      answer: "The R520 includes R400 base service plus R120 transport from our Lombardy East base. However, most issues can be fixed remotely for just R120 - perfect for software problems and troubleshooting."
+      answer: "The R520 includes R400 base service plus R120 transport from my Lombardy East base. However, most issues can be fixed remotely for just R120 - perfect for software problems and troubleshooting."
     }
   ]);
 

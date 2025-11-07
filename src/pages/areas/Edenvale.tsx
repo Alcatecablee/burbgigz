@@ -21,19 +21,19 @@ const Edenvale = () => {
   const edenvaleFAQSchema = faqSchema([
     {
       question: "Do you provide IT support in Edenvale?",
-      answer: "Yes! We provide both remote and on-site IT support throughout Edenvale and the surrounding areas. Remote support starts at R120, and on-site callouts are R490 (R400 base + R90 transport from Lombardy East)."
+      answer: "Yes! I provide both remote and on-site IT support throughout Edenvale and the surrounding areas. Remote support starts at R120, and on-site callouts are R490 (R400 base + R90 transport from Lombardy East)."
     },
     {
       question: "How far are you from Edenvale?",
-      answer: "We're based in Lombardy East, approximately 5km from Edenvale. This means quick response times for on-site visits and excellent coverage of the entire Edenvale area."
+      answer: "I'm based in Lombardy East, approximately 5km from Edenvale. This means quick response times for on-site visits and excellent coverage of the entire Edenvale area."
     },
     {
       question: "Can you help with home and business IT in Edenvale?",
-      answer: "Absolutely! We support both residential and small business IT needs in Edenvale - from home office setups to small retail shops. Our services include remote troubleshooting, virus removal, network setup, and hardware upgrades."
+      answer: "Absolutely! I support both residential and small business IT needs in Edenvale - from home office setups to small retail shops. My services include remote troubleshooting, virus removal, network setup, and hardware upgrades."
     },
     {
       question: "Do you service the Greenstone area?",
-      answer: "Yes! We cover Greenstone Shopping Centre and surrounding areas. The callout fee is the same as Edenvale (R490) since they're in the same general area from our base."
+      answer: "Yes! I cover Greenstone Shopping Centre and surrounding areas. The callout fee is the same as Edenvale (R490) since they're in the same general area from my base."
     }
   ]);
 

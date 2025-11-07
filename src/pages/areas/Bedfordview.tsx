@@ -21,19 +21,19 @@ const Bedfordview = () => {
   const bedfordviewFAQSchema = faqSchema([
     {
       question: "Do you provide IT support in Bedfordview?",
-      answer: "Yes! We provide both remote and on-site IT support throughout Bedfordview and Kensington. Remote support starts at R120, and on-site callouts are R500 (R400 base + R100 transport from Lombardy East)."
+      answer: "Yes! I provide both remote and on-site IT support throughout Bedfordview and Kensington. Remote support starts at R120, and on-site callouts are R500 (R400 base + R100 transport from Lombardy East)."
     },
     {
       question: "How quickly can you get to Bedfordview for on-site support?",
-      answer: "Bedfordview is just 5km from our Lombardy East base. We typically schedule on-site visits within 24 hours, with same-day service available for urgent cases."
+      answer: "Bedfordview is just 5km from my Lombardy East base. I typically schedule on-site visits within 24 hours, with same-day service available for urgent cases."
     },
     {
       question: "Do you support home offices in Bedfordview?",
-      answer: "Absolutely! Many Bedfordview residents work from home, and we specialize in home office IT support - from Wi-Fi troubleshooting to printer setup to laptop upgrades. Remote support is perfect for most issues."
+      answer: "Absolutely! Many Bedfordview residents work from home, and I specialize in home office IT support - from Wi-Fi troubleshooting to printer setup to laptop upgrades. Remote support is perfect for most issues."
     },
     {
       question: "What's included in the R500 on-site fee for Bedfordview?",
-      answer: "The R500 covers the callout (R400 base + R100 transport) plus initial diagnostics. Additional repairs like SSD installation or virus removal may have extra fees, but we'll quote everything upfront."
+      answer: "The R500 covers the callout (R400 base + R100 transport) plus initial diagnostics. Additional repairs like SSD installation or virus removal may have extra fees, but I'll quote everything upfront."
     }
   ]);
 

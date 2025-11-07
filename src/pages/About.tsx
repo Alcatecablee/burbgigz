@@ -12,20 +12,20 @@ const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEOHead
-        title="About Us | Clive - Certified IT Support Specialist in Lombardy East"
-        description="Meet Clive, a certified IT support specialist with 9+ years of experience. CompTIA A+ and Network+ certified, providing professional IT services in Lombardy East and Johannesburg."
+        title="About Me | Clive - Certified IT Support Specialist in Lombardy East"
+        description="Meet Clive, a certified IT support specialist with 15+ years of experience. Founded BurbGigz in 2010. CompTIA A+ and Network+ certified, providing professional IT services in Lombardy East and Johannesburg."
         keywords="Clive, IT support specialist, CompTIA A+ certified, Network+ certified, Lombardy East technician, professional IT services Johannesburg"
-        ogTitle="About BurbGigz IT Services - Meet Your Certified IT Specialist"
-        ogDescription="9+ years of professional IT support experience. CompTIA A+ and Network+ certified. Serving Lombardy East and surrounding areas with reliable, transparent service."
+        ogTitle="About Clive - Your Certified IT Specialist in Johannesburg"
+        ogDescription="15+ years of professional IT support experience. Founded BurbGigz in 2010. CompTIA A+ and Network+ certified. Serving Lombardy East and surrounding areas with reliable, transparent service."
         canonicalUrl="/about"
       />
       
       <div className="container px-4 py-12">
         <div className="text-center space-y-3 mb-12">
-          <Badge variant="outline">About Us</Badge>
+          <Badge variant="outline">About Me</Badge>
           <h1 className="text-3xl lg:text-4xl font-bold">Meet Your IT Support Specialist</h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Professional, certified, and transparent IT support you can trust
+            I'm Clive - professional, certified, and here to help with honest, transparent IT support
           </p>
         </div>
 
@@ -36,7 +36,7 @@ const About = () => {
             <h2 className="text-xl font-semibold">Why Trust Matters</h2>
           </div>
           <p className="text-center text-muted-foreground max-w-3xl mx-auto">
-            In an industry plagued by scams and fake tech support, we stand out with verified credentials, 
+            In an industry plagued by scams and fake tech support, I stand out with verified credentials, 
             transparent pricing, and a commitment to consent-based service. No cold calls, no pressure tactics, 
             just honest help when you need it.
           </p>
@@ -63,12 +63,9 @@ const About = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <h3 className="font-semibold mb-2">Professional Summary</h3>
+                <h3 className="font-semibold mb-2">My Story</h3>
                 <p className="text-sm text-muted-foreground">
-                  Experienced Customer Care and IT Support Specialist with over 9 years of experience 
-                  providing technical support, resolving customer inquiries, and maintaining Point of Sale (POS) 
-                  systems. Skilled in delivering excellent customer service, diagnosing hardware and software issues, 
-                  and ensuring client satisfaction.
+                  I founded BurbGigz IT Services back in 2010, right here in Lombardy East. Over the past 15+ years, I've helped thousands of people across Johannesburg with everything from slow laptops to complex network setups. I also run SuperK53 (helping South Africans pass their learner's tests) and Taxfy (SARS-compliant tax calculator). Since 2016, I've also been providing helpdesk support for GAAP Point-of-Sale systems. My approach is simple: honest advice, transparent pricing, and I'll tell you straight if something's not worth fixing.
                 </p>
               </div>
               
@@ -183,15 +180,15 @@ const About = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-success" />
-              How We're Different from Scams
+              How I'm Different from Scams
             </CardTitle>
-            <CardDescription>Our commitment to transparency and trust</CardDescription>
+            <CardDescription>My commitment to transparency and trust</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <p className="font-medium text-sm mb-1">No Cold Calls or Pop-ups</p>
-                <p className="text-xs text-muted-foreground">We never initiate unsolicited contact or use fake virus alerts</p>
+                <p className="text-xs text-muted-foreground">I never initiate unsolicited contact or use fake virus alerts</p>
               </div>
               <div>
                 <p className="font-medium text-sm mb-1">Consent-Based Access</p>
@@ -207,7 +204,7 @@ const About = () => {
               </div>
               <div>
                 <p className="font-medium text-sm mb-1">Secure Tools Only</p>
-                <p className="text-xs text-muted-foreground">We use encrypted, open-source tools like RustDesk - no sketchy software</p>
+                <p className="text-xs text-muted-foreground">I use encrypted, open-source tools like RustDesk - no sketchy software</p>
               </div>
               <div>
                 <p className="font-medium text-sm mb-1">Local & Accountable</p>
@@ -216,7 +213,7 @@ const About = () => {
             </div>
             <div className="border-t pt-4 mt-4">
               <p className="text-sm text-muted-foreground">
-                <strong>Concerned about scams?</strong> Visit our{" "}
+                <strong>Concerned about scams?</strong> Visit my{" "}
                 <Link to="/scam-awareness" className="text-primary hover:underline">Scam Awareness page</Link>{" "}
                 to learn how to spot fake tech support and protect yourself.
               </p>

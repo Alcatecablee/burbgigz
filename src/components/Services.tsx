@@ -66,7 +66,7 @@ const Services = () => {
             Most Fixes Done Remotely - I Come to You When Needed
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            After 9+ years fixing computers across Johannesburg, I know that 80% of issues don't need a callout - I can fix them remotely while you watch. For hardware work like SSD upgrades, I'll come to you with the parts.
+            After 15+ years fixing computers across Johannesburg, I know that 80% of issues don't need a callout - I can fix them remotely while you watch. For hardware work like SSD upgrades, I'll come to you with the parts.
           </p>
         </div>
 
